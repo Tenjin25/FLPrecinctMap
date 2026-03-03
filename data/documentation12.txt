@@ -1,0 +1,66 @@
+2012 Election Results by Precinct
+
+Vote Column Label Format
+------------------------
+Columns reporting votes follow a standard label pattern. One example is: G12PREDOBA
+The first character is G for a general election, P for a primary, C for a caucus, R for a runoff, S for a special.
+Characters 2 and 3 are the year of the election.
+Characters 4-6 represent the office type (see list below).
+Character 7 represents the party of the candidate.
+Characters 8-10 are the first three letters of the candidate's last name.
+
+Office Codes
+PRE - President
+USS - U.S. Senate
+
+Party Codes
+D and R will always represent Democrat and Republican, respectively.
+See the state-specific notes for the remaining codes used in a particular file; note that third-party candidates may appear on the ballot under different party labels in different states.
+
+
+Florida
+-------
+Election results from the Florida Division of Elections (https://dos.fl.gov/elections/data-statistics/elections-data/precinct-level-election-results/).
+
+The official final results from Monroe County add up to 12 fewer President votes for Obama (D) and 11 fewer Senate votes for Bill Nelson (D) than the official statewide results. 
+
+Precinct shapefiles for the following counties sourced from the respective county Supervisor of Elections: Alachua, Brevard, Broward, Citrus, Clay, Collier, Columbia, DeSoto, Duval, Escambia, Flagler, Gadsden, Gulf, Hardee, Hernando, Highlands, Hillsborough, Lake, Lee, Leon, Levy, Madison, Marion, Martin, Miami-Dade, Nassau, Okaloosa, Okeechobee, Orange, Osceola, Palm Beach, Pasco, Pinellas, Polk, Putnam, Santa Rosa, Sarasota, St. Johns, St. Lucie, Sumter, Taylor, Union, Volusia.
+
+Precinct shapefiles for the following counties sourced from the Florida Department of State: Bay, Bradford, Calhoun, Charlotte, Dixie, Hendry, Indian River, Manatee, Suwannee.
+
+Precinct shapefiles for the following counties sourced from the U.S. Census Bureau 2020 Redistricting Data Program: Baker, Franklin, Gilchrist, Glades, Hamilton, Holmes, Jackson, Jefferson, Lafayette, Liberty, Monroe, Seminole, Wakulla, Walton, Washington.
+
+Precinct boundaries in the following counties were edited based on the voter file, further aligned with county shapefiles or PDF maps if available: Baker, Bay, Brevard, Broward, Charlotte, DeSoto, Duval, Escambia, Franklin, Gulf, Hamilton, Hendry, Highlands, Jackson, Jefferson, Lafayette, Lake, Levy, Liberty, Martin, Monroe, Orange, Palm Beach, Pasco, Polk, Santa Rosa, St. Lucie, Sumter, Suwannee, Union, Wakulla, Walton, Washington.
+
+Baker 999, Lake 104, Osceola 999, Palm Beach 8002 were added to the shapefile for votes reported only at the Supervisor of Elections office consistent with how most Florida counties prepare their precinct shapefiles.
+
+Seminole County reported some early votes only by vote center. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+Miami-Dade County reported federal ballots at the congressional-district level. These were distributed by candidate to precincts in the respective congressional districts based on their share of the precinct-level reported vote.
+
+G12PRERROM - Mitt Romney (Republican Party)
+G12PREDOBA - Barack Obama (Democratic Party)
+G12PRELJOH - Gary Johnson (Libertarian Party)
+G12PREGSTE - Jill Stein (Green Party)
+G12PREPBAR - Roseanne Barr (Peace and Freedom Party)
+G12PREOSTE - Tom Stevens (Objectivist Party)
+G12PRECGOO - Virgil Goode (Constitution Party)
+G12PREJAND - Rocky Anderson (Justice Party)
+G12PREAHOE - Tom Hoefling (America's Party)
+G12PREOBAR - Andre Barnett (Reform Party)
+G12PRESALE - Stewart Alexander (Socialist Party)
+G12PRESLIN - Peta Lindsay (Socialism and Liberation Party)
+G12PREOWRI - Write-In Votes
+
+G12USSRMAC - Connie Mack (Republican Party)
+G12USSDNEL - Bill Nelson (Democratic Party)
+G12USSIGAY - Bill Gaylor (Independent)
+G12USSIBOR - Chris Borgia (Independent)
+G12USSOWRI - Write-In Votes
+
+
+End Matter
+----------
+We provide these data on this archive free for public use under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (external links may have different licenses). Generally, this license means you are free to use these data for any non-commercial purpose as long as you provide proper citation and notify your users they must also abide by this license. We generally interpret non-commercial purposes to include academic work, creating maps and similar social media usage or blogging about our data (not behind a paywall), and reports authored by non-profit organizations. You are granted permission to use data or graphs on this site for some commercial products, such as for a book. If you have any questions about use of these data, please contact Prof. McDonald (michael.mcdonald@ufl.edu).
+
+THE DATA ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND. WE MAKE NO AND DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT, WITH RESPECT TO THESE DATA. WE MAKE NO REPRESENTATIONS OR WARRANTIES AS TO THE QUALITY, SUITABILITY, OR ADEQUACY OF THESE DATA FOR ANY PURPOSE OR USE.

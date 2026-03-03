@@ -1,0 +1,1073 @@
+2024 Election Results by Precinct
+
+Vote Column Label Format
+------------------------
+Columns reporting votes follow a standard label pattern. One example is: G20PRERTRU
+The first character is G for a general election, C for recount results, P for a primary, S for a special, and R for a runoff.
+Characters 2 and 3 are the year of the election.
+Characters 4-6 represent the office type (see list below).
+Character 7 represents the party of the candidate.
+Characters 8-10 are the first three letters of the candidate's last name.
+
+Office Codes
+
+AGR - Agriculture Commissioner
+ATG - Attorney General
+AUD - Auditor
+COC - Corporation Commissioner
+COU - Council Member
+CSC - Clerk of the Supreme Court
+GOV - Governor
+DEL - Delegate to the U.S. House
+H## - U.S. House, where ## is the district number. AL: at large.
+INS - Insurance Commissioner
+LAB - Labor Commissioner
+LND - Land Commissioner
+LTG - Lieutenant Governor
+PRE - President
+RRC - Railroad Commissioner
+SAC - State Appeals Court
+SBE - State Board of Education
+SCC - State Criminal Appeals Court
+SOS - Secretary of State
+SPI - Superintendent of Public Instruction
+SSC - State Supreme Court
+TRE - Treasurer
+UBR - University Board Member
+USS - U.S. Senate
+
+Party Codes
+D and R will always represent Democrat and Republican, respectively.
+See the state-specific notes for the remaining codes used in a particular file; note that third-party candidates may appear on the ballot under different party labels in different states.
+
+Alaska
+------
+Election results from the Alaska Division of Elections (https://www.elections.alaska.gov/election-results/). Precinct shapefile from the Alaska Division of Elections (https://www.elections.alaska.gov/research/district-maps/).
+
+Early, absentee, and questioned votes are reported at the state house district level (since Alaska has portions of the state with no lower level of government, HDs serve a similar purpose as counties do in other states for the process of reporting votes). Overseas federal absentee ballots are reported at the statewide level. These votes are apportioned by candidate to precincts based on the precinct-level reported vote as weighted according to the number of ballots cast by vote type in each precinct.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREUWES - Cornel West (Aurora Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PREASON - Peter Sonski (American Solidarity Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREISTE - Jill Stein (Independent)
+
+G24HALRBEG - Nick Begich (Republican Party)
+G24HALDPEL - Mary Peltola (Democratic Party)
+G24HALDHAF - Eric Hafner (Democratic Party)
+G24HALOHOW - John Howe (Alaskan Independence Party)
+
+
+Arizona
+-------
+Election results from the Arizona Secretary of State (https://azsos.gov/elections/election-information). Precinct shapefiles from the respective county GIS departments.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREOWRI - Write-In Votes
+
+G24USSRLAK - Kari Lake (Republican Party)
+G24USSDGAL - Ruben Gallego (Democratic Party)
+G24USSGQUI - Eduardo Quintana (Green Party)
+G24USSOWRI - Write-In Votes
+
+
+Delaware
+--------
+Election results from the Delaware Department of Elections (https://elections.delaware.gov/elections/election_archive.shtml).
+Precinct shapefile from Delaware FirstMap GIS (https://de-firstmap-delaware.hub.arcgis.com/datasets/election-districts-2022-1/).
+
+Precincts 02-27, 31-16, 41-16 were reporting units for UOCAVA votes from New Castle, Kent, Sussex respectively. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREIKEN - Robert Kennedy Jr (Independent Party)
+G24PRECSUP - Vermin Supreme (Conservative Party)
+
+G24USSDROC - Lisa Blunt Rochester (Democratic Party)
+G24USSRHAN - Eric Hansen (Republican Party)
+G24USSIKAT - Mike Katz (Independent Party)
+
+G24HALDMCB - Sarah McBride (Democratic Party)
+G24HALRWHA - John Whalen (Republican Party)
+
+G24GOVDMEY - Matt Meyer (Democratic Party)
+G24GOVRRAM - Mike Ramone (Republican Party)
+
+G24LTGDGAY - Kyle Evans Gay (Democratic Party)
+G24LTGRKIN - Ruth Briggs King (Republican Party)
+
+G24INSDNAV - Trinidad Navarro (Democratic Party)
+G24INSRTAY - Ralph Taylor (Republican Party)
+
+
+District of Columbia
+--------------------
+Election results from the District of Columbia Board of Elections (https://electionresults.dcboe.org/election_results/2024-General-Election). Precinct shapefile from Open Data DC (https://opendata.dc.gov/datasets/voting-precinct-2019).
+
+Precinct boundaries throughout the District were edited to match the voter registration file following 2023 redistricting.
+
+The U.S. Senate and at-large U.S. House elections are for shadow members.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREOWRI - Write-In Votes
+
+G24DELDNOR - Eleanor Holmes Norton (Democratic Party)
+G24DELRALE - Myrtle Alexander (Republican Party)
+G24DELGFRE - Kymone Freeman (DC Statehood Green Party)
+G24DELIBRO - Michael Brown (Independent)
+G24DELOWRI - Write-In Votes
+
+G24COUDWHI - Robert White (Democratic Party)
+G24COURSIM - Rob Simmons (Republican Party)
+G24COUGMOC - Darryl Moch (DC Statehood Green Party)
+G24COUIHEN - Christina Henderson (Independent)
+G24COUOWRI - Write-In Votes
+
+G24USSDJAI - Ankit Jain (Democratic Party)
+G24USSRRIM - Nelson Rimensnyder (Republican Party)
+G24USSOWRI - Write-In Votes
+
+G24HALDOWO - Oye Owolewa (Democratic Party)
+G24HALRIVA - Ciprian Ivanof (Republican Party)
+G24HALOWRI - Write-In Votes
+
+
+Florida
+-------
+Election results from the Florida Division of Elections (https://dos.fl.gov/elections/data-statistics/elections-data/precinct-level-election-results/).
+
+Precinct shapefiles for the following counties sourced from the respective county Supervisor of Elections: Alachua, Bay, Bradford, Brevard, Broward, Charlotte, Citrus, Clay, Collier, Columbia, DeSoto, Duval, Escambia, Flagler, Gadsden, Glades, Gulf, Hardee, Hendry, Hernando, Highlands, Hillsborough, Indian River, Lake, Lee, Leon, Levy, Madison, Manatee, Marion, Martin, Miami-Dade, Nassau, Okaloosa, Okeechobee, Orange, Osceola, Palm Beach, Pasco, Pinellas, Polk, Putnam, Santa Rosa, Sarasota, Seminole, St. Johns, St. Lucie, Sumter, Suwannee, Taylor, Union, Volusia.
+
+Precinct shapefiles for the following counties sourced from the Florida Department of State: Calhoun, Dixie.
+
+Precinct shapefiles for the following counties sourced from the U.S. Census Bureau 2020 Redistricting Data Program: Baker, Franklin, Gilchrist, Hamilton, Holmes, Jackson, Jefferson, Lafayette, Liberty, Monroe, Wakulla, Walton, Washington.
+
+Precinct boundaries in the following counties were edited based on the voter file, further aligned with county shapefiles or PDF maps if available: Baker, Calhoun, Charlotte, DeSoto, Duval, Franklin, Gilchrist, Gulf, Hamilton, Hendry, Highlands, Hillsborough, Jackson, Jefferson, Lafayette, Lake, Levy, Liberty, Martin, Miami-Dade, Monroe, Nassau, Okaloosa, Osceola, Palm Beach, Polk, Sarasota, St. Lucie, Santa Rosa, Wakulla, Washington.
+
+Palm Beach 9902 was added to the shapefile for votes reported only at the Supervisor of Elections office consistent with how most Florida counties prepare their precinct shapefiles.
+
+Miami-Dade County reported federal ballots at the congressional-district level. These were distributed by candidate to precincts in the respective congressional districts based on their share of the precinct-level reported vote.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREASON - Peter Sonski (American Solidarity Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PREOWRI - Write-In Votes
+
+G24USSRSCO - Rick Scott (Republican Party)
+G24USSDMUC - Debbie Mucarsel-Powell (Democratic Party)
+G24USSLBON - Feena Bonoan (Libertarian Party)
+G24USSIEVE - Ben Everidge (Independent)
+G24USSINGU - TQ Nguyen (Independent)
+G24USSOWRI - Write-In Votes
+
+
+Hawaii
+------
+Election results from the Hawaii Office of Elections (https://elections.hawaii.gov/election-results/). Precinct shapefile from the Hawaii Statewide GIS Program (https://geoportal.hawaii.gov/datasets/HiStateGIS::election-precincts/).
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREASON - Peter Sonski (American Solidarity Party)
+
+G24USSDHIR - Mazie Hirono (Democratic Party)
+G24USSRMCD - Bob McDermott (Republican Party)
+G24USSGPOH - Emma Pohlman (Green Party)
+G24USSWBIL - Shelby Billionaire (We The People Party)
+
+
+Illinois
+--------
+Election results from the Illinois State Board of Elections (https://www.elections.il.gov/electionoperations/ElectionVoteTotals.aspx). Precinct shapefile primarily from the U.S. Census Bureau 2020 Redistricting Data Program except the following counties are sourced from the respective county GIS departments: Cook, DuPage, Kane, Kendall, Lake, Madison, McHenry, Monroe, Peoria, St. Clair, Tazewell, Will.
+
+DuPage County reported federal ballots by congressional district. These were distributed by candidate to the precincts in each district based on the precinct-level reported vote. President-only ballots were reported at the county-level for Boone, Carroll, Macon, Mercer, Tazewell. These were distributed by candidate to precincts based on the precinct-level reported vote.
+
+The SBOE results do not include write-in votes by precinct for 8 counties. For these counties the write-in votes by precinct were sourced from the official county or city canvass reports.
+
+The 2020 VTD shapefiles for the following counties were edited to match the precinct boundaries for the 2024 general election based on county maps, shapefiles, and the voter registration file: Adams, Bond, Boone, Calhoun, Champaign, Christian, Clinton, Coles, DeKalb, Effingham, Fulton, Grundy, Jasper, Jersey, Jo Daviess, Kankakee, Knox, LaSalle, Lawrence, Lee, Macon, Macoupin, Marion, Mason, Massac, McDonough, McLean, Menard, Morgan, Moultrie, Ogle, Randolph, Sangamon, Shelby, Stephenson, Vermilion, Warren, Washington, Williamson, Winnebago, Woodford.
+
+Although county shapefiles were obtained for many of these counties editing the VTD boundaries was preferable either because Census boundaries were more accurate in general or more consistent with congressional and legislative district boundaries. All differences between shapefile versions that involved voters were confirmed using the Illinois SBOE registration or polling place lookup tools.
+
+The following counties include congressional, legislative, or municipal splits to match how results were reported for the 2024 general election: Cumberland, DuPage, Fulton, Grundy, Jackson, Kane, McDonough, Morgan, Peoria, Washington, White, Will.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREOWRI - Write-In Votes
+
+
+Indiana
+-------
+Election results where available by precinct from the Indiana Secretary of State Election Division (https://enr.indianavoters.in.gov/site/index.html). Precinct shapefile provided by the Indiana Secretary of State Election Division (https://www.in.gov/sos/elections/).
+
+Election results for the following counties from county canvass reports: Allen, Benton, Blackford, Boone, Brown, Carroll, Cass, Clark, Clay, Daviess, Dekalb, Dubois, Floyd, Fountain, Fulton, Gibson, Hancock, Hendricks, Jackson, Jasper, Jay, Laporte, Lawrence, Madison, Marshall, Miami, Monroe, Newton, Noble, Owen, Perry, Porter, Pulaski, Randolph, Ripley, Scott, Shelby, Starke, Steuben, Switzerland, Tippecanoe, Tipton, Union, Vermillion, Wabash, Warren, Warrick, Washington, Wayne, White.
+
+Federal ballots were reported countywide in Cass, Fountain, Fulton, Monroe, Porter, Ripley, Warren, Washington. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+Gibson County precinct White River 1, Ripley County precincts Adams 2, Center 1, Center 2, Center 3, Johnson 1, Johnson 2, Johnson 3, Otter Creek 1, Otter Creek 2, and Washington County precincts Brown, Pierce, Polk were split with municipal boundaries to match how results were reported for the 2024 general election. Cass County precincts Miami, Noble, Washington, Washington City and Ripley County precincts Adams 1, Laughery 1 were split by school district to match how results were reported for the 2024 general election.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+
+G24USSRBAN - Jim Banks (Republican Party)
+G24USSDMCC - Valerie McCray (Democratic Party)
+G24USSLHOR - Andy Horning (Libertarian Party)
+
+G24GOVRBRA - Mike Braun (Republican Party)
+G24GOVDMCC - Jennifer McCormick (Democratic Party)
+G24GOVLRAI - Donald Rainwater (Libertarian Party)
+
+G24ATGRROK - Todd Rokita (Republican Party)
+G24ATGDWEL - Destiny Wells (Democratic Party)
+
+10/21/2025 Update: Added final canvass votes to Benton County, Steuben County, Warren County.
+
+
+Maine
+-----
+Election results from the Maine Secretary of State (https://www.maine.gov/sos/cec/elec/results/index.html). Election results by ward from municipal reports for Auburn, Augusta, Belfast, Cranberry Isles, Ellsworth, Gorham, Lewiston, Portland, South Portland.
+
+Precinct shapefiles primarily from the U.S. Census Bureau 2020 Redistricting Data Program. Voting district shapefiles were available for Androscoggin, Cumberland, Kennebec, Sagadahoc, Waldo, York. County subdivision shapefiles were used for Aroostook, Franklin, Hancock, Knox, Lincoln, Oxford, Penobscot, Piscataquis, Somerset, Washington.
+
+VTDs were merged for Bath, Brunswick, Saco, Sanford, Waterville, Westbrook as statewide offices were not reported by ward. VTDs for Augusta, Cranberry Isles, Ellsworth, Gorham, Lewiston, Portland were sourced from municipal ward maps.
+
+Absentee votes were reported by township for Auburn, Augusta, Ellsworth, Gorham, Lewiston, Portland, South Portland. Military and overseas ballots (UOCAVA) were reported statewide. These were distributed by candidate to precincts based on their share of the precinct-level vote for the given reporting unit.
+
+For Portland the state reported 31668 votes for Kamala Harris (D) and 8326 votes for David Costello (D). The precinct votes in the Portland municipal report add up to 31670 votes for Harris and 8328 votes for Costello.
+
+Maine includes more than 400 unorganized townships. While some feature separately, the U.S. Census Bureau combines most of these into larger unorganized territories. Voters in unorganized townships generally register and vote at nearby incorporated townships. In some cases these votes are reported separately while in others they are included within the total vote reported from the central voting location. The shapefile has been modified accordingly using the Town and Townships Boundary shapefile from the Maine Office of GIS. For those unorganized townships that do not appear on registration or election reports unaltered Census boundaries have been retained. A scattering of unorganized townships with intermittent or inconsistent voter registration have also been omitted.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Independent Party)
+G24PREJWES - Cornel West (Justice For All Party)
+
+G24USSDCOS - David Costello (Democratic Party)
+G24USSRKOU - Demi Kouzounas (Republican Party)
+G24USSIKIN - Angus King (Independent)
+G24USSICHE - Jason Cherry (Independent)
+
+
+Maryland
+--------
+Election results from the Maryland State Board of Elections (https://elections.maryland.gov/elections/2024/election_data/index.html). Precinct shapefile in part from the Maryland Department of Information Technology (https://data-maryland.opendata.arcgis.com/datasets/maryland::maryland-election-boundaries-precincts-2022/). The following were instead sourced from the respective county governments: Allegany, Anne Arundel, Calvert, Carroll, Charles, Frederick, Harford, Howard, Montgomery, St. Mary's, Washington, Worcester.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSDALS - Angela Alsobrooks (Democratic Party)
+G24USSRHOG - Larry Hogan (Republican Party)
+G24USSLSCO - Mike Scott (Libertarian Party)
+G24USSOWRI - Write-In Votes
+
+
+Massachusetts
+-------------
+Election results from the Massachusetts Secretary of the Commonwealth (https://electionstats.state.ma.us/). Precinct shapefiles from the MassGIS Bureau of Geographic Information (https://www.mass.gov/info-details/massgis-data-layers#political/administrative-boundaries-).
+
+The Wards and Precincts shapefile was split with the Subprecincts shapefile for any subprecincts that were included in the November 2024 general election results.
+
+The following precinct divisions were authorized and defined for voting purposes but not for redistricting purposes by specific acts of the MA legislature and were split accordingly: Chicopee 6A,6B; Dracut 6; Hingham 7; Newburyport 1; Peabody 4-3; Revere 5-1. Warren A and Warren B precincts were split based on polling place assignments in the Warren parcel shapefile.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green-Rainbow Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREIAYY - Shiva Ayyadurai (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSDWAR - Elizabeth Warren (Democratic Party)
+G24USSRDEA - John Deaton (Republican Party)
+G24USSOWRI - Write-In Votes
+
+1/30/2025 Update: Standardized candidate codes.
+
+
+Michigan
+--------
+Election results in part from the Michigan Secretary of State (https://www.michigan.gov/sos/elections/election-results-and-data) and in part from individual county canvass reports. Precinct shapefile from Michigan GIS Open Data (https://gis-michigan.opendata.arcgis.com/datasets/2024-voting-precincts).
+
+Several cities that cross county lines reported results from each county while the shapefile had a single precinct. These cross-county precincts were split at the county line with results assigned accordingly.
+
+Fenton City - Genesee/Oakland
+Midland City - Bay/Midland
+Richmond City - Macomb/St. Clair
+
+Although Clare City (Clare/Isabella) and Brown City (Lapeer/Sanilac) also cross county lines the results for statewide elections were reported together by Clare County and Sanilac County respectively.
+
+Detroit City reports absentee votes via Absentee Vote Counting Boards. The cross-reference chart of AVCBs to precincts was received from the City of Detroit Department of Elections and the AVCB votes were distributed accordingly by candidate to precincts based on their share of the precinct-level reported vote.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRENKEN - Robert Kennedy Jr (Natural Law Party)
+G24PREUTER - Randall Terry (US Taxpayers Party)
+G24PREIWES - Cornel West (Independent)
+G24PREIKIS - Joseph Kishore (Independent)
+
+G24USSRROG - Mike Rogers (Republican Party)
+G24USSDSLO - Elissa Slotkin (Democratic Party)
+G24USSLSOL - Joseph Solis-Mullen (Libertarian Party)
+G24USSGMAR - Douglas Marsh (Green Party)
+G24USSUSTE - Dave Stein (US Taxpayers Party)
+G24USSNDER - Doug Dern (Natural Law Party)
+
+G24SBERSNY - Nikki Snyder (Republican Party)
+G24SBERMCM - Tom McMillin (Republican Party)
+G24SBEDJON - Theodore Jones (Democratic Party)
+G24SBEDZEM - Adam Zemke (Democratic Party)
+G24SBELBOM - Scotty Boman (Libertarian Party)
+G24SBEWHER - Mary Anne Hering (Working Class Party)
+G24SBEUSCH - Christine Schwartz (US Taxpayers Party)
+G24SBEUGER - Ted Gerrard (US Taxpayers Party)
+
+*University of Michigan*
+G24UBRRMEY - Carl Meyers (Republican Party)
+G24UBRRVAR - Sevag Vartanian (Republican Party)
+G24UBRDILI - Denise Ilitch (Democratic Party)
+G24UBRDRYD - Shauna Ryder Diggs (Democratic Party)
+G24UBRLCHA - Andrew Chadderdon (Libertarian Party)
+G24UBRUOET - Donna Oetman (US Taxpayers Party)
+
+*Michigan State University*
+G24UBRRBAL - Mike Balow (Republican Party)
+G24UBRRMAD - Julie Maday (Republican Party)
+G24UBRDBAH - Rebecca Bahar-Cook (Democratic Party)
+G24UBRDSTA - Thomas Stallworth (Democratic Party)
+G24UBRLBAK - Grant Baker (Libertarian Party)
+G24UBRGLAP - John La Pietra (Green Party)
+G24UBRUSA1 - Janet Sanger (US Taxpayers Party)
+G24UBRUSA2 - John Sanger (US Taxpayers Party)
+
+*Wayne State University*
+G24UBRRBUS - Michael Busuito (Republican Party)
+G24UBRRRED - Sunny Reddy (Republican Party)
+G24UBRDGAF - Mark Gaffney (Democratic Party)
+G24UBRDDEM - Rasha Demashkieh (Democratic Party)
+G24UBRLISH - Farid Ishac (Libertarian Party)
+G24UBRGMAK - Sami Makhoul (Green Party)
+G24UBRWROE - Suzanne Roehrig (Working Class Party)
+G24UBRUMOH - William Mohr (US Taxpayers Party)
+G24UBRNOAK - Kathleen Oakford (Natural Law Party)
+
+
+Minnesota
+---------
+Election results and precinct shapefile from the Minnesota Secretary of State (https://gisdata.mn.gov/dataset/bdry-electionresults-2022-2030).
+
+G24PREDHAR - Kamala Harris (Democratic-Farmer-Labor Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+G24PREJWES - Cornel West (Justice For All Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PRESFRU - Rachele Fruit (Socialist Workers Party)
+G24PREIAYY - Shiva Ayyadurai (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSDKLO - Amy Klobuchar (Democratic-Farmer-Labor Party)
+G24USSRWHI - Royce White (Republican Party)
+G24USSLWHI - Rebecca Whiting (Libertarian Party)
+G24USSALAC - Joyce Lacey (Independence-Alliance Party)
+G24USSOWRI - Write-In Votes
+
+
+Montana
+-------
+Election results from the Montana Secretary of State (https://sosmt.gov/elections/results/). Precinct shapefile from the Montana State Library (https://ftpgeoinfo.msl.mt.gov/Data/Spatial/MSDI/AdministrativeBoundaries/).
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+
+G24USSRSHE - Tim Sheehy (Republican Party)
+G24USSDTES - Jon Tester (Democratic Party)
+G24USSLDAO - Sid Daoud (Libertarian Party)
+G24USSGBAR - Robert Barb (Green Party)
+
+G24GOVRGIA - Greg Gianforte (Republican Party)
+G24GOVDBUS - Ryan Busse (Democratic Party)
+G24GOVLLEI - Kaiser Leib (Libertarian Party)
+
+G24ATGRKNU - Austin Knudsen (Republican Party)
+G24ATGDALK - Ben Alke (Democratic Party)
+
+G24SOSRJAC - Christi Jacobsen (Republican Party)
+G24SOSDMUL - Jesse Mullen (Democratic Party)
+G24SOSLLAM - John Lamb (Libertarian Party)
+
+G24AUDRBRO - James Brown (Republican Party)
+G24AUDDREP - John Repke (Democratic Party)
+
+G24SPIRHED - Susie Hedalen (Republican Party)
+G24SPIDOBR - Shannon O'Brien (Democratic Party)
+
+G24CSCRGRE - Bowen Greenwood (Republican Party)
+G24CSCDFAR - Erin Farris-Olsen (Democratic Party)
+G24CSCLROO - Roger Roots (Libertarian Party)
+
+
+Nevada
+------
+Election results from the Nevada Secretary of State (https://www.nvsos.gov/sos/elections/election-information/precinct-level-results). Precinct shapefile primarily from the Nevada Legislative Counsel Bureau (https://nvlcb.maps.arcgis.com/home/index.html). Churchill shapefile sourced from the county government.
+
+Clark precincts 6375, 6380, 6382, 6385, 6543 were added from the county shapefile. Pershing precincts 1/7 were aligned with county maps using the 2022 version of the NLCB shapefile.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREASKO - Joel Skousen (Independent American Party)
+G24PREONON - None Of These Candidates
+
+G24USSRBRO - Sam Brown (Republican Party)
+G24USSDROS - Jacky Rosen (Democratic Party)
+G24USSLCUN - Chris Cunningham (Libertarian Party)
+G24USSAHAN - Janine Hansen (Independent American Party)
+G24USSONON - None Of These Candidates
+
+
+New Hampshire
+-------------
+Election results from the New Hampshire Secretary of State (https://www.sos.nh.gov/elections/2024-election-results). Precinct shapefile from the New Hampshire Geodata Portal (https://new-hampshire-geodata-portal-1-nhgranit.hub.arcgis.com/datasets/NHGRANIT::new-hampshire-political-districts-voting-wards-2022/about).
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREOWRI - Write-In Votes
+
+G24GOVDCRA - Joyce Craig (Democratic Party)
+G24GOVRAYO - Kelly Ayotte (Republican Party)
+G24GOVLVIL - Stephen Villee (Libertarian Party)
+G24GOVOWRI - Write-In Votes
+
+
+New Jersey
+----------
+Election results from county canvass reports (https://nj.gov/state/elections/vote-county-election-officials.shtml). Precinct shapefile from the New Jersey Division of Elections (https://www.nj.gov/state/elections/vote.shtml). Naval Weapons Station Earle in Monmouth County was added as an unassigned district.
+
+Bergen, Burlington, Camden, Cumberland, Hunterdon, Mercer, Middlesex, and Union reported provisional votes at the municipal and/or ward level. Hunterdon also reported mail ballots and Union also reported federal ballots at the municipal and/or ward level. Atlantic, Camden, Cape May, Essex, Gloucester, Mercer, Middlesex, Monmouth, and Morris reported federal ballots by congressional district. All votes were distributed by candidate to precincts based on their share of the precinct-level reported vote of the respective reporting unit.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PRESKIS - Joseph Kishore (Socialist Equality Party)
+G24PRESFRU - Rachele Fruit (Socialist Workers Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+
+G24USSDKIM - Andy Kim (Democratic Party)
+G24USSRBAS - Curtis Bashaw (Republican Party)
+G24USSLKAP - Kenneth Kaplan (Libertarian Party)
+G24USSGKHA - Christina Khalil (Green Party)
+G24USSVMOO - Patricia Mooneyham (Vote Better Party)
+G24USSSKUN - Joanne Kuniansky (Socialist Workers Party)
+
+8/22/2025 Update: Standardized precinct attributes.
+
+
+New Mexico
+----------
+Election results from the New Mexico Secretary of State (https://www.sos.nm.gov/voting-and-elections/election-results/). Precinct shapefile from the New Mexico Resource Geographic Information System (https://rgis.unm.edu/rgis6/).
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREOEBK - Laura Ebke (Liberal Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+
+G24USSDHEI - Martin Heinrich (Democratic Party)
+G24USSRDOM - Nella Domenici (Republican Party)
+
+
+North Carolina
+--------------
+Election results and precinct shapefile from the North Carolina State Board of Elections (https://www.ncsbe.gov/results-data).
+
+Henderson CV, Wake 01-07A, 07-07A were missing from the 20240723 shapefile. They were added from the respective county precinct shapefiles. Durham 48 was an obsolete precinct and was deleted from the shapefile.
+
+North Carolina produces two sets of election results data. The precinct results are the unaltered results as initially reported by the counties. Many counties report early votes by vote center while provisional and other nonstandard ballots may be reported countywide. The precinct-sorted results are then produced within 30 days after the election. In the precinct-sorted data nearly all votes are assigned to precincts regardless of the manner by which the ballots were cast. However, North Carolina law requires the addition of statistical "noise" to the precinct-sorted data wherever any given vote by any specific voter may otherwise be deduced via cross referencing the various election-related data sets produced by the SBE.
+
+For the 2024 general election 63 counties reported all votes by precinct in their initial precinct results. The precinct-sorted data set was used instead for the counties listed below.
+
+Alleghany, Avery, Beaufort, Bertie*, Bladen*, Cabarrus, Caldwell*, Camden, Dare, Davidson, Davie, Durham*, Edgecombe, Guilford, Halifax*, Haywood, Hoke, Hyde, Johnston*, Jones, Martin*, Mecklenburg, Moore, New Hanover*, Northampton*, Orange, Perquimans*, Pitt*, Stanly*, Stokes*, Surry, Tyrrell, Wake, Washington, Watauga, Wilkes, Yadkin*
+
+In counties marked by asterisk some votes were still reported by vote center or countywide in the precinct-sorted data. These were distributed by candidate to precincts based on the precinct-level reported vote. The precinct-sorted results were further adjusted to match the certified countywide totals based on the precinct-level vote by candidate.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREJWES - Cornel West (Justice For All Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PREOWRI - Write-In Votes
+
+G24GOVRROB - Mark Robinson (Republican Party)
+G24GOVDSTE - Josh Stein (Democratic Party)
+G24GOVLROS - Mike Ross (Libertarian Party)
+G24GOVGTUR - Wayne Turner (Green Party)
+G24GOVCSMI - Vinny Smith (Constitution Party)
+
+G24LTGRWEA - Hal Weatherman (Republican Party)
+G24LTGDHUN - Rachel Hunt (Democratic Party)
+G24LTGLBRA - Shannon Bray (Libertarian Party)
+G24LTGCJON - Wayne Jones (Constitution Party)
+
+G24ATGRBIS - Dan Bishop (Republican Party)
+G24ATGDJAC - Jeff Jackson (Democratic Party)
+
+G24TRERBRI - Brad Briner (Republican Party)
+G24TREDHAR - Wesley Harris (Democratic Party)
+
+G24SOSRBRO - Chad Brown (Republican Party)
+G24SOSDMAR - Elaine Marshall (Democratic Party)
+
+G24AUDRBOL - Dave Boliek (Republican Party)
+G24AUDDHOL - Jessica Holmes (Democratic Party)
+G24AUDLDRA - Bob Drach (Libertarian Party)
+
+G24AGRRTRO - Steve Troxler (Republican Party)
+G24AGRDTAB - Sarah Taber (Democratic Party)
+G24AGRLHAU - Sean Haugh (Libertarian Party)
+
+G24INSRCAU - Mike Causey (Republican Party)
+G24INSDMAR - Natasha Marcus (Democratic Party)
+
+G24LABRFAR - Luke Farley (Republican Party)
+G24LABDWIN - Braxton Winston (Democratic Party)
+
+G24SPIRMOR - Michele Morrow (Republican Party)
+G24SPIDGRE - Mo Green (Democratic Party)
+
+G24SSCRGRI - Jefferson Griffin (Republican Party)
+G24SSCDRIG - Allison Riggs (Democratic Party)
+
+G24SACRMUR - Tom Murry (Republican Party)
+G24SACDTHO - Carolyn Thompson (Democratic Party)
+
+G24SACRZAC - Valerie Zachary (Republican Party)
+G24SACDELD - Ed Eldred (Democratic Party)
+
+G24SACRFRE - Chris Freeman (Republican Party)
+G24SACDMOO - Martin Moore (Democratic Party)
+
+
+Oklahoma
+--------
+Election results from the Oklahoma State Election Board (https://oklahoma.gov/elections/elections-results/election-results.html). Precinct shapefile from the University of Oklahoma Center for Spatial Analysis (https://csagis-uok.opendata.arcgis.com/).
+
+Early votes were reported countywide for Oklahoma County and Tulsa County. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREIGAR - Chris Garrity (Independent)
+
+G24COCRBIN - Brian Bingman (Republican Party)
+G24COCDSPR - Harold Spradling (Democratic Party)
+G24COCLWIL - Chad Williams (Libertarian Party)
+
+
+Pennsylvania
+------------
+Election results from the Pennsylvania Department of State (https://www.pa.gov/agencies/dos/resources/voting-and-elections-resources/voting-and-election-statistics/election-data).
+
+Philadelphia reported federal ballots by congressional district. These were distributed by candidate to precincts based on their share of the precinct-level reported vote in the respective districts.
+
+Precinct shapefiles primarily from the U.S. Census Bureau 2020 Redistricting Data Program. The shapefiles from Delaware County, Washington County, and the City of Pittsburgh are from the respective jurisdictions. Precinct numbers were corrected to match the 2024 voter file in the following locales: Allegheny (Elizabeth, Pittsburgh W12), Blair (Altoona, Greenfield), Bradford (Athens), Greene (Dunkard, Monongahela), Monroe (Smithfield), Montgomery (Hatfield), Northampton (Bethlehem Twp), Perry (Toboyne), Washington (New Eagle), York (Fairview).
+
+Precinct boundaries throughout the state were edited to match voter assignments in the PA Department of State voter file from the 2024 election cycle. While some edits reflect official updates to wards or divisions most edits involve voters incorrectly assigned to voting districts by the counties. As such the VEST shapefile endeavors to reflect the de facto precinct boundaries and these often differ from the official voting district boundaries, in some cases quite drastically. Wherever possible edits were made using census boundaries or alternatively using shapefiles from the respective counties or the Pennsylvania Spatial Data Access catalog (https://www.pasda.psu.edu/).
+
+In some areas voter assignments appear so erratic that it is impractical to place all voters within their assigned precinct. These areas were edited so as to place as many voters as possible within their assigned precinct without displacing a greater number from their assigned precinct. Municipal boundaries were retained except where a significant number of voters were misassigned to the wrong municipality. In cases where the odd/even split was incorrectly reversed for precinct boundary streets the official boundary was retained. All such cases involved a near equal number of voters swapped between voting districts.
+
+Inaccurate municipal boundaries in the VTD shapefile were generally realigned only if necessary to reflect voter assignments. Most corrections were made using the Municipality Boundary shapefile from the Pennsylvania Department of Transportation (https://data-pennshare.opendata.arcgis.com/). In some cases they were instead based on municipal assignments of parcels. Five boroughs that cross county lines are not designated as separate precincts in one of the counties. These were merged with the voting districts where they are assigned in the respective counties: Adamstown (Berks Spring 12), Ashland (Columbia Conyngham), Emlenton (Clarion Richland), Seven Springs (Fayette Saltlick), Tunnelhill (Blair Allegheny 4).
+
+The following precincts were split to reflect changes between the 2020 and 2024 general elections: Butler (Connoquenessing Twp 1/2, Cranberry W 1/8, 3/7, Jackson 1/2, Middlesex 2/3), Monroe (Middle Smithfield 1/2, 3/4, Tunkhannock E/W).
+
+The following precincts were merged to reflect changes between the 2020 and 2024 general elections: Dauphin (Middletown 2-1/2-2), Lancaster (Manheim 7A/7B), Monroe (Smithfield 1/4), Pike (Matamoras 1/2).
+
+The following municipalities were edited to reflect a general consolidation or reprecincting between the 2020 and 2024 general elections: Adams (Conewago), Allegheny (Jefferson Hills, Moon, O'Hara, Pine, Upper St. Clair), Butler (Adams), Crawford (Meadville, Titusville), Dauphin (Susquehanna), Delaware (Radnor), Franklin (Chambersburg), Indiana (Indiana), Mercer (Pine), Westmoreland (Penn).
+
+The following revisions were made to the base shapefiles to match the de facto 2024 precinct boundaries consistent with the voter file. Due to the sheer number of edits boundary adjustments are listed at the borough/township level. There may be as many as two dozen individual precincts that were revised within a given municipality.
+
+Adams: Align Littlestown with municipal boundary; Adjust Cumberland, Franklin, McSherrystown, Straban
+Allegheny: Adjust Baldwin, Bellevue, Bethel Park, Brentwood, Castle Shannon, Clairton, Collier, Coraopolis, Crafton, Crescent, Dormont, Dravosburg, Duquesne, E Deer, E McKeesport, E Pittsburgh, Elizabeth, Emsworth, Findlay, Forward, Franklin Park, Glassport, Hampton, Harmar, Homestead, Ingram, Kennedy, Leet, Liberty, Marshall, McCandless, McKees Rocks, McKeesport, Monroeville, Mount Lebanon, Mount Oliver, Munhall, N Braddock, N Fayette, N Versailles, Oakdale, Oakmont, Penn Hills, Pine, Pittsburgh (most wards), Pleasant Hills, Plum, Reserve, Richland, Robinson, Ross, Scott, Shaler, S Fayette, S Park, Springdale, Stowe, Swissvale, Tarentum, Turtle Creek, Upper St. Clair, W Deer, W Homestead, W Mifflin, W View, Whitaker, White Oak, Whitehall, Wilkins, Wilkinsburg
+Armstrong: Align Apollo, Dayton, Elderton, Ford City, Ford Cliff, Kittanning, N Apollo with municipal boundaries; Adjust Cowanshannock, Ford City, Gilpin, Kiskiminetas, Kittanning, Manor, N Buffalo, Parker City, Parks, S Buffalo
+Beaver: Align Aliquippa, Daugherty, Eastvale, Greene, Hanover, New Sewickley, Ohioville, Patterson Heights, Potter, S Beaver with municipal boundaries; Adjust Aliquippa, Ambridge, Baden, Beaver, Beaver Falls, Brighton, Center, Chippewa, Conway, Economy, Franklin, Hanover, Harmony, Hopewell, Midland, Monaca, New Sewickley, N Sewickley, Ohioville
+Bedford: Align Everett, Saxton with municipal boundaries; Adjust Bedford Boro, Bedford Twp
+Berks: Adjust Cumru, Earl, Exeter, Muhlenberg, Oley, Reading W15, W18, Robeson, Sinking Spring, Spring, Union, Wyomissing
+Blair: Align Allegheny, Altoona, Bellwood, Duncansville, Greenfield, Hollidaysburg, Juniata, Logan, Martinsburg, Newry, Roaring Spring, Tyrone, Williamsburg with municipal boundaries; Adjust Allegheny, Altoona W4, W5, W6, W10, W11, W12, W13, W14, Antis, Blair, Frankstown, Freedom, Greenfield, Huston, Juniata, Logan, N Woodbury, Snyder, Tyrone Boro, Tyrone Twp
+Bucks: Align Bristol, Doylestown, Falls, Lower Makefield, Middletown, Milford, Newtown, Richland, Sellersville, Springfield, Trumbauersville, Tullytown, Warwick with municipal boundaries; Adjust Bensalem, Bristol Boro, Bristol Twp, Buckingham, Doylestown Twp, Falls, Hilltown, Lower Makefield, Lower Southampton, Middletown, Milford, Morrisville, Newtown Twp, Nockamixon, Northampton, Perkasie, Solebury, Springfield, Tinicum, Upper Makefield, Upper Southampton, Warminster, Warrington, W Rockhill
+Butler: Align Adams, Butler Twp, Cranberry, Jackson, Valencia with municipal boundaries; Adjust Buffalo, Butler Boro, Butler Twp, Center, Cranberry, Jefferson, Zelienople
+Cambria: Align M/W Taylor with municipal boundary; Adjust Adams, Cambria, Conemaugh, Croyle, E Carroll, E Taylor, Ebensburg, Geistown, Jackson, Johnstown W8, W17, W20, Lower Yoder, Portage Boro, Portage Twp, Richland, Southmont, Stonycreek, Summerhill, Susquehanna, Upper Yoder, W Carroll, Westmont
+Cameron: Align Emporium with municipal boundary; Adjust Emporium, Shippen
+Carbon: Adjust Jim Thorpe, Kidder, Lehighton, Lower Towamensing, Mahoning, Palmerton, Summit Hill
+Centre: Adjust Bellefonte, Ferguson, Patton, Spring, State College
+Chester: Align Birmingham, Westtown with municipal boundaries; Adjust Caln, Coatesville, E Bradford, E Coventry, E Fallowfield, E Goshen, E Marlborough, E Pikeland, E Vincent, Easttown, Kennett Square, London Grove, N Coventry, Pennsbury, Phoenixville, Sadsbury, Spring City, Tredyffrin, Uwchlan, Valley, Warwick, W Bradford, W Caln, W Goshen, W Whiteland
+Clarion: Align St. Petersburg, Shippenville, Strattanville with municipal boundaries; Adjust Clarion, Highland, Farmington, Knox
+Clearfield: Adjust Decatur, DuBois, Morris, Sandy, Woodward
+Clinton: Align Allison, Bald Eagle, Colebrook, Dunnstable, Greene, Logan, Mill Hall, Renovo, Woodward with municipal boundaries
+Columbia: Align Berwick, Orange, N Centre, Scott with municipal boundaries; Adjust Berwick, Bloomsburg, Scott
+Crawford: Align Richmond, Steuben with municipal boundaries
+Cumberland: Split Lower Allen 1/Annex; Align Camp Hill, Carlisle, E Pennsboro, Hampden, Lemoyne, Lower Allen, Mechanicsburg, Middlesex, Monroe, Mount Holly Springs, New Cumberland, N Middleton, Shippensburg, Shiremanstown, Silver Spring, Upper Allen, Wormsleysburg with municipal boundaries; Adjust Carlisle
+Dauphin: Align Lower Paxton, Middletown, Swatara with municipal boundaries; Adjust Derry, Harrisburg W1, W7, W8, W9, W15, Lower Paxton, Lykens, Middletown, Swatara
+Delaware: Adjust Aston, Chester, Concord, Darby Boro, Darby Twp, Folcroft, Haverford, Marple, Middletown, Nether Providence, Newtown, Radnor, Ridley, Sharon Hill, Thornbury, Tinicum, Trainer, Upper Chichester, Upper Darby, Upper Providence
+Elk: Adjust Fox, Johnsonburg, Jones, Ridgeway Boro, Ridgeway Twp, St. Marys
+Erie: Adjust Erie W1, W4, W5, W6, Fairview, Greene, Harborcreek, Lawrence Park, McKean, Millcreek, North East, Summit, Union City, Waterford
+Fayette: Align Dunbar, Uniontown with municipal boundaries; Adjust Brownsville, Bullskin, Dunbar, Franklin, Georges, German, Luzerne, N Union, Redstone, S Union, Uniontown
+Forest: Align Tionesta with municipal boundary
+Franklin: Align Mercersburg, Mont Alto, Waynesboro with municipal boundaries; Adjust Antrim, Fannett, Greene, Guilford, Hamilton, Metal, Peters, Quincy, St. Thomas, Southampton, Washington, Waynesboro
+Fulton: Align Ayr, McConnellsburg, Todd with municipal boundaries
+Greene: Align Carmichaels with municipal boundary; Adjust Cumberland, Franklin, Jefferson, Monongahela, Morgan
+Huntingdon: Align Huntingdon, Mapleton with municipal boundaries; Adjust Huntingdon, Mount Union, Shirley
+Indiana: Align Armagh, Shelocta, Smicksburg with municipal boundaries; Adjust Armstrong, Center, Cherryhill, Conemaugh, E Wheatfield, Green, Pine, W Wheatfield
+Jefferson: Adjust Brookville, Punxsutawney
+Juniata: Align Mifflintown, Thompsontown with municipal boundaries; Adjust Tuscarora
+Lackawanna: Adjust Archbald, Blakely, Carbondale, Clarks Summit, Dickson City, Dunmore, Fell, Jermyn, Jessup, Mayfield, Moosic, Old Forge, Olyphant, Ransom, Scranton W1, W2, W3, W6, W7, W9, W10, W12, W13, W14, W15, W16, W17, W19, W20, W21, W23, S Abington, Taylor
+Lancaster: Split Lancaster 7-8 CV/LS; Align Elizabethtown with municipal boundary; Adjust Akron, Brecknock, Columbia, Elizabethtown, E Hempfield, E Lampeter, Lancaster W4, W6, W7, W8, E Petersburg, Lititz, Ephrata Boro, Ephrata Twp, Manheim, Manor, Millersville, Mt Joy Twp, New Holland, Penn, Pequea, Providence, Rapho, Warwick, W Cocalico, W Donegal, W Hempfield, W Lampeter
+Lawrence: Align Elwood City, Shenango with municipal boundaries; Adjust Elwood City, Mahoning, Neshannock, N Beaver, Shenango, Union
+Lebanon: Adjust Bethel, Lebanon W2, W3, W5, W10, Myerstown, S Lebanon, S Londonderry
+Lehigh: Adjust Allentown W2, W3, Lower Macungie, N Whitehall, Salisbury, Slatington
+Luzerne: Align Avoca, Hollenback, Pittston, Sugarloaf with municipal boundaries; Adjust Butler, Exeter, Fairview, Foster, Hanover, Hazle, Hazleton, Jenkins, Larksville, Lehman, Nanticoke, Plains, Swoyersville, W Wyoming, Wilkes-Barre, Wright
+Lycoming: Align Duboistown, S Williamsport with municipal boundaries; Adjust Jersey Shore
+McKean: Align Bradford, Foster, Lafayette, Lewis Run with municipal boundaries; Adjust Bradford, Bradford Twp, Foster, Hamlin, Kane
+Mercer: Align Mercer, Sheakleyville with municipal boundaries; Adjust Delaware, Farrell, Fredonia, Greenville, Grove City, Hempfield, Hermitage, Sharon, Sharpsville, S Pymatuning, W Salem, Wheatland
+Mifflin: Align Kistler with municipal boundary; Adjust Brown, Derry, Lewistown
+Monroe: Align Delaware Water Gap, E Stroudsburg, Mount Pocono, Stroudsburg, Tunkhannock with municipal boundaries; Adjust E Stroudsburg, Hamilton, Smithfield
+Montgomery: Align Narberth with municipal boundary; Adjust Abington, Bridgeport, Cheltenham, E Norriton, Hatfield, Horsham, Limerick, Lower Gwynedd, Lower Merion, Lower Pottsgrove, Lower Salford, Montgomery, Pottstown, Souderton, Springfield, Upper Dublin, Upper Gwynedd, Upper Hanover, Upper Merion, Upper Moreland, Upper Providence, W Norriton, Whitemarsh, Whitpain
+Montour: Adjust Mahoning
+Northampton: Align Glendon, E Allen, Easton, Hanover, Walnutport with municipal boundaries; Adjust Bangor, Bethlehem W2, W3, W4, W6, W7, W9, W14, W15, Bethlehem Twp, Bushkill, E Allen, Easton, Forks, Hanover, Hellertown, Lehigh, Lower Mt Bethel, Lower Saucon, Moore, Nazareth, Palmer, Plainfield, Upper Mt Bethel, Washington, Williams
+Northumberland: Adjust Coal, Kulpmont, Milton, Mount Carmel, Northumberland, Point, Ralpho, Shamokin, Sunbury, Upper Augusta, W Chillisquaque
+Perry: Align Buffalo, Howe with municipal boundaries
+Philadelphia: Adjust 2-13/15, 7-10/11/16/21, 8-15/16/33, 17-20/26, 21-1/15, 21-32/39, 21-34/43, 22-16/23, 26-1/2, 28-1/8, 29-9/11, 34-37/41, 38-13/14/15, 38-13/20, 40-30/40, 49-2/21, 52-3/8, 52-6/9, 57-6/7, 57-10/27, 63-1/14, 63-21/24, 65-11/16/18
+Pike: Align Blooming Grove, Dingman with municipal boundaries
+Potter: Align Oswayo with municipal boundary; Adjust Coudersport, Galeton
+Schuylkill: Adjust Coaldale, Hegins, Minersville, N Manheim, Norwegian, Porter, Pottsville, Schuylkill Haven
+Snyder: Align Beavertown, Middleburg with municipal boundaries
+Somerset: Align Jefferson, Middlecreek, New Centerville, Somerset with municipal boundaries; Adjust Conemaugh, Jenner, Paint, Shade, Somerset, Windber
+Susquehanna: Adjust Lanesboro, Montrose, Susquehanna Depot
+Tioga: Align Liberty with municipal boundary; Adjust Delmar, Wellsboro
+Union: Adjust Buffalo, W Buffalo, White Deer
+Venango: Align Barkeyville, Cooperstown with municipal boundaries; Adjust Cranberry, Franklin, Oil City, Sugarcreek
+Warren: Adjust Conewango, Warren
+Washington: Adjust Amwell, California, Canonsburg, Canton, Carroll, Cecil, Centerville, Charleroi, Chartiers, Cross Creek, Donora, E Bethlehem, Fallowfield, Hanover, Independence, Mount Pleasant, New Eagle, N Franklin, N Strabane, Nottingham, Peters, Robinson, Smith, S Franklin, Union, Washington, W Brownsville, W Pike Run
+Wayne: Adjust Berlin, Honesdale
+Westmoreland: Align Bell, Greensburg, Irwin, N Huntingdon, Penn Twp, Salem, Vandergrift, W Newton with municipal boundaries; Adjust Allegheny, Arnold, Bell, Derry Twp, E Huntingdon, Fairfield, Greensburg, Hempfield, Irwin, Jeannette, Latrobe, Ligonier Twp, Lower Burrell, Monessen, Mount Pleasant, New Kensington, N Belle Vernon, N Huntingdon, Penn Twp, Rostraver, St. Clair, Salem, Scottdale, Sewickley, S Greensburg, S Huntingdon, Trafford, Unity, Upper Burrell, Vandergrift, Washington, W Newton, Youngwood
+York: Align E Prospect, Goldsboro, Jefferson, Manchester, Monaghan, Wellsville, Windsor, York with municipal boundaries; Adjust Chanceford, Codorus, Conewago, Dallastown, Dover, Fairview, Hanover, Jackson, Lower Chanceford, Lower Windsor, Manchester, New Freedom, Newberry, N Codorus, Penn, Railroad, Red Lion, Shrewsbury, Spring Garden, Springettsbury, W Manchester, Windsor Twp, Wrightsville, York W1, W5, W6, W8, W9, W13, York Twp
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+
+G24USSRMCC - Dave McCormick (Republican Party)
+G24USSDCAS - Bob Casey Jr. (Democratic Party)
+G24USSLTHO - John Thomas (Libertarian Party)
+G24USSGHAZ - Leila Hazou (Green Party)
+G24USSCSEL - Marty Selker (Constitution Party)
+
+G24ATGRSUN - Dave Sunday (Republican Party)
+G24ATGDDEP - Eugene DePasquale (Democratic Party)
+G24ATGLCOW - Rob Cowburn (Libertarian Party)
+G24ATGGWEI - Richard Weiss (Green Party)
+G24ATGCMAG - Justin Magill (Constitution Party)
+G24ATGFSET - Eric Settle (Forward Party)
+
+G24AUDRDEF - Tim DeFoor (Republican Party)
+G24AUDDKEN - Malcolm Kenyatta (Democratic Party)
+G24AUDLSMI - Reece Smith (Libertarian Party)
+G24AUDCGOO - Alan Goodrich (Constitution Party)
+G24AUDAANT - Eric Anton (American Solidarity Party)
+
+G24TRERGAR - Stacy Garrity (Republican Party)
+G24TREDMCC - Erin McClelland (Democratic Party)
+G24TRELCIE - Nick Ciesielski (Libertarian Party)
+G24TRECBOW - Troy Bowman (Constitution Party)
+G24TREFFOS - Chris Foster (Forward Party)
+
+
+Rhode Island
+------------
+Election results from the Rhode Island Board of Elections (https://elections.ri.gov/elections/previous-election-results). Precinct shapefile from the Rhode Island Department of State (https://rhode-island-legislative-districts-downloader-tool-ridos.hub.arcgis.com/).
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRETKEN - Robert Kennedy Jr (Team Kennedy Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREPWEL - Robby Wells (Party Party)
+G24PREOWRI - Write-In Votes
+
+G24USSDWHI - Sheldon Whitehouse (Democratic Party)
+G24USSRMOR - Patricia Morgan (Republican Party)
+G24USSOWRI - Write-In Votes
+
+2/6/2025 Update: Standardized candidate codes.
+
+
+South Carolina
+--------------
+Election results from the South Carolina State Election Commission (https://scvotes.gov/elections-statistics/election-results/). Precinct shapefile from the South Carolina Revenue and Fiscal Affairs Office (https://rfa.sc.gov/programs-services/precinct-demographics/jurisdictional-mapping/political-gis-data).
+
+Provisional and failsafe ballots were reported countywide. These were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREUWES - Cornel West (United Citizens Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PREWDEL - Claudia De La Cruz (Workers Party)
+
+
+Tennessee
+---------
+Election results from the Tennessee Secretary of State (https://sos.tn.gov/elections/results#2024). Precinct shapefile from the Tennessee Comptroller of the Treasury (https://comptroller.tn.gov/office-functions/pa/gisredistricting/redistricting-and-land-use-maps/redistricting-maps.html).
+
+Coffee County 9-2/9-4 were split with the Tullahoma corporate boundary. Davidson County 3-7/3-8 were separated based on the county shapefile.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PREIKEN - Robert Kennedy Jr (Independent)
+G24PREISTE - Jill Stein (Independent)
+G24PREIBOW - Jay Bowman (Independent)
+G24PREIDEL - Claudia De La Cruz (Independent)
+G24PREIFRU - Rachele Fruit (Independent)
+
+G24USSRBLA - Marsha Blackburn (Republican Party)
+G24USSDJOH - Gloria Johnson (Democratic Party)
+G24USSICHA - Tharon Chandler (Independent)
+G24USSIMOS - Pamela Moses (Independent)
+G24USSIROB - Hastina Robinson (Independent)
+
+
+Texas
+-----
+Election results and precinct shapefile from the Texas Legislative Council (https://data.capitol.texas.gov/). The precinct data files available for download at the TXC Capitol Data Portal are allocated to Census VTD geography based on Voting Age Population from the 2020 Census. The unallocated precinct results and registration statistics were provided by TXC staff to instead merge with the precinct boundaries.
+
+The shapefile includes unallocated Voter Registration (VR) and Spanish Surname Voter Registration (SSVR) for the November 2024 general election. Any VR data analysis of these unallocated precinct results should utilize this unallocated VR data rather than the VR data allocated by VTD available for download at CDP. SSVR is denoted as a percentile of total VR for each precinct.
+
+Precinct results for the following counties were replaced in whole or in part with county source files or with precinct data provided via the Secretary of State: Baylor, Burleson, Chambers, Dimmit, Duval, Eastland, Henderson, Hood, Maverick, Rusk, Stonewall, Travis, Trinity, Tyler, Zavala.
+
+Precinct totals for the counties listed below do not add up to the Secretary of State County Canvass for one or more offices. Most commonly this is due to omission of some ballots counted after election day from either the county precinct reports or from summary results certified to the state. In some cases these involve data entry errors where numbers were transposed, dropped, or added in one or more precincts or in countywide summations. In some cases corrections to the initial precinct results were made after the certification deadline.
+
+Baylor, Brown, Collingsworth, Concho, Dallas, Ector, Freestone, Frio, Hansford, Hardin, Haskell, Hudspeth, Jackson, Kaufman, Kinney, Kleburg, Lynn, Maverick, Presidio, Runnels, Sabine, Sherman, Tyler, Webb, Zavala.
+
+Most of the discrepancies are in single digits or low double digits. The exceptions are a 101 vote overreport from Dallas for Donald Trump (R) for President, a 91 vote overreport from Dallas for Harris (D) for President, a 100 vote overreport from Frio for Ted Brown (L) for U.S. Senate, a 300 vote overreport from Hardin for Hawk Dunlap (L) for Railroad Commissioner, a 400 vote underreport from Presidio for Jimmy Blacklock (R) for Supreme Court Justice 2, a 122 vote overreport from Hardin for Nancy Mulder (D) for Criminal Appeals Judge 7.
+
+Early votes were reported countywide in Collingsworth, Culberson, Kent, Knox, McMullen. These were distributed to precincts as a function of the number of registered voters and the precinct-level reported vote. Other votes reported countywide were distributed by candidate to precincts based on the precinct-level reported vote: absentee ballots in Dimmit, Donley; federal and/or limited ballots in Bexar, Brazos, Burleson, Collin, Coryell, Eastland, Harrison, Hays, Hood, Jefferson; provisional ballots in Presidio, Trinity. 
+
+San Jacinto reported in part by precinct and in part by school district or services district. The district-level votes were distributed to their respective precincts based on the difference between ballots cast by precinct and ballots reported by precinct.
+
+The following counties reported consolidated results for some precincts. These were allocated to the respective precincts based on the number of registered voters.
+
+Howard - 11-16, 24-26, 31-35, 41-46, 103/104, 207/207C, 208/208C, 404/405
+Hudspeth - 1/1W, 3N/3S, 4/4NW/RS
+Kleberg - 11/12, 22/23
+Newton - 11/13/21
+Red River - 1/7/11, 4/31, 5/9/10, 17/18, 28/29, 27/30, 3-1/20-1, 3-4/20-4/24, 13-1/14-1, 19-1/21-1, 19-4/21-4
+San Jacinto - 
+San Saba - 4A/4B
+
+G24VR - Voter Registration
+G24SSVR - Spanish Surname Voter Registration
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+
+G24USSRCRU - Ted Cruz (Republican Party)
+G24USSDALL - Colin Allred (Democratic Party)
+G24USSLBRO - Ted Brown (Libertarian Party)
+
+G24RRCRCRA - Christi Craddick (Republican Party)
+G24RRCDCUL - Katherine Culbert (Democratic Party)
+G24RRCLDUN - Hawk Dunlap (Libertarian Party)
+G24RRCGESP - Eddie Espinoza (Green Party)
+
+G24SSCRBLA - Jimmy Blacklock (Republican Party)
+G24SSCDJON - DaSean Jones (Democratic Party)
+
+G24SSCRDEV - John Devine (Republican Party)
+G24SSCDWEE - Christine Weems (Democratic Party)
+
+G24SSCRBL2 - Jane Bland (Republican Party)
+G24SSCDGOL - Bonnie Goldstein (Democratic Party)
+G24SSCLROB - David Roberson (Libertarian Party)
+
+G24SCCRSCH - David Schenck (Republican Party)
+G24SCCDTAY - Holly Taylor (Democratic Party)
+
+G24SCCRPAR - Gina Parker (Republican Party)
+G24SCCDMUL - Nancy Mulder (Democratic Party)
+
+G24SCCRFIN - Lee Finley (Republican Party)
+G24SCCDANY - Chika Anyiam (Democratic Party)
+
+
+Utah
+----
+Election results from the Utah Lieutenant Governor’s Office (https://vote.utah.gov/election-results-data-historical-information/). Precinct shapefile from the Utah Geospatial Resource Center (https://gis.utah.gov/data/political/voter-precincts/).
+
+The UGRC Vista Ballot Areas shapefile features subprecincts that break down precincts with district splits. For counties where results were instead reported at the precinct level subprecincts were merged accordingly.
+
+Federal ballots were reported at the congressional district level for Cache, Carbon, Garfield, Iron, Juab, Morgan, Salt Lake, Summit, Tooele, Uintah, Utah, Washington, Wayne, Weber. These were distributed by candidate to precincts based on the precinct-level reported vote of the constituent precincts.
+
+G24PRERTRU - Donald Trump (Republican Party)
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRECSKO - Joel Skousen (Constitution Party)
+G24PREIDEL - Claudia De La Cruz (Independent)
+G24PREIEVE - Lucifer Everylove (Independent)
+G24PREIWES - Cornel West (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSRCUR - John Curtis (Republican Party)
+G24USSDGLE - Caroline Gleich (Democratic Party)
+G24USSABOW - Carlton Bowen (Independent American Party)
+G24USSOWRI - Write-In Votes
+
+G24GOVRCOX - Spencer Cox (Republican Party)
+G24GOVDKIN - Brian King (Democratic Party)
+G24GOVLLAT - Robert Latham (Libertarian Party)
+G24GOVAWIL - Tommy Williams (Independent American Party)
+G24GOVITOM - Tom Tomeny (Independent)
+G24GOVOLYM - Phil Lyman (Write-In)
+G24GOVOWRI - Write-In Votes
+
+G24ATGRBRO - Derek Brown (Republican Party)
+G24ATGDBAU - Rudy Bautista (Democratic Party)
+G24ATGLMCC - Andrew McCullough (Libertarian Party)
+G24ATGUQUI - Michelle Quist (United Utah Party)
+G24ATGIHEP - Austin Hepworth (Independent)
+
+G24AUDRCAN - Tina Cannon (Republican Party)
+G24AUDDVOU - Catherine Voutaz (Democratic Party)
+G24AUDCOST - Jeffrey Ostler (Constitution Party)
+
+G24TREROAK - Marlo Oaks (Republican Party)
+G24TREDHAN - Neil Hansen (Democratic Party)
+G24TREFPOM - Miles Pomeroy (Utah Forward Party)
+
+
+Vermont
+-------
+Election results from the Vermont Secretary of State (https://electionarchive.vermont.gov/). Precinct shapefile from the U.S. Census Bureau TIGER/Line Shapefiles.
+
+The Census VTD shapefile features city wards. However, precinct boundaries for federal and state elections are not based on city wards. They are instead defined by legislative districts wherever they cross municipal boundaries. Therefore, the Census county subdivision shapefile of municipalities was instead split into precincts wherever necessary using the state legislative district shapefile.
+
+Vermont has several unincorporated towns whose residents cast votes in neighboring municipalities. Unincorporated towns with registered voters were merged with the municipality in which their residents primarily vote, as follows: Averill merged with Canaan; Buel's Gore merged with Huntington; Ferdinand, Warren's Gore merged with Brighton; Glastenbury merged with Shaftsbury; Somerset merged with Dover.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREJWES - Cornel West (Peace and Justice Party)
+G24PRESFRU - Rachele Fruit (Socialist Workers Party)
+G24PREOWRI - Write-In Votes
+
+G24USSISAN - Bernie Sanders (Independent)
+G24USSRMAL - Gerald Malloy (Republican Party)
+G24USSLHIL - Matt Hill (Libertarian Party)
+G24USSJSCH - Justin Schoville (Peace and Justice Party)
+G24USSEGRE - Stewart Greenstein (Epic Party)
+G24USSIBER - Steve Berry (Independent)
+G24USSOWRI - Write-In Votes
+
+G24HALDBAL - Becca Balint (Democratic Party)
+G24HALRCOE - Mark Coester (Republican Party, Libertarian Party)
+G24HALJDIA - Jessy Diamondstone (Peace and Justice Party)
+G24HALIORT - Adam Ortiz (Independent)
+G24HALOWRI - Write-In Votes
+
+G24GOVDCHA - Esther Charlestin (Democratic Party, Progressive Party)
+G24GOVRSCO - Phil Scott (Republican Party)
+G24GOVJGOO - June Goodband (Peace and Justice Party)
+G24GOVIHOY - Kevin Hoyt (Independent)
+G24GOVIMUT - Poa Mutino (Independent)
+G24GOVOWRI - Write-In Votes
+
+G24LTGDZUC - David Zuckerman (Democratic Party, Progressive Party)
+G24LTGRROD - John Rodgers (Republican Party)
+G24LTGJDIA - Ian Diamondstone (Peace and Justice Party)
+G24LTGOWRI - Write-In Votes
+
+G24ATGDCLA - Charity Clark (Democratic Party)
+G24ATGRNEL - Ture Nelson (Republican Party)
+G24ATGJGUS - Kevin Gustafson (Peace and Justice Party)
+G24ATGOWRI - Write-In Votes
+
+G24SOSDCOP - Sarah Copeland Hanzas (Democratic Party)
+G24SOSRPAI - Brooke Paige (Republican Party)
+G24SOSOWRI - Write-In Votes
+
+G24TREDPIE - Mike Pieciak (Democratic Party)
+G24TRERBEC - Joshua Bechhoefer (Republican Party)
+G24TREOWRI - Write-In Votes
+
+G24AUDDHOF - Doug Hoffer (Democratic Party, Progressive Party)
+G24AUDRPAI - Brooke Paige (Republican Party)
+G24AUDOWRI - Write-In Votes
+
+
+Virginia
+--------
+Election results from the Virginia Department of Elections (https://enr.elections.virginia.gov/results/public/Virginia/elections/2024NovemberGeneral). Precinct shapefiles from the Virginia Department of Elections (https://www.elections.virginia.gov/casting-a-ballot/redistricting/gis/).
+
+Provisional ballots were reported at the county level. They were distributed by candidate to precincts based on their share of the precinct-level reported vote.
+
+The border of Chesapeake City and Suffolk City reflects a de facto misalignment that was not corrected before 2024.
+
+The following additional revisions were made to match the 2024 precinct boundaries.
+
+Amherst: Align Amelon/Madison with 2022 ordinance
+Covington: Align Precincts 1/2 with city ordinance
+Fairfax County: Merge Hummer/Woodburn
+Goochland: Split Centerville/West Creek
+Loudon: Align Carter/Rock Ridge with HOD district boundary
+Newport News: Merge Huntington into Newsome Park/Washington
+Northampton: Align all precincts with county shapefile
+Richmond County: Merge 5-1/5-2
+Suffolk: Align John F Kennedy/White Marsh with county shapefile
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREIWES - Cornel West (Independent)
+G24PREIDEL - Claudia De La Cruz (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSDKAI - Tim Kaine (Democratic Party)
+G24USSRCAO - Hung Cao (Republican Party)
+G24USSOWRI - Write-In Votes
+
+
+Washington
+----------
+Election results from the Washington Secretary of State (https://www.sos.wa.gov/elections/data-research/election-data-and-maps/election-results-and-voters-pamphlets). Precinct shapefile from the Washington Secretary of State (https://www.sos.wa.gov/elections/data-research/election-data-and-maps/reports-data-and-statistics/precinct-shapefiles).
+
+King County Precinct 8888 is the Elections Office. This was added to the 2024 shapefile from the 2020 King County precinct shapefile.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREJWES - Cornel West (Justice For All Party)
+G24PRESKIS - Joseph Kishore (Socialist Equality Party)
+G24PRESFRU - Rachele Fruit (Socialist Workers Party)
+G24PREIAYY - Shiva Ayyadurai (Independent)
+G24PREOWRI - Write-In Votes
+
+G24USSDCAN - Maria Cantwell (Democratic Party)
+G24USSRGAR - Raul Garcia (Republican Party)
+G24USSOWRI - Write-In Votes
+
+G24GOVDFER - Bob Ferguson (Democratic Party)
+G24GOVRREI - Dave Reichert (Republican Party)
+G24GOVOWRI - Write-In Votes
+
+G24LTGDHEC - Denny Heck (Democratic Party)
+G24LTGRMAT - Dan Matthews (Republican Party)
+G24LTGOWRI - Write-In Votes
+
+G24SOSDHOB - Steve Hobbs (Democratic Party)
+G24SOSRWHI - Dale Whitaker (Republican Party)
+G24SOSOWRI - Write-In Votes
+
+G24TREDPEL - Mike Pellicciotti (Democratic Party)
+G24TRERHAN - Sharon Hanek (Republican Party)
+G24TREOWRI - Write-In Votes
+
+G24AUDDMCC - Pat McCarthy (Democratic Party)
+G24AUDRHAW - Matt Hawkins (Republican Party)
+G24AUDOWRI - Write-In Votes
+
+G24ATGDBRO - Nick Brown (Democratic Party)
+G24ATGRSER - Pete Serrano (Republican Party)
+G24ATGOWRI - Write-In Votes
+
+G24LNDDUPT - Dave Upthegrove (Democratic Party)
+G24LNDRBEU - Jaime Herrera Beutler (Republican Party)
+G24LNDOWRI - Write-In Votes
+
+G24INSDKUD - Patty Kuderer (Democratic Party)
+G24INSRFOR - Phil Fortunato (Republican Party)
+G24INSOWRI - Write-In Votes
+
+
+Wisconsin
+---------
+Election results from the Wisconsin Elections Commission (https://elections.wi.gov/elections/election-results). Precinct shapefile from the Wisconsin Legislative Technology Services Bureau (https://gis-ltsb.hub.arcgis.com/).
+
+Wisconsin election results frequently combine multiple wards within a given reporting unit. Election results were disaggregated from reporting units to individual wards proportional to the total number of registered voters within the constituent wards in the subsequent ward-level registration report.
+
+LTSB collects ward boundaries in January and July of each year. However, voting ward boundaries continue to change until a few weeks before the general election due to annexations, incorporations, and other boundary agreements. Ward boundaries were therefore edited wherever necessary to coincide with the 2024 general election based on a comprehensive review of relevant ordinances in the Wisconsin Department of Administration Municipal Data System. A scattering of ward numbers across the state were also edited to match the 2024 voter registration file.
+
+G24PREDHAR - Kamala Harris (Democratic Party)
+G24PRERTRU - Donald Trump (Republican Party)
+G24PRECTER - Randall Terry (Constitution Party)
+G24PRELOLI - Chase Oliver (Libertarian Party)
+G24PREGSTE - Jill Stein (Green Party)
+G24PRESDEL - Claudia De La Cruz (Socialism and Liberation Party)
+G24PREJWES - Cornel West (Justice For All Party)
+G24PREWKEN - Robert Kennedy Jr (We The People Party)
+G24PREOSON - Peter Sonski (Write-In)
+G24PREOFOX - Cherunda Fox (Write-In)
+G24PREOKIE - Brian Kienitz (Write-In)
+G24PREOJEN - Doug Jenkins (Write-In)
+G24PREOMAD - Future Madam Potus (Write-In)
+G24PREOMCN - André McNeil (Write-In)
+G24PREOWRI - Other Write-In Votes
+
+G24USSDBAL - Tammy Baldwin (Democratic Party)
+G24USSRHOV - Eric Hovde (Republican Party)
+G24USSTAND - Phil Anderson (Disrupt The Corruption Party)
+G24USSALEA - Thomas Leager (America First Party)
+G24USSOSCH - John Schiess (Write-In)
+G24USSOWRI - Other Write-In Votes
+
+
+End Matter
+----------
+We provide these data on this archive free for public use under a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (external links may have different licenses). Generally, this license means you are free to use these data for any non-commercial purpose as long as you provide proper citation and notify your users they must also abide by this license. We generally interpret non-commercial purposes to include academic work, creating maps and similar social media usage or blogging about our data (not behind a paywall), and reports authored by non-profit organizations. You are granted permission to use data or graphs on this site for some commercial products, such as for a book. If you have any questions about use of these data, please contact Prof. McDonald (michael.mcdonald@ufl.edu).
+
+THE DATA ARE PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND. WE MAKE NO AND DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT, WITH RESPECT TO THESE DATA. WE MAKE NO REPRESENTATIONS OR WARRANTIES AS TO THE QUALITY, SUITABILITY, OR ADEQUACY OF THESE DATA FOR ANY PURPOSE OR USE.
