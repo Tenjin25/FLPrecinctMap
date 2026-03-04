@@ -52,6 +52,47 @@ OFFICE_TO_CONTEST = {
     "SPI": "superintendent",
 }
 
+CANDIDATE_CODE_TO_NAME = {
+    "G14AGRDHAM": "Thaddeus Hamilton",
+    "G14AGRRPUT": "Adam Putnam",
+    "G14ATGDSHE": "George Sheldon",
+    "G14ATGRBON": "Pam Bondi",
+    "G14CFODRAN": "William Rankin",
+    "G14CFORATW": "Jeff Atwater",
+    "G14GOVDCRI": "Charlie Crist",
+    "G14GOVRSCO": "Rick Scott",
+    "G16PREDCLI": "Hillary Clinton",
+    "G16PRERTRU": "Donald Trump",
+    "G16USSDMUR": "Patrick Murphy",
+    "G16USSRRUB": "Marco Rubio",
+    "G18AGRDFRI": "Nikki Fried",
+    "G18AGRRCAL": "Matt Caldwell",
+    "G18ATGDSHA": "Sean Shaw",
+    "G18ATGRMOO": "Ashley Moody",
+    "G18CFODRIN": "Jeremy Ring",
+    "G18CFORPAT": "Jimmy Patronis",
+    "G18GOVDGIL": "Andrew Gillum",
+    "G18GOVRDES": "Ron DeSantis",
+    "G18USSDNEL": "Bill Nelson",
+    "G18USSRSCO": "Rick Scott",
+    "G20PREDBID": "Joe Biden",
+    "G20PRERTRU": "Donald Trump",
+    "G22AGRDBLE": "Naomi Blemur",
+    "G22AGRRSIM": "Wilton Simpson",
+    "G22ATGDAYA": "Aramis Ayala",
+    "G22ATGRMOO": "Ashley Moody",
+    "G22CFODHAT": "Adam Hattersley",
+    "G22CFORPAT": "Jimmy Patronis",
+    "G22GOVDCRI": "Charlie Crist",
+    "G22GOVRDES": "Ron DeSantis",
+    "G22USSDDEM": "Val Demings",
+    "G22USSRRUB": "Marco Rubio",
+    "G24PREDHAR": "Kamala Harris",
+    "G24PRERTRU": "Donald Trump",
+    "G24USSDMUC": "Debbie Mucarsel-Powell",
+    "G24USSRSCO": "Rick Scott",
+}
+
 DISTRICT_COL_ALIASES = {
     "congressional": [
         "DISTRICT",
@@ -206,27 +247,47 @@ def sum_numeric(df: pd.DataFrame, columns: List[str]) -> pd.Series:
     )
 
 
-def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, pd.DataFrame]:
+def infer_candidate_name(
+    df: pd.DataFrame,
+    columns: List[str],
+    party_label: str,
+) -> str:
+    if not columns:
+        return party_label
+    totals = {}
+    for col in columns:
+        totals[col] = float(pd.to_numeric(df[col], errors="coerce").fillna(0).sum())
+    top_col = max(totals, key=totals.get)
+    return CANDIDATE_CODE_TO_NAME.get(top_col, party_label)
+
+
+def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dict[str, object]]:
     gdf = gpd.read_file(shapefile_path, ignore_geometry=True)
     pct_key = build_pct_key(gdf)
     contest_cols = parse_contest_columns(gdf.columns)
-    out: Dict[str, pd.DataFrame] = {}
+    out: Dict[str, Dict[str, object]] = {}
     for contest, colset in contest_cols.items():
+        dem_candidate = infer_candidate_name(gdf, colset["dem"], "Democrat")
+        rep_candidate = infer_candidate_name(gdf, colset["rep"], "Republican")
         dem = sum_numeric(gdf, colset["dem"])
         rep = sum_numeric(gdf, colset["rep"])
         other = sum_numeric(gdf, colset["other"])
         total = dem + rep + other
-        out[contest] = pd.DataFrame(
-            {
-                "year": year,
-                "pct_key": pct_key,
-                "contest_type": contest,
-                "dem_votes": dem,
-                "rep_votes": rep,
-                "other_votes": other,
-                "total_votes": total,
-            }
-        )
+        out[contest] = {
+            "rows": pd.DataFrame(
+                {
+                    "year": year,
+                    "pct_key": pct_key,
+                    "contest_type": contest,
+                    "dem_votes": dem,
+                    "rep_votes": rep,
+                    "other_votes": other,
+                    "total_votes": total,
+                }
+            ),
+            "dem_candidate": dem_candidate,
+            "rep_candidate": rep_candidate,
+        }
     return out
 
 
@@ -466,24 +527,49 @@ def aggregate_contest_to_district(
     return agg, coverage_pct
 
 
-def district_result_row(dem: float, rep: float, other: float, total: float) -> Dict[str, object]:
-    total = float(total)
-    dem = float(dem)
-    rep = float(rep)
-    other = float(other)
-    margin = rep - dem
-    margin_pct = (margin / total * 100.0) if total > 0 else 0.0
-    winner = "REP" if rep > dem else ("DEM" if dem > rep else "TIE")
+def allocate_integer_votes(values: pd.Series) -> List[int]:
+    vals = pd.to_numeric(values, errors="coerce").fillna(0.0).astype(float).tolist()
+    floors = [int(v // 1) for v in vals]
+    target = int(round(sum(vals)))
+    remainder = target - sum(floors)
+    fractions = [v - int(v // 1) for v in vals]
+    order = sorted(range(len(vals)), key=lambda i: fractions[i], reverse=True)
+
+    out = floors[:]
+    if remainder > 0:
+        for i in order[:remainder]:
+            out[i] += 1
+    elif remainder < 0:
+        for i in reversed(order[: abs(remainder)]):
+            if out[i] > 0:
+                out[i] -= 1
+    return out
+
+
+def district_result_row(
+    dem: float,
+    rep: float,
+    other: float,
+    dem_candidate: str,
+    rep_candidate: str,
+) -> Dict[str, object]:
+    dem_i = int(dem)
+    rep_i = int(rep)
+    other_i = int(other)
+    total_i = dem_i + rep_i + other_i
+    margin = rep_i - dem_i
+    margin_pct = (margin / total_i * 100.0) if total_i > 0 else 0.0
+    winner = "REP" if rep_i > dem_i else ("DEM" if dem_i > rep_i else "TIE")
     return {
-        "dem_votes": round(dem, 3),
-        "rep_votes": round(rep, 3),
-        "other_votes": round(other, 3),
-        "total_votes": round(total, 3),
-        "margin": round(margin, 3),
+        "dem_votes": dem_i,
+        "rep_votes": rep_i,
+        "other_votes": other_i,
+        "total_votes": total_i,
+        "margin": margin,
         "margin_pct": round(margin_pct, 6),
         "winner": winner,
-        "dem_candidate": "Democrat",
-        "rep_candidate": "Republican",
+        "dem_candidate": dem_candidate,
+        "rep_candidate": rep_candidate,
         "color": margin_color(winner, abs(margin_pct)),
     }
 
@@ -633,24 +719,33 @@ def main() -> int:
                 print(f"[WARN] {scope} {year}: failed to load weights ({exc})")
                 continue
 
-            for contest_type, contest_rows in sorted(precinct_contests.items()):
+            for contest_type, contest_payload in sorted(precinct_contests.items()):
+                contest_rows = contest_payload["rows"]
+                dem_candidate = str(contest_payload.get("dem_candidate") or "Democrat")
+                rep_candidate = str(contest_payload.get("rep_candidate") or "Republican")
                 agg, coverage_pct = aggregate_contest_to_district(contest_rows, weights_obj.weights)
                 if agg.empty:
                     continue
 
+                agg = agg.sort_values("district").reset_index(drop=True)
+                dem_alloc = allocate_integer_votes(agg["dem_votes"])
+                rep_alloc = allocate_integer_votes(agg["rep_votes"])
+                other_alloc = allocate_integer_votes(agg["other_votes"])
+
                 result_map: Dict[str, dict] = {}
-                for _, row in agg.iterrows():
+                for i, row in agg.iterrows():
                     dist_key = str(row["district"]).strip()
                     result_map[dist_key] = district_result_row(
-                        row["dem_votes"],
-                        row["rep_votes"],
-                        row["other_votes"],
-                        row["total_votes"],
+                        dem_alloc[i],
+                        rep_alloc[i],
+                        other_alloc[i],
+                        dem_candidate,
+                        rep_candidate,
                     )
 
-                dem_total = float(agg["dem_votes"].sum())
-                rep_total = float(agg["rep_votes"].sum())
-                other_total = float(agg["other_votes"].sum())
+                dem_total = int(sum(v["dem_votes"] for v in result_map.values()))
+                rep_total = int(sum(v["rep_votes"] for v in result_map.values()))
+                other_total = int(sum(v["other_votes"] for v in result_map.values()))
 
                 payload = {
                     "meta": {
@@ -681,9 +776,9 @@ def main() -> int:
                         "year": year,
                         "file": filename,
                         "rows": len(result_map),
-                        "dem_total": round(dem_total, 3),
-                        "rep_total": round(rep_total, 3),
-                        "other_total": round(other_total, 3),
+                        "dem_total": dem_total,
+                        "rep_total": rep_total,
+                        "other_total": other_total,
                         "major_party_contested": bool(dem_total > 0 and rep_total > 0),
                         "match_coverage_pct": round(coverage_pct, 6),
                     }

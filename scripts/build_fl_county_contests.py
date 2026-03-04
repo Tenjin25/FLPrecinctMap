@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import json
 import re
-from collections import defaultdict
 from pathlib import Path
 from typing import Dict, Iterable, List
 
@@ -35,6 +34,47 @@ OFFICE_TO_CONTEST = {
     "INS": "insurance_commissioner",
     "AGR": "agriculture_commissioner",
     "SPI": "superintendent",
+}
+
+CANDIDATE_CODE_TO_NAME = {
+    "G14AGRDHAM": "Thaddeus Hamilton",
+    "G14AGRRPUT": "Adam Putnam",
+    "G14ATGDSHE": "George Sheldon",
+    "G14ATGRBON": "Pam Bondi",
+    "G14CFODRAN": "William Rankin",
+    "G14CFORATW": "Jeff Atwater",
+    "G14GOVDCRI": "Charlie Crist",
+    "G14GOVRSCO": "Rick Scott",
+    "G16PREDCLI": "Hillary Clinton",
+    "G16PRERTRU": "Donald Trump",
+    "G16USSDMUR": "Patrick Murphy",
+    "G16USSRRUB": "Marco Rubio",
+    "G18AGRDFRI": "Nikki Fried",
+    "G18AGRRCAL": "Matt Caldwell",
+    "G18ATGDSHA": "Sean Shaw",
+    "G18ATGRMOO": "Ashley Moody",
+    "G18CFODRIN": "Jeremy Ring",
+    "G18CFORPAT": "Jimmy Patronis",
+    "G18GOVDGIL": "Andrew Gillum",
+    "G18GOVRDES": "Ron DeSantis",
+    "G18USSDNEL": "Bill Nelson",
+    "G18USSRSCO": "Rick Scott",
+    "G20PREDBID": "Joe Biden",
+    "G20PRERTRU": "Donald Trump",
+    "G22AGRDBLE": "Naomi Blemur",
+    "G22AGRRSIM": "Wilton Simpson",
+    "G22ATGDAYA": "Aramis Ayala",
+    "G22ATGRMOO": "Ashley Moody",
+    "G22CFODHAT": "Adam Hattersley",
+    "G22CFORPAT": "Jimmy Patronis",
+    "G22GOVDCRI": "Charlie Crist",
+    "G22GOVRDES": "Ron DeSantis",
+    "G22USSDDEM": "Val Demings",
+    "G22USSRRUB": "Marco Rubio",
+    "G24PREDHAR": "Kamala Harris",
+    "G24PRERTRU": "Donald Trump",
+    "G24USSDMUC": "Debbie Mucarsel-Powell",
+    "G24USSRSCO": "Rick Scott",
 }
 
 
@@ -92,6 +132,20 @@ def sum_numeric(df: pd.DataFrame, columns: List[str]) -> pd.Series:
     )
 
 
+def infer_candidate_name(
+    df: pd.DataFrame,
+    columns: List[str],
+    party_label: str,
+) -> str:
+    if not columns:
+        return party_label
+    totals = {}
+    for col in columns:
+        totals[col] = float(pd.to_numeric(df[col], errors="coerce").fillna(0).sum())
+    top_col = max(totals, key=totals.get)
+    return CANDIDATE_CODE_TO_NAME.get(top_col, party_label)
+
+
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as f:
@@ -135,6 +189,7 @@ def build() -> None:
     )
 
     manifest_entries = []
+    results_by_year: Dict[str, Dict[str, dict]] = {}
     built = 0
 
     for year in years:
@@ -149,6 +204,9 @@ def build() -> None:
 
         contests = parse_contest_columns(df.columns)
         for contest_type, cols in sorted(contests.items()):
+            dem_candidate = infer_candidate_name(df, cols["dem"], "Democrat")
+            rep_candidate = infer_candidate_name(df, cols["rep"], "Republican")
+
             dem = sum_numeric(df, cols["dem"])
             rep = sum_numeric(df, cols["rep"])
             other = sum_numeric(df, cols["other"])
@@ -169,54 +227,89 @@ def build() -> None:
                 continue
 
             payload_rows = []
+            county_results = {}
             for _, r in rows.iterrows():
-                tv = float(r["total_votes"])
-                dv = float(r["dem_votes"])
-                rv = float(r["rep_votes"])
-                ov = float(r["other_votes"])
+                dv = int(round(float(r["dem_votes"])))
+                rv = int(round(float(r["rep_votes"])))
+                ov = int(round(float(r["other_votes"])))
+                tv = dv + rv + ov
                 margin = rv - dv
                 margin_pct = (margin / tv * 100.0) if tv > 0 else 0.0
                 winner = "REP" if rv > dv else ("DEM" if dv > rv else "TIE")
-                payload_rows.append(
-                    {
-                        "county": r["county"],
-                        "dem_votes": round(dv, 3),
-                        "rep_votes": round(rv, 3),
-                        "other_votes": round(ov, 3),
-                        "total_votes": round(tv, 3),
-                        "dem_candidate": "Democrat",
-                        "rep_candidate": "Republican",
-                        "margin": round(margin, 3),
-                        "margin_pct": round(margin_pct, 6),
-                        "winner": winner,
-                        "color": margin_color(winner, abs(margin_pct)),
-                    }
-                )
+                row_payload = {
+                    "county": r["county"],
+                    "dem_votes": dv,
+                    "rep_votes": rv,
+                    "other_votes": ov,
+                    "total_votes": tv,
+                    "dem_candidate": dem_candidate,
+                    "rep_candidate": rep_candidate,
+                    "margin": margin,
+                    "margin_pct": round(margin_pct, 6),
+                    "winner": winner,
+                    "color": margin_color(winner, abs(margin_pct)),
+                }
+                payload_rows.append(row_payload)
+                county_results[r["county"]] = {
+                    "dem_votes": dv,
+                    "rep_votes": rv,
+                    "other_votes": ov,
+                    "total_votes": tv,
+                    "dem_candidate": dem_candidate,
+                    "rep_candidate": rep_candidate,
+                    "margin": margin,
+                    "margin_pct": round(margin_pct, 6),
+                    "winner": winner,
+                    "competitiveness": {"color": row_payload["color"]},
+                }
 
             filename = f"{contest_type}_{year}.json"
             write_json(contests_dir / filename, {"rows": payload_rows})
             built += 1
 
-            dem_total = float(rows["dem_votes"].sum())
-            rep_total = float(rows["rep_votes"].sum())
-            other_total = float(rows["other_votes"].sum())
+            dem_total = int(sum(r["dem_votes"] for r in payload_rows))
+            rep_total = int(sum(r["rep_votes"] for r in payload_rows))
+            other_total = int(sum(r["other_votes"] for r in payload_rows))
             manifest_entries.append(
                 {
                     "year": year,
                     "contest_type": contest_type,
                     "file": filename,
                     "rows": len(payload_rows),
-                    "dem_total": round(dem_total, 3),
-                    "rep_total": round(rep_total, 3),
-                    "other_total": round(other_total, 3),
+                    "dem_total": dem_total,
+                    "rep_total": rep_total,
+                    "other_total": other_total,
                     "major_party_contested": bool(dem_total > 0 and rep_total > 0),
                 }
             )
+            contest_key = f"{contest_type}_{year}"
+            results_by_year.setdefault(str(year), {}).setdefault(contest_type, {})[contest_key] = {
+                "contest_type": contest_type,
+                "year": int(year),
+                "results": county_results,
+            }
 
     manifest_entries.sort(key=lambda e: (e["contest_type"], int(e["year"])))
     write_json(contests_dir / "manifest.json", {"files": manifest_entries})
+    write_json(
+        data_dir / "fl_elections_aggregated.json",
+        {
+            "state": "FL",
+            "source": "VEST (University of Florida)",
+            "results_by_year": results_by_year,
+        },
+    )
 
-    print(json.dumps({"contests_built": built, "manifest_entries": len(manifest_entries)}, indent=2))
+    print(
+        json.dumps(
+            {
+                "contests_built": built,
+                "manifest_entries": len(manifest_entries),
+                "aggregated_path": str(data_dir / "fl_elections_aggregated.json"),
+            },
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":

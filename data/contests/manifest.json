@@ -5,9 +5,9 @@
       "contest_type": "agriculture_commissioner",
       "file": "agriculture_commissioner_2014.json",
       "rows": 67,
-      "dem_total": 2356178.0,
-      "rep_total": 3342392.0,
-      "other_total": 9290.0,
+      "dem_total": 2356178,
+      "rep_total": 3342392,
+      "other_total": 9290,
       "major_party_contested": true
     },
     {
@@ -15,9 +15,9 @@
       "contest_type": "agriculture_commissioner",
       "file": "agriculture_commissioner_2018.json",
       "rows": 67,
-      "dem_total": 4032324.0,
-      "rep_total": 4025815.0,
-      "other_total": 0.0,
+      "dem_total": 4032324,
+      "rep_total": 4025815,
+      "other_total": 0,
       "major_party_contested": true
     },
     {
@@ -25,9 +25,9 @@
       "contest_type": "agriculture_commissioner",
       "file": "agriculture_commissioner_2022.json",
       "rows": 67,
-      "dem_total": 3095786.0,
-      "rep_total": 4510644.0,
-      "other_total": 0.0,
+      "dem_total": 3095786,
+      "rep_total": 4510644,
+      "other_total": 0,
       "major_party_contested": true
     },
     {
@@ -35,9 +35,9 @@
       "contest_type": "attorney_general",
       "file": "attorney_general_2014.json",
       "rows": 67,
-      "dem_total": 2457317.0,
-      "rep_total": 3222524.0,
-      "other_total": 169394.0,
+      "dem_total": 2457317,
+      "rep_total": 3222524,
+      "other_total": 169394,
       "major_party_contested": true
     },
     {
@@ -45,9 +45,9 @@
       "contest_type": "attorney_general",
       "file": "attorney_general_2018.json",
       "rows": 67,
-      "dem_total": 3744909.0,
-      "rep_total": 4232540.0,
-      "other_total": 145297.0,
+      "dem_total": 3744909,
+      "rep_total": 4232540,
+      "other_total": 145297,
       "major_party_contested": true
     },
     {
@@ -55,9 +55,9 @@
       "contest_type": "attorney_general",
       "file": "attorney_general_2022.json",
       "rows": 67,
-      "dem_total": 3025943.0,
-      "rep_total": 4651279.0,
-      "other_total": 0.0,
+      "dem_total": 3025943,
+      "rep_total": 4651279,
+      "other_total": 0,
       "major_party_contested": true
     },
     {
@@ -65,9 +65,9 @@
       "contest_type": "governor",
       "file": "governor_2014.json",
       "rows": 67,
-      "dem_total": 2801198.0,
-      "rep_total": 2865343.0,
-      "other_total": 299300.0,
+      "dem_total": 2801198,
+      "rep_total": 2865343,
+      "other_total": 299300,
       "major_party_contested": true
     },
     {
@@ -75,9 +75,9 @@
       "contest_type": "governor",
       "file": "governor_2018.json",
       "rows": 67,
-      "dem_total": 4044092.0,
-      "rep_total": 4076521.0,
-      "other_total": 107625.0,
+      "dem_total": 4044092,
+      "rep_total": 4076521,
+      "other_total": 107625,
       "major_party_contested": true
     },
     {
@@ -85,9 +85,9 @@
       "contest_type": "governor",
       "file": "governor_2022.json",
       "rows": 67,
-      "dem_total": 3106313.0,
-      "rep_total": 4614210.0,
-      "other_total": 50876.0,
+      "dem_total": 3106313,
+      "rep_total": 4614210,
+      "other_total": 50876,
       "major_party_contested": true
     },
     {
@@ -95,9 +95,9 @@
       "contest_type": "president",
       "file": "president_2016.json",
       "rows": 67,
-      "dem_total": 4504975.0,
-      "rep_total": 4617886.0,
-      "other_total": 374556.0,
+      "dem_total": 4504975,
+      "rep_total": 4617886,
+      "other_total": 374556,
       "major_party_contested": true
     },
     {
@@ -105,9 +105,9 @@
       "contest_type": "president",
       "file": "president_2020.json",
       "rows": 67,
-      "dem_total": 5297045.0,
-      "rep_total": 5668731.0,
-      "other_total": 125093.0,
+      "dem_total": 5297045,
+      "rep_total": 5668731,
+      "other_total": 125093,
       "major_party_contested": true
     },
     {
@@ -115,9 +115,9 @@
       "contest_type": "president",
       "file": "president_2024.json",
       "rows": 67,
-      "dem_total": 4683038.0,
-      "rep_total": 6110126.0,
-      "other_total": 142302.0,
+      "dem_total": 4683038,
+      "rep_total": 6110126,
+      "other_total": 142302,
       "major_party_contested": true
     },
     {
@@ -125,9 +125,9 @@
       "contest_type": "treasurer",
       "file": "treasurer_2014.json",
       "rows": 67,
-      "dem_total": 2337727.0,
-      "rep_total": 3353897.0,
-      "other_total": 0.0,
+      "dem_total": 2337727,
+      "rep_total": 3353897,
+      "other_total": 0,
       "major_party_contested": true
     },
     {
@@ -135,9 +135,9 @@
       "contest_type": "treasurer",
       "file": "treasurer_2018.json",
       "rows": 67,
-      "dem_total": 3872534.0,
-      "rep_total": 4152231.0,
-      "other_total": 8581.0,
+      "dem_total": 3872534,
+      "rep_total": 4152231,
+      "other_total": 8581,
       "major_party_contested": true
     },
     {
@@ -145,9 +145,9 @@
       "contest_type": "treasurer",
       "file": "treasurer_2022.json",
       "rows": 67,
-      "dem_total": 3085697.0,
-      "rep_total": 4528811.0,
-      "other_total": 0.0,
+      "dem_total": 3085697,
+      "rep_total": 4528811,
+      "other_total": 0,
       "major_party_contested": true
     },
     {
@@ -155,9 +155,9 @@
       "contest_type": "us_senate",
       "file": "us_senate_2016.json",
       "rows": 67,
-      "dem_total": 4122088.0,
-      "rep_total": 4835191.0,
-      "other_total": 357897.0,
+      "dem_total": 4122088,
+      "rep_total": 4835191,
+      "other_total": 357897,
       "major_party_contested": true
     },
     {
@@ -165,9 +165,9 @@
       "contest_type": "us_senate",
       "file": "us_senate_2018.json",
       "rows": 67,
-      "dem_total": 4088007.0,
-      "rep_total": 4099038.0,
-      "other_total": 24472.0,
+      "dem_total": 4088007,
+      "rep_total": 4099038,
+      "other_total": 24472,
       "major_party_contested": true
     },
     {
@@ -175,9 +175,9 @@
       "contest_type": "us_senate",
       "file": "us_senate_2022.json",
       "rows": 67,
-      "dem_total": 3201522.0,
-      "rep_total": 4474847.0,
-      "other_total": 84722.0,
+      "dem_total": 3201522,
+      "rep_total": 4474847,
+      "other_total": 84722,
       "major_party_contested": true
     },
     {
@@ -185,9 +185,9 @@
       "contest_type": "us_senate",
       "file": "us_senate_2024.json",
       "rows": 67,
-      "dem_total": 4603077.0,
-      "rep_total": 5977707.0,
-      "other_total": 186528.0,
+      "dem_total": 4603077,
+      "rep_total": 5977707,
+      "other_total": 186528,
       "major_party_contested": true
     }
   ]
