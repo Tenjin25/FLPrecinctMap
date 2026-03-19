@@ -8523,6 +8523,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	      });
 
 	      sel.appendChild(fragment);
+	      // If a stale contest search filter hides everything, clear it once so
+	      // users can still discover newly available contests in this view.
+	      if (!sel.querySelector('optgroup option') && q) {
+	        contestSearchQuery = '';
+	        const searchEl = document.getElementById('contestSearch');
+	        if (searchEl) searchEl.value = '';
+	        return populateContestSelectFromManifest(manifestEntries);
+	      }
 	      sel.dataset.populated = 'true';
 	      sel.onchange = () => {
 	        applyContest(sel.value);
