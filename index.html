@@ -9308,10 +9308,22 @@ document.addEventListener('DOMContentLoaded', function() {
       return /^(II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII|XVIII|XIX|XX)$/.test(normalized);
     }
 
+    function roundPct2(value) {
+      return Math.round((Number(value || 0) + Number.EPSILON) * 100) / 100;
+    }
+
+    function partyPctValue(votes, totalVotes) {
+      const t = Number(totalVotes) || 0;
+      if (t <= 0) return 0;
+      return roundPct2((Number(votes || 0) / t) * 100.0);
+    }
+
     function marginPctValue(repVotes, demVotes, totalVotes) {
-      const margin = Number(repVotes || 0) - Number(demVotes || 0);
-      if (!totalVotes) return 0;
-      return Math.abs(margin) / Number(totalVotes || 0) * 100.0;
+      const t = Number(totalVotes) || 0;
+      if (t <= 0) return 0;
+      const repPct = partyPctValue(repVotes, t);
+      const demPct = partyPctValue(demVotes, t);
+      return Math.abs(repPct - demPct);
     }
 
     function leadMarginPctLabel(repVotes, demVotes, totalVotes) {
@@ -9370,7 +9382,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
-      const marginPct = totalVotes > 0 ? Math.abs((repVotes - demVotes) / totalVotes * 100) : 0;
+      const marginPct = marginPctValue(repVotes, demVotes, totalVotes);
       if (repVotes > demVotes) {
         return {
           party: 'rep',
@@ -11367,7 +11379,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!sidebarReady) return;
       // Margin
       const margin = demVotes - repVotes;
-      const marginPct = (Math.abs(margin) / totalVotes * 100).toFixed(2);
+      const marginPct = marginPctValue(repVotes, demVotes, totalVotes).toFixed(2);
       const winner = margin > 0 ? 'Democratic' : (margin < 0 ? 'Republican' : 'Tie');
       const winnerCandidate = margin > 0 ? demCandidate : repCandidate;
       const marginText = winnerMarginLabelShort(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
