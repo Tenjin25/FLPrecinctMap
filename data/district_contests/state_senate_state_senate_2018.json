@@ -1,0 +1,230 @@
+{
+  "meta": {
+    "scope": "state_senate",
+    "contest_type": "state_senate",
+    "year": 2018,
+    "source": "Florida legislative election files (precinct text + DOS)",
+    "allocation_method": "actual_legislative",
+    "generated_at_utc": "2026-03-19T18:45:57.389415+00:00"
+  },
+  "general": {
+    "results": {
+      "2": {
+        "dem_votes": 48979,
+        "rep_votes": 149157,
+        "other_votes": 0,
+        "total_votes": 198136,
+        "margin": 100178,
+        "margin_pct": 50.560221,
+        "winner": "REP",
+        "dem_candidate": "Mary Jeanne \"Gigi\" Gibson",
+        "rep_candidate": "George B. Gainer",
+        "color": "#67000d"
+      },
+      "4": {
+        "dem_votes": 80598,
+        "rep_votes": 149347,
+        "other_votes": 5514,
+        "total_votes": 235459,
+        "margin": 68749,
+        "margin_pct": 29.197865,
+        "winner": "REP",
+        "dem_candidate": "Billee Bussard",
+        "rep_candidate": "Aaron Bean",
+        "color": "#cb181d"
+      },
+      "8": {
+        "dem_votes": 98692,
+        "rep_votes": 100690,
+        "other_votes": 4319,
+        "total_votes": 203701,
+        "margin": 1998,
+        "margin_pct": 0.980849,
+        "winner": "REP",
+        "dem_candidate": "Kayser Enneking",
+        "rep_candidate": "Keith Perry",
+        "color": "#fee8c8"
+      },
+      "10": {
+        "dem_votes": 79349,
+        "rep_votes": 147601,
+        "other_votes": 0,
+        "total_votes": 226950,
+        "margin": 68252,
+        "margin_pct": 30.073584,
+        "winner": "REP",
+        "dem_candidate": "Michael Cottrell",
+        "rep_candidate": "Wilton Simpson",
+        "color": "#a50f15"
+      },
+      "12": {
+        "dem_votes": 91765,
+        "rep_votes": 172776,
+        "other_votes": 140,
+        "total_votes": 264681,
+        "margin": 81011,
+        "margin_pct": 30.607033,
+        "winner": "REP",
+        "dem_candidate": "Gary McKechnie",
+        "rep_candidate": "Dennis Baxley",
+        "color": "#a50f15"
+      },
+      "14": {
+        "dem_votes": 96161,
+        "rep_votes": 124055,
+        "other_votes": 0,
+        "total_votes": 220216,
+        "margin": 27894,
+        "margin_pct": 12.666655,
+        "winner": "REP",
+        "dem_candidate": "Melissa \"Mel\" Martin",
+        "rep_candidate": "Tommy A. Wright",
+        "color": "#ef3b2c"
+      },
+      "16": {
+        "dem_votes": 102407,
+        "rep_votes": 111997,
+        "other_votes": 0,
+        "total_votes": 214404,
+        "margin": 9590,
+        "margin_pct": 4.472864,
+        "winner": "REP",
+        "dem_candidate": "Amanda Murphy",
+        "rep_candidate": "Ed Hooper",
+        "color": "#fcae91"
+      },
+      "20": {
+        "dem_votes": 87863,
+        "rep_votes": 101021,
+        "other_votes": 0,
+        "total_votes": 188884,
+        "margin": 13158,
+        "margin_pct": 6.96618,
+        "winner": "REP",
+        "dem_candidate": "Kathy Lewis",
+        "rep_candidate": "Tom Lee",
+        "color": "#fb6a4a"
+      },
+      "22": {
+        "dem_votes": 94295,
+        "rep_votes": 105575,
+        "other_votes": 0,
+        "total_votes": 199870,
+        "margin": 11280,
+        "margin_pct": 5.643668,
+        "winner": "REP",
+        "dem_candidate": "Bob Doyel",
+        "rep_candidate": "Kelli Stargel",
+        "color": "#fb6a4a"
+      },
+      "23": {
+        "dem_votes": 110590,
+        "rep_votes": 143351,
+        "other_votes": 0,
+        "total_votes": 253941,
+        "margin": 32761,
+        "margin_pct": 12.901028,
+        "winner": "REP",
+        "dem_candidate": "Faith Olivia Babis",
+        "rep_candidate": "Joe Gruters",
+        "color": "#ef3b2c"
+      },
+      "24": {
+        "dem_votes": 98104,
+        "rep_votes": 116415,
+        "other_votes": 0,
+        "total_votes": 214519,
+        "margin": 18311,
+        "margin_pct": 8.535841,
+        "winner": "REP",
+        "dem_candidate": "Lindsay Cross",
+        "rep_candidate": "Jeff Brandes",
+        "color": "#fb6a4a"
+      },
+      "25": {
+        "dem_votes": 98417,
+        "rep_votes": 117056,
+        "other_votes": 0,
+        "total_votes": 215473,
+        "margin": 18639,
+        "margin_pct": 8.650272,
+        "winner": "REP",
+        "dem_candidate": "Robert Levy",
+        "rep_candidate": "Gayle Harrell",
+        "color": "#fb6a4a"
+      },
+      "26": {
+        "dem_votes": 63253,
+        "rep_votes": 117979,
+        "other_votes": 0,
+        "total_votes": 181232,
+        "margin": 54726,
+        "margin_pct": 30.196654,
+        "winner": "REP",
+        "dem_candidate": "Catherine Price",
+        "rep_candidate": "Ben Albritton",
+        "color": "#a50f15"
+      },
+      "28": {
+        "dem_votes": 73000,
+        "rep_votes": 138293,
+        "other_votes": 0,
+        "total_votes": 211293,
+        "margin": 65293,
+        "margin_pct": 30.901639,
+        "winner": "REP",
+        "dem_candidate": "Annisa Karim",
+        "rep_candidate": "Kathleen Passidomo",
+        "color": "#a50f15"
+      },
+      "30": {
+        "dem_votes": 132241,
+        "rep_votes": 0,
+        "other_votes": 10083,
+        "total_votes": 142324,
+        "margin": -132241,
+        "margin_pct": -92.91546,
+        "winner": "DEM",
+        "dem_candidate": "Bobby Powell Jr",
+        "rep_candidate": "Republican",
+        "color": "#08306b"
+      },
+      "34": {
+        "dem_votes": 124578,
+        "rep_votes": 0,
+        "other_votes": 8423,
+        "total_votes": 133001,
+        "margin": -124578,
+        "margin_pct": -93.666965,
+        "winner": "DEM",
+        "dem_candidate": "Gary M. Farmer Jr",
+        "rep_candidate": "Republican",
+        "color": "#08306b"
+      },
+      "36": {
+        "dem_votes": 56395,
+        "rep_votes": 66361,
+        "other_votes": 0,
+        "total_votes": 122756,
+        "margin": 9966,
+        "margin_pct": 8.118544,
+        "winner": "REP",
+        "dem_candidate": "David P\u00c3\u00a9rez",
+        "rep_candidate": "Manny Diaz Jr",
+        "color": "#fb6a4a"
+      },
+      "40": {
+        "dem_votes": 90924,
+        "rep_votes": 79068,
+        "other_votes": 0,
+        "total_votes": 169992,
+        "margin": -11856,
+        "margin_pct": -6.974446,
+        "winner": "DEM",
+        "dem_candidate": "Annette Taddeo",
+        "rep_candidate": "Marili Cancio",
+        "color": "#9ecae1"
+      }
+    }
+  }
+}

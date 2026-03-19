@@ -41,3 +41,31 @@ py scripts/build_fl_district_contests.py --allocation-method spatial
 ```powershell
 py scripts/build_fl_district_contests.py --allocation-method spatial --dry-run
 ```
+
+## Actual Legislative District Contests
+
+Build chamber-native State House / State Senate slices from precinct text files and DOS files:
+
+```powershell
+py scripts/build_fl_actual_legislative_contests.py --data-dir data
+```
+
+This writes files like:
+- `data/district_contests/state_house_state_house_2020.json`
+- `data/district_contests/state_senate_state_senate_2020.json`
+
+and updates:
+- `data/district_contests/manifest.json`
+
+## Comprehensive Precinct CSV Exports
+
+Build long-form CSVs from all discovered precinct result folders:
+
+```powershell
+py scripts/build_fl_precinct_master_csv.py --data-dir data --output-dir derived
+```
+
+Outputs include:
+- `data/derived/fl_precinct_results_<year>_long.csv`
+- `data/derived/fl_precinct_results_all_years_long.csv`
+- `data/derived/fl_precinct_legislative_all_years_long.csv`

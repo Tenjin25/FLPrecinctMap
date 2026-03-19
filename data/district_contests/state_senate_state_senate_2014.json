@@ -1,0 +1,134 @@
+{
+  "meta": {
+    "scope": "state_senate",
+    "contest_type": "state_senate",
+    "year": 2014,
+    "source": "Florida legislative election files (precinct text + DOS)",
+    "allocation_method": "actual_legislative",
+    "generated_at_utc": "2026-03-19T18:45:57.175950+00:00"
+  },
+  "general": {
+    "results": {
+      "6": {
+        "dem_votes": 66786,
+        "rep_votes": 105901,
+        "other_votes": 9388,
+        "total_votes": 182075,
+        "margin": 39115,
+        "margin_pct": 21.482905,
+        "winner": "REP",
+        "dem_candidate": "Kathleen Trued",
+        "rep_candidate": "John Thrasher",
+        "color": "#cb181d"
+      },
+      "10": {
+        "dem_votes": 0,
+        "rep_votes": 100328,
+        "other_votes": 44301,
+        "total_votes": 144629,
+        "margin": 100328,
+        "margin_pct": 69.369214,
+        "winner": "REP",
+        "dem_candidate": "Democrat",
+        "rep_candidate": "David Simmons",
+        "color": "#67000d"
+      },
+      "12": {
+        "dem_votes": 67084,
+        "rep_votes": 39456,
+        "other_votes": 0,
+        "total_votes": 106540,
+        "margin": -27628,
+        "margin_pct": -25.932044,
+        "winner": "DEM",
+        "dem_candidate": "Geraldine F. Thompson",
+        "rep_candidate": "Edward DeAguilera",
+        "color": "#3182bd"
+      },
+      "14": {
+        "dem_votes": 65635,
+        "rep_votes": 0,
+        "other_votes": 22071,
+        "total_votes": 87706,
+        "margin": -65635,
+        "margin_pct": -74.835245,
+        "winner": "DEM",
+        "dem_candidate": "Darren Soto",
+        "rep_candidate": "Republican",
+        "color": "#08306b"
+      },
+      "20": {
+        "dem_votes": 0,
+        "rep_votes": 120277,
+        "other_votes": 47652,
+        "total_votes": 167929,
+        "margin": 120277,
+        "margin_pct": 71.623722,
+        "winner": "REP",
+        "dem_candidate": "Democrat",
+        "rep_candidate": "Jack Latvala",
+        "color": "#67000d"
+      },
+      "22": {
+        "dem_votes": 74804,
+        "rep_votes": 101983,
+        "other_votes": 0,
+        "total_votes": 176787,
+        "margin": 27179,
+        "margin_pct": 15.373868,
+        "winner": "REP",
+        "dem_candidate": "Judithanne McLauchlan",
+        "rep_candidate": "Jeff Brandes",
+        "color": "#ef3b2c"
+      },
+      "24": {
+        "dem_votes": 0,
+        "rep_votes": 104925,
+        "other_votes": 6377,
+        "total_votes": 111302,
+        "margin": 104925,
+        "margin_pct": 94.270543,
+        "winner": "REP",
+        "dem_candidate": "Democrat",
+        "rep_candidate": "Tom Lee",
+        "color": "#67000d"
+      },
+      "32": {
+        "dem_votes": 58386,
+        "rep_votes": 117307,
+        "other_votes": 238,
+        "total_votes": 175931,
+        "margin": 58921,
+        "margin_pct": 33.490971,
+        "winner": "REP",
+        "dem_candidate": "Bruno Moore",
+        "rep_candidate": "Joe Negron",
+        "color": "#a50f15"
+      },
+      "34": {
+        "dem_votes": 87335,
+        "rep_votes": 80352,
+        "other_votes": 0,
+        "total_votes": 167687,
+        "margin": -6983,
+        "margin_pct": -4.164306,
+        "winner": "DEM",
+        "dem_candidate": "Maria Lorts Sachs",
+        "rep_candidate": "Ellyn Bogdanoff",
+        "color": "#c6dbef"
+      },
+      "36": {
+        "dem_votes": 96445,
+        "rep_votes": 0,
+        "other_votes": 1983,
+        "total_votes": 98428,
+        "margin": -96445,
+        "margin_pct": -97.985329,
+        "winner": "DEM",
+        "dem_candidate": "Oscar Braynon, II",
+        "rep_candidate": "Republican",
+        "color": "#08306b"
+      }
+    }
+  }
+}

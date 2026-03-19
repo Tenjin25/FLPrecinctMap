@@ -1,0 +1,218 @@
+{
+  "meta": {
+    "scope": "state_senate",
+    "contest_type": "state_senate",
+    "year": 2024,
+    "source": "Florida legislative election files (precinct text + DOS)",
+    "allocation_method": "actual_legislative",
+    "generated_at_utc": "2026-03-19T18:45:57.685606+00:00"
+  },
+  "general": {
+    "results": {
+      "1": {
+        "dem_votes": 102905,
+        "rep_votes": 187431,
+        "other_votes": 0,
+        "total_votes": 290336,
+        "margin": 84526,
+        "margin_pct": 29.113165,
+        "winner": "REP",
+        "dem_candidate": "Lisa Newell",
+        "rep_candidate": "Don Gaetz",
+        "color": "#cb181d"
+      },
+      "3": {
+        "dem_votes": 123025,
+        "rep_votes": 154515,
+        "other_votes": 0,
+        "total_votes": 277540,
+        "margin": 31490,
+        "margin_pct": 11.346112,
+        "winner": "REP",
+        "dem_candidate": "Daryl Parks",
+        "rep_candidate": "Corey Simon",
+        "color": "#ef3b2c"
+      },
+      "5": {
+        "dem_votes": 156112,
+        "rep_votes": 0,
+        "other_votes": 10568,
+        "total_votes": 166680,
+        "margin": -156112,
+        "margin_pct": -93.659707,
+        "winner": "DEM",
+        "dem_candidate": "Tracie Davis",
+        "rep_candidate": "Republican",
+        "color": "#08306b"
+      },
+      "7": {
+        "dem_votes": 110364,
+        "rep_votes": 237377,
+        "other_votes": 0,
+        "total_votes": 347741,
+        "margin": 127013,
+        "margin_pct": 36.525172,
+        "winner": "REP",
+        "dem_candidate": "George Anthony \"T\" Hill II",
+        "rep_candidate": "Tom Leek",
+        "color": "#a50f15"
+      },
+      "9": {
+        "dem_votes": 72961,
+        "rep_votes": 157454,
+        "other_votes": 0,
+        "total_votes": 230415,
+        "margin": 84493,
+        "margin_pct": 36.669922,
+        "winner": "REP",
+        "dem_candidate": "Sylvain Dor\u00c3\u00a9",
+        "rep_candidate": "Stan McClain",
+        "color": "#a50f15"
+      },
+      "11": {
+        "dem_votes": 91769,
+        "rep_votes": 208378,
+        "other_votes": 0,
+        "total_votes": 300147,
+        "margin": 116609,
+        "margin_pct": 38.85063,
+        "winner": "REP",
+        "dem_candidate": "Marilyn Holleran",
+        "rep_candidate": "Blaise Ingoglia",
+        "color": "#a50f15"
+      },
+      "13": {
+        "dem_votes": 119212,
+        "rep_votes": 181074,
+        "other_votes": 0,
+        "total_votes": 300286,
+        "margin": 61862,
+        "margin_pct": 20.601027,
+        "winner": "REP",
+        "dem_candidate": "Stephanie L. Dukes",
+        "rep_candidate": "Keith Truenow",
+        "color": "#cb181d"
+      },
+      "19": {
+        "dem_votes": 126487,
+        "rep_votes": 184731,
+        "other_votes": 0,
+        "total_votes": 311218,
+        "margin": 58244,
+        "margin_pct": 18.714856,
+        "winner": "REP",
+        "dem_candidate": "Vance Ahrens",
+        "rep_candidate": "Randy Fine",
+        "color": "#ef3b2c"
+      },
+      "23": {
+        "dem_votes": 46835,
+        "rep_votes": 65822,
+        "other_votes": 4508,
+        "total_votes": 117165,
+        "margin": 18987,
+        "margin_pct": 16.205351,
+        "winner": "REP",
+        "dem_candidate": "Ben Braver",
+        "rep_candidate": "Danny Burgess",
+        "color": "#ef3b2c"
+      },
+      "25": {
+        "dem_votes": 113095,
+        "rep_votes": 106596,
+        "other_votes": 0,
+        "total_votes": 219691,
+        "margin": -6499,
+        "margin_pct": -2.958246,
+        "winner": "DEM",
+        "dem_candidate": "Kristen Arrington",
+        "rep_candidate": "Jose Martinez",
+        "color": "#c6dbef"
+      },
+      "27": {
+        "dem_votes": 86045,
+        "rep_votes": 189809,
+        "other_votes": 0,
+        "total_votes": 275854,
+        "margin": 103764,
+        "margin_pct": 37.61555,
+        "winner": "REP",
+        "dem_candidate": "Phillip R. Carter",
+        "rep_candidate": "Ben Albritton",
+        "color": "#a50f15"
+      },
+      "29": {
+        "dem_votes": 97094,
+        "rep_votes": 177633,
+        "other_votes": 0,
+        "total_votes": 274727,
+        "margin": 80539,
+        "margin_pct": 29.316012,
+        "winner": "REP",
+        "dem_candidate": "Randy J. Aldieri",
+        "rep_candidate": "Erin Grall",
+        "color": "#cb181d"
+      },
+      "31": {
+        "dem_votes": 60680,
+        "rep_votes": 104139,
+        "other_votes": 0,
+        "total_votes": 164819,
+        "margin": 43459,
+        "margin_pct": 26.367712,
+        "winner": "REP",
+        "dem_candidate": "Aaron J. Hawkins",
+        "rep_candidate": "Gayle Harrell",
+        "color": "#cb181d"
+      },
+      "33": {
+        "dem_votes": 90247,
+        "rep_votes": 175411,
+        "other_votes": 0,
+        "total_votes": 265658,
+        "margin": 85164,
+        "margin_pct": 32.057758,
+        "winner": "REP",
+        "dem_candidate": "Christopher Proia",
+        "rep_candidate": "Jonathan Martin",
+        "color": "#a50f15"
+      },
+      "35": {
+        "dem_votes": 140564,
+        "rep_votes": 108777,
+        "other_votes": 0,
+        "total_votes": 249341,
+        "margin": -31787,
+        "margin_pct": -12.748405,
+        "winner": "DEM",
+        "dem_candidate": "Barbara Sharief",
+        "rep_candidate": "Vincent Parlatore",
+        "color": "#6baed6"
+      },
+      "37": {
+        "dem_votes": 130931,
+        "rep_votes": 93918,
+        "other_votes": 0,
+        "total_votes": 224849,
+        "margin": -37013,
+        "margin_pct": -16.46127,
+        "winner": "DEM",
+        "dem_candidate": "Jason Pizzo",
+        "rep_candidate": "Imtiaz Mohammad",
+        "color": "#6baed6"
+      },
+      "39": {
+        "dem_votes": 57635,
+        "rep_votes": 133270,
+        "other_votes": 0,
+        "total_votes": 190905,
+        "margin": 75635,
+        "margin_pct": 39.619182,
+        "winner": "REP",
+        "dem_candidate": "Charles A. Lewis I",
+        "rep_candidate": "Bryan Avila",
+        "color": "#a50f15"
+      }
+    }
+  }
+}

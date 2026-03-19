@@ -613,6 +613,21 @@ def main() -> int:
         default="fl_{year}.zip",
         help="Template under data-dir for yearly VEST shapefile.",
     )
+    parser.add_argument(
+        "--congressional-geojson",
+        default=None,
+        help="Override district geometry for congressional scope (used by spatial mode).",
+    )
+    parser.add_argument(
+        "--state-house-geojson",
+        default=None,
+        help="Override district geometry for state_house scope (used by spatial mode).",
+    )
+    parser.add_argument(
+        "--state-senate-geojson",
+        default=None,
+        help="Override district geometry for state_senate scope (used by spatial mode).",
+    )
 
     parser.add_argument("--congressional-weights", default=None)
     parser.add_argument("--state-house-weights", default=None)
@@ -648,6 +663,15 @@ def main() -> int:
     if bad_scopes:
         print(f"Invalid scopes: {bad_scopes}", file=sys.stderr)
         return 2
+
+    district_geojson_paths = {
+        "congressional": path_or_none(args.congressional_geojson)
+        or (data_dir / DISTRICT_GEOJSON_DEFAULTS["congressional"]).resolve(),
+        "state_house": path_or_none(args.state_house_geojson)
+        or (data_dir / DISTRICT_GEOJSON_DEFAULTS["state_house"]).resolve(),
+        "state_senate": path_or_none(args.state_senate_geojson)
+        or (data_dir / DISTRICT_GEOJSON_DEFAULTS["state_senate"]).resolve(),
+    }
 
     precinct_weight_paths = {
         "congressional": path_or_none(args.congressional_weights),
@@ -708,7 +732,7 @@ def main() -> int:
                         nhgis_2010_to_2020=nhgis_df,
                     )
                 else:
-                    dpath = (data_dir / DISTRICT_GEOJSON_DEFAULTS[scope]).resolve()
+                    dpath = district_geojson_paths[scope]
                     weights_obj = load_spatial_weights(
                         scope=scope,
                         year=year,
