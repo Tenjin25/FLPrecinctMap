@@ -458,11 +458,19 @@
       const counties = countiesSource._data.features;
       // Normalize county names for matching
       function normalizeCountyName(name) {
-        return (name || '')
-          .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
+        const raw = (name || '')
+          .toString()
+          .replace(/[^a-z0-9 .\-]/gi, '')
           .replace(/\s+/g, ' ')
           .trim()
           .toUpperCase();
+        const alias = {
+          'DADE': 'MIAMI-DADE',
+          'DADE COUNTY': 'MIAMI-DADE',
+          'MIAMI DADE': 'MIAMI-DADE',
+          'MIAMI DADE COUNTY': 'MIAMI-DADE'
+        };
+        return alias[raw] || raw;
       }
       const normTarget = normalizeCountyName(countyName);
       const countyFeature = counties.find(f => {
@@ -6880,13 +6888,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // (saveUIState/restoreUIState defined above as no-ops)
 
+    const COUNTY_KEY_ALIASES = Object.freeze({
+      'DADE': 'MIAMI-DADE',
+      'DADE COUNTY': 'MIAMI-DADE',
+      'MIAMI DADE': 'MIAMI-DADE',
+      'MIAMI DADE COUNTY': 'MIAMI-DADE'
+    });
+
+    function canonicalizeCountyBaseKey(countyBaseNorm) {
+      let base = (countyBaseNorm || '').toString().trim().toUpperCase();
+      if (!base) return '';
+      base = base.replace(/\s+/g, ' ').replace(/\bCOUNTY\b$/i, '').trim();
+      return COUNTY_KEY_ALIASES[base] || base;
+    }
+
     function normalizeCountyToken(name) {
-      return (name || '')
+      const cleaned = (name || '')
         .toString()
         .replace(/[^a-z0-9 .\-]/gi, '')
         .replace(/\s+/g, ' ')
         .trim()
         .toUpperCase();
+      if (!cleaned) return '';
+      const [countyBaseRaw, ...rest] = cleaned.split(' - ');
+      const countyBase = canonicalizeCountyBaseKey(countyBaseRaw);
+      if (!rest.length) return countyBase;
+      const tail = rest.join(' - ').trim();
+      return tail ? `${countyBase} - ${tail}` : countyBase;
     }
 
     function normalizePrecinctToken(value) {
@@ -10152,7 +10180,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .slice()
         .sort((a, b) => Number(a.year) - Number(b.year));
 
-      const target = (countyName || '').toString().trim().toUpperCase();
+      const target = normalizeCountyToken(countyName);
       const out = [];
       for (const e of entries) {
         const year = Number(e.year);
@@ -10161,9 +10189,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let dem = 0, rep = 0, oth = 0, tot = 0;
         let demCand = '', repCand = '';
         rows.forEach(r => {
-          const rowName = (r.county || '').toString().trim().toUpperCase();
-          const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0].trim().toUpperCase() : rowName;
-          if (countyOnly !== target) return;
+          const rowName = (r.county || '').toString().trim();
+          const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0].trim() : rowName;
+          if (normalizeCountyToken(countyOnly) !== target) return;
           dem += Number(r[`${contestType}_dem`]) || 0;
           rep += Number(r[`${contestType}_rep`]) || 0;
           oth += Number(r[`${contestType}_other`]) || 0;
@@ -10483,11 +10511,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const countyName = props.NAME20 || props.CountyName || props.COUNTYNAME || props.county_nam || props.NAME || props.name || 'Unknown County';
       const countyDisplay = displayCountyName(countyName);
       setCountyHoverOutline(countyName);
-      const norm = (countyName || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+      const norm = normalizeCountyToken(countyName);
       let row = currentElectionResults ? currentElectionResults[norm] : null;
       if (!row && currentElectionResults) {
         for (const key of Object.keys(currentElectionResults)) {
-          const keyNorm = (key || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+          const keyNorm = normalizeCountyToken(key);
           if (keyNorm === norm) {
             row = currentElectionResults[key];
             break;
@@ -11597,11 +11625,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       // Normalize and find county data
       function normalizeCountyName(name) {
-        return (name || '')
-          .replace(/[^a-z0-9 .\-]/gi, '')  // Keep periods for St. names and hyphens for Miami-Dade
-          .replace(/\s+/g, ' ')
-          .trim()
-          .toUpperCase();
+        return normalizeCountyToken(name);
       }
       let norm = normalizeCountyName(countyName);
       let countyData = currentElectionResults[norm];
@@ -14477,7 +14501,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      function precinctNormVariantsLite(rowName) {
 	        const raw = (rowName || '').toString();
 	        const out = new Set();
-	        const normalize = (s) => (s || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+	        const normalize = (s) => normalizeCountyToken(s);
 	        const primary = normalize(raw);
 	        if (primary) out.add(primary);
 	        if (!raw.includes(' - ')) return Array.from(out);
@@ -14598,7 +14622,7 @@ document.addEventListener('DOMContentLoaded', function() {
       (prevMeta.rows || []).forEach(r => {
         const rowName = (r.county || '').toString();
         const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
-        const countyNorm = (countyOnly || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
+        const countyNorm = normalizeCountyToken(countyOnly);
         if (!countyNorm) return;
         const dem = Number(r[`${contestType}_dem`] || 0);
         const rep = Number(r[`${contestType}_rep`] || 0);
@@ -14709,11 +14733,7 @@ document.addEventListener('DOMContentLoaded', function() {
       lastContestSliceMeta = { contestType, year: Number(year), rows: contestData };
 
 	      function normalizeCountyName(name) {
-	        return (name || '')
-	          .replace(/[^a-z0-9 .\-]/gi, '')
-	          .replace(/\s+/g, ' ')
-	          .trim()
-	          .toUpperCase();
+	        return normalizeCountyToken(name);
 	      }
 
       // Only build heavy precinct matching/color expressions when the overlay is enabled.
