@@ -185,25 +185,23 @@ def infer_contest_from_office_desc(value: object) -> Optional[str]:
     s = clean_text(value).lower()
     if not s:
         return None
-    if "president of the united states" in s:
-        return "president"
-    if "united states senator" in s:
-        return "us_senate"
-    if "secretary of state" in s:
-        return "secretary_of_state"
-    if "comptroller" in s:
-        return "comptroller"
-    if "commissioner of education" in s:
-        return "commissioner_of_education"
-    if "attorney general" in s:
-        return "attorney_general"
-    if "commissioner of agriculture" in s or "agriculture commissioner" in s:
-        return "agriculture_commissioner"
-    if "chief financial officer" in s or s == "treasurer":
-        return "treasurer"
-    if "governor" in s:
-        return "governor"
-    return None
+
+    exact_map = {
+        "president of the united states": "president",
+        "president and vice president of the united states": "president",
+        "united states senator": "us_senate",
+        "governor": "governor",
+        "governor and lieutenant governor": "governor",
+        "attorney general": "attorney_general",
+        "chief financial officer": "treasurer",
+        "treasurer": "treasurer",
+        "commissioner of agriculture": "agriculture_commissioner",
+        "agriculture commissioner": "agriculture_commissioner",
+        "secretary of state": "secretary_of_state",
+        "comptroller": "comptroller",
+        "commissioner of education": "commissioner_of_education",
+    }
+    return exact_map.get(s)
 
 
 def get_series(df: pd.DataFrame, column: str) -> pd.Series:
@@ -214,22 +212,25 @@ def get_series(df: pd.DataFrame, column: str) -> pd.Series:
 
 def build_candidate_name_from_aligned(df: pd.DataFrame) -> pd.Series:
     first = get_series(df, "CanNameFirst").map(clean_text)
+    middle = get_series(df, "CanNameMiddle").map(clean_text)
     last = get_series(df, "CanNameLast").map(clean_text)
-    office_desc = get_series(df, "OfficeDesc").map(lambda v: clean_text(v).lower())
 
-    both = (first + " " + last).str.strip()
-    candidate = both.mask((first == "") & (last != ""), last)
-    candidate = candidate.mask((last == "") & (first != ""), first)
-    candidate = candidate.mask((first == "") & (last == ""), "")
+    # Many aligned files encode tickets as: first="<top>", middle="/", last="<running mate>".
+    ticket = first + " / " + last
+    full = (first + " " + middle + " " + last).str.replace(r"\s+", " ", regex=True).str.strip()
+    first_last = (first + " " + last).str.replace(r"\s+", " ", regex=True).str.strip()
+    first_middle = (first + " " + middle).str.replace(r"\s+", " ", regex=True).str.strip()
+    middle_last = (middle + " " + last).str.replace(r"\s+", " ", regex=True).str.strip()
 
-    # Presidential rows in this source are typically ticket-formatted.
-    pres_mask = office_desc.str.contains("president of the united states", regex=False)
-    pres_ticket = first
-    pres_ticket = pres_ticket.mask(
-        (first != "") & (last != "") & (first.str.lower() != last.str.lower()),
-        first + " / " + last,
-    )
-    candidate = candidate.mask(pres_mask, pres_ticket)
+    candidate = full
+    candidate = candidate.mask((middle == "/") & (first != "") & (last != ""), ticket)
+    candidate = candidate.mask((middle == "") & (first != "") & (last != ""), first_last)
+    candidate = candidate.mask((first == "") & (middle != "") & (last != ""), middle_last)
+    candidate = candidate.mask((first != "") & (middle != "") & (last == ""), first_middle)
+    candidate = candidate.mask((first == "") & (middle == "") & (last != ""), last)
+    candidate = candidate.mask((first != "") & (middle == "") & (last == ""), first)
+    candidate = candidate.mask((first == "") & (middle != "") & (last == ""), middle)
+    candidate = candidate.mask((first == "") & (middle == "") & (last == ""), "")
     return candidate.map(clean_text)
 
 
@@ -636,6 +637,15 @@ def build() -> None:
                 "results": county_results,
             }
 
+    keep_files = {str(e.get("file", "")).strip() for e in manifest_entries if str(e.get("file", "")).strip()}
+    stale_removed = 0
+    for existing in contests_dir.glob("*.json"):
+        if existing.name == "manifest.json":
+            continue
+        if existing.name not in keep_files:
+            existing.unlink(missing_ok=True)
+            stale_removed += 1
+
     manifest_entries.sort(key=lambda e: (e["contest_type"], int(e["year"])))
     write_json(contests_dir / "manifest.json", {"files": manifest_entries})
     write_json(
@@ -652,6 +662,7 @@ def build() -> None:
             {
                 "contests_built": built,
                 "manifest_entries": len(manifest_entries),
+                "stale_files_removed": stale_removed,
                 "aggregated_path": str(data_dir / "fl_elections_aggregated.json"),
             },
             indent=2,

@@ -361,16 +361,6 @@
       "major_party_contested": true
     },
     {
-      "year": 2000,
-      "contest_type": "governor",
-      "file": "governor_2000.json",
-      "rows": 67,
-      "dem_total": 0,
-      "rep_total": 0,
-      "other_total": 10649245,
-      "major_party_contested": false
-    },
-    {
       "year": 2002,
       "contest_type": "governor",
       "file": "governor_2002.json",
@@ -401,16 +391,6 @@
       "major_party_contested": true
     },
     {
-      "year": 2012,
-      "contest_type": "governor",
-      "file": "governor_2012.json",
-      "rows": 67,
-      "dem_total": 0,
-      "rep_total": 0,
-      "other_total": 7366493,
-      "major_party_contested": false
-    },
-    {
       "year": 2014,
       "contest_type": "governor",
       "file": "governor_2014.json",
@@ -429,16 +409,6 @@
       "rep_total": 4076521,
       "other_total": 107625,
       "major_party_contested": true
-    },
-    {
-      "year": 2020,
-      "contest_type": "governor",
-      "file": "governor_2020.json",
-      "rows": 67,
-      "dem_total": 0,
-      "rep_total": 0,
-      "other_total": 10265236,
-      "major_party_contested": false
     },
     {
       "year": 2022,
