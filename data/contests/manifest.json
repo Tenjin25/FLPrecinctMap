@@ -1,6 +1,86 @@
 {
   "files": [
     {
+      "year": 1982,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_1982.json",
+      "rows": 67,
+      "dem_total": 1568578,
+      "rep_total": 1010909,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_1986.json",
+      "rows": 67,
+      "dem_total": 1797276,
+      "rep_total": 1419833,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_1990.json",
+      "rows": 67,
+      "dem_total": 1867568,
+      "rep_total": 1502324,
+      "other_total": 551,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_1994.json",
+      "rows": 67,
+      "dem_total": 2044995,
+      "rep_total": 1968418,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_1998.json",
+      "rows": 67,
+      "dem_total": 2350269,
+      "rep_total": 1453357,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2002,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_2002.json",
+      "rows": 67,
+      "dem_total": 2084487,
+      "rep_total": 2803890,
+      "other_total": 115,
+      "major_party_contested": true
+    },
+    {
+      "year": 2006,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_2006.json",
+      "rows": 67,
+      "dem_total": 2002464,
+      "rep_total": 2651833,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2010,
+      "contest_type": "agriculture_commissioner",
+      "file": "agriculture_commissioner_2010.json",
+      "rows": 67,
+      "dem_total": 1983277,
+      "rep_total": 2908086,
+      "other_total": 307315,
+      "major_party_contested": true
+    },
+    {
       "year": 2014,
       "contest_type": "agriculture_commissioner",
       "file": "agriculture_commissioner_2014.json",
@@ -28,6 +108,66 @@
       "dem_total": 3095786,
       "rep_total": 4510644,
       "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_1986.json",
+      "rows": 67,
+      "dem_total": 1900890,
+      "rep_total": 1341090,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_1994.json",
+      "rows": 67,
+      "dem_total": 2312010,
+      "rep_total": 1709139,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_1998.json",
+      "rows": 67,
+      "dem_total": 2301328,
+      "rep_total": 1562269,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2002,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2002.json",
+      "rows": 67,
+      "dem_total": 2299149,
+      "rep_total": 2636616,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2006,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2006.json",
+      "rows": 67,
+      "dem_total": 2197959,
+      "rep_total": 2448008,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2010,
+      "contest_type": "attorney_general",
+      "file": "attorney_general_2010.json",
+      "rows": 67,
+      "dem_total": 2181377,
+      "rep_total": 2882868,
+      "other_total": 199147,
       "major_party_contested": true
     },
     {
@@ -61,6 +201,216 @@
       "major_party_contested": true
     },
     {
+      "year": 1978,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_1978.json",
+      "rows": 67,
+      "dem_total": 1436240,
+      "rep_total": 811770,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_1986.json",
+      "rows": 67,
+      "dem_total": 1812570,
+      "rep_total": 1384762,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_1990.json",
+      "rows": 67,
+      "dem_total": 2253809,
+      "rep_total": 1167957,
+      "other_total": 3363,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_1994.json",
+      "rows": 67,
+      "dem_total": 1855705,
+      "rep_total": 2125480,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_1998.json",
+      "rows": 67,
+      "dem_total": 1679893,
+      "rep_total": 2185027,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2000,
+      "contest_type": "commissioner_of_education",
+      "file": "commissioner_of_education_2000.json",
+      "rows": 67,
+      "dem_total": 2464557,
+      "rep_total": 2979297,
+      "other_total": 102358,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "comptroller",
+      "file": "comptroller_1986.json",
+      "rows": 67,
+      "dem_total": 1922552,
+      "rep_total": 1254288,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "comptroller",
+      "file": "comptroller_1990.json",
+      "rows": 67,
+      "dem_total": 1999208,
+      "rep_total": 1358069,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "comptroller",
+      "file": "comptroller_1994.json",
+      "rows": 67,
+      "dem_total": 1947815,
+      "rep_total": 2026481,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "comptroller",
+      "file": "comptroller_1998.json",
+      "rows": 67,
+      "dem_total": 1488792,
+      "rep_total": 2291149,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1978,
+      "contest_type": "governor",
+      "file": "governor_1978.json",
+      "rows": 67,
+      "dem_total": 1406580,
+      "rep_total": 1123888,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1982,
+      "contest_type": "governor",
+      "file": "governor_1982.json",
+      "rows": 67,
+      "dem_total": 1739553,
+      "rep_total": 949013,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "governor",
+      "file": "governor_1986.json",
+      "rows": 67,
+      "dem_total": 1538620,
+      "rep_total": 1847525,
+      "other_total": 26,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "governor",
+      "file": "governor_1990.json",
+      "rows": 67,
+      "dem_total": 1995206,
+      "rep_total": 1535068,
+      "other_total": 597,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "governor",
+      "file": "governor_1994.json",
+      "rows": 67,
+      "dem_total": 2135008,
+      "rep_total": 2071068,
+      "other_total": 583,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "governor",
+      "file": "governor_1998.json",
+      "rows": 67,
+      "dem_total": 1773054,
+      "rep_total": 2191105,
+      "other_total": 282,
+      "major_party_contested": true
+    },
+    {
+      "year": 2000,
+      "contest_type": "governor",
+      "file": "governor_2000.json",
+      "rows": 67,
+      "dem_total": 0,
+      "rep_total": 0,
+      "other_total": 10649245,
+      "major_party_contested": false
+    },
+    {
+      "year": 2002,
+      "contest_type": "governor",
+      "file": "governor_2002.json",
+      "rows": 67,
+      "dem_total": 2201427,
+      "rep_total": 2856845,
+      "other_total": 42309,
+      "major_party_contested": true
+    },
+    {
+      "year": 2006,
+      "contest_type": "governor",
+      "file": "governor_2006.json",
+      "rows": 67,
+      "dem_total": 2178289,
+      "rep_total": 2519845,
+      "other_total": 131136,
+      "major_party_contested": true
+    },
+    {
+      "year": 2010,
+      "contest_type": "governor",
+      "file": "governor_2010.json",
+      "rows": 67,
+      "dem_total": 2557785,
+      "rep_total": 2619335,
+      "other_total": 182615,
+      "major_party_contested": true
+    },
+    {
+      "year": 2012,
+      "contest_type": "governor",
+      "file": "governor_2012.json",
+      "rows": 67,
+      "dem_total": 0,
+      "rep_total": 0,
+      "other_total": 7366493,
+      "major_party_contested": false
+    },
+    {
       "year": 2014,
       "contest_type": "governor",
       "file": "governor_2014.json",
@@ -81,6 +431,16 @@
       "major_party_contested": true
     },
     {
+      "year": 2020,
+      "contest_type": "governor",
+      "file": "governor_2020.json",
+      "rows": 67,
+      "dem_total": 0,
+      "rep_total": 0,
+      "other_total": 10265236,
+      "major_party_contested": false
+    },
+    {
       "year": 2022,
       "contest_type": "governor",
       "file": "governor_2022.json",
@@ -88,6 +448,96 @@
       "dem_total": 3106313,
       "rep_total": 4614210,
       "other_total": 50876,
+      "major_party_contested": true
+    },
+    {
+      "year": 1980,
+      "contest_type": "president",
+      "file": "president_1980.json",
+      "rows": 67,
+      "dem_total": 1417687,
+      "rep_total": 2043006,
+      "other_total": 219940,
+      "major_party_contested": true
+    },
+    {
+      "year": 1984,
+      "contest_type": "president",
+      "file": "president_1984.json",
+      "rows": 67,
+      "dem_total": 1448344,
+      "rep_total": 2728775,
+      "other_total": 865,
+      "major_party_contested": true
+    },
+    {
+      "year": 1988,
+      "contest_type": "president",
+      "file": "president_1988.json",
+      "rows": 67,
+      "dem_total": 1655851,
+      "rep_total": 2616597,
+      "other_total": 26425,
+      "major_party_contested": true
+    },
+    {
+      "year": 1992,
+      "contest_type": "president",
+      "file": "president_1992.json",
+      "rows": 67,
+      "dem_total": 2071662,
+      "rep_total": 2171787,
+      "other_total": 1067796,
+      "major_party_contested": true
+    },
+    {
+      "year": 1996,
+      "contest_type": "president",
+      "file": "president_1996.json",
+      "rows": 67,
+      "dem_total": 2545968,
+      "rep_total": 2243324,
+      "other_total": 512275,
+      "major_party_contested": true
+    },
+    {
+      "year": 2000,
+      "contest_type": "president",
+      "file": "president_2000.json",
+      "rows": 67,
+      "dem_total": 2911417,
+      "rep_total": 2911215,
+      "other_total": 137988,
+      "major_party_contested": true
+    },
+    {
+      "year": 2004,
+      "contest_type": "president",
+      "file": "president_2004.json",
+      "rows": 67,
+      "dem_total": 3583544,
+      "rep_total": 3964522,
+      "other_total": 61744,
+      "major_party_contested": true
+    },
+    {
+      "year": 2008,
+      "contest_type": "president",
+      "file": "president_2008.json",
+      "rows": 67,
+      "dem_total": 4282074,
+      "rep_total": 4045624,
+      "other_total": 63046,
+      "major_party_contested": true
+    },
+    {
+      "year": 2012,
+      "contest_type": "president",
+      "file": "president_2012.json",
+      "rows": 67,
+      "dem_total": 4237756,
+      "rep_total": 4163447,
+      "other_total": 72976,
       "major_party_contested": true
     },
     {
@@ -121,6 +571,166 @@
       "major_party_contested": true
     },
     {
+      "year": 1978,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1978.json",
+      "rows": 67,
+      "dem_total": 1278658,
+      "rep_total": 1045703,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1982,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1982.json",
+      "rows": 67,
+      "dem_total": 1459084,
+      "rep_total": 1129785,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1986.json",
+      "rows": 67,
+      "dem_total": 1702659,
+      "rep_total": 1570194,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1988,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1988.json",
+      "rows": 67,
+      "dem_total": 1522663,
+      "rep_total": 2617951,
+      "other_total": 332,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1990.json",
+      "rows": 67,
+      "dem_total": 1388600,
+      "rep_total": 2030659,
+      "other_total": 410,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1994.json",
+      "rows": 67,
+      "dem_total": 1887688,
+      "rep_total": 2075207,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "secretary_of_state",
+      "file": "secretary_of_state_1998.json",
+      "rows": 67,
+      "dem_total": 1778924,
+      "rep_total": 2065313,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1978,
+      "contest_type": "treasurer",
+      "file": "treasurer_1978.json",
+      "rows": 67,
+      "dem_total": 1758435,
+      "rep_total": 591730,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "treasurer",
+      "file": "treasurer_1986.json",
+      "rows": 67,
+      "dem_total": 2001936,
+      "rep_total": 1282707,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1988,
+      "contest_type": "treasurer",
+      "file": "treasurer_1988.json",
+      "rows": 67,
+      "dem_total": 1935137,
+      "rep_total": 2223401,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1990,
+      "contest_type": "treasurer",
+      "file": "treasurer_1990.json",
+      "rows": 67,
+      "dem_total": 1469541,
+      "rep_total": 1965216,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "treasurer",
+      "file": "treasurer_1994.json",
+      "rows": 67,
+      "dem_total": 2070604,
+      "rep_total": 1933570,
+      "other_total": 882,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "treasurer",
+      "file": "treasurer_1998.json",
+      "rows": 67,
+      "dem_total": 2195283,
+      "rep_total": 1687712,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2000,
+      "contest_type": "treasurer",
+      "file": "treasurer_2000.json",
+      "rows": 67,
+      "dem_total": 2336117,
+      "rep_total": 3363705,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2006,
+      "contest_type": "treasurer",
+      "file": "treasurer_2006.json",
+      "rows": 67,
+      "dem_total": 2479861,
+      "rep_total": 2151232,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2010,
+      "contest_type": "treasurer",
+      "file": "treasurer_2010.json",
+      "rows": 67,
+      "dem_total": 2015579,
+      "rep_total": 2967052,
+      "other_total": 193151,
+      "major_party_contested": true
+    },
+    {
       "year": 2014,
       "contest_type": "treasurer",
       "file": "treasurer_2014.json",
@@ -148,6 +758,126 @@
       "dem_total": 3085697,
       "rep_total": 4528811,
       "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 1980,
+      "contest_type": "us_senate",
+      "file": "us_senate_1980.json",
+      "rows": 67,
+      "dem_total": 1703086,
+      "rep_total": 1819189,
+      "other_total": 159,
+      "major_party_contested": true
+    },
+    {
+      "year": 1982,
+      "contest_type": "us_senate",
+      "file": "us_senate_1982.json",
+      "rows": 67,
+      "dem_total": 1636857,
+      "rep_total": 1014551,
+      "other_total": 420,
+      "major_party_contested": true
+    },
+    {
+      "year": 1986,
+      "contest_type": "us_senate",
+      "file": "us_senate_1986.json",
+      "rows": 67,
+      "dem_total": 1877231,
+      "rep_total": 1551888,
+      "other_total": 77,
+      "major_party_contested": true
+    },
+    {
+      "year": 1988,
+      "contest_type": "us_senate",
+      "file": "us_senate_1988.json",
+      "rows": 67,
+      "dem_total": 2015717,
+      "rep_total": 2049329,
+      "other_total": 585,
+      "major_party_contested": true
+    },
+    {
+      "year": 1992,
+      "contest_type": "us_senate",
+      "file": "us_senate_1992.json",
+      "rows": 67,
+      "dem_total": 3244319,
+      "rep_total": 1715162,
+      "other_total": 220,
+      "major_party_contested": true
+    },
+    {
+      "year": 1994,
+      "contest_type": "us_senate",
+      "file": "us_senate_1994.json",
+      "rows": 67,
+      "dem_total": 1210412,
+      "rep_total": 2894726,
+      "other_total": 1038,
+      "major_party_contested": true
+    },
+    {
+      "year": 1998,
+      "contest_type": "us_senate",
+      "file": "us_senate_1998.json",
+      "rows": 67,
+      "dem_total": 2436016,
+      "rep_total": 1463245,
+      "other_total": 0,
+      "major_party_contested": true
+    },
+    {
+      "year": 2000,
+      "contest_type": "us_senate",
+      "file": "us_senate_2000.json",
+      "rows": 67,
+      "dem_total": 2988840,
+      "rep_total": 2704093,
+      "other_total": 161830,
+      "major_party_contested": true
+    },
+    {
+      "year": 2004,
+      "contest_type": "us_senate",
+      "file": "us_senate_2004.json",
+      "rows": 67,
+      "dem_total": 3590201,
+      "rep_total": 3672864,
+      "other_total": 166829,
+      "major_party_contested": true
+    },
+    {
+      "year": 2006,
+      "contest_type": "us_senate",
+      "file": "us_senate_2006.json",
+      "rows": 67,
+      "dem_total": 2890548,
+      "rep_total": 1826127,
+      "other_total": 76859,
+      "major_party_contested": true
+    },
+    {
+      "year": 2010,
+      "contest_type": "us_senate",
+      "file": "us_senate_2010.json",
+      "rows": 67,
+      "dem_total": 1092936,
+      "rep_total": 2645743,
+      "other_total": 1672427,
+      "major_party_contested": true
+    },
+    {
+      "year": 2012,
+      "contest_type": "us_senate",
+      "file": "us_senate_2012.json",
+      "rows": 67,
+      "dem_total": 4523451,
+      "rep_total": 3458267,
+      "other_total": 208228,
       "major_party_contested": true
     },
     {

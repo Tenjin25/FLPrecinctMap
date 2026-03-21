@@ -1,3 +1,22 @@
+## County Slice Builder
+
+Build county-level statewide contest slices:
+
+```powershell
+py scripts/build_fl_county_contests.py
+```
+
+This writes:
+- `data/contests/*.json`
+- `data/contests/manifest.json`
+- `data/fl_elections_aggregated.json`
+
+Source behavior:
+- Prefers VEST precinct shapefiles when available.
+- Backfills missing county years from `data/*Election-aligned.txt` DOS county files.
+- Includes historic statewide offices present in aligned files (for example `secretary_of_state`, `comptroller`, `commissioner_of_education`).
+- DOS aligned files are county-level only and do not directly produce district or precinct slices.
+
 ## District Slice Builder
 
 Use `build_fl_district_contests.py` to generate `data/district_contests/*.json` and `manifest.json` from VEST Florida shapefiles.

@@ -8476,7 +8476,10 @@ document.addEventListener('DOMContentLoaded', function() {
         'Commissioner of Agriculture': 'agriculture_commissioner',
         'Chief Financial Officer': 'treasurer',
         'Chief Financial Officer (CFO)': 'treasurer',
-        'Treasurer': 'treasurer'
+        'Treasurer': 'treasurer',
+        'Secretary of State': 'secretary_of_state',
+        'Comptroller': 'comptroller',
+        'Commissioner of Education': 'commissioner_of_education'
       };
       
       const officeType = officeMap[office] || office.toLowerCase().replace(/ /g, '_');
@@ -8554,6 +8557,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'attorney_general': 'Attorney General',
 	        'agriculture_commissioner': 'Commissioner of Agriculture',
 	        'treasurer': 'Chief Financial Officer',
+	        'secretary_of_state': 'Secretary of State',
+	        'comptroller': 'Comptroller',
+	        'commissioner_of_education': 'Commissioner of Education',
 	        'us_house': 'US House',
 	        'state_senate': 'State Senate',
 	        'state_house': 'State House'
@@ -8613,7 +8619,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const contestYearPairs = {};
         const unsupportedFloridaContestTypes = new Set([
           'lieutenant_governor',
-          'secretary_of_state',
           'labor_commissioner',
           'insurance_commissioner',
           'superintendent'
@@ -8622,7 +8627,10 @@ document.addEventListener('DOMContentLoaded', function() {
           'governor',
           'attorney_general',
           'treasurer',
-          'agriculture_commissioner'
+          'agriculture_commissioner',
+          'secretary_of_state',
+          'comptroller',
+          'commissioner_of_education'
         ]);
 
         function parseMajorPartyContested(entry) {
@@ -8664,6 +8672,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'governor') return 'FL Governor';
 	        if (contestType === 'attorney_general') return 'FL Attorney General';
 	        if (contestType === 'treasurer') return 'FL Chief Financial Officer';
+	        if (contestType === 'secretary_of_state') return 'FL Secretary of State';
+	        if (contestType === 'comptroller') return 'FL Comptroller';
+	        if (contestType === 'commissioner_of_education') return 'FL Commissioner of Education';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        if (contestType.startsWith('nc_supreme_court_')) return 'FL Supreme Court';
 	        if (contestType.startsWith('nc_court_of_appeals_')) return 'Court of Appeals';
@@ -8683,6 +8694,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'FL Governor',
 	        'FL Attorney General',
 	        'FL Chief Financial Officer',
+	        'FL Secretary of State',
+	        'FL Comptroller',
+	        'FL Commissioner of Education',
 	        'Agriculture Commissioner',
 	        'FL Supreme Court',
 	        'Court of Appeals'
@@ -8821,6 +8835,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'governor',
 	        'attorney_general',
 	        'treasurer',
+	        'secretary_of_state',
+	        'comptroller',
+	        'commissioner_of_education',
 	        'agriculture_commissioner'
 	      ];
       // Precompute contest/year pairs in a single pass
@@ -8841,6 +8858,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'governor') return 'FL Governor';
 	        if (contestType === 'attorney_general') return 'FL Attorney General';
 	        if (contestType === 'treasurer') return 'FL Chief Financial Officer';
+	        if (contestType === 'secretary_of_state') return 'FL Secretary of State';
+	        if (contestType === 'comptroller') return 'FL Comptroller';
+	        if (contestType === 'commissioner_of_education') return 'FL Commissioner of Education';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        return formatContestName(contestType, '');
 	      }
@@ -8853,6 +8873,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'FL Governor',
 	        'FL Attorney General',
 	        'FL Chief Financial Officer',
+	        'FL Secretary of State',
+	        'FL Comptroller',
+	        'FL Commissioner of Education',
 	        'Agriculture Commissioner'
 	      ];
 

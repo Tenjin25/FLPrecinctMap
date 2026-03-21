@@ -86,6 +86,12 @@ Run:
 python scripts/build_fl_county_contests.py
 ```
 
+Notes:
+- Uses VEST precinct shapefiles when available (current repo years: 2014+).
+- Also auto-discovers `data/*Election-aligned.txt` FL DOS county files to backfill missing years for county-level statewide contests.
+- Historic statewide offices in aligned files are included as county contests (for example `secretary_of_state`, `comptroller`, `commissioner_of_education`).
+- These aligned county files improve the county layer only; precinct and district layers still require precinct/block crosswalk inputs.
+
 ### 2) Precinct Centroids
 
 Builds:
@@ -184,6 +190,7 @@ For automatic pickup in the legislative and CSV scripts:
 Notes:
 - Recount files are preferred when both base and recount exist for a county.
 - If both precinct-level and DOS data exist for the same year, precinct-level data is preferred.
+- For county-layer history, add aligned DOS files as `data/*Election-aligned.txt` and rerun `python scripts/build_fl_county_contests.py`.
 
 ## UI/Data Notes
 
