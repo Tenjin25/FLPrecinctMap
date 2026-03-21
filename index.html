@@ -8599,6 +8599,25 @@ document.addEventListener('DOMContentLoaded', function() {
 	      return nameMap[contestType] || contestType.toUpperCase();
 	    }
 
+    const HISTORIC_FL_OFFICE_REFORM_NOTE = 'Historic elected office. Florida Cabinet reform was approved on November 3, 1998 (Amendment 8) and took effect on January 7, 2003.';
+    const HISTORIC_FL_OFFICE_TYPES = new Set([
+      'secretary_of_state',
+      'comptroller',
+      'commissioner_of_education'
+    ]);
+
+    function getHistoricOfficeReformNote(contestType) {
+      return HISTORIC_FL_OFFICE_TYPES.has(contestType) ? HISTORIC_FL_OFFICE_REFORM_NOTE : '';
+    }
+
+    function formatContestOptionLabel(contestType, year, groupLabel, isJudicial = false) {
+      const base = isJudicial ? formatContestName(contestType, year) : groupLabel;
+      if (HISTORIC_FL_OFFICE_TYPES.has(contestType)) {
+        return `${base} (${year}) [Historic]`;
+      }
+      return `${base} (${year})`;
+    }
+
     function populateContestSelectFromElectionJSON(electionData) {
       if (!Array.isArray(electionData) || electionData.length === 0) return;
       if (contestManifest && contestManifest.length > 0) {
@@ -8738,13 +8757,11 @@ document.addEventListener('DOMContentLoaded', function() {
 	        items.forEach(item => {
 	          const opt = document.createElement('option');
 	          opt.value = `${item.contestType}_${item.year}`;
-	          if (isJudicial) {
-	            opt.textContent = `${formatContestName(item.contestType, item.year)} (${item.year})`;
-	          } else {
-	            opt.textContent = `${label} (${item.year})`;
-	          }
+	          opt.textContent = formatContestOptionLabel(item.contestType, item.year, label, isJudicial);
+            const historicNote = getHistoricOfficeReformNote(item.contestType);
+            if (historicNote) opt.title = historicNote;
 	          if (q) {
-	            const hay = `${label} ${item.year} ${item.contestType} ${formatContestName(item.contestType, item.year)}`.toUpperCase();
+	            const hay = `${label} ${item.year} ${item.contestType} ${formatContestName(item.contestType, item.year)} ${historicNote}`.toUpperCase();
 	            if (!hay.includes(q)) return;
 	          }
 	          og.appendChild(opt);
@@ -8903,7 +8920,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        items.forEach(item => {
 	          const opt = document.createElement('option');
 	          opt.value = `${item.contestType}_${item.year}`;
-	          opt.textContent = `${label} (${item.year})`;
+	          opt.textContent = formatContestOptionLabel(item.contestType, item.year, label, false);
+            const historicNote = getHistoricOfficeReformNote(item.contestType);
+            if (historicNote) opt.title = historicNote;
 	          og.appendChild(opt);
 	        });
 	        fragment.appendChild(og);
@@ -15170,7 +15189,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
   setStatewideContestTitle(`${formatContestName(contestType, year)} (${year})`);
-      setStatus(`Applied contest: ${formatContestName(contestType, year)} ${year}`);
+      const historicNote = getHistoricOfficeReformNote(contestType);
+      setStatus(`Applied contest: ${formatContestName(contestType, year)} ${year}${historicNote ? ` - ${historicNote}` : ''}`);
     }
 
     async function applyDistrictContest(contestType, year) {

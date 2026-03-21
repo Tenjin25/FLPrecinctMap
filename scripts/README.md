@@ -15,6 +15,7 @@ Source behavior:
 - Prefers VEST precinct shapefiles when available.
 - Backfills missing county years from `data/*Election-aligned.txt` DOS county files.
 - Includes historic statewide offices present in aligned files (for example `secretary_of_state`, `comptroller`, `commissioner_of_education`).
+- Florida Cabinet reform for these offices was approved on November 3, 1998 (Amendment 8) and took effect on January 7, 2003.
 - DOS aligned files are county-level only and do not directly produce district or precinct slices.
 
 ## District Slice Builder

@@ -90,6 +90,7 @@ Notes:
 - Uses VEST precinct shapefiles when available (current repo years: 2014+).
 - Also auto-discovers `data/*Election-aligned.txt` FL DOS county files to backfill missing years for county-level statewide contests.
 - Historic statewide offices in aligned files are included as county contests (for example `secretary_of_state`, `comptroller`, `commissioner_of_education`).
+- Florida Cabinet reform for these offices was approved on November 3, 1998 (Amendment 8) and took effect on January 7, 2003.
 - These aligned county files improve the county layer only; precinct and district layers still require precinct/block crosswalk inputs.
 
 ### 2) Precinct Centroids
