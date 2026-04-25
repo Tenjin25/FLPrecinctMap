@@ -14662,9 +14662,37 @@ document.addEventListener('DOMContentLoaded', function() {
 	      }
 	    }
 
+    function getContestSeatCycleYears(contestType) {
+      const t = (contestType || '').toString().trim().toLowerCase();
+      if (t === 'us_house' || t === 'state_house' || t === 'state_senate') return 2;
+      if (t === 'us_senate') return 6;
+      return 4;
+    }
+
+    function buildPreviousElectionYearCandidates(contestType, year, minYear = 2000) {
+      const y = Number(year);
+      if (!Number.isFinite(y)) return [];
+      const min = Number(minYear) || 2000;
+      const seatCycle = getContestSeatCycleYears(contestType);
+      const preferred = [];
+      for (let candidateYear = y - seatCycle; candidateYear >= min; candidateYear -= seatCycle) {
+        preferred.push(candidateYear);
+      }
+      const fallback = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24].map(step => y - step);
+      const out = [];
+      const seen = new Set();
+      preferred.concat(fallback).forEach(candidateYear => {
+        if (candidateYear < min) return;
+        if (seen.has(candidateYear)) return;
+        seen.add(candidateYear);
+        out.push(candidateYear);
+      });
+      return out;
+    }
+
     async function getPreviousContestSlice(contestType, year) {
       const y = Number(year);
-      const candidates = [y - 4, y - 6, y - 2, y - 8, y - 12].filter(v => v >= 2000);
+      const candidates = buildPreviousElectionYearCandidates(contestType, y, 2000);
       for (const cy of candidates) {
         const rows = await tryLoadContestSliceStrict(contestType, cy);
         if (rows && rows.length) return { year: cy, rows };
@@ -14875,7 +14903,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function getPreviousDistrictSlice(scope, contestType, year, linesYear = currentDistrictLinesYear) {
       const y = Number(year);
-      const candidates = [y - 4, y - 6, y - 2, y - 8, y - 12].filter(v => v >= 2000);
+      const candidates = buildPreviousElectionYearCandidates(contestType, y, 2000);
       for (const cy of candidates) {
         const node = await tryLoadDistrictSliceStrict(scope, contestType, cy, linesYear);
         const results = node?.general?.results || null;
