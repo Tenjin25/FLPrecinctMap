@@ -15187,32 +15187,34 @@ document.addEventListener('DOMContentLoaded', function() {
 	        return Array.from(out);
 	      }
 
-      // Build county aggregates from precinct-level rows.
+      // Only use county-level rows for the county layer aggregation.
       const countyAgg = {};
       currentPrecinctResults = needsPrecinctDetail ? new Map() : null;
       contestData.forEach(row => {
         const rowName = (row.county || '').toString();
-        const countyOnly = rowName.includes(' - ') ? rowName.split(' - ')[0] : rowName;
-        const countyNorm = normalizeCountyName(countyOnly);
+        // Only include rows that are exactly a county name (no ' - ' means not a precinct or split)
+        if (rowName.includes(' - ')) {
+          // Still index for precinct overlay if needed
+          if (needsPrecinctDetail) {
+            const norms = precinctNormVariants(rowName);
+            norms.forEach(n => {
+              currentPrecinctResults.set(n, row);
+            });
+          }
+          return;
+        }
+        const countyNorm = normalizeCountyName(rowName);
         if (!countyNorm) return;
-
         const demVotes = Number(row[`${contestType}_dem`] || 0);
         const repVotes = Number(row[`${contestType}_rep`] || 0);
         const otherVotes = Number(row[`${contestType}_other`] || 0);
         const totalVotes = Number(row[`${contestType}_total`] || 0);
         const demCand = (row[`${contestType}_dem_candidate`] || '').toString();
         const repCand = (row[`${contestType}_rep_candidate`] || '').toString();
-
-        if (needsPrecinctDetail) {
-          const norms = precinctNormVariants(rowName);
-          norms.forEach(n => {
-            currentPrecinctResults.set(n, row);
-          });
-        }
         if (!countyAgg[countyNorm]) {
           countyAgg[countyNorm] = {
             year: Number(year),
-            county: countyOnly,
+            county: rowName,
             [`${contestType}_dem`]: 0,
             [`${contestType}_rep`]: 0,
             [`${contestType}_other`]: 0,
