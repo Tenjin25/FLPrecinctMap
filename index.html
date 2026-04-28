@@ -133,25 +133,41 @@
     }
   }
   @media (max-width: 768px) {
-    /* Mobile: dock hover tooltip above bottom legend for easier reading/taps. */
+    /* Mobile: dock hover tooltip above the dock controls for easier reading/taps. */
     #hover-tooltip {
       position: fixed !important;
       left: 8px !important;
       right: 8px !important;
       top: auto !important;
-      bottom: calc(var(--legend-h, 56px) + var(--safe-bottom, 0px) + 8px) !important;
+      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px + var(--vote-counter-h, 0px) + 8px) !important;
       max-width: none !important;
       width: auto !important;
-      max-height: 42vh;
+      max-height: min(54vh, calc(100vh - 16px - var(--safe-top, 0px) - var(--safe-bottom, 0px) - var(--mobile-dock-h, 62px) - var(--vote-counter-h, 0px)));
       overflow: auto;
       -webkit-overflow-scrolling: touch;
       touch-action: pan-y;
+      z-index: 10031 !important;
+    }
+    @supports (height: 100svh) {
+      #hover-tooltip {
+        max-height: min(54svh, calc(100svh - 16px - var(--safe-top, 0px) - var(--safe-bottom, 0px) - var(--mobile-dock-h, 62px) - var(--vote-counter-h, 0px)));
+      }
     }
     #hover-tooltip .tooltip-btn {
       min-height: 44px;
       padding: 10px 12px;
       font-size: 13px;
       border-radius: 12px;
+    }
+    #hover-tooltip .tooltip-head {
+      flex-direction: column;
+      gap: 8px;
+    }
+    #hover-tooltip .tooltip-actions {
+      width: 100%;
+    }
+    #hover-tooltip .tooltip-btn {
+      flex: 1 1 auto;
     }
   }
     .spinner svg {
@@ -606,17 +622,234 @@ body { height: var(--app-height); }
   transition: opacity 0.15s ease;
 }
 
+/* UI hierarchy helpers: keep one dominant layer at a time. */
+body.hover-preview-active .main-controls,
+body.hover-preview-active .vote-counter,
+body.hover-preview-active .viz-modes,
+body.hover-preview-active .legend {
+  opacity: 0.94;
+}
+
+body.focus-active.hover-preview-active .vote-counter {
+  opacity: 1;
+}
+
+/* Desktop: keep the classic hover-card feel (no global UI dimming). */
+@media (min-width: 769px) {
+  body.hover-preview-active .main-controls,
+  body.hover-preview-active .vote-counter,
+  body.hover-preview-active .viz-modes,
+  body.hover-preview-active .legend {
+    opacity: 1;
+  }
+}
+
+#hover-tooltip[data-context="preview"] {
+  max-width: 252px;
+  opacity: 0.88;
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+body.focus-active #hover-tooltip[data-context="preview"] {
+  opacity: 0.82;
+}
+
+.hover-tooltip .tooltip-kicker {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(148, 163, 184, 0.92);
+  margin-bottom: 5px;
+}
+
+.hover-tooltip .tooltip-hint {
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 750;
+  color: rgba(226, 232, 240, 0.92);
+  opacity: 0.95;
+}
+
 .hover-tooltip .tooltip-title {
-  font-weight: 700;
-  margin-bottom: 10px;
+  font-weight: 750;
+  margin-bottom: 8px;
   color: #ffffff;
   font-size: 14px;
+  line-height: 1.25;
   letter-spacing: 0.3px;
+}
+.hover-tooltip .tooltip-title-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+.hover-tooltip .tooltip-title-main {
+  display: inline-flex;
+  align-items: center;
+}
+.hover-tooltip .tooltip-title-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  border: 1px solid transparent;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.hover-tooltip .tooltip-title-badge:hover {
+  transform: translateY(-1px) scale(1.04);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.hover-tooltip .tooltip-title-badge.rep {
+  color: #fecaca;
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(248, 113, 113, 0.35);
+}
+.hover-tooltip .tooltip-title-badge.dem {
+  color: #bfdbfe;
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(96, 165, 250, 0.35);
+}
+.hover-tooltip .tooltip-title-badge.tie {
+  color: #e2e8f0;
+  background: rgba(148, 163, 184, 0.2);
+  border-color: rgba(148, 163, 184, 0.35);
 }
 
 .hover-tooltip .tooltip-trends {
   font-size: 12px;
   line-height: 1.6;
+}
+
+.hover-tooltip .tooltip-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 7px;
+}
+
+.hover-tooltip .tooltip-head.is-compact {
+  margin-bottom: 6px;
+}
+
+.hover-tooltip .tooltip-title {
+  margin-bottom: 0;
+}
+
+.hover-tooltip .tooltip-quickline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.28;
+}
+
+.hover-tooltip .tooltip-quickline .rep { color: #fecaca; }
+.hover-tooltip .tooltip-quickline .dem { color: #bfdbfe; }
+.hover-tooltip .tooltip-quickline .tie { color: #e2e8f0; }
+
+.hover-tooltip .tooltip-quickline .tier {
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: rgba(255, 255, 255, 0.92);
+}
+.hover-tooltip .tooltip-quickline .tier::before {
+  content: "";
+  margin: 0;
+}
+.hover-tooltip .tooltip-quickline .tier {
+  margin-left: 4px;
+}
+
+.hover-tooltip .tooltip-insight {
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.hover-tooltip .tooltip-delta {
+  margin-top: 7px;
+  font-size: 11.5px;
+  line-height: 1.35;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.hover-tooltip .tooltip-delta-line {
+  margin-top: 4px;
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.hover-tooltip .tooltip-body.desktop-collapsed .tooltip-delta {
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.hover-tooltip .tooltip-delta .tooltip-shift {
+  font-weight: 800;
+}
+
+.hover-tooltip .tooltip-delta .tooltip-shift.rep {
+  color: #fecaca;
+}
+
+.hover-tooltip .tooltip-delta .tooltip-shift.dem {
+  color: #bfdbfe;
+}
+
+.hover-tooltip .tooltip-delta .tooltip-shift.tie {
+  color: rgba(226, 232, 240, 0.92);
+}
+
+.hover-tooltip .tooltip-flip {
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 850;
+  letter-spacing: 0.01em;
+  color: rgba(226, 232, 240, 0.92);
+}
+.hover-tooltip .tooltip-flip.rep { color: #fecaca; }
+.hover-tooltip .tooltip-flip.dem { color: #bfdbfe; }
+
+.hover-tooltip .tooltip-more {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.hover-tooltip .tooltip-more summary {
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(15, 23, 42, 0.18);
+  color: rgba(226, 232, 240, 0.96);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.hover-tooltip .tooltip-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.hover-tooltip .tooltip-more-body {
+  margin-top: 10px;
 }
 
 .quick-tooltip {
@@ -1690,7 +1923,7 @@ body { height: var(--app-height); }
     box-shadow: 0 18px 44px rgba(15, 23, 42, 0.25);
     backdrop-filter: blur(14px);
     border-radius: 14px;
-    max-width: 360px;
+    max-width: 280px;
     animation: tooltip-in 140ms ease-out;
   }
 
@@ -1723,6 +1956,12 @@ body { height: var(--app-height); }
   /* Allow interacting with tooltip buttons only when pinned. */
   #hover-tooltip[data-pinned="1"] {
     pointer-events: auto;
+  }
+  @media (pointer: coarse) {
+    /* On touch devices, don't let a non-pinned hover shell block panning/zooming. */
+    #hover-tooltip[data-pinned="0"] {
+      pointer-events: none;
+    }
   }
 
   /* Help modal */
@@ -13707,6 +13946,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!tooltip) return;
       if (tooltipPinned) return;
       tooltip.style.display = 'none';
+      try { tooltip.dataset.context = ''; } catch (_) {}
+      try { tooltip.dataset.copyText = ''; } catch (_) {}
+      try { document.body.classList.remove('hover-preview-active'); } catch (_) {}
     }
 
     function setTooltipPinned(pinned) {
@@ -13716,13 +13958,20 @@ document.addEventListener('DOMContentLoaded', function() {
       tooltip.setAttribute('data-pinned', tooltipPinned ? '1' : '0');
     }
 
-    function buildTooltipShell(title, innerHtml) {
+    function buildTooltipShell(title, innerHtml, options = {}) {
+      const pinned = options && options.pinned === true;
+      const showClose = !!(pinned || options.showClose === true);
+      const copyText = (options && options.copyText ? String(options.copyText || '') : '').trim();
+      const headClass = pinned ? 'is-pinned' : (showClose ? 'is-classic' : 'is-compact');
       return `
-        <div class="tooltip-head">
+        <div class="tooltip-head ${headClass}">
           <div class="tooltip-title">${title}</div>
-          <div class="tooltip-actions">
-            <button class="tooltip-btn" id="tooltip-close-btn" type="button">Close</button>
-          </div>
+          ${showClose ? `
+            <div class="tooltip-actions">
+              ${(pinned && copyText) ? `<button class="tooltip-btn" id="tooltip-copy-btn" type="button" aria-label="Copy selection label">Copy</button>` : ''}
+              <button class="tooltip-btn" id="tooltip-close-btn" type="button">Close</button>
+            </div>
+          `.trim() : ''}
         </div>
         <div class="tooltip-trends">${innerHtml}</div>
       `;
@@ -13731,12 +13980,44 @@ document.addEventListener('DOMContentLoaded', function() {
     function wireTooltipButtons() {
       const closeBtn = document.getElementById('tooltip-close-btn');
       if (closeBtn) {
-        closeBtn.onclick = () => {
+        closeBtn.onclick = (ev) => {
+          try { ev?.preventDefault?.(); } catch (_) {}
+          try { ev?.stopPropagation?.(); } catch (_) {}
           setTooltipPinned(false);
           const tooltip = document.getElementById('hover-tooltip');
           if (tooltip) tooltip.style.display = 'none';
+          try { if (tooltip) tooltip.dataset.context = ''; } catch (_) {}
+          try { if (tooltip) tooltip.dataset.copyText = ''; } catch (_) {}
+          try { document.body.classList.remove('hover-preview-active'); } catch (_) {}
           clearHoverOutline();
           clearVoteCounterHoverState();
+        };
+      }
+      const copyBtn = document.getElementById('tooltip-copy-btn');
+      if (copyBtn) {
+        copyBtn.onclick = async (ev) => {
+          try { ev?.preventDefault?.(); } catch (_) {}
+          try { ev?.stopPropagation?.(); } catch (_) {}
+          const tooltip = document.getElementById('hover-tooltip');
+          const text = (tooltip?.dataset?.copyText || '').toString().trim();
+          if (!text) return;
+          try {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              const ta = document.createElement('textarea');
+              ta.value = text;
+              ta.style.position = 'fixed';
+              ta.style.left = '-9999px';
+              document.body.appendChild(ta);
+              ta.select();
+              document.execCommand('copy');
+              ta.remove();
+            }
+            setStatus('Copied selection label to clipboard.');
+          } catch (_) {
+            setStatus('Copy failed. Your browser may block clipboard access.');
+          }
         };
       }
     }
