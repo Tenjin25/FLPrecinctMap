@@ -10263,6 +10263,9 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function flipChipHTML(prevSignedPct, curSignedPct) {
+      if (prevSignedPct === null || prevSignedPct === undefined || !Number.isFinite(Number(prevSignedPct))) {
+        return `<span class="meta-chip flip tie"><span class="dot"></span>No prior</span>`;
+      }
       const f = flipInfo(prevSignedPct, curSignedPct);
       if (!f.flipped) return '';
       const labelFrom = f.from === 'R' ? 'R' : 'D';
@@ -10779,7 +10782,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevCountyTotals) {
         const prev = vizPrevCache.prevCountyTotals[norm] || null;
-        prevSignedForFlip = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
+        prevSignedForFlip = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : null;
       }
 
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
@@ -10865,7 +10868,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const chips = [];
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevPrecinctMarginByNorm) {
-        prevSignedForFlip = Number(vizPrevCache.prevPrecinctMarginByNorm.get(precinctNorm) || 0);
+        if (vizPrevCache.prevPrecinctMarginByNorm.has(precinctNorm)) {
+          prevSignedForFlip = Number(vizPrevCache.prevPrecinctMarginByNorm.get(precinctNorm));
+        } else {
+          prevSignedForFlip = null;
+        }
       }
 
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
@@ -15364,11 +15371,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const marginPctAbs = Math.abs(signedMarginPct);
         let color = '#e0e0e0';
 
-        if (mode === 'flips') {
+      if (mode === 'flips') {
           const prev = vizPrevCache?.prevCountyTotals?.[countyName] || null;
-          const prevSigned = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
-          const f = flipInfo(prevSigned, signedMarginPct);
-          color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+          if (!prev) {
+            color = colorForFlipMode('T');
+          } else {
+            const prevSigned = signedMarginPctFromVotes(prev.dem, prev.rep, prev.total);
+            const f = flipInfo(prevSigned, signedMarginPct);
+            color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+          }
         } else if (mode === 'winners') {
           color = colorForWinnerMode(winner);
         } else if (mode === 'shift' && prevCountyTotals) {
