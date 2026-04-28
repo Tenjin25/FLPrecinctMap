@@ -10513,6 +10513,22 @@ document.addEventListener('DOMContentLoaded', function() {
       return `<span class="meta-chip flip ${cls}"><span class="dot"></span>Flip ${labelFrom}\u2192${labelTo}</span>`;
     }
 
+    function flipLineHTML(prevSignedPct, curSignedPct, fromYear = null, toYear = null) {
+      const f = flipInfo(prevSignedPct, curSignedPct);
+      if (!f.flipped) return '';
+      const labelFrom = f.from === 'R' ? 'R' : 'D';
+      const labelTo = f.to === 'R' ? 'R' : 'D';
+      const cls = f.to === 'R' ? 'rep' : 'dem';
+      const fy = Number(fromYear);
+      const ty = Number(toYear);
+      const hasYears = Number.isFinite(fy) && Number.isFinite(ty);
+      const years = hasYears ? ` (${String(fy).slice(-2)}\u2192${String(ty).slice(-2)})` : '';
+      const title = hasYears
+        ? ` title="Flip ${labelFrom}\u2192${labelTo} (${fy}\u2192${ty})"`
+        : '';
+      return `<div class="tooltip-flip ${cls}"${title}>Flip: ${labelFrom}\u2192${labelTo}${years}</div>`;
+    }
+
     function buildResultCardHTML(title, subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate) {
       const d = Number(demVotes || 0);
       const r = Number(repVotes || 0);
@@ -11037,13 +11053,34 @@ document.addEventListener('DOMContentLoaded', function() {
         if (flipChip) chips.push(flipChip);
       }
 
+      const flipLine = (prevSignedForFlip !== null)
+        ? flipLineHTML(prevSignedForFlip, signedMarginPct, vizPrevCache?.prevYear || null, Number(year))
+        : '';
       const inner = `
         <div class="hover-meta">${chips.join('')}</div>
+        ${flipLine}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
         ${demoLine}
       `;
 
-      showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${countyDisplay} County`, inner), { force: !!forceTooltip });
+      const hoverKey = `county:${norm}|${contestValue}`;
+      const pinnedShell = !!tooltipPinned;
+      if (isDesktopTooltipMode() && !pinnedShell) {
+        desktopHoverExpandState = {
+          kind: 'county',
+          x: e.point.x,
+          y: e.point.y,
+          title: `${countyDisplay} County`,
+          expandedInner: inner,
+          copyText: hoverKey
+        };
+      }
+      showHoverTooltip(
+        e.point.x,
+        e.point.y,
+        buildTooltipShell(`${countyDisplay} County`, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+      );
       wireTooltipButtons();
     }
 
@@ -11127,6 +11164,9 @@ document.addEventListener('DOMContentLoaded', function() {
         if (flipChip) chips.push(flipChip);
       }
 
+      const flipLine = (prevSignedForFlip !== null)
+        ? flipLineHTML(prevSignedForFlip, curSigned, vizPrevCache?.prevYear || null, Number(year))
+        : '';
       let countyLine = '';
       let demoLine = '';
       try {
@@ -11154,11 +11194,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const inner = `
         <div class="hover-meta">${chips.join('')}</div>
+        ${flipLine}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
         ${countyLine}
         ${demoLine}
       `;
-      showHoverTooltip(point.x, point.y, buildTooltipShell(title, inner), { force: !!forceTooltip });
+      const hoverKey = `precinct:${precinctNorm}|${contestValue}`;
+      const pinnedShell = !!tooltipPinned;
+      if (isDesktopTooltipMode() && !pinnedShell) {
+        desktopHoverExpandState = {
+          kind: 'precinct',
+          x: point.x,
+          y: point.y,
+          title,
+          expandedInner: inner,
+          copyText: hoverKey
+        };
+      }
+      showHoverTooltip(
+        point.x,
+        point.y,
+        buildTooltipShell(title, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+      );
       wireTooltipButtons();
       setVoteCounterHoverState(
         `Hover: ${title}`,
@@ -11337,13 +11395,34 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       const desc = getDistrictDescription(scope, districtNum);
+      const flipLine = (prevSignedForFlip !== null)
+        ? flipLineHTML(prevSignedForFlip, signedMarginPct, prevYearForFlip, Number(year))
+        : '';
       const inner = `
         <div class="hover-meta">${chips.join('')}</div>
+        ${flipLine}
         ${desc ? `<div style="margin-top:6px;font-size:12px;color:#94a3b8;"><strong style="color:#e2e8f0;">Area:</strong> ${desc}</div>` : ''}
         ${_demoHTML}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
       `;
-      showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`, inner), { force: !!forceTooltip });
+      const hoverKey = `district:${scope}:${districtNum}|${contestValue}`;
+      const pinnedShell = !!tooltipPinned;
+      if (isDesktopTooltipMode() && !pinnedShell) {
+        desktopHoverExpandState = {
+          kind: 'district',
+          x: e.point.x,
+          y: e.point.y,
+          title: `${districtLabel} ${districtNum}`,
+          expandedInner: inner,
+          copyText: hoverKey
+        };
+      }
+      showHoverTooltip(
+        e.point.x,
+        e.point.y,
+        buildTooltipShell(`${districtLabel} ${districtNum}`, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+      );
       wireTooltipButtons();
     }
 
@@ -13897,14 +13976,87 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Hover Tooltip Functions - VoteHub Style
-    function showHoverTooltip(x, y, content, { force = false } = {}) {
+    const hoverTooltipSuppression = { key: '', x: 0, y: 0, until: 0 };
+    let desktopHoverExpandState = null; // { kind, x, y, title, expandedInner, copyText }
+
+    function suppressHoverTooltip(key, x, y, { ms = 30000 } = {}) {
+      const k = (key || '').toString().trim();
+      if (!k) return;
+      const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+      hoverTooltipSuppression.key = k;
+      hoverTooltipSuppression.x = Number(x) || 0;
+      hoverTooltipSuppression.y = Number(y) || 0;
+      hoverTooltipSuppression.until = now + Math.max(0, Number(ms) || 0);
+    }
+
+    function clearHoverTooltipSuppression() {
+      hoverTooltipSuppression.key = '';
+      hoverTooltipSuppression.until = 0;
+    }
+
+    function isDesktopTooltipMode() {
+      return !isTouchInteractionMode() && !isMobileViewportNow();
+    }
+
+    function clearDesktopHoverExpandState() {
+      desktopHoverExpandState = null;
+    }
+
+    function wireDesktopTooltipExpandOnClick() {
+      const tooltip = document.getElementById('hover-tooltip');
+      if (!tooltip) return;
+      if (tooltip.dataset && tooltip.dataset.expandWired === '1') return;
+      try { tooltip.dataset.expandWired = '1'; } catch (_) {}
+      tooltip.addEventListener('click', (ev) => {
+        try {
+          if (!isDesktopTooltipMode()) return;
+          if (tooltipPinned) return;
+          if (!desktopHoverExpandState) return;
+          const targetId = String(ev?.target?.id || '');
+          if (targetId === 'tooltip-close-btn' || targetId === 'tooltip-copy-btn') return;
+
+          const state = desktopHoverExpandState;
+          clearDesktopHoverExpandState();
+          setTooltipPinned(true);
+          showHoverTooltip(
+            state.x,
+            state.y,
+            buildTooltipShell(state.title, state.expandedInner, { pinned: true, showClose: true, copyText: state.copyText }),
+            { force: true, pinned: true, context: 'pinned', copyText: state.copyText }
+          );
+          wireTooltipButtons();
+        } catch (_) {}
+      });
+    }
+
+    function showHoverTooltip(x, y, content, { force = false, pinned = false, context = '', copyText = '' } = {}) {
       const tooltip = document.getElementById('hover-tooltip');
       if (!tooltip) return;
       if (isTouchInteractionMode() && !force && !tooltipPinned) return;
       if (tooltipPinned && !force) return;
+
+      // If the user explicitly closed a hover tooltip while the pointer is still sitting on the same feature,
+      // don't immediately reopen it on the next hover refresh.
+      try {
+        const key = (copyText || '').toString().trim();
+        const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+        if (!pinned && !force && key && hoverTooltipSuppression.key === key && now < hoverTooltipSuppression.until) {
+          const dx = (Number(x) || 0) - (Number(hoverTooltipSuppression.x) || 0);
+          const dy = (Number(y) || 0) - (Number(hoverTooltipSuppression.y) || 0);
+          const dist2 = (dx * dx) + (dy * dy);
+          if (dist2 <= (14 * 14)) return;
+          clearHoverTooltipSuppression();
+        } else if (key && hoverTooltipSuppression.key && key !== hoverTooltipSuppression.key) {
+          clearHoverTooltipSuppression();
+        }
+      } catch (_) {}
       
       tooltip.innerHTML = content;
       tooltip.style.display = 'block';
+      try { tooltip.dataset.context = String(context || ''); } catch (_) {}
+      try { tooltip.dataset.copyText = (copyText || '').toString(); } catch (_) {}
+      try { document.body.classList.toggle('hover-preview-active', !pinned); } catch (_) {}
+      try { wireDesktopTooltipExpandOnClick(); } catch (_) {}
       
       // Position tooltip near mouse but avoid edges
       const tooltipRect = tooltip.getBoundingClientRect();
@@ -13930,6 +14082,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!tooltip) return;
       if (tooltipPinned) return;
       tooltip.style.display = 'none';
+      clearDesktopHoverExpandState();
       try { tooltip.dataset.context = ''; } catch (_) {}
       try { tooltip.dataset.copyText = ''; } catch (_) {}
       try { document.body.classList.remove('hover-preview-active'); } catch (_) {}
@@ -13946,6 +14099,20 @@ document.addEventListener('DOMContentLoaded', function() {
       const pinned = options && options.pinned === true;
       const showClose = !!(pinned || options.showClose === true);
       const copyText = (options && options.copyText ? String(options.copyText || '') : '').trim();
+      if (isDesktopTooltipMode()) {
+        return `
+          <div class="tooltip-head">
+            <div class="tooltip-title">${title}</div>
+            ${showClose ? `
+              <div class="tooltip-actions">
+                ${(pinned && copyText) ? `<button class="tooltip-btn" id="tooltip-copy-btn" type="button" aria-label="Copy selection label">Copy</button>` : ''}
+                <button class="tooltip-btn" id="tooltip-close-btn" type="button">Close</button>
+              </div>
+            `.trim() : ''}
+          </div>
+          <div class="tooltip-trends">${innerHtml}</div>
+        `;
+      }
       const headClass = pinned ? 'is-pinned' : (showClose ? 'is-classic' : 'is-compact');
       return `
         <div class="tooltip-head ${headClass}">
@@ -13967,6 +14134,27 @@ document.addEventListener('DOMContentLoaded', function() {
         closeBtn.onclick = (ev) => {
           try { ev?.preventDefault?.(); } catch (_) {}
           try { ev?.stopPropagation?.(); } catch (_) {}
+          try {
+            const tooltip = document.getElementById('hover-tooltip');
+            const key = (tooltip?.dataset?.copyText || '').toString().trim();
+            if (key) {
+              let sx = 0;
+              let sy = 0;
+              try {
+                const rect = map && typeof map.getContainer === 'function' ? map.getContainer().getBoundingClientRect() : null;
+                const cx = Number(ev?.clientX);
+                const cy = Number(ev?.clientY);
+                if (rect && Number.isFinite(cx) && Number.isFinite(cy)) {
+                  sx = cx - rect.left;
+                  sy = cy - rect.top;
+                } else if (lastPointerPoint) {
+                  sx = Number(lastPointerPoint.x) || 0;
+                  sy = Number(lastPointerPoint.y) || 0;
+                }
+              } catch (_) {}
+              suppressHoverTooltip(key, sx, sy);
+            }
+          } catch (_) {}
           setTooltipPinned(false);
           const tooltip = document.getElementById('hover-tooltip');
           if (tooltip) tooltip.style.display = 'none';
