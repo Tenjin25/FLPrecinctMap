@@ -15387,11 +15387,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const marginPctAbs = Math.abs(signedMarginPct);
         let color = '#e0e0e0';
 
-        if (mode === 'flips') {
+      if (mode === 'flips') {
           const prev = vizPrevCache?.prevCountyTotals?.[countyName] || null;
-          const prevSigned = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
-          const f = flipInfo(prevSigned, signedMarginPct);
-          color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+          if (!prev) {
+            color = colorForFlipMode('T');
+          } else {
+            const prevSigned = signedMarginPctFromVotes(prev.dem, prev.rep, prev.total);
+            const f = flipInfo(prevSigned, signedMarginPct);
+            color = f.flipped ? colorForFlipMode(f.to) : colorForFlipMode('T');
+          }
         } else if (mode === 'winners') {
           color = colorForWinnerMode(winner);
         } else if (mode === 'shift' && prevCountyTotals) {
