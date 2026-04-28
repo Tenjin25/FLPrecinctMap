@@ -2147,16 +2147,6 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     color: #fee2e2;
   }
 
-  .meta-chip.flip.tie {
-    border-color: rgba(148, 163, 184, 0.55);
-    background: rgba(148, 163, 184, 0.16);
-    color: #e2e8f0;
-  }
-
-  .meta-chip.flip.tie .dot {
-    background: #94a3b8;
-  }
-
   .meta-chip.flip {
     border-width: 2px;
     box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
@@ -8247,7 +8237,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (latest.flip && latest.flip.flipped) {
         summaryBadges.push(
-          `<span class="focus-trend-summary-badge ${latest.flip.to === 'R' ? 'rep' : 'dem'}">${escapeHtml(`Flip ${latest.flip.from}\u2192${latest.flip.to}`)}</span>`
+          `<span class="focus-trend-summary-badge ${latest.flip.to === 'R' ? 'rep' : 'dem'}">${escapeHtml(`Flip ${latest.flip.from}->${latest.flip.to}`)}</span>`
         );
       }
 
@@ -8264,7 +8254,7 @@ document.addEventListener('DOMContentLoaded', function() {
             : (entry.winnerMeta.partyClass === 'dem' ? 'Democratic' : 'Tie');
           const totalVotesLabel = `${formatCompactVoteTotal(entry.totalVotes)} votes`;
           const flipChip = entry.flip && entry.flip.flipped
-            ? `<span class="focus-trend-chip flip">${escapeHtml(`Flip ${entry.flip.from}\u2192${entry.flip.to}`)}</span>`
+            ? `<span class="focus-trend-chip flip">${escapeHtml(`Flip ${entry.flip.from}->${entry.flip.to}`)}</span>`
             : '';
           const leadSummary = entry.leadLabel === 'Tie' ? 'Even race' : entry.leadLabel;
           const otherChip = entry.otherPct >= 0.05
@@ -10627,9 +10617,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function flipChipHTML(prevSignedPct, curSignedPct) {
-      if (prevSignedPct === null || prevSignedPct === undefined || !Number.isFinite(Number(prevSignedPct))) {
-        return `<span class="meta-chip flip tie"><span class="dot"></span>No prior</span>`;
-      }
       const f = flipInfo(prevSignedPct, curSignedPct);
       if (!f.flipped) return '';
       const labelFrom = f.from === 'R' ? 'R' : 'D';
@@ -11229,21 +11216,18 @@ document.addEventListener('DOMContentLoaded', function() {
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevCountyTotals) {
         const prev = vizPrevCache.prevCountyTotals[norm] || null;
-        prevSignedForFlip = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : null;
+        prevSignedForFlip = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
       }
 
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
-        if (prevSignedForFlip !== null) {
-          chips.push(shiftChipHTML(signedMarginPct - prevSignedForFlip, vizShiftCache.prevYear, vizShiftCache.year));
-        } else {
-          chips.push(shiftChipHTML(0, null, null));
-        }
+        const prevSigned = (prevSignedForFlip !== null) ? prevSignedForFlip : 0;
+        chips.push(shiftChipHTML(signedMarginPct - prevSigned, vizShiftCache.prevYear, vizShiftCache.year));
       } else {
         chips.push(winnerChipHTML(winner));
       }
       chips.push(tierChipHTML(tierMeta));
 
-      if (currentVizMode === 'shift' || currentVizMode === 'flips') {
+      if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
         if (flipChip) chips.push(flipChip);
       }
@@ -11397,25 +11381,18 @@ document.addEventListener('DOMContentLoaded', function() {
       const chips = [];
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevPrecinctMarginByNorm) {
-        if (vizPrevCache.prevPrecinctMarginByNorm.has(precinctNorm)) {
-          prevSignedForFlip = Number(vizPrevCache.prevPrecinctMarginByNorm.get(precinctNorm));
-        } else {
-          prevSignedForFlip = null;
-        }
+        prevSignedForFlip = Number(vizPrevCache.prevPrecinctMarginByNorm.get(precinctNorm) || 0);
       }
 
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
-        if (prevSignedForFlip !== null) {
-          chips.push(shiftChipHTML(curSigned - prevSignedForFlip, vizShiftCache.prevYear, vizShiftCache.year));
-        } else {
-          chips.push(shiftChipHTML(0, null, null));
-        }
+        const prevSigned = (prevSignedForFlip !== null) ? prevSignedForFlip : 0;
+        chips.push(shiftChipHTML(curSigned - prevSigned, vizShiftCache.prevYear, vizShiftCache.year));
       } else {
         chips.push(winnerChipHTML(winner));
       }
       chips.push(tierChipHTML(tierMeta));
 
-      if (currentVizMode === 'shift' || currentVizMode === 'flips') {
+      if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, curSigned);
         if (flipChip) chips.push(flipChip);
       }
@@ -11717,7 +11694,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       chips.push(tierChipHTML(tierMeta));
 
-      if (currentVizMode === 'shift' || currentVizMode === 'flips') {
+      if (prevSignedForFlip !== null) {
         const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
         if (flipChip) chips.push(flipChip);
       }
