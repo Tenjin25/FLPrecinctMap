@@ -14692,10 +14692,35 @@ document.addEventListener('DOMContentLoaded', function() {
       return 4;
     }
 
-    function buildPreviousElectionYearCandidates(contestType, year, minYear = 2000) {
+    function getEarliestAvailableContestYear(contestType, fallbackYear = 2000) {
+      const t = (contestType || '').toString().trim().toLowerCase();
+      let min = Infinity;
+
+      try {
+        if (Array.isArray(contestManifest) && contestManifest.length) {
+          contestManifest.forEach(e => {
+            if (!e) return;
+            const et = (e.contest_type || e.contestType || '').toString().trim().toLowerCase();
+            if (et !== t) return;
+            const y = Number(e.year);
+            if (Number.isFinite(y)) min = Math.min(min, y);
+          });
+        }
+      } catch (_) {}
+
+      if (Number.isFinite(min) && min !== Infinity) return min;
+
+      // Fallback when manifest isn't available: keep the historical behavior.
+      const fb = Number(fallbackYear);
+      return Number.isFinite(fb) ? fb : 2000;
+    }
+
+    function buildPreviousElectionYearCandidates(contestType, year, minYear = null) {
       const y = Number(year);
       if (!Number.isFinite(y)) return [];
-      const min = Number(minYear) || 2000;
+      const min = (minYear === null || minYear === undefined)
+        ? getEarliestAvailableContestYear(contestType, 2000)
+        : (Number(minYear) || 2000);
       const seatCycle = getContestSeatCycleYears(contestType);
       const preferred = [];
       for (let candidateYear = y - seatCycle; candidateYear >= min; candidateYear -= seatCycle) {
@@ -14715,7 +14740,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function getPreviousContestSlice(contestType, year) {
       const y = Number(year);
-      const candidates = buildPreviousElectionYearCandidates(contestType, y, 2000);
+      const candidates = buildPreviousElectionYearCandidates(contestType, y);
       for (const cy of candidates) {
         const rows = await tryLoadContestSliceStrict(contestType, cy);
         if (rows && rows.length) return { year: cy, rows };
@@ -14926,7 +14951,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function getPreviousDistrictSlice(scope, contestType, year, linesYear = currentDistrictLinesYear) {
       const y = Number(year);
-      const candidates = buildPreviousElectionYearCandidates(contestType, y, 2000);
+      const candidates = buildPreviousElectionYearCandidates(contestType, y);
       for (const cy of candidates) {
         const node = await tryLoadDistrictSliceStrict(scope, contestType, cy, linesYear);
         const results = node?.general?.results || null;
