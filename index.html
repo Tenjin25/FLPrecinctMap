@@ -654,6 +654,12 @@ body.focus-active #hover-tooltip[data-context="preview"] {
   opacity: 0.82;
 }
 
+/* Desktop: keep hover tooltip fully opaque (match classic hover-card feel). */
+@media (min-width: 769px) {
+  #hover-tooltip[data-context="preview"] { opacity: 1; }
+  body.focus-active #hover-tooltip[data-context="preview"] { opacity: 1; }
+}
+
 .hover-tooltip .tooltip-kicker {
   font-size: 10px;
   font-weight: 900;
@@ -10820,14 +10826,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function buildTooltipTitleWithTier(titleText, tierMeta = null) {
       const safeTitle = escapeHtml(String(titleText || '').trim());
       if (!safeTitle) return '';
-      if (!tierMeta || !tierMeta.label) return safeTitle;
-      const partyClass = tierMeta.party === 'rep' ? 'rep' : (tierMeta.party === 'dem' ? 'dem' : 'tie');
-      return `
-        <span class="tooltip-title-wrap">
-          <span class="tooltip-title-main">${safeTitle}</span>
-          <span class="tooltip-title-badge ${partyClass}">${escapeHtml(tierMeta.label)}</span>
-        </span>
-      `;
+      // Keep the title neutral; show competitiveness in the quickline instead.
+      return safeTitle;
+    }
+
+    function formatMarginPctForTooltip(marginPct) {
+      const pct = Math.abs(Number(marginPct) || 0);
+      return toFixedForDisplay(pct, 2);
     }
 
     // Hover outline (stroke-only highlight) helpers.
@@ -11234,12 +11239,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const useCompact = isDesktopTooltipMode() && !pinnedShell;
 
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const tierShort = tierMeta?.shortLabel || tierMeta?.label || '';
+      const tierLabel = tierMeta?.label || '';
       const compactInner = `
         <div class="tooltip-body desktop-collapsed">
           <div class="tooltip-quickline">
-            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.text)}</span>
-            ${tierShort ? `<span class="tier">${escapeHtml(tierShort)}</span>` : ''}
+            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(marginCall.marginPct))}%</span>
+            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
           </div>
           ${flipLine}
         </div>
@@ -11425,12 +11430,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
       const totalVotes = demVotes + repVotes + otherVotes;
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const tierShort = tierMeta?.shortLabel || tierMeta?.label || '';
+      const tierLabel = tierMeta?.label || '';
       const compactInner = `
         <div class="tooltip-body desktop-collapsed">
           <div class="tooltip-quickline">
-            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.text)}</span>
-            ${tierShort ? `<span class="tier">${escapeHtml(tierShort)}</span>` : ''}
+            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(marginCall.marginPct))}%</span>
+            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
           </div>
           ${flipLine}
         </div>
@@ -11706,12 +11711,12 @@ document.addEventListener('DOMContentLoaded', function() {
       const useCompact = isDesktopTooltipMode() && !pinnedShell;
 
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const tierShort = tierMeta?.shortLabel || tierMeta?.label || '';
+      const tierLabel = tierMeta?.label || '';
       const compactInner = `
         <div class="tooltip-body desktop-collapsed">
           <div class="tooltip-quickline">
-            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.text)}</span>
-            ${tierShort ? `<span class="tier">${escapeHtml(tierShort)}</span>` : ''}
+            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(marginCall.marginPct))}%</span>
+            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
           </div>
           ${flipLine}
         </div>
