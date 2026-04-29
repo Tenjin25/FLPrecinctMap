@@ -9074,6 +9074,11 @@ document.addEventListener('DOMContentLoaded', function() {
           const next = queuedContestSelection;
           queuedContestSelection = null;
           if (!next) break;
+          const previousPinnedState = voteCounterPinned ? {
+            ...voteCounterPinned,
+            meta: voteCounterPinned.meta ? { ...voteCounterPinned.meta } : null,
+            candidates: voteCounterPinned.candidates ? { ...voteCounterPinned.candidates } : null
+          } : null;
           await applyContest(next.key, { selectionSeq: next.seq });
 
           // If users switched again while we were loading, apply the newest selection next.
@@ -9083,6 +9088,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
           if (next.key) lastCompletedContestSelection = next.key;
           queueCountyDetailsRefresh();
+          if (previousPinnedState) {
+            try { await restorePinnedSelectionForView(previousPinnedState, currentView, next.key); } catch (_) {}
+          }
           break;
         }
       } catch (err) {
@@ -9782,7 +9790,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (meta.kind === 'district') {
         const targetScope = getDistrictScopeForView(view);
         if (!targetScope) return false;
-        const targetDistrictNum = await mapDistrictSelectionAcrossScopes(meta.scope, meta.districtNum, targetScope, meta.year);
+        const [contestType, contestYear] = parseContestValue(contestValue);
+        const yearForMapping = Number(contestYear || meta.year || 0);
+        const targetDistrictNum = await mapDistrictSelectionAcrossScopes(meta.scope, meta.districtNum, targetScope, yearForMapping);
         return showAndPinDistrictSelection(targetScope, targetDistrictNum, contestValue);
       }
 
