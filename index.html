@@ -5856,14 +5856,33 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     }
 
     .vote-counter {
-      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 8px) !important;
+      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px) !important;
     }
 
     #hover-tooltip {
-      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 8px) !important;
+      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px + var(--vote-counter-h, 0px) + 8px) !important;
+    }
+
+    body.mobile-sheet-open #hover-tooltip {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(6px) !important;
+    }
+
+    body.mobile-sheet-open .vote-counter,
+    body.mobile-sheet-open .viz-modes {
+      opacity: 0.22;
+      pointer-events: none;
+      transform: translateY(6px) !important;
     }
 
     body.mobile-input-active .vote-counter {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px) !important;
+    }
+
+    body.mobile-input-active #hover-tooltip {
       opacity: 0;
       pointer-events: none;
       transform: translateY(8px) !important;
@@ -5909,11 +5928,16 @@ body.focus-active #hover-tooltip[data-context="preview"] {
       max-height: calc(100vh - 16px - var(--safe-top, 0px) - var(--safe-bottom, 0px)) !important;
     }
 
-    .vote-counter,
-    #hover-tooltip {
+    .vote-counter {
       left: 142px !important;
       right: 8px !important;
       bottom: 8px !important;
+    }
+
+    #hover-tooltip {
+      left: 142px !important;
+      right: 8px !important;
+      bottom: calc(8px + var(--vote-counter-h, 0px) + 8px) !important;
     }
   }
 
@@ -11176,14 +11200,6 @@ document.addEventListener('DOMContentLoaded', function() {
       const subtitle = `${formatContestName(contestType, year)} ${year}`;
       const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`, tierMeta);
 
-      let demoLine = '';
-      try {
-        const demo = countyDemographics?.counties?.[norm] || null;
-        if (demo) {
-          demoLine = `<div class="meta-subtle"><strong>VAP (18+):</strong> ${Number(demo.vap_18plus || 0).toLocaleString()}</div>`;
-        }
-      } catch (_) {}
-
       const chips = [];
       let prevSignedForFlip = null;
       if (vizPrevCache?.prevYear && vizPrevCache?.prevCountyTotals) {
@@ -11211,7 +11227,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="hover-meta">${chips.join('')}</div>
         ${flipLine}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
-        ${demoLine}
       `;
 
       const hoverKey = `county:${norm}|${contestValue}`;
@@ -11378,7 +11393,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ? flipLineHTML(prevSignedForFlip, curSigned, vizPrevCache?.prevYear || null, Number(year))
         : '';
       let countyLine = '';
-      let demoLine = '';
       try {
         if (countyRow) {
           const countyDem = Number(countyRow[`${contestType}_dem`] || 0);
@@ -11396,10 +11410,6 @@ document.addEventListener('DOMContentLoaded', function() {
             countyLine = `<div class="meta-subtle"><strong>${countyDisplayName} County:</strong> ${countyLead} (${countyTotalVotes.toLocaleString()} votes)</div>`;
           }
         }
-        const demo = countyDemographics?.counties?.[countyNorm] || null;
-        if (demo) {
-          demoLine = `<div class="meta-subtle"><strong>County VAP (18+):</strong> ${Number(demo.vap_18plus || 0).toLocaleString()}</div>`;
-        }
       } catch (_) {}
 
       const inner = `
@@ -11407,7 +11417,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ${flipLine}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
         ${countyLine}
-        ${demoLine}
       `;
       const hoverKey = `precinct:${precinctNorm}|${contestValue}`;
       const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
@@ -11526,8 +11535,6 @@ document.addEventListener('DOMContentLoaded', function() {
       setDistrictHoverOutline(scope, districtNum);
 
       const contestValue = document.getElementById('contestSelect')?.value || '';
-      const _demoRow = getDistrictDemographics(scope, districtNum);
-      const _demoHTML = buildDemoHTML(_demoRow);
       if (!contestValue) {
         const titleText = `${districtLabel} ${districtNum}`;
         const hoverTitle = buildTooltipTitleWithTier(titleText);
@@ -11537,7 +11544,7 @@ document.addEventListener('DOMContentLoaded', function() {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11550,7 +11557,7 @@ document.addEventListener('DOMContentLoaded', function() {
           e.point.y,
           buildTooltipShell(
             hoverTitle,
-            `${_demoHTML}<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
+            `<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
             { pinned: pinnedShell, copyText }
           ),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
@@ -11584,7 +11591,7 @@ document.addEventListener('DOMContentLoaded', function() {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11593,7 +11600,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showHoverTooltip(
           e.point.x,
           e.point.y,
-          buildTooltipShell(hoverTitle, `${_demoHTML}<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          buildTooltipShell(hoverTitle, `<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
         );
         wireTooltipButtons();
@@ -11613,7 +11620,7 @@ document.addEventListener('DOMContentLoaded', function() {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11622,7 +11629,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showHoverTooltip(
           e.point.x,
           e.point.y,
-          buildTooltipShell(hoverTitle, `${_demoHTML}<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          buildTooltipShell(hoverTitle, `<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
         );
         wireTooltipButtons();
@@ -11692,7 +11699,6 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="hover-meta">${chips.join('')}</div>
         ${flipLine}
         ${desc ? `<div style="margin-top:6px;font-size:12px;color:#94a3b8;"><strong style="color:#e2e8f0;">Area:</strong> ${desc}</div>` : ''}
-        ${_demoHTML}
         ${buildResultCardHTML('', subtitle, demVotes, repVotes, otherVotes, demCandidate, repCandidate)}
       `;
       const hoverKey = `district:${scope}:${districtNum}|${contestValue}`;

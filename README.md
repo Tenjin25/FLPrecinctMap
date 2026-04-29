@@ -205,7 +205,8 @@ Notes:
 ## Display/Interaction Notes
 
 - Close races: margin/percent displays use adaptive precision (down to 3 decimals) to avoid rounding a non-zero lead into `0.00%` / an apparent tie.
-- Hover tooltip layout: tooltips show tier badges in the title and support desktop “preview → click to pin” behavior.
+- Hover tooltip layout: matches `NCMap.html` (VoteHub-style shell), shows tier badges in the title, and supports desktop “preview → click to pin” behavior.
+- Hover tooltip content: election results only (no census/VAP/demographics lines in the tooltip).
 - Precinct mode: tapping/clicking precincts no longer auto-pins the hover tooltip; pinning is only via the normal tooltip pin interaction (desktop click-to-pin or explicit pinned state).
 
 ## Troubleshooting
