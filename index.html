@@ -6811,7 +6811,7 @@ document.addEventListener('DOMContentLoaded', function() {
           dem_candidate: totals.demCandidate,
           rep_candidate: totals.repCandidate,
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(((margin / totals.total) * 100).toFixed(2))
+          margin_pct: ((margin / totals.total) * 100)
         });
       }
       return out;
@@ -7881,9 +7881,12 @@ document.addEventListener('DOMContentLoaded', function() {
       return `${short} (${partyCode})`;
     }
 
-    function formatFocusBarLabel(name, pct, fallbackText) {
+    function formatFocusBarLabel(name, pct, fallbackText, marginPct = null) {
       const short = shortCandidateLabel(name, fallbackText);
-      return `${short} ${Number(pct || 0).toFixed(2)}%`;
+      const display = (marginPct === null || marginPct === undefined)
+        ? toFixedForDisplay(Number(pct || 0), 2)
+        : formatPctForCloseRace(Number(pct || 0), marginPct);
+      return `${short} ${display}%`;
     }
 
     function formatCompactVoteTotal(value) {
@@ -8018,6 +8021,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (d / total) * 100;
       const repPct = (r / total) * 100;
       const otherPct = (o / total) * 100;
+      const rawMarginPct = marginPctValue(r, d, total);
       const winnerParty = repPct > demPct ? 'rep' : (demPct > repPct ? 'dem' : 'tie');
       const winnerLabel = winnerParty === 'rep'
         ? formatVoteCounterWinnerLabel(resolvedCandidates.repCandidate, 'R', 'Republican')
@@ -8041,9 +8045,9 @@ document.addEventListener('DOMContentLoaded', function() {
       barDem.style.width = `${demPct.toFixed(4)}%`;
       barOther.style.width = `${otherPct.toFixed(4)}%`;
       barRep.style.width = `${repPct.toFixed(4)}%`;
-      barDemLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.demCandidate, demPct, 'Dem');
+      barDemLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.demCandidate, demPct, 'Dem', rawMarginPct);
       barMidLabelEl.textContent = '50%';
-      barRepLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.repCandidate, repPct, 'Rep');
+      barRepLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.repCandidate, repPct, 'Rep', rawMarginPct);
     }
 
     function updateVoteCounter(demVotes, repVotes, otherVotes = 0, candidates = null, meta = null) {
@@ -8057,14 +8061,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (demVotes / totalVotes) * 100;
       const repPct = (repVotes / totalVotes) * 100;
       const otherPct = (otherVotes / totalVotes) * 100;
+      const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
       
       animateCounter('dem-count', demVotes);
       animateCounter('rep-count', repVotes);
       animateCounter('other-count', otherVotes);
       
-      document.getElementById('dem-percent').textContent = demPct.toFixed(2) + '%';
-      document.getElementById('rep-percent').textContent = repPct.toFixed(2) + '%';
-      document.getElementById('other-percent').textContent = otherPct.toFixed(2) + '%';
+      document.getElementById('dem-percent').textContent = formatPctForCloseRace(demPct, rawMarginPct) + '%';
+      document.getElementById('rep-percent').textContent = formatPctForCloseRace(repPct, rawMarginPct) + '%';
+      document.getElementById('other-percent').textContent = toFixedForDisplay(otherPct, 2) + '%';
       updateVoteCounterSummary(demVotes, repVotes, otherVotes, candidates, meta);
       
       showVoteCounter();
@@ -8220,6 +8225,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .slice()
         .reverse()
         .map(entry => {
+          const rawMarginPct = marginPctValue(entry.repVotes, entry.demVotes, entry.totalVotes);
+          const demPctLabel = formatPctForCloseRace(entry.demPct, rawMarginPct);
+          const repPctLabel = formatPctForCloseRace(entry.repPct, rawMarginPct);
+          const otherPctLabel = toFixedForDisplay(entry.otherPct, 2);
           const winnerLabel = entry.winnerMeta.partyClass === 'rep'
             ? 'Republican'
             : (entry.winnerMeta.partyClass === 'dem' ? 'Democratic' : 'Tie');
@@ -8229,7 +8238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             : '';
           const leadSummary = entry.leadLabel === 'Tie' ? 'Even race' : entry.leadLabel;
           const otherChip = entry.otherPct >= 0.05
-            ? `<span class="focus-trend-chip">Other ${escapeHtml(entry.otherPct.toFixed(2))}%</span>`
+            ? `<span class="focus-trend-chip">Other ${escapeHtml(otherPctLabel)}%</span>`
             : '';
           return `
             <div class="focus-trend-entry">
@@ -8243,8 +8252,8 @@ document.addEventListener('DOMContentLoaded', function() {
                   <span class="focus-trend-entry-margin">${escapeHtml(leadSummary)}</span>
                 </div>
                 <div class="focus-trend-entry-scale">
-                  <span class="dem">${escapeHtml(`${shortCandidateLabel(entry.item.dem_candidate, 'Dem')} ${entry.demPct.toFixed(2)}%`)}</span>
-                  <span class="rep">${escapeHtml(`${shortCandidateLabel(entry.item.rep_candidate, 'Rep')} ${entry.repPct.toFixed(2)}%`)}</span>
+                  <span class="dem">${escapeHtml(`${shortCandidateLabel(entry.item.dem_candidate, 'Dem')} ${demPctLabel}%`)}</span>
+                  <span class="rep">${escapeHtml(`${shortCandidateLabel(entry.item.rep_candidate, 'Rep')} ${repPctLabel}%`)}</span>
                 </div>
                 <div class="focus-trend-entry-bar" aria-hidden="true">
                   <span style="width:${entry.demPct.toFixed(4)}%;background:#2563eb;"></span>
@@ -8324,7 +8333,7 @@ document.addEventListener('DOMContentLoaded', function() {
           dem_candidate: demCand,
           rep_candidate: repCand,
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(((margin / tot) * 100).toFixed(2))
+          margin_pct: ((margin / tot) * 100)
         });
       }
       if (!out.length && contestType === 'us_house' && Array.isArray(congressionalData) && congressionalData.length) {
@@ -8352,7 +8361,7 @@ document.addEventListener('DOMContentLoaded', function() {
               dem_candidate: '',
               rep_candidate: '',
               winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-              margin_pct: Number(((margin / agg.total) * 100).toFixed(2))
+              margin_pct: ((margin / agg.total) * 100)
             });
           });
       }
@@ -9443,6 +9452,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const repPct = (repVotes / totalVotes) * 100;
         const otherPct = (otherVotes / totalVotes) * 100;
         const marginPct = Math.abs(demPct - repPct);
+        const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
         const winner = demPct > repPct ? 'Democratic' : 'Republican';
         let officeName = formatContestName(contestType, year);
         let demKey = `${year}|${officeName}|Democrat`;
@@ -9525,12 +9535,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isMobile) {
           const chips = breakdownItems.map(item => (
             `<div style="display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid rgba(15,23,42,0.12);background:#fff;white-space:nowrap;color:${item.color};font-size:14px;font-weight:700;">` +
-            `${item.label}: ${item.votes.toLocaleString()} (${item.pct.toFixed(2)}%)</div>`
+            `${item.label}: ${item.votes.toLocaleString()} (${item.label === 'Other' ? toFixedForDisplay(item.pct, 2) : formatPctForCloseRace(item.pct, rawMarginPct)}%)</div>`
           )).join('');
           breakdownRow = `<div style="display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0 2px 0;margin-top:8px;">${chips}</div>`;
         } else {
           const rows = breakdownItems.map(item => (
-            `<div style="color:${item.color};font-size:15px;font-weight:700;">${item.label}: ${item.votes.toLocaleString()} (${item.pct.toFixed(2)}%)</div>`
+            `<div style="color:${item.color};font-size:15px;font-weight:700;">${item.label}: ${item.votes.toLocaleString()} (${item.label === 'Other' ? toFixedForDisplay(item.pct, 2) : formatPctForCloseRace(item.pct, rawMarginPct)}%)</div>`
           )).join('');
           breakdownRow = `<div style="display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:space-between;margin-top:6px;">${rows}</div>`;
         }
@@ -9984,6 +9994,45 @@ document.addEventListener('DOMContentLoaded', function() {
       return /^(II|III|IV|V|VI|VII|VIII|IX|X|XI|XII|XIII|XIV|XV|XVI|XVII|XVIII|XIX|XX)$/.test(normalized);
     }
 
+    // --- Close-race display refinements (ported from NCMap) ---
+    function roundForDisplay(value, digits = 2) {
+      const n = Number(value || 0);
+      if (!Number.isFinite(n)) return 0;
+      const d = Math.max(0, Math.floor(Number(digits) || 0));
+      const factor = Math.pow(10, d);
+      const epsilonNudge = (Math.sign(n) || 1) * Number.EPSILON * 8;
+      return Math.round((n + epsilonNudge) * factor) / factor;
+    }
+
+    function toFixedForDisplay(value, digits = 2) {
+      const d = Math.max(0, Math.floor(Number(digits) || 0));
+      return roundForDisplay(value, d).toFixed(d);
+    }
+
+    function preservesTwoDecimalMargin(marginPct) {
+      const pct = Math.abs(Number(marginPct) || 0);
+      return roundForDisplay(pct, 2) >= 0.02;
+    }
+
+    function closeRaceDisplayDigits(marginPct) {
+      return preservesTwoDecimalMargin(marginPct) ? 2 : 3;
+    }
+
+    function formatPctForCloseRace(value, marginPct) {
+      const numeric = Number(value || 0);
+      const digits = closeRaceDisplayDigits(marginPct);
+      return toFixedForDisplay(numeric, digits);
+    }
+
+    function marginDisplayDigits(marginPct) {
+      return preservesTwoDecimalMargin(marginPct) ? 2 : 3;
+    }
+
+    function formatMarginPctForDisplay(marginPct) {
+      const pct = Math.abs(Number(marginPct) || 0);
+      return toFixedForDisplay(pct, marginDisplayDigits(pct));
+    }
+
     function marginPctValue(repVotes, demVotes, totalVotes) {
       const t = Number(totalVotes) || 0;
       if (t <= 0) return 0;
@@ -9991,22 +10040,36 @@ document.addEventListener('DOMContentLoaded', function() {
       return Math.abs((Number(repVotes || 0) - Number(demVotes || 0)) / t) * 100.0;
     }
 
+    function marginPctDisplayValue(repVotes, demVotes, totalVotes) {
+      const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
+      const t = Number(totalVotes) || 0;
+      if (t <= 0) return 0;
+      const repPctDisplay = Number(formatPctForCloseRace((Number(repVotes || 0) / t) * 100, rawMarginPct));
+      const demPctDisplay = Number(formatPctForCloseRace((Number(demVotes || 0) / t) * 100, rawMarginPct));
+      if (!Number.isFinite(repPctDisplay) || !Number.isFinite(demPctDisplay)) return rawMarginPct;
+      const diff = Math.abs(repPctDisplay - demPctDisplay);
+      // If rounding causes both sides to display equal, fall back to the true margin so we don't
+      // incorrectly show a tie (or 0.000%) when there is a non-zero lead.
+      if (diff === 0 && rawMarginPct > 0) return rawMarginPct;
+      return diff;
+    }
+
     function leadMarginPctLabel(repVotes, demVotes, totalVotes) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       if (!margin) return 'Tie';
-      return `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
     // Percentage-only label for the vote-counter Lead pill.
     function focusLeadMarginLabel(repVotes, demVotes, totalVotes) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
       if (!margin) return 'Tie';
-      return `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      return `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
     }
 
     function compactWinnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
       const margin = Number(repVotes || 0) - Number(demVotes || 0);
-      const pctLabel = `${marginPctValue(repVotes, demVotes, totalVotes).toFixed(2)}%`;
+      const pctLabel = `${formatMarginPctForDisplay(marginPctDisplayValue(repVotes, demVotes, totalVotes))}%`;
       if (margin > 0) {
         return `${shortCandidateLabel(repCandidate, 'R')} +${pctLabel}`;
       }
@@ -10046,14 +10109,15 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate) {
-      const marginPct = marginPctValue(repVotes, demVotes, totalVotes);
+      const marginPct = marginPctDisplayValue(repVotes, demVotes, totalVotes);
+      const marginLabel = `${formatMarginPctForDisplay(marginPct)}%`;
       if (repVotes > demVotes) {
         return {
           party: 'rep',
           winnerName: fullCandidateLabel(repCandidate, 'Republican'),
           shortLabel: shortCandidateLabel(repCandidate, 'Republican'),
           marginPct,
-          text: `${shortCandidateLabel(repCandidate, 'Republican')} +${marginPct.toFixed(2)}%`
+          text: `${shortCandidateLabel(repCandidate, 'Republican')} +${marginLabel}`
         };
       }
       if (demVotes > repVotes) {
@@ -10062,7 +10126,7 @@ document.addEventListener('DOMContentLoaded', function() {
           winnerName: fullCandidateLabel(demCandidate, 'Democratic'),
           shortLabel: shortCandidateLabel(demCandidate, 'Democratic'),
           marginPct,
-          text: `${shortCandidateLabel(demCandidate, 'Democratic')} +${marginPct.toFixed(2)}%`
+          text: `${shortCandidateLabel(demCandidate, 'Democratic')} +${marginLabel}`
         };
       }
       return {
@@ -10070,7 +10134,7 @@ document.addEventListener('DOMContentLoaded', function() {
         winnerName: 'Tie',
         shortLabel: 'Even',
         marginPct,
-        text: `Even ${marginPct.toFixed(2)}`
+        text: `Even ${marginLabel}`
       };
     }
 
@@ -10341,6 +10405,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (d / total) * 100;
       const repPct = (r / total) * 100;
       const otherPct = (o / total) * 100;
+      const rawMarginPct = marginPctValue(r, d, total);
       const winnerParty = repPct > demPct ? 'rep' : (demPct > repPct ? 'dem' : 'tie');
       const winnerLabel = winnerParty === 'rep'
         ? formatVoteCounterWinnerLabel(resolvedCandidates.repCandidate, 'R', 'Republican')
@@ -10364,9 +10429,9 @@ document.addEventListener('DOMContentLoaded', function() {
       barDem.style.width = `${demPct.toFixed(4)}%`;
       barOther.style.width = `${otherPct.toFixed(4)}%`;
       barRep.style.width = `${repPct.toFixed(4)}%`;
-      barDemLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.demCandidate, demPct, 'Dem');
+      barDemLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.demCandidate, demPct, 'Dem', rawMarginPct);
       barMidLabelEl.textContent = '50%';
-      barRepLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.repCandidate, repPct, 'Rep');
+      barRepLabelEl.textContent = formatFocusBarLabel(resolvedCandidates.repCandidate, repPct, 'Rep', rawMarginPct);
       if (totalMetaEl) totalMetaEl.textContent = `${total.toLocaleString()} total votes`;
       if (leadMetaEl) {
         leadMetaEl.textContent = winnerParty === 'tie'
@@ -10393,6 +10458,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const repPct = (repVotes / totalVotes) * 100;
         const otherPct = (otherVotes / totalVotes) * 100;
         const marginPct = Math.abs(demPct - repPct);
+        const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
+        const displayMarginPct = marginPctDisplayValue(repVotes, demVotes, totalVotes);
         const officeName = formatContestName(contestType, year);
         let demCandidate = (opts?.demCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Democrat');
         let repCandidate = (opts?.repCandidate || '').toString().trim() || getCandidateName(year, officeName, 'Republican');
@@ -10457,24 +10524,32 @@ document.addEventListener('DOMContentLoaded', function() {
           });
         }
 
-        const shareChips = breakdownItems.map(item => (
-          `<div class="statewide-share-chip ${item.key}">${item.label} <strong>${item.pct.toFixed(2)}%</strong></div>`
-        )).join('');
+        const shareChips = breakdownItems.map(item => {
+          const pctLabel = item.key === 'other'
+            ? toFixedForDisplay(item.pct, 2)
+            : formatPctForCloseRace(item.pct, rawMarginPct);
+          return `<div class="statewide-share-chip ${item.key}">${item.label} <strong>${pctLabel}%</strong></div>`;
+        }).join('');
         const barSegments = [`<div style="width:${demPct.toFixed(4)}%;background:#2563eb;"></div>`];
         if (otherVotes > 0) barSegments.push(`<div style="width:${otherPct.toFixed(4)}%;background:#6b7280;"></div>`);
         barSegments.push(`<div style="width:${repPct.toFixed(4)}%;background:#dc2626;"></div>`);
-        const breakdownGrid = breakdownItems.map(item => (
-          `<div class="statewide-breakdown-item">` +
-            `<div class="statewide-breakdown-head">` +
-              `<span class="statewide-dot ${item.key}"></span>` +
-              `<span class="statewide-breakdown-label">${item.label}: ${item.candidate}</span>` +
-            `</div>` +
-            `<div class="statewide-breakdown-value" style="color:${item.color};">` +
-              `${item.votes.toLocaleString()}` +
-              `<span>${item.pct.toFixed(2)}%</span>` +
-            `</div>` +
-          `</div>`
-        )).join('');
+        const breakdownGrid = breakdownItems.map(item => {
+          const pctLabel = item.key === 'other'
+            ? toFixedForDisplay(item.pct, 2)
+            : formatPctForCloseRace(item.pct, rawMarginPct);
+          return (
+            `<div class="statewide-breakdown-item">` +
+              `<div class="statewide-breakdown-head">` +
+                `<span class="statewide-dot ${item.key}"></span>` +
+                `<span class="statewide-breakdown-label">${item.label}: ${item.candidate}</span>` +
+              `</div>` +
+              `<div class="statewide-breakdown-value" style="color:${item.color};">` +
+                `${item.votes.toLocaleString()}` +
+                `<span>${pctLabel}%</span>` +
+              `</div>` +
+            `</div>`
+          );
+        }).join('');
 
         const winnerSummary = winnerCall.party === 'tie'
           ? 'Even race'
@@ -10500,7 +10575,7 @@ document.addEventListener('DOMContentLoaded', function() {
               </div>
               <div class="statewide-stat">
                 <span>Margin</span>
-                <strong>${marginPct.toFixed(2)} pts</strong>
+                <strong>${formatMarginPctForDisplay(displayMarginPct)} pts</strong>
               </div>
             </div>
           </div>
@@ -10551,6 +10626,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (d / total) * 100.0;
       const repPct = (r / total) * 100.0;
       const otherPct = (o / total) * 100.0;
+      const rawMarginPct = marginPctValue(r, d, total);
 
       const marginLabel = winnerMarginLabel(r, d, total, repCandidate || '', demCandidate || '');
       const demFull = fullCandidateLabel(demCandidate, 'Democratic');
@@ -10580,15 +10656,15 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="rc-row">
             <div class="rc-chip">
               <div class="k">D: ${demFull}</div>
-              <div class="v" style="color:#1d4ed8;">${d.toLocaleString()} (${demPct.toFixed(2)}%)</div>
+              <div class="v" style="color:#1d4ed8;">${d.toLocaleString()} (${formatPctForCloseRace(demPct, rawMarginPct)}%)</div>
             </div>
             <div class="rc-chip">
               <div class="k">OTHER</div>
-              <div class="v" style="color:#475569;">${o.toLocaleString()} (${otherPct.toFixed(2)}%)</div>
+              <div class="v" style="color:#475569;">${o.toLocaleString()} (${toFixedForDisplay(otherPct, 2)}%)</div>
             </div>
             <div class="rc-chip">
               <div class="k">R: ${repFull}</div>
-              <div class="v" style="color:#b91c1c;">${r.toLocaleString()} (${repPct.toFixed(2)}%)</div>
+              <div class="v" style="color:#b91c1c;">${r.toLocaleString()} (${formatPctForCloseRace(repPct, rawMarginPct)}%)</div>
             </div>
           </div>
           <div style="margin-top:10px;font-size:12px;color:#64748b;">
@@ -10678,7 +10754,7 @@ document.addEventListener('DOMContentLoaded', function() {
           dem_candidate: demCand,
           rep_candidate: repCand,
           winner: margin > 0 ? 'REP' : (margin < 0 ? 'DEM' : 'TIE'),
-          margin_pct: Number(marginPct.toFixed(2))
+          margin_pct: marginPct
         });
       }
       return out;
@@ -10727,6 +10803,19 @@ document.addEventListener('DOMContentLoaded', function() {
       return `<span class="meta-chip tier"><span class="dot" style="background:${dotColor};"></span>${escapeHtml(tierMeta.label)}</span>`;
     }
 
+    function buildTooltipTitleWithTier(titleText, tierMeta = null) {
+      const safeTitle = escapeHtml(String(titleText || '').trim());
+      if (!safeTitle) return '';
+      if (!tierMeta || !tierMeta.label) return safeTitle;
+      const partyClass = tierMeta.party === 'rep' ? 'rep' : (tierMeta.party === 'dem' ? 'dem' : 'tie');
+      return `
+        <span class="tooltip-title-wrap">
+          <span class="tooltip-title-main">${safeTitle}</span>
+          <span class="tooltip-title-badge ${partyClass}">${escapeHtml(tierMeta.label)}</span>
+        </span>
+      `;
+    }
+
     // Hover outline (stroke-only highlight) helpers.
     const HOVER_OUTLINE_LAYER_IDS = [
       'county-stroke-hover',
@@ -10739,6 +10828,9 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastPrecinctHoverKey = null;
     let lastPrecinctHoverRenderedAt = 0;
     const PRECINCT_HOVER_THROTTLE_MS = 75;
+    let lastCountyHoverKey = null;
+    let lastCountyHoverRenderedAt = 0;
+    const COUNTY_HOVER_THROTTLE_MS = 55;
 
     function setLayerVisibilityIfExists(layerId, visibility) {
       if (!layerId || !map.getLayer(layerId)) return;
@@ -11000,8 +11092,48 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const contestValue = document.getElementById('contestSelect')?.value || '';
 
+      // Avoid rebuilding the same county tooltip repeatedly while the pointer moves within one county.
+      try {
+        const hoverKey = `${norm}|${contestValue}|${currentVizMode}|${isDesktopTooltipMode() ? 'd' : 'm'}|p${tooltipPinned ? '1' : '0'}`;
+        const tooltip = document.getElementById('hover-tooltip');
+        const tooltipVisible = !!tooltip && tooltip.style.display !== 'none' && (tooltip.innerHTML || '').trim().length > 0;
+        const now = (typeof performance !== 'undefined' && performance.now) ? performance.now() : Date.now();
+
+        if (!forceTooltip && !tooltipPinned && tooltipVisible) {
+          if (hoverKey === lastCountyHoverKey) return;
+          if (now - lastCountyHoverRenderedAt < COUNTY_HOVER_THROTTLE_MS) return;
+        }
+
+        lastCountyHoverKey = hoverKey;
+        lastCountyHoverRenderedAt = now;
+      } catch (_) {}
+
       if (!contestValue || !row) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${countyDisplay} County`, '<div style="color:#64748b;">Select a contest to see results</div>'), { force: !!forceTooltip });
+        const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = `${countyDisplay} County`;
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            e.point.x,
+            e.point.y,
+            buildTooltipShell(hoverTitle, '<div style="color:#64748b;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        let startText = '';
+        try { startText = buildStartHereHintText({ hasContest: false }); } catch (_) { startText = 'Choose a contest to see results.'; }
+        showHoverTooltip(
+          e.point.x,
+          e.point.y,
+          buildTooltipShell(
+            hoverTitle,
+            `<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
+            { pinned: pinnedShell, copyText }
+          ),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11014,7 +11146,25 @@ document.addEventListener('DOMContentLoaded', function() {
       const otherVotes = Number(row[`${contestType}_other`] || 0);
       const totalVotes = Number(row[`${contestType}_total`] || 0);
       if (totalVotes <= 0) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${countyDisplay} County`, '<div style="color:#64748b;">No data available</div>'), { force: !!forceTooltip });
+        const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = `${countyDisplay} County`;
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            e.point.x,
+            e.point.y,
+            buildTooltipShell(hoverTitle, '<div style="color:#64748b;">No data available</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        showHoverTooltip(
+          e.point.x,
+          e.point.y,
+          buildTooltipShell(hoverTitle, '<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data available</div>', { pinned: pinnedShell, copyText }),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11034,6 +11184,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
       const winner = signedMarginPct > 0 ? 'R' : (signedMarginPct < 0 ? 'D' : 'T');
       const subtitle = `${formatContestName(contestType, year)} ${year}`;
+      const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`, tierMeta);
 
       let demoLine = '';
       try {
@@ -11100,7 +11251,7 @@ document.addEventListener('DOMContentLoaded', function() {
           kind: 'county',
           x: e.point.x,
           y: e.point.y,
-          title: `${countyDisplay} County`,
+          title: hoverTitle,
           expandedInner: classicInner,
           copyText: hoverKey
         };
@@ -11108,7 +11259,7 @@ document.addEventListener('DOMContentLoaded', function() {
       showHoverTooltip(
         e.point.x,
         e.point.y,
-        buildTooltipShell(`${countyDisplay} County`, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        buildTooltipShell(hoverTitle, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
         { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
@@ -11143,7 +11294,31 @@ document.addEventListener('DOMContentLoaded', function() {
       } catch (_) {}
       const [contestType, year] = parseContestValue(contestValue);
       if (!contestType || !year) {
-        showHoverTooltip(point.x, point.y, buildTooltipShell(title, '<div style="color:#64748b;">Select a contest to see results</div>'), { force: !!forceTooltip });
+        const hoverTitle = buildTooltipTitleWithTier(title);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = (precinctNorm || title || '').toString().trim();
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            point.x,
+            point.y,
+            buildTooltipShell(hoverTitle, '<div style="color:#64748b;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        let startText = '';
+        try { startText = buildStartHereHintText({ hasContest: false }); } catch (_) { startText = 'Choose a contest to see results.'; }
+        showHoverTooltip(
+          point.x,
+          point.y,
+          buildTooltipShell(
+            hoverTitle,
+            `<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
+            { pinned: pinnedShell, copyText }
+          ),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11154,7 +11329,25 @@ document.addEventListener('DOMContentLoaded', function() {
         if (rawNorm) row = currentPrecinctResults.get(rawNorm) || null;
       }
       if (!row) {
-        showHoverTooltip(point.x, point.y, buildTooltipShell(title, '<div style="color:#64748b;">No precinct results loaded for this contest in this view. Switch to Counties and pick the contest.</div>'), { force: !!forceTooltip });
+        const hoverTitle = buildTooltipTitleWithTier(title);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = (precinctNorm || title || '').toString().trim();
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            point.x,
+            point.y,
+            buildTooltipShell(hoverTitle, '<div style="color:#64748b;">No precinct results loaded for this contest in this view. Switch to Counties and pick the contest.</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        showHoverTooltip(
+          point.x,
+          point.y,
+          buildTooltipShell(hoverTitle, '<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No precinct results loaded for this contest in this view. Switch to Counties and pick the contest.</div>', { pinned: pinnedShell, copyText }),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11235,6 +11428,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const hoverKey = `precinct:${precinctNorm}|${contestValue}`;
       const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
       const useCompact = isDesktopTooltipMode() && !pinnedShell;
+      const hoverTitle = buildTooltipTitleWithTier(title, tierMeta);
 
       const totalVotes = demVotes + repVotes + otherVotes;
       const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
@@ -11257,7 +11451,7 @@ document.addEventListener('DOMContentLoaded', function() {
           kind: 'precinct',
           x: point.x,
           y: point.y,
-          title,
+          title: hoverTitle,
           expandedInner: inner,
           copyText: hoverKey
         };
@@ -11265,7 +11459,7 @@ document.addEventListener('DOMContentLoaded', function() {
       showHoverTooltip(
         point.x,
         point.y,
-        buildTooltipShell(title, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
         { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
@@ -11351,8 +11545,32 @@ document.addEventListener('DOMContentLoaded', function() {
       const _demoRow = getDistrictDemographics(scope, districtNum);
       const _demoHTML = buildDemoHTML(_demoRow);
       if (!contestValue) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>'), { force: !!forceTooltip });
+        const titleText = `${districtLabel} ${districtNum}`;
+        const hoverTitle = buildTooltipTitleWithTier(titleText);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = titleText;
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            e.point.x,
+            e.point.y,
+            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        let startText = '';
+        try { startText = buildStartHereHintText({ hasContest: false }); } catch (_) { startText = 'Choose a contest to see results.'; }
+        showHoverTooltip(
+          e.point.x,
+          e.point.y,
+          buildTooltipShell(
+            hoverTitle,
+            `${_demoHTML}<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
+            { pinned: pinnedShell, copyText }
+          ),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11374,8 +11592,26 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (!row) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
+        const titleText = `${districtLabel} ${districtNum}`;
+        const hoverTitle = buildTooltipTitleWithTier(titleText);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = titleText;
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            e.point.x,
+            e.point.y,
+            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        showHoverTooltip(
+          e.point.x,
+          e.point.y,
+          buildTooltipShell(hoverTitle, `${_demoHTML}<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11385,8 +11621,26 @@ document.addEventListener('DOMContentLoaded', function() {
       const otherVotes = Number(row.other_votes || 0);
       const totalVotes = Number(row.total_votes || 0);
       if (totalVotes <= 0) {
-        showHoverTooltip(e.point.x, e.point.y, buildTooltipShell(`${districtLabel} ${districtNum}`,
-          _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>'), { force: !!forceTooltip });
+        const titleText = `${districtLabel} ${districtNum}`;
+        const hoverTitle = buildTooltipTitleWithTier(titleText);
+        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const copyText = titleText;
+        if (isDesktopTooltipMode()) {
+          showHoverTooltip(
+            e.point.x,
+            e.point.y,
+            buildTooltipShell(hoverTitle, _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+          );
+          wireTooltipButtons();
+          return;
+        }
+        showHoverTooltip(
+          e.point.x,
+          e.point.y,
+          buildTooltipShell(hoverTitle, `${_demoHTML}<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
+        );
         wireTooltipButtons();
         return;
       }
@@ -11417,6 +11671,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
       const winnerRaw = (row.winner || '').toString().toUpperCase();
       const winner = winnerRaw.startsWith('REP') ? 'R' : (winnerRaw.startsWith('DEM') ? 'D' : (signedMarginPct > 0 ? 'R' : (signedMarginPct < 0 ? 'D' : 'T')));
+      const hoverTitle = buildTooltipTitleWithTier(`${districtLabel} ${districtNum}`, tierMeta);
 
       const chips = [];
       let prevSignedForFlip = null;
@@ -11480,7 +11735,7 @@ document.addEventListener('DOMContentLoaded', function() {
           kind: 'district',
           x: e.point.x,
           y: e.point.y,
-          title: `${districtLabel} ${districtNum}`,
+          title: hoverTitle,
           expandedInner: classicInner,
           copyText: hoverKey
         };
@@ -11488,7 +11743,7 @@ document.addEventListener('DOMContentLoaded', function() {
       showHoverTooltip(
         e.point.x,
         e.point.y,
-        buildTooltipShell(`${districtLabel} ${districtNum}`, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
+        buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
         { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
@@ -12295,7 +12550,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!sidebarReady) return;
       // Margin
       const margin = demVotes - repVotes;
-      const marginPct = marginPctValue(repVotes, demVotes, totalVotes).toFixed(2);
+      const marginPct = marginPctValue(repVotes, demVotes, totalVotes);
       const winner = margin > 0 ? 'Democratic' : (margin < 0 ? 'Republican' : 'Tie');
       const winnerCandidate = margin > 0 ? demCandidate : repCandidate;
       const marginText = winnerMarginLabelShort(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
@@ -12355,7 +12610,7 @@ document.addEventListener('DOMContentLoaded', function() {
   sidebarContent += '<h3 class="sidebar-section-title">Margin</h3>';
   let marginColor = winnerColor;
   if (winner !== 'Republican') {
-    marginColor = isColorblind ? cbColorForMargin(parseFloat(marginPct), 'D') : '#2563eb';
+    marginColor = isColorblind ? cbColorForMargin(marginPct, 'D') : '#2563eb';
   }
   sidebarContent += `<p class="sidebar-margin" style="color: ${marginColor}; font-weight: bold;">${marginText}</p>`;
   sidebarContent += `<p class="sidebar-margin-details" style="color: #6b7280;">(${Math.abs(margin).toLocaleString()} vote margin)</p>`;
@@ -12365,13 +12620,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // For colorblind mode, use the correct accessibility palette for Republican vote breakdown
   let repColor = '#dc2626';
   if (isColorblind) {
-    if (parseFloat(marginPct) >= 40) repColor = '#cc5500';
-    else if (parseFloat(marginPct) >= 30 && parseFloat(marginPct) <= 39.99) repColor = '#ff6600';
-    else if (parseFloat(marginPct) >= 20 && parseFloat(marginPct) <= 29.99) repColor = '#ff8833';
-    else if (parseFloat(marginPct) >= 10 && parseFloat(marginPct) <= 19.99) repColor = '#ffaa55';
-    else if (parseFloat(marginPct) >= 5.51 && parseFloat(marginPct) <= 9.99) repColor = '#ffcc77';
-    else if (parseFloat(marginPct) >= 1 && parseFloat(marginPct) <= 5.5) repColor = '#ffdd99';
-    else if (parseFloat(marginPct) >= 0.51 && parseFloat(marginPct) <= 0.99) repColor = '#ffeecc';
+    if (marginPct >= 40) repColor = '#cc5500';
+    else if (marginPct >= 30 && marginPct <= 39.99) repColor = '#ff6600';
+    else if (marginPct >= 20 && marginPct <= 29.99) repColor = '#ff8833';
+    else if (marginPct >= 10 && marginPct <= 19.99) repColor = '#ffaa55';
+    else if (marginPct >= 5.51 && marginPct <= 9.99) repColor = '#ffcc77';
+    else if (marginPct >= 1 && marginPct <= 5.5) repColor = '#ffdd99';
+    else if (marginPct >= 0.51 && marginPct <= 0.99) repColor = '#ffeecc';
     else repColor = '#cccccc';
   } else {
     // Non-accessibility mode: always use red for Republican vote breakdown
@@ -12379,18 +12634,18 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   let demColor;
   if (isColorblind) {
-    demColor = cbColorForMargin(parseFloat(marginPct), 'D');
+    demColor = cbColorForMargin(marginPct, 'D');
   } else {
     // Non-accessibility mode: always use regular blue for Democratic vote breakdown
     demColor = '#2563eb';
   }
-  sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${demColor}; font-weight: bold;">${fullCandidateLabel(demCandidate, 'Democratic')} (D)</span> : ${demPct.toFixed(2)}% (${demVotes.toLocaleString()})</p>`;
-  sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${repColor}; font-weight: bold;">${fullCandidateLabel(repCandidate, 'Republican')} (R)</span> : ${repPct.toFixed(2)}% (${repVotes.toLocaleString()})</p>`;
+  sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${demColor}; font-weight: bold;">${fullCandidateLabel(demCandidate, 'Democratic')} (D)</span> : ${formatPctForCloseRace(demPct, marginPct)}% (${demVotes.toLocaleString()})</p>`;
+  sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${repColor}; font-weight: bold;">${fullCandidateLabel(repCandidate, 'Republican')} (R)</span> : ${formatPctForCloseRace(repPct, marginPct)}% (${repVotes.toLocaleString()})</p>`;
   
   // Add Other votes if they exist
   if (otherVotes > 0) {
     const otherPct = (otherVotes / totalVotes * 100);
-    sidebarContent += `<p class="sidebar-breakdown"><span style="color: #6b7280; font-weight: bold;">Other Candidates</span> : ${otherPct.toFixed(2)}% (${otherVotes.toLocaleString()})</p>`;
+    sidebarContent += `<p class="sidebar-breakdown"><span style="color: #6b7280; font-weight: bold;">Other Candidates</span> : ${toFixedForDisplay(otherPct, 2)}% (${otherVotes.toLocaleString()})</p>`;
   }
   
   sidebarContent += `</div>`;
@@ -12733,7 +12988,6 @@ document.addEventListener('DOMContentLoaded', function() {
           if (e?.point && e?.features?.[0]) {
             setTooltipPinned(false);
             renderPrecinctHoverAtPoint(e.point, e.features[0], { forceTooltip: true });
-            if (isTouchInteractionMode()) setTooltipPinned(true);
           }
         } catch (_) {}
       });
@@ -12973,7 +13227,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!f) return;
             setTooltipPinned(false);
             renderPrecinctHoverAtPoint(e.point, f, { forceTooltip: true });
-            if (isTouchInteractionMode()) setTooltipPinned(true);
           } catch (_) {}
         });
         map.on('mouseleave', layerId, () => {
@@ -13909,7 +14162,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
               trends.push({
                 year: year,
-                display: `${year}: ${winner}+${marginAbs.toFixed(2)}`,
+                display: `${year}: ${winner}+${formatMarginPctForDisplay(marginAbs)}`,
                 margin: margin,
                 type: 'house'
               });
@@ -13948,7 +14201,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
               trends.push({
                 year: year,
-                display: `${year}: ${candidateInfo}+${marginAbs.toFixed(2)}`,
+                display: `${year}: ${candidateInfo}+${formatMarginPctForDisplay(marginAbs)}`,
                 margin: margin,
                 type: 'president'
               });
@@ -13985,7 +14238,7 @@ document.addEventListener('DOMContentLoaded', function() {
             candidateInfo = margin > 0 ? getCandidateName(year, 'Governor', 'Democrat') : getCandidateName(year, 'Governor', 'Republican');
             trends.push({
               year: year,
-              display: `${year}: ${candidateInfo}+${marginAbs.toFixed(2)}`,
+              display: `${year}: ${candidateInfo}+${formatMarginPctForDisplay(marginAbs)}`,
               margin: margin,
               type: 'governor'
             });
@@ -14010,7 +14263,7 @@ document.addEventListener('DOMContentLoaded', function() {
               
               trends.push({
                 year: year,
-                display: `${year}: ${winner}+${marginAbs.toFixed(2)} (House)`,
+                display: `${year}: ${winner}+${formatMarginPctForDisplay(marginAbs)} (House)`,
                 margin: margin,
                 type: 'state_house'
               });
@@ -14041,6 +14294,18 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="tooltip-title">${title}</div>
         <div class="tooltip-trends">${trendsHtml}</div>
       `;
+    }
+
+    function buildStartHereHintText({ hasContest = false } = {}) {
+      const touch = (typeof isTouchInteractionMode === 'function') ? isTouchInteractionMode() : false;
+      if (!hasContest) {
+        return touch
+          ? 'Choose a contest, then tap a county. Tap to pin details.'
+          : 'Choose a contest, then hover a county. Click to pin details.';
+      }
+      return touch
+        ? 'Now tap a county to pin details. Tap another county to switch.'
+        : 'Now hover a county for a quick preview. Click to pin details.';
     }
 
     // Hover Tooltip Functions - VoteHub Style
@@ -14231,6 +14496,7 @@ document.addEventListener('DOMContentLoaded', function() {
           try { document.body.classList.remove('hover-preview-active'); } catch (_) {}
           clearHoverOutline();
           clearVoteCounterHoverState();
+          clearPrecinctHoverFeature();
         };
       }
       const copyBtn = document.getElementById('tooltip-copy-btn');
@@ -14326,7 +14592,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const demPct = totalVotes > 0 ? (demVotes / totalVotes) * 100 : 0;
             const repPct = totalVotes > 0 ? (repVotes / totalVotes) * 100 : 0;
-            const marginPct = Math.abs(demPct - repPct);
+            const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
+            const marginPct = marginPctDisplayValue(repVotes, demVotes, totalVotes);
             const winner = demPct > repPct ? 'Democratic' : 'Republican';
             
             // Determine competitiveness
@@ -14378,13 +14645,13 @@ document.addEventListener('DOMContentLoaded', function() {
               <div style="margin-bottom: 16px;">
                 <h5>Margin</h5>
                 <p style="color: ${winner === 'Republican' ? '#dc2626' : '#2563eb'}; font-weight: bold; font-size: 18px;">
-                  ${marginPct.toFixed(2)}%
+                  ${formatMarginPctForDisplay(marginPct)}%
                 </p>
               </div>
               <div style="margin-bottom: 16px;">
                 <h5>Vote Breakdown</h5>
-                <p><span style="color: #2563eb; font-weight: bold;">Democratic: </span>${demPct.toFixed(2)}% (${demVotes.toLocaleString()})</p>
-                <p><span style="color: #dc2626; font-weight: bold;">Republican: </span>${repPct.toFixed(2)}% (${repVotes.toLocaleString()})</p>
+                <p><span style="color: #2563eb; font-weight: bold;">Democratic: </span>${formatPctForCloseRace(demPct, rawMarginPct)}% (${demVotes.toLocaleString()})</p>
+                <p><span style="color: #dc2626; font-weight: bold;">Republican: </span>${formatPctForCloseRace(repPct, rawMarginPct)}% (${repVotes.toLocaleString()})</p>
                 <p><strong>Total Votes:</strong> ${totalVotes.toLocaleString()}</p>
               </div>
             `;
@@ -14513,6 +14780,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const demPct = (demVotes / totalVotes) * 100.0;
       const repPct = (repVotes / totalVotes) * 100.0;
       const othPct = (otherVotes / totalVotes) * 100.0;
+      const rawMarginPct = marginPctValue(repVotes, demVotes, totalVotes);
       const marginPct = Math.abs(repPct - demPct);
       const winnerParty = repPct > demPct ? 'R' : (demPct > repPct ? 'D' : 'TIE');
 
@@ -14557,9 +14825,9 @@ document.addEventListener('DOMContentLoaded', function() {
             Margin: ${winnerMarginLabel(repVotes, demVotes, totalVotes, repCandidate, demCandidate)} <span style="color:#64748b;font-weight:600;">(${Math.abs(repVotes - demVotes).toLocaleString()} votes)</span>
           </div>
           <div style="margin-top:8px;font-size:14px;">
-            <div><span style="color:#2563eb;font-weight:800;">${fullCandidateLabel(demCandidate, 'Democratic')} (D)</span>: ${demPct.toFixed(2)}% (${demVotes.toLocaleString()})</div>
-            <div><span style="color:#dc2626;font-weight:800;">${fullCandidateLabel(repCandidate, 'Republican')} (R)</span>: ${repPct.toFixed(2)}% (${repVotes.toLocaleString()})</div>
-            ${otherVotes > 0 ? `<div><span style="color:#6b7280;font-weight:800;">Other</span>: ${othPct.toFixed(2)}% (${otherVotes.toLocaleString()})</div>` : ''}
+            <div><span style="color:#2563eb;font-weight:800;">${fullCandidateLabel(demCandidate, 'Democratic')} (D)</span>: ${formatPctForCloseRace(demPct, rawMarginPct)}% (${demVotes.toLocaleString()})</div>
+            <div><span style="color:#dc2626;font-weight:800;">${fullCandidateLabel(repCandidate, 'Republican')} (R)</span>: ${formatPctForCloseRace(repPct, rawMarginPct)}% (${repVotes.toLocaleString()})</div>
+            ${otherVotes > 0 ? `<div><span style="color:#6b7280;font-weight:800;">Other</span>: ${toFixedForDisplay(othPct, 2)}% (${otherVotes.toLocaleString()})</div>` : ''}
             <div style="margin-top:6px;color:#374151;font-weight:700;">Total Votes: ${totalVotes.toLocaleString()}</div>
           </div>
           <div style="margin-top:8px;font-size:14px;font-weight:800;color:${compColor};">Competitiveness: ${compLabel}</div>
@@ -14763,7 +15031,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         return `<div class="quick-tooltip">
           <strong>${countyName} County</strong><br>
-          ${recent.year}: ${marginAbs.toFixed(2)}%<br>
+          ${recent.year}: ${formatMarginPctForDisplay(marginAbs)}%<br>
           <em>Click for full trends</em>
         </div>`;
       }
@@ -14845,7 +15113,7 @@ document.addEventListener('DOMContentLoaded', function() {
           return `<div class="quick-tooltip">
             <strong>${displayName}</strong><br>
             ${desc ? `<span style="color:#64748b;font-weight:700;">${desc}</span><br>` : ''}
-            ${recent.year}: ${marginAbs.toFixed(2)}%<br>
+            ${recent.year}: ${formatMarginPctForDisplay(marginAbs)}%<br>
             <em>Click for full trends</em>
           </div>`;
         }
