@@ -1,57 +1,38 @@
-# FLPrecinctMap
+# Sunshine State Ballot Atlas (FLPrecinctMap)
 
-Interactive Florida election mapping app focused on:
-- County, congressional, State House, and State Senate views
-- Current vs proposed congressional lines
-- Precinct-aware crosswalk allocations
-- Real legislative district election results (House/Senate) across multiple years
+Interactive Florida election map published as a static site on GitHub Pages.
 
-The app is a static `index.html` + data files project, with Python scripts to build/refresh datasets.
+## What This Project Is
 
-## Current Scope
+`FLPrecinctMap` is a front-end-only election explorer built from:
+- `index.html` (app UI + map logic)
+- static JSON/CSV/GeoJSON data files in `data/`
 
-- Main UI title: **Sunshine State Ballot Atlas**
-- Supports district views:
-  - Congressional
-  - State House
-  - State Senate
-- Legislative district contest slices currently built for:
-  - `2012, 2014, 2016, 2018, 2020, 2022, 2024`
+No backend service is required for production deployment.
+
+## Live Deployment
+
+- Hosted on GitHub Pages from this repository
+- Static asset delivery only (`html`, `json`, `csv`, `geojson`, etc.)
+
+## Main Features
+
+- Statewide and county election views
+- Congressional, State House, and State Senate views
+- District line comparison (current vs proposed congressional lines)
+- Precinct-aware overlays and crosswalk-backed district allocation views
+- Trend and competitiveness summaries
 
 ## Repository Layout
 
-- `index.html`: main application
-- `data/`: input and generated map/election data
-- `scripts/`: data build and validation scripts
+- `index.html`: Main application
+- `data/`: Election data, map layers, crosswalks, and generated outputs
+- `scripts/`: Data build/refresh scripts
+- `NCMap.html`: Design/reference companion file
 
-Key generated outputs used by the app:
-- `data/contests/*.json`: statewide/county contest slices
-- `data/district_contests/*.json`: district contest slices + `manifest.json`
-- `data/district_contests_proposed_congressional/*.json`: proposed-congressional slices
-- `data/crosswalks/*.csv`: precinct/block/district weighting tables
-- `data/fl_precinct_centroids.geojson`: precinct centroid layer
+## Required Configuration
 
-## Requirements
-
-- Python 3.10+ (tested with Python 3.14)
-- Python packages:
-  - `pandas`
-  - `geopandas`
-
-Install example:
-
-```powershell
-python -m pip install pandas geopandas
-```
-
-## Mapbox Token Setup (Required)
-
-`index.html` now expects a token from `window.MAPBOX_TOKEN`.
-
-Current config:
-- `index.html` uses `mapboxToken: (window.MAPBOX_TOKEN || '')`
-
-Set it before the main script, for example near the top of `<body>`:
+Set your Mapbox public token before app initialization:
 
 ```html
 <script>
@@ -59,169 +40,32 @@ Set it before the main script, for example near the top of `<body>`:
 </script>
 ```
 
-If token is empty, basemap tiles will not load.
+If `window.MAPBOX_TOKEN` is empty, basemap tiles will not render.
 
-## Run Locally
+## Data Outputs Used by the App
 
-From repo root:
-
-```powershell
-python -m http.server 8000
-```
-
-Then open:
-- `http://localhost:8000/index.html`
-
-## Data Build Workflows
-
-### 1) County Contest Slices
-
-Builds:
+Key files and folders:
 - `data/contests/*.json`
+- `data/district_contests/*.json`
+- `data/district_contests_proposed_congressional/*.json`
+- `data/crosswalks/*.csv`
+- `data/fl_precinct_centroids.geojson`
 - `data/fl_elections_aggregated.json`
 
-Run:
+## Updating Data (Optional)
 
-```powershell
-python scripts/build_fl_county_contests.py
-```
+If you need to rebuild or refresh data, use the scripts in `scripts/`.
 
-Notes:
-- Uses VEST precinct shapefiles when available (current repo years: 2014+).
-- Also auto-discovers `data/*Election-aligned.txt` FL DOS county files to backfill missing years for county-level statewide contests.
-- Historic statewide offices in aligned files are included as county contests (for example `secretary_of_state`, `comptroller`, `commissioner_of_education`).
-- Florida Cabinet reform for these offices was approved on November 3, 1998 (Amendment 8) and took effect on January 7, 2003.
-- These aligned county files improve the county layer only; precinct and district layers still require precinct/block crosswalk inputs.
+Common workflow:
+1. Build or refresh contest/crosswalk outputs.
+2. Verify generated files under `data/`.
+3. Commit updated static assets.
+4. Push to `main` to publish through GitHub Pages.
 
-### 2) Precinct Centroids
-
-Builds:
-- `data/fl_precinct_centroids.geojson`
-
-Run:
-
-```powershell
-python scripts/build_fl_precinct_centroids.py --data-dir data
-```
-
-### 3) VTD2010 Crosswalks (2012/2014 reconciliation + districts)
-
-Builds:
-- `data/crosswalks/vtd10_to_vtd20_weights.csv`
-- `data/crosswalks/vtd10_to_congressional_current_weights.csv`
-- `data/crosswalks/vtd10_to_congressional_proposed_weights.csv`
-- `data/crosswalks/vtd10_to_state_house_weights.csv`
-- `data/crosswalks/vtd10_to_state_senate_weights.csv`
-
-Run:
-
-```powershell
-python scripts/build_fl_vtd10_crosswalks.py --data-dir data --output-dir crosswalks
-```
-
-### 4) District Contest Slices (allocation-based)
-
-General script:
-
-```powershell
-python scripts/build_fl_district_contests.py --help
-```
-
-Typical spatial run:
-
-```powershell
-python scripts/build_fl_district_contests.py --allocation-method spatial --data-dir data
-```
-
-Proposed congressional run:
-
-```powershell
-python scripts/build_fl_district_contests.py `
-  --allocation-method spatial `
-  --scopes congressional `
-  --congressional-geojson data/fl_proposed_congressional_districts.geojson `
-  --output-dir data/district_contests_proposed_congressional
-```
-
-### 5) Actual Legislative Elections (House/Senate district-native)
-
-Builds chamber-native contest slices:
-- `state_house_state_house_<year>.json`
-- `state_senate_state_senate_<year>.json`
-
-Run:
-
-```powershell
-python scripts/build_fl_actual_legislative_contests.py --data-dir data
-```
-
-This updates:
-- `data/district_contests/manifest.json`
-
-### 6) Validate Proposed Congressional Slices
-
-Run:
-
-```powershell
-python scripts/validate_proposed_congressional_data.py --data-dir data
-```
-
-### 7) Comprehensive Precinct CSV Exports
-
-Builds long-form CSVs from discovered precinct text folders:
-- `data/derived/fl_precinct_results_<year>_long.csv`
-- `data/derived/fl_precinct_results_all_years_long.csv`
-- `data/derived/fl_precinct_legislative_all_years_long.csv`
-
-Run:
-
-```powershell
-python scripts/build_fl_precinct_master_csv.py --data-dir data --output-dir derived
-```
-
-## Adding More Years
-
-For automatic pickup in the legislative and CSV scripts:
-- Add folders under `data/` containing county-level precinct text files (`*PctResults*.txt`)
-- Ensure year appears in folder name or file names (for detection)
-- Re-run:
-  - `python scripts/build_fl_actual_legislative_contests.py --data-dir data`
-  - `python scripts/build_fl_precinct_master_csv.py --data-dir data --output-dir derived`
-
-Notes:
-- Recount files are preferred when both base and recount exist for a county.
-- If both precinct-level and DOS data exist for the same year, precinct-level data is preferred.
-- For county-layer history, add aligned DOS files as `data/*Election-aligned.txt` and rerun `python scripts/build_fl_county_contests.py`.
-
-## UI/Data Notes
-
-- Florida office filtering is applied (CFO instead of Treasurer; no FL SoS/Labor/Insurance/Superintendent statewide contest entries).
-- Governor/Lt. Governor treated as joint ticket.
-- District line toggle supports congressional current vs proposed mapping.
-- District carryover crosswalk loader supports both:
-  - `area_weight` style files
-  - `weight` style files (`from_vtd10` + `district`)
-
-## Display/Interaction Notes
-
-- Close races: margin/percent displays use adaptive precision (down to 3 decimals) to avoid rounding a non-zero lead into `0.00%` / an apparent tie.
-- Hover tooltip layout: matches `NCMap.html` (VoteHub-style shell) and supports desktop “preview → click to pin” behavior.
-- Hover tooltip (desktop preview): shows a compact quickline like `Trump +11.45% Safe Republican` (tier shown as neutral text, not a red/blue badge), and does not dim/fade on desktop.
-- Hover tooltip content: election results only (no census/VAP/demographics lines in the tooltip).
-- Precinct mode: tapping/clicking precincts no longer auto-pins the hover tooltip; pinning is only via the normal tooltip pin interaction (desktop click-to-pin or explicit pinned state).
-
-## Troubleshooting
-
-- Basemap not loading:
-  - Set `window.MAPBOX_TOKEN` with a valid public token.
-- Contest appears in dropdown but not on map:
-  - Check `data/district_contests/manifest.json` for matching `scope`, `contest_type`, `year`.
-- Crosswalk mismatch:
-  - Rebuild with `build_fl_vtd10_crosswalks.py` and verify files in `data/crosswalks/`.
-- Proposed congressional consistency:
-  - Run `validate_proposed_congressional_data.py`.
-
-## Script Reference
-
-See:
+Detailed script documentation:
 - `scripts/README.md`
+
+## Notes
+
+- Close-race display uses adaptive precision so very small non-zero leads are not shown as ties.
+- Candidate legacy shorthand normalization is included (for example, `GORE` -> `Al Gore`, `BUSH` -> `George W. Bush`).
