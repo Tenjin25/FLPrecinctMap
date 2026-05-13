@@ -10255,6 +10255,31 @@ document.addEventListener('DOMContentLoaded', function() {
       return toFixedForDisplay(pct, marginDisplayDigits(pct));
     }
 
+    // Compatibility helpers for VoteHub hover block transplanted from backup index.
+    function formatContestLabel(contestType, year) {
+      return `${formatContestName(contestType, year)} ${year}`;
+    }
+
+    function signedCountyMarginPctDisplayValue(demVotes, repVotes, totalVotes) {
+      return signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
+    }
+
+    function buildCountyDemographicsHoverHTML() {
+      return '';
+    }
+
+    function isBellwetherCounty() {
+      return false;
+    }
+
+    function getSplitTicketCountyInsight() {
+      return null;
+    }
+
+    function buildCountyDeltaBlockHTML() {
+      return '';
+    }
+
     function marginPctValue(repVotes, demVotes, totalVotes) {
       const t = Number(totalVotes) || 0;
       if (t <= 0) return 0;
