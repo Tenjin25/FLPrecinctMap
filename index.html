@@ -10216,6 +10216,21 @@ document.addEventListener('DOMContentLoaded', function() {
       return roundForDisplay(value, d).toFixed(d);
     }
 
+    function formatVotehubPct(value, digits = 2) {
+      const n = Number(value);
+      if (!Number.isFinite(n)) return (0).toFixed(digits);
+      if (typeof roundForDisplay === 'function') {
+        return Number(roundForDisplay(n, digits)).toFixed(digits);
+      }
+      return Number(Math.round(Number(n + 'e' + digits)) + 'e-' + digits).toFixed(digits);
+    }
+
+    function formatVotehubVotes(value) {
+      const n = Number(value || 0);
+      if (!Number.isFinite(n)) return '0';
+      return Math.round(n).toLocaleString();
+    }
+
     function preservesTwoDecimalMargin(marginPct) {
       const pct = Math.abs(Number(marginPct) || 0);
       return roundForDisplay(pct, 2) >= 0.02;
