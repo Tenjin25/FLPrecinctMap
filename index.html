@@ -10284,6 +10284,14 @@ document.addEventListener('DOMContentLoaded', function() {
       return '';
     }
 
+    function formatShiftLabel(delta) {
+      const n = Number(delta || 0);
+      if (!Number.isFinite(n)) return '0.00%';
+      const abs = Math.abs(n);
+      const sign = n > 0 ? '+' : (n < 0 ? '-' : '');
+      return `${sign}${toFixedForDisplay(abs, abs < 1 ? 2 : 1)}%`;
+    }
+
     function marginPctValue(repVotes, demVotes, totalVotes) {
       const t = Number(totalVotes) || 0;
       if (t <= 0) return 0;
