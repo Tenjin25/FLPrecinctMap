@@ -11297,11 +11297,11 @@ document.addEventListener('DOMContentLoaded', function() {
       const countyName = props.NAME20 || props.CountyName || props.COUNTYNAME || props.county_nam || props.NAME || props.name || 'Unknown County';
       const countyDisplay = displayCountyName(countyName);
       setCountyHoverOutline(countyName);
-      const norm = normalizeCountyToken(countyName);
+      const norm = (countyName || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
       let row = currentElectionResults ? currentElectionResults[norm] : null;
       if (!row && currentElectionResults) {
         for (const key of Object.keys(currentElectionResults)) {
-          const keyNorm = normalizeCountyToken(key);
+          const keyNorm = (key || '').toString().replace(/[^a-z0-9 .\-]/gi, '').replace(/\s+/g, ' ').trim().toUpperCase();
           if (keyNorm === norm) {
             row = currentElectionResults[key];
             break;
@@ -11380,7 +11380,7 @@ document.addEventListener('DOMContentLoaded', function() {
         showHoverTooltip(
           e.point.x,
           e.point.y,
-          buildTooltipShell(hoverTitle, '<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data available</div>', { pinned: pinnedShell, copyText }),
+          buildTooltipShell(hoverTitle, '<div class="tooltip-kicker">No data</div><div style="color:rgba(226,232,240,0.92);">No results reported for this contest.</div>', { pinned: pinnedShell, copyText }),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
         );
         wireTooltipButtons();
@@ -11390,7 +11390,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const repCandidate = row[`${contestType}_rep_candidate`] || getCandidateName(year, formatContestName(contestType, year), 'Republican');
       setVoteCounterHoverState(
         `Hover: ${countyDisplay} County`,
-        `${formatContestName(contestType, year)} ${year}`,
+        `${formatContestLabel(contestType, year)}`,
         demVotes,
         repVotes,
         otherVotes,
@@ -11401,8 +11401,15 @@ document.addEventListener('DOMContentLoaded', function() {
       const signedMarginPct = signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
       const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
       const winner = signedMarginPct > 0 ? 'R' : (signedMarginPct < 0 ? 'D' : 'T');
-      const subtitle = `${formatContestName(contestType, year)} ${year}`;
-      const hoverTitle = buildTooltipTitleWithTier(`${countyDisplay} County`, tierMeta);
+      const subtitle = `${formatContestLabel(contestType, year)}`;
+
+      let demoLine = '';
+      try {
+        const demo = countyDemographics?.counties?.[norm] || null;
+        demoLine = buildCountyDemographicsHoverHTML(demo, norm);
+      } catch (_) {}
+      const showDemoLine = (currentVizMode === 'demographics') || tooltipPinned || (forceTooltip && isTouchInteractionMode());
+      if (!showDemoLine) demoLine = '';
 
       const chips = [];
       let prevSignedForFlip = null;
@@ -11411,9 +11418,21 @@ document.addEventListener('DOMContentLoaded', function() {
         prevSignedForFlip = prev ? signedMarginPctFromVotes(prev.dem, prev.rep, prev.total) : 0;
       }
 
+      const signedDisplayMarginPct = signedCountyMarginPctDisplayValue(demVotes, repVotes, totalVotes);
+      let shiftDeltaForTooltip = NaN;
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
-        const prevSigned = (prevSignedForFlip !== null) ? prevSignedForFlip : 0;
-        chips.push(shiftChipHTML(signedMarginPct - prevSigned, vizShiftCache.prevYear, vizShiftCache.year));
+        let prevSignedForShift = null;
+        const prevTotalsForShift = vizShiftCache?.prevCountyTotals?.[norm] || null;
+        if (prevTotalsForShift) {
+          prevSignedForShift = signedCountyMarginPctDisplayValue(prevTotalsForShift.dem, prevTotalsForShift.rep, prevTotalsForShift.total);
+        } else if (prevSignedForFlip !== null) {
+          // Fallback only when previous vote totals are missing.
+          prevSignedForShift = Number(prevSignedForFlip);
+        }
+        if (Number.isFinite(Number(prevSignedForShift))) {
+          shiftDeltaForTooltip = signedDisplayMarginPct - Number(prevSignedForShift);
+          chips.push(shiftChipHTML(shiftDeltaForTooltip, vizShiftCache.prevYear, vizShiftCache.year, { variant: 'county' }));
+        }
       } else {
         chips.push(winnerChipHTML(winner));
       }
@@ -11424,13 +11443,64 @@ document.addEventListener('DOMContentLoaded', function() {
         if (flipChip) chips.push(flipChip);
       }
 
+      if (isBellwetherCounty(norm)) {
+        chips.push('<span class="result-chip" style="background:rgba(168,85,247,0.16);color:#581c87;border-color:rgba(216,180,254,0.55);">Barometer County</span>');
+      }
+
+      const splitInsight = getSplitTicketCountyInsight(norm, contestType, demVotes, repVotes, totalVotes);
+      const splitInsightLine = splitInsight
+        ? `<div style="margin-top:8px;padding:8px 10px;border-radius:10px;background:rgba(15,23,42,0.06);border:1px solid rgba(148,163,184,0.38);"><div style="font-size:11px;font-weight:800;letter-spacing:0.01em;color:#334155;">Pres-Gov Lens</div><div style="display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#334155;"><span>President:</span><strong>${splitInsight.presidentLabel}</strong></div><div style="display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#334155;"><span>Governor Overlay:</span><strong>${splitInsight.governorLabel}</strong></div><div style="display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#334155;"><span>Split Shift:</span><strong>${splitInsight.deltaLabel}</strong></div></div>`
+        : '';
+
+      const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate, signedMarginPct, { precision: 'county' });
       const flipLine = (prevSignedForFlip !== null)
         ? flipLineHTML(prevSignedForFlip, signedMarginPct, vizPrevCache?.prevYear || null, Number(year))
         : '';
-      const winnerCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
+      const shiftDelta = Number.isFinite(shiftDeltaForTooltip)
+        ? shiftDeltaForTooltip
+        : ((prevSignedForFlip !== null && Number.isFinite(Number(prevSignedForFlip)))
+          ? (signedDisplayMarginPct - Number(prevSignedForFlip))
+          : NaN);
+      const shiftClass = Number.isFinite(shiftDelta)
+        ? (Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem'))
+        : 'tie';
+      const shiftLine = (currentVizMode === 'shift' && Number.isFinite(shiftDelta) && vizShiftCache?.prevYear)
+        ? `<div class="tooltip-delta"><div class="tooltip-delta-line">Shift (${escapeHtml(`${vizShiftCache.prevYear}→${vizShiftCache.year}`)}): <span class="tooltip-shift ${shiftClass}">${escapeHtml(formatShiftLabel(shiftDelta))}</span></div></div>`
+        : '';
+      const tooltipInsight = (() => {
+        // Keep “trend/shift” narration out of Margins/Winners views to reduce hover clutter.
+        if (currentVizMode !== 'shift') return '';
+        const abs = Math.abs(Number(signedMarginPct) || 0);
+        if (abs < 0.5) return 'Tiny changes can flip it.';
+        if (!Number.isFinite(shiftDelta) || Math.abs(shiftDelta) < 1.25) return '';
+        if (signedMarginPct > 0 && shiftDelta < 0) return 'Still Republican, but weakening.';
+        if (signedMarginPct < 0 && shiftDelta > 0) return 'Still Democratic, but slipping.';
+        if (shiftDelta < 0) return 'Democrats gaining ground lately.';
+        if (shiftDelta > 0) return 'Republicans gaining ground lately.';
+        return '';
+      })();
+      const smartInsight = (() => {
+        if (!smartInsightsEnabled || !smartInsightsActiveCountySet || !norm) return '';
+        const countyNorm = String(norm || '').trim().toUpperCase();
+        if (!countyNorm || !smartInsightsActiveCountySet.has(countyNorm)) return '';
+        const reasons = smartInsightsReasonsByCounty?.get(countyNorm) || [];
+        const primary = Array.isArray(reasons) && reasons.length ? String(reasons[0] || '').trim() : '';
+        if (!primary) return 'Smart Insights: one of today’s key counties.';
+        if (/closest/i.test(primary)) return 'Smart Insights: one of the closest margins.';
+        if (/shift/i.test(primary)) return 'Smart Insights: among the biggest shifts.';
+        if (/growth/i.test(primary)) return 'Smart Insights: one of the fastest-growing counties.';
+        return 'Smart Insights: one of today’s key counties.';
+      })();
+      const finalInsight = tooltipInsight || smartInsight;
+      const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+      const deltaBlock = buildCountyDeltaBlockHTML(norm, contestType, { presentation: 'desktop-expanded' });
+      const winnerName = winner === 'R'
+        ? shortCandidateLabel(repCandidate, 'Republican')
+        : (winner === 'D' ? shortCandidateLabel(demCandidate, 'Democratic') : 'Tie');
+      const winnerParty = winner === 'R' ? 'rep' : (winner === 'D' ? 'dem' : 'tie');
       const votehubCore = buildVotehubResultsTooltip({
         title: `${countyDisplay} County`,
-        subtitle,
+        subtitle: 'County',
         demName: demCandidate,
         repName: repCandidate,
         otherName: 'Other',
@@ -11438,69 +11508,65 @@ document.addEventListener('DOMContentLoaded', function() {
         repVotes,
         otherVotes,
         totalVotes,
-        winnerName: winnerCall.shortLabel,
-        winnerParty: winnerCall.party === 'rep' ? 'rep' : (winnerCall.party === 'dem' ? 'dem' : 'tie'),
-        marginPct: winnerCall.marginPct,
-        winnerLineText: `${winnerCall.shortLabel} +${formatMarginPctForTooltip(winnerCall.marginPct)}%`,
+        winnerName,
+        winnerParty,
+        marginPct: Math.abs(signedMarginPct),
+        winnerLineText: marginCall?.text || '',
         prevSignedMarginPct: prevSignedForFlip,
         currentSignedMarginPct: signedMarginPct,
         flipYearLabel: vizPrevCache?.prevYear || null,
         districtType: 'County',
         showWinnerLine: true,
-        showShiftLine: false
+        shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+        shiftToneClass: shiftClass,
+        shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
+        showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear
       });
-      const classicInner = `
-        <div class="hover-meta">${chips.join('')}</div>
+      const detailLines = `
+        ${finalInsight ? `<div class="tooltip-insight">${escapeHtml(finalInsight)}</div>` : ''}
+        ${(currentVizMode === 'shift' && Number.isFinite(shiftDelta) && vizShiftCache?.prevYear) ? '' : shiftLine}
         ${flipLine}
+        ${deltaBlock}
+        ${splitInsightLine}
+        ${demoLine}
+      `.trim();
+      const inner = `
         ${votehubCore}
-      `;
+        <details class="tooltip-more" aria-label="More details">
+          <summary>More details</summary>
+          <div class="tooltip-more-body">${detailLines}</div>
+        </details>
+      `.trim();
 
-      const hoverKey = `county:${norm}|${contestValue}`;
-      const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-      const useCompact = isDesktopTooltipMode() && !pinnedShell;
-
-      const tierLabel = tierMeta?.label || '';
-      const compactInner = `
-        <div class="tooltip-body desktop-collapsed">
-          <div class="tooltip-quickline">
-            <span class="${escapeHtml(winnerCall.party)}">${escapeHtml(winnerCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(winnerCall.marginPct))}%</span>
-            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
-          </div>
-          ${flipLine}
-        </div>
-      `;
-
-      const actionHint = pinnedShell ? 'Pinned • tap Close to dismiss' : (isTouchInteractionMode() ? 'Tap to pin details' : 'Click to pin details');
-      const inner = `${useCompact ? compactInner : classicInner}${actionHint ? `<div class="tooltip-hint">${escapeHtml(actionHint)}</div>` : ''}`;
-
-      if (isDesktopTooltipMode() && !pinnedShell) {
-        desktopHoverExpandState = {
-          kind: 'county',
-          x: e.point.x,
-          y: e.point.y,
-          title: hoverTitle,
-          expandedInner: classicInner,
-          copyText: hoverKey
-        };
-      }
+      const copyText = `${countyDisplay} County`;
       showHoverTooltip(
         e.point.x,
         e.point.y,
-        buildTooltipShell(hoverTitle, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        buildTooltipShell('', inner, { pinned: pinnedShell, showClose: pinnedShell, copyText }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText }
       );
+      clearDesktopHoverExpandState();
       wireTooltipButtons();
+      try { markOnboardingSeen(); } catch (_) {}
     }
 
-    function renderPrecinctHoverAtPoint(point, feature, { forceTooltip = false } = {}) {
+    function renderPrecinctHoverAtPoint(point, feature, { forceTooltip = false, pinSelection = false } = {}) {
       const props = feature?.properties || {};
-      const countyName = (props.county_nam || props.COUNTYNAME || props.County || props.NAME20 || props.NAME || '').toString().trim();
-      const countyDisplay = countyName ? displayCountyName(countyName) : '';
-      const precId = extractPrecinctCodeFromProps(props, countyName);
-      const precinctNorm = normalizePrecinctNorm(countyName, precId, props.precinct_norm || props.precinct_name || '');
-      const title = countyDisplay
-        ? (precId ? `${countyDisplay} - ${precId}` : `${countyDisplay} County`)
-        : (precinctNorm || 'Precinct');
+      const precinctNorm = (props.precinct_norm || '').toString().trim().toUpperCase();
+      const countyName = (props.county_nam || '').toString().trim();
+      const precId = (props.prec_id || '').toString().trim();
+      const precFull = (props.precinct_full_name || props.precinct_desc || props.enr_desc || props.ENR_DESC || '').toString().replace(/\s+/g, ' ').trim();
+      const fallbackFull = (!precFull && precinctFullNameByNormCache && precinctNorm && precinctFullNameByNormCache.has(precinctNorm))
+        ? String(precinctFullNameByNormCache.get(precinctNorm) || '').toString().replace(/\s+/g, ' ').trim()
+        : '';
+      const displayCode = precId || (precinctNorm.includes(' - ') ? precinctNorm.split(' - ')[1] : '');
+      const displayPrecinct = pickBestPrecinctDisplayName({
+        countyName,
+        code: displayCode,
+        fullName: precFull,
+        fallbackFullName: fallbackFull
+      });
+      const title = `${displayCountyName(countyName)} - ${displayPrecinct}`;
       setPrecinctHoverFeature(feature);
 
       const contestValue = document.getElementById('contestSelect')?.value || '';
@@ -11522,7 +11588,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const [contestType, year] = parseContestValue(contestValue);
       if (!contestType || !year) {
         const hoverTitle = buildTooltipTitleWithTier(title);
-        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const pinnedShell = !!tooltipPinned;
         const copyText = (precinctNorm || title || '').toString().trim();
         if (isDesktopTooltipMode()) {
           showHoverTooltip(
@@ -11550,14 +11616,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      let row = currentPrecinctResults ? currentPrecinctResults.get(precinctNorm) : null;
-      if (!row && currentPrecinctResults) {
-        const rawNorm = normalizeCountyToken(props.precinct_norm || '');
-        if (rawNorm) row = currentPrecinctResults.get(rawNorm) || null;
-      }
+      const row = currentPrecinctResults ? currentPrecinctResults.get(precinctNorm) : null;
       if (!row) {
         const hoverTitle = buildTooltipTitleWithTier(title);
-        const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
+        const pinnedShell = !!tooltipPinned;
         const copyText = (precinctNorm || title || '').toString().trim();
         if (isDesktopTooltipMode()) {
           showHoverTooltip(
@@ -11582,137 +11644,106 @@ document.addEventListener('DOMContentLoaded', function() {
       const demVotes = Number(row[`${contestType}_dem`] || 0);
       const repVotes = Number(row[`${contestType}_rep`] || 0);
       const otherVotes = Number(row[`${contestType}_other`] || 0);
-      const demCandidate = row[`${contestType}_dem_candidate`] || '';
-      const repCandidate = row[`${contestType}_rep_candidate`] || '';
-      const subtitle = `${formatContestName(contestType, year)} ${year}`;
-      const { norm: countyNorm, row: countyRow } = findCountyElectionRow(countyName || (row.county || '').toString().split(' - ')[0]);
-
+      const rowTotalVotes = Number(row[`${contestType}_total`]);
+      const totalVotes = Number.isFinite(rowTotalVotes) && rowTotalVotes > 0
+        ? rowTotalVotes
+        : (demVotes + repVotes + otherVotes);
+      const contestOffice = formatContestName(contestType, year);
+      const subtitle = `${formatContestLabel(contestType, year)}`;
+      const demCandidate = (row[`${contestType}_dem_candidate`] || getCandidateName(year, contestOffice, 'Democrat') || 'Democratic').toString().trim();
+      const repCandidate = (row[`${contestType}_rep_candidate`] || getCandidateName(year, contestOffice, 'Republican') || 'Republican').toString().trim();
       const signedMarginPct = Number(row[`${contestType}_margin_pct`]);
-      const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, demVotes + repVotes + otherVotes) : signedMarginPct;
-      const tierMeta = competitivenessTierMetaFromSignedMarginPct(curSigned);
-      const winner = curSigned > 0 ? 'R' : (curSigned < 0 ? 'D' : 'T');
-      const chips = [];
+      const curSigned = isNaN(signedMarginPct) ? signedMarginPctFromVotes(demVotes, repVotes, totalVotes) : signedMarginPct;
       let prevSignedForFlip = null;
-      if (vizPrevCache?.prevYear && vizPrevCache?.prevPrecinctMarginByNorm) {
-        prevSignedForFlip = Number(vizPrevCache.prevPrecinctMarginByNorm.get(precinctNorm) || 0);
+      const prevPrecinctMargins = (vizPrevCache?.prevYear && vizPrevCache?.hasPrecinctMargins)
+        ? vizPrevCache.prevPrecinctMarginByNorm
+        : null;
+      if (prevPrecinctMargins?.has(precinctNorm)) {
+        const prevMargin = Number(prevPrecinctMargins.get(precinctNorm));
+        if (Number.isFinite(prevMargin)) prevSignedForFlip = prevMargin;
       }
-
+      const winnerName = curSigned > 0
+        ? shortCandidateLabel(repCandidate, 'Republican')
+        : (curSigned < 0 ? shortCandidateLabel(demCandidate, 'Democratic') : 'Tie');
+      const winnerParty = curSigned > 0 ? 'rep' : (curSigned < 0 ? 'dem' : 'tie');
+      const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate, curSigned);
+      let shiftDelta = NaN;
+      let shiftClass = 'tie';
       if (currentVizMode === 'shift' && vizShiftCache?.prevYear) {
-        const prevSigned = (prevSignedForFlip !== null) ? prevSignedForFlip : 0;
-        chips.push(shiftChipHTML(curSigned - prevSigned, vizShiftCache.prevYear, vizShiftCache.year));
-      } else {
-        chips.push(winnerChipHTML(winner));
-      }
-      chips.push(tierChipHTML(tierMeta));
-
-      if (prevSignedForFlip !== null) {
-        const flipChip = flipChipHTML(prevSignedForFlip, curSigned);
-        if (flipChip) chips.push(flipChip);
-      }
-
-      const flipLine = (prevSignedForFlip !== null)
-        ? flipLineHTML(prevSignedForFlip, curSigned, vizPrevCache?.prevYear || null, Number(year))
-        : '';
-      let countyLine = '';
-      try {
-        if (countyRow) {
-          const countyDem = Number(countyRow[`${contestType}_dem`] || 0);
-          const countyRep = Number(countyRow[`${contestType}_rep`] || 0);
-          const countyOther = Number(countyRow[`${contestType}_other`] || 0);
-          const countyTotal = Number(countyRow[`${contestType}_total`] || 0);
-          if (countyTotal > 0) {
-            const countyLead = leadMarginPctLabel(countyRep, countyDem, countyTotal);
-            const countyDisplayName = countyDisplay || displayCountyName(countyNorm);
-            countyLine = `<div class="meta-subtle"><strong>${countyDisplayName} County:</strong> ${countyLead} (${countyTotal.toLocaleString()} votes)</div>`;
-          } else if (countyOther > 0 && (countyDem > 0 || countyRep > 0)) {
-            const countyTotalVotes = countyDem + countyRep + countyOther;
-            const countyLead = leadMarginPctLabel(countyRep, countyDem, countyTotalVotes);
-            const countyDisplayName = countyDisplay || displayCountyName(countyNorm);
-            countyLine = `<div class="meta-subtle"><strong>${countyDisplayName} County:</strong> ${countyLead} (${countyTotalVotes.toLocaleString()} votes)</div>`;
-          }
+        const prevShiftMap = vizShiftCache?.prevPrecinctMarginByNorm;
+        let prevSignedForShift = null;
+        if (prevShiftMap?.has(precinctNorm)) {
+          const prevShiftSigned = Number(prevShiftMap.get(precinctNorm));
+          if (Number.isFinite(prevShiftSigned)) prevSignedForShift = prevShiftSigned;
+        } else if (Number.isFinite(Number(prevSignedForFlip))) {
+          // Fallback when shift cache misses this precinct but generic previous data exists.
+          prevSignedForShift = Number(prevSignedForFlip);
         }
-      } catch (_) {}
-
-      const winnerCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const winnerParty = winnerCall.party === 'rep' ? 'rep' : (winnerCall.party === 'dem' ? 'dem' : 'tie');
-      const inner = `
-        <div class="hover-meta">${chips.join('')}</div>
-        ${flipLine}
-        ${buildVotehubResultsTooltip({
-          title,
-          subtitle,
-          demName: demCandidate,
-          repName: repCandidate,
-          otherName: 'Other',
-          demVotes,
-          repVotes,
-          otherVotes,
-          totalVotes: demVotes + repVotes + otherVotes,
-          winnerName: winnerCall.shortLabel,
-          winnerParty,
-          marginPct: winnerCall.marginPct,
-          winnerLineText: `${winnerCall.shortLabel} +${formatMarginPctForTooltip(winnerCall.marginPct)}%`,
-          prevSignedMarginPct: prevSignedForFlip,
-          currentSignedMarginPct: curSigned,
-          flipYearLabel: vizPrevCache?.prevYear || null,
-          districtType: 'Precinct',
-          showWinnerLine: true,
-          showShiftLine: false
-        })}
-        ${countyLine}
-      `;
-      const hoverKey = `precinct:${precinctNorm}|${contestValue}`;
-      const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-      const useCompact = isDesktopTooltipMode() && !pinnedShell;
-      const hoverTitle = buildTooltipTitleWithTier(title, tierMeta);
-
-      const totalVotes = demVotes + repVotes + otherVotes;
-      const marginCall = winnerCall;
-      const tierLabel = tierMeta?.label || '';
-      const compactInner = `
-        <div class="tooltip-body desktop-collapsed">
-          <div class="tooltip-quickline">
-            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(marginCall.marginPct))}%</span>
-            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
-          </div>
-          ${flipLine}
-        </div>
-      `;
-
-      const actionHint = pinnedShell ? 'Pinned • tap Close to dismiss' : (isTouchInteractionMode() ? 'Tap to pin details' : 'Click to pin details');
-      const finalInner = `${useCompact ? compactInner : inner}${actionHint ? `<div class="tooltip-hint">${escapeHtml(actionHint)}</div>` : ''}`;
-
-      if (isDesktopTooltipMode() && !pinnedShell) {
-        desktopHoverExpandState = {
-          kind: 'precinct',
-          x: point.x,
-          y: point.y,
-          title: hoverTitle,
-          expandedInner: inner,
-          copyText: hoverKey
-        };
+        if (Number.isFinite(Number(prevSignedForShift))) {
+          shiftDelta = Number(curSigned) - Number(prevSignedForShift);
+          shiftClass = Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem');
+        }
       }
+      const inner = buildVotehubResultsTooltip({
+        title,
+        subtitle: 'Precinct',
+        demName: demCandidate,
+        repName: repCandidate,
+        otherName: 'Other',
+        demVotes,
+        repVotes,
+        otherVotes,
+        totalVotes,
+        winnerName,
+        winnerParty,
+        marginPct: Math.abs(curSigned),
+        winnerLineText: marginCall?.text || '',
+        prevSignedMarginPct: prevSignedForFlip,
+        currentSignedMarginPct: curSigned,
+        flipYearLabel: vizPrevCache?.prevYear || null,
+        districtType: 'Precinct',
+        showWinnerLine: true,
+        shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+        shiftToneClass: shiftClass,
+        shiftYearLabel: (vizShiftCache?.prevYear && vizShiftCache?.year) ? `${vizShiftCache.prevYear}→${vizShiftCache.year}` : '',
+        showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!vizShiftCache?.prevYear
+      });
+      const pinnedShell = !!tooltipPinned;
+      const copyText = (precinctNorm || title || '').toString().trim();
       showHoverTooltip(
         point.x,
         point.y,
-        buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        buildTooltipShell('', inner, { pinned: pinnedShell, showClose: pinnedShell, copyText }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText }
       );
       wireTooltipButtons();
+      const precinctMeta = { kind: 'precinct', county: countyName, precinct: title, precinctNorm, contestType, year: Number(year) };
+      const precinctCandidates = { demCandidate, repCandidate };
       setVoteCounterHoverState(
         `Hover: ${title}`,
         subtitle,
         demVotes,
         repVotes,
         otherVotes,
-        { demCandidate, repCandidate },
-        { kind: 'precinct', county: countyDisplay || countyName, precinct: title, contestType, year: Number(year) }
+        precinctCandidates,
+        precinctMeta
       );
+      if (pinSelection) {
+        pinVoteCounterState(
+          `Selected: ${title}`,
+          subtitle,
+          demVotes,
+          repVotes,
+          otherVotes,
+          precinctMeta,
+          precinctCandidates
+        );
+      }
     }
 
-    async function refreshHoverAtPointer() {
+    async function refreshHoverAtPointer({ forceTooltip = false } = {}) {
       if (!lastPointerPoint) return;
-      if (tooltipPinned) return;
+      if (tooltipPinned && !forceTooltip) return;
       if (isHoverRefreshSuppressed()) return;
 
       // If precinct overlay is enabled, prefer hovering precincts (dots or polygons) when present.
@@ -11720,10 +11751,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const layers = [];
         if (map.getLayer('precinct-dot')) layers.push('precinct-dot');
         if (map.getLayer('precinct-fill')) layers.push('precinct-fill');
+        if (map.getLayer('precinct-dot-missing')) layers.push('precinct-dot-missing');
         if (layers.length) {
           const pf = map.queryRenderedFeatures(lastPointerPoint, { layers });
           if (pf && pf.length) {
-            renderPrecinctHoverAtPoint(lastPointerPoint, pf[0]);
+            renderPrecinctHoverAtPoint(lastPointerPoint, pf[0], { forceTooltip });
             return;
           }
         }
@@ -11736,12 +11768,14 @@ document.addEventListener('DOMContentLoaded', function() {
           ? 'district-fill'
           : (currentView === 'state_house' ? 'state-house-fill' : 'state-senate-fill'));
       if (!map.getLayer(layerName)) {
+        if (tooltipPinned) return;
         clearHoverOutline();
         return;
       }
 
       const features = map.queryRenderedFeatures(lastPointerPoint, { layers: [layerName] });
       if (!features || !features.length) {
+        if (tooltipPinned) return;
         hideHoverTooltip();
         clearHoverOutline();
         clearVoteCounterHoverState();
@@ -11750,22 +11784,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const evt = { point: lastPointerPoint, features };
       if (layerName === 'county-fill') {
-        renderCountyHoverAtPoint(evt);
+        renderCountyHoverAtPoint(evt, { forceTooltip });
       } else if (layerName === 'district-fill') {
-        await renderDistrictHover(evt, 'congressional', 'Congressional District', ['DISTRICT', 'CD118FP', 'CD119FP', 'district_id', 'district', 'NAMELSAD']);
+        await renderDistrictHover(evt, 'congressional', 'Congressional District', ['DISTRICT', 'CD118FP', 'CD119FP', 'district_id', 'district', 'NAMELSAD'], { forceTooltip });
       } else if (layerName === 'state-house-fill') {
-        await renderDistrictHover(evt, 'state_house', 'State House District', ['DISTRICT', 'SLDLST', 'district_id', 'district', 'NAMELSAD']);
+        await renderDistrictHover(evt, 'state_house', 'State House District', ['DISTRICT', 'SLDLST', 'district_id', 'district', 'NAMELSAD'], { forceTooltip });
       } else if (layerName === 'state-senate-fill') {
-        await renderDistrictHover(evt, 'state_senate', 'State Senate District', ['DISTRICT', 'SLDUST', 'district_id', 'district', 'NAMELSAD']);
+        await renderDistrictHover(evt, 'state_senate', 'State Senate District', ['DISTRICT', 'SLDUST', 'district_id', 'district', 'NAMELSAD'], { forceTooltip });
       }
     }
 
-    function queueHoverRefresh() {
-      if (isTouchInteractionMode() && !tooltipPinned) return;
+    function queueHoverRefresh({ forceTooltip = false } = {}) {
+      if (isTouchInteractionMode() && !tooltipPinned && !forceTooltip) return;
       if (hoverRefreshRaf) return;
       hoverRefreshRaf = requestAnimationFrame(async () => {
         hoverRefreshRaf = null;
-        await refreshHoverAtPointer();
+        try {
+          if (precinctsEnabled && map && typeof map.isMoving === 'function' && map.isMoving()) return;
+        } catch (_) {}
+        await refreshHoverAtPointer({ forceTooltip });
       });
     }
 
@@ -11778,16 +11815,20 @@ document.addEventListener('DOMContentLoaded', function() {
       setDistrictHoverOutline(scope, districtNum);
 
       const contestValue = document.getElementById('contestSelect')?.value || '';
+      const _demoRow = getDistrictDemographics(scope, districtNum);
+      const _demoHTML = buildDemoHTML(_demoRow, scope, districtNum);
       if (!contestValue) {
-        const titleText = `${districtLabel} ${districtNum}`;
-        const hoverTitle = buildTooltipTitleWithTier(titleText);
         const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-        const copyText = titleText;
+        const copyText = `${districtLabel} ${districtNum} (Lines ${currentDistrictLinesYear})`;
         if (isDesktopTooltipMode()) {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(
+              `${districtLabel} ${districtNum}`,
+              _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">Select a contest to see results</div>',
+              { pinned: pinnedShell, copyText }
+            ),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11799,8 +11840,8 @@ document.addEventListener('DOMContentLoaded', function() {
           e.point.x,
           e.point.y,
           buildTooltipShell(
-            hoverTitle,
-            `<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;">${escapeHtml(startText)}</div>`,
+            `${districtLabel} ${districtNum}`,
+            `${_demoHTML}<div class="tooltip-kicker">Start</div><div style="color:rgba(226,232,240,0.92);font-weight:650;margin-top:6px;">${escapeHtml(startText)}</div>`,
             { pinned: pinnedShell, copyText }
           ),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
@@ -11826,15 +11867,17 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       if (!row) {
-        const titleText = `${districtLabel} ${districtNum}`;
-        const hoverTitle = buildTooltipTitleWithTier(titleText);
         const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-        const copyText = titleText;
+        const copyText = `${districtLabel} ${districtNum} (Lines ${currentDistrictLinesYear})`;
         if (isDesktopTooltipMode()) {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(
+              `${districtLabel} ${districtNum}`,
+              _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>',
+              { pinned: pinnedShell, copyText }
+            ),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11843,7 +11886,11 @@ document.addEventListener('DOMContentLoaded', function() {
         showHoverTooltip(
           e.point.x,
           e.point.y,
-          buildTooltipShell(hoverTitle, `<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          buildTooltipShell(
+            `${districtLabel} ${districtNum}`,
+            _demoHTML + '<div class="tooltip-kicker" style="margin-top:6px;">No data</div><div style="color:rgba(226,232,240,0.92);margin-top:6px;">No results for this contest.</div>',
+            { pinned: pinnedShell, copyText }
+          ),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
         );
         wireTooltipButtons();
@@ -11853,17 +11900,22 @@ document.addEventListener('DOMContentLoaded', function() {
       const demVotes = Number(row.dem_votes || 0);
       const repVotes = Number(row.rep_votes || 0);
       const otherVotes = Number(row.other_votes || 0);
-      const totalVotes = Number(row.total_votes || 0);
+      const totalVotesRaw = Number(row.total_votes);
+      const totalVotes = Number.isFinite(totalVotesRaw) && totalVotesRaw > 0
+        ? totalVotesRaw
+        : (demVotes + repVotes + otherVotes);
       if (totalVotes <= 0) {
-        const titleText = `${districtLabel} ${districtNum}`;
-        const hoverTitle = buildTooltipTitleWithTier(titleText);
         const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-        const copyText = titleText;
+        const copyText = `${districtLabel} ${districtNum} (Lines ${currentDistrictLinesYear})`;
         if (isDesktopTooltipMode()) {
           showHoverTooltip(
             e.point.x,
             e.point.y,
-            buildTooltipShell(hoverTitle, '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>', { pinned: pinnedShell, copyText }),
+            buildTooltipShell(
+              `${districtLabel} ${districtNum}`,
+              _demoHTML + '<div style="color:#94a3b8;margin-top:6px;">No data for this contest</div>',
+              { pinned: pinnedShell, copyText }
+            ),
             { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
           );
           wireTooltipButtons();
@@ -11872,7 +11924,11 @@ document.addEventListener('DOMContentLoaded', function() {
         showHoverTooltip(
           e.point.x,
           e.point.y,
-          buildTooltipShell(hoverTitle, `<div class="tooltip-kicker">Not available</div><div style="color:rgba(226,232,240,0.92);">No data for this contest</div>`, { pinned: pinnedShell, copyText }),
+          buildTooltipShell(
+            `${districtLabel} ${districtNum}`,
+            _demoHTML + '<div class="tooltip-kicker" style="margin-top:6px;">No data</div><div style="color:rgba(226,232,240,0.92);margin-top:6px;">No results for this contest.</div>',
+            { pinned: pinnedShell, copyText }
+          ),
           { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? 'pinned' : 'detail', copyText }
         );
         wireTooltipButtons();
@@ -11890,10 +11946,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       if (!demCandidate) demCandidate = getCandidateName(year, formatContestName(contestType, year), 'Democrat');
       if (!repCandidate) repCandidate = getCandidateName(year, formatContestName(contestType, year), 'Republican');
-      const subtitle = `${formatContestName(contestType, year)} ${year}`;
       setVoteCounterHoverState(
         `Hover: ${districtLabel} ${districtNum}`,
-        subtitle,
+        `${formatContestLabel(contestType, year)}`,
         demVotes,
         repVotes,
         otherVotes,
@@ -11902,12 +11957,6 @@ document.addEventListener('DOMContentLoaded', function() {
       );
 
       const signedMarginPct = ('margin_pct' in row) ? Number(row.margin_pct || 0) : signedMarginPctFromVotes(demVotes, repVotes, totalVotes);
-      const tierMeta = competitivenessTierMetaFromSignedMarginPct(signedMarginPct);
-      const winnerRaw = (row.winner || '').toString().toUpperCase();
-      const winner = winnerRaw.startsWith('REP') ? 'R' : (winnerRaw.startsWith('DEM') ? 'D' : (signedMarginPct > 0 ? 'R' : (signedMarginPct < 0 ? 'D' : 'T')));
-      const hoverTitle = buildTooltipTitleWithTier(`${districtLabel} ${districtNum}`, tierMeta);
-
-      const chips = [];
       let prevSignedForFlip = null;
       let prevYearForFlip = null;
       try {
@@ -11916,92 +11965,63 @@ document.addEventListener('DOMContentLoaded', function() {
         const prevResults = prevCached?.prevNode?.general?.results || null;
         if (prevResults) {
           const prevRow = prevResults[String(districtNum)] || prevResults[String(Number(districtNum))] || null;
-          if (prevRow) prevSignedForFlip = Number(prevRow.margin_pct || 0);
+          if (prevRow) {
+            const prevSignedRaw = Number(prevRow.margin_pct);
+            if (Number.isFinite(prevSignedRaw)) prevSignedForFlip = prevSignedRaw;
+          }
         }
       } catch (_) {}
-
-      if (currentVizMode === 'shift' && prevSignedForFlip !== null && prevYearForFlip) {
-        chips.push(shiftChipHTML(signedMarginPct - prevSignedForFlip, prevYearForFlip, Number(year)));
-      } else if (currentVizMode === 'shift') {
-        chips.push(shiftChipHTML(0, null, null));
-      } else {
-        chips.push(winnerChipHTML(winner));
-      }
-      chips.push(tierChipHTML(tierMeta));
-
-      if (prevSignedForFlip !== null) {
-        const flipChip = flipChipHTML(prevSignedForFlip, signedMarginPct);
-        if (flipChip) chips.push(flipChip);
-      }
-
-      const desc = getDistrictDescription(scope, districtNum);
-      const flipLine = (prevSignedForFlip !== null)
-        ? flipLineHTML(prevSignedForFlip, signedMarginPct, prevYearForFlip, Number(year))
-        : '';
-      const winnerCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate);
-      const winnerParty = winnerCall.party === 'rep' ? 'rep' : (winnerCall.party === 'dem' ? 'dem' : 'tie');
-      const classicInner = `
-        <div class="hover-meta">${chips.join('')}</div>
-        ${flipLine}
-        ${desc ? `<div style="margin-top:6px;font-size:12px;color:#94a3b8;"><strong style="color:#e2e8f0;">Area:</strong> ${desc}</div>` : ''}
-        ${buildVotehubResultsTooltip({
-          title: `${districtLabel} ${districtNum}`,
-          subtitle,
-          demName: demCandidate,
-          repName: repCandidate,
-          otherName: 'Other',
-          demVotes,
-          repVotes,
-          otherVotes,
-          totalVotes,
-          winnerName: winnerCall.shortLabel,
-          winnerParty,
-          marginPct: winnerCall.marginPct,
-          winnerLineText: `${winnerCall.shortLabel} +${formatMarginPctForTooltip(winnerCall.marginPct)}%`,
-          prevSignedMarginPct: prevSignedForFlip,
-          currentSignedMarginPct: signedMarginPct,
-          flipYearLabel: prevYearForFlip || null,
-          districtType: districtLabel,
-          showWinnerLine: true,
-          showShiftLine: false
-        })}
-      `;
-      const hoverKey = `district:${scope}:${districtNum}|${contestValue}`;
       const pinnedShell = !!(tooltipPinned || (forceTooltip && isTouchInteractionMode()));
-      const useCompact = isDesktopTooltipMode() && !pinnedShell;
-
-      const marginCall = winnerCall;
-      const tierLabel = tierMeta?.label || '';
-      const compactInner = `
-        <div class="tooltip-body desktop-collapsed">
-          <div class="tooltip-quickline">
-            <span class="${escapeHtml(marginCall.party)}">${escapeHtml(marginCall.shortLabel)} +${escapeHtml(formatMarginPctForTooltip(marginCall.marginPct))}%</span>
-            ${tierLabel ? `<span class="tier">${escapeHtml(tierLabel)}</span>` : ''}
-          </div>
-          ${flipLine}
-        </div>
-      `;
-
-      const actionHint = pinnedShell ? 'Pinned • tap Close to dismiss' : (isTouchInteractionMode() ? 'Tap to pin details' : 'Click to pin details');
-      const finalInner = `${useCompact ? compactInner : classicInner}${actionHint ? `<div class="tooltip-hint">${escapeHtml(actionHint)}</div>` : ''}`;
-
-      if (isDesktopTooltipMode() && !pinnedShell) {
-        desktopHoverExpandState = {
-          kind: 'district',
-          x: e.point.x,
-          y: e.point.y,
-          title: hoverTitle,
-          expandedInner: classicInner,
-          copyText: hoverKey
-        };
+      const subtitleByScope = scope === 'congressional'
+        ? 'Congressional District'
+        : (scope === 'state_senate' ? 'State Senate' : 'State House');
+      const districtTitle = scope === 'congressional'
+        ? `FL-${String(districtNum).padStart(2, '0')}`
+        : `${districtLabel} ${districtNum}`;
+      const winnerName = signedMarginPct > 0
+        ? shortCandidateLabel(repCandidate, 'Republican')
+        : (signedMarginPct < 0 ? shortCandidateLabel(demCandidate, 'Democratic') : 'Tie');
+      const winnerParty = signedMarginPct > 0 ? 'rep' : (signedMarginPct < 0 ? 'dem' : 'tie');
+      const marginCall = winnerMarginCall(repVotes, demVotes, totalVotes, repCandidate, demCandidate, signedMarginPct);
+      let shiftDelta = NaN;
+      let shiftClass = 'tie';
+      if (currentVizMode === 'shift' && Number.isFinite(Number(prevSignedForFlip)) && prevYearForFlip) {
+        shiftDelta = Number(signedMarginPct) - Number(prevSignedForFlip);
+        shiftClass = Math.abs(shiftDelta) < 0.01 ? 'tie' : (shiftDelta > 0 ? 'rep' : 'dem');
       }
+      const inner = buildVotehubResultsTooltip({
+        title: districtTitle,
+        subtitle: subtitleByScope,
+        demName: demCandidate,
+        repName: repCandidate,
+        otherName: 'Other',
+        demVotes,
+        repVotes,
+        otherVotes,
+        totalVotes,
+        winnerName,
+        winnerParty,
+        marginPct: Math.abs(signedMarginPct),
+        winnerLineText: marginCall?.text || '',
+        prevSignedMarginPct: prevSignedForFlip,
+        currentSignedMarginPct: signedMarginPct,
+        flipYearLabel: prevYearForFlip,
+        districtType: subtitleByScope,
+        showWinnerLine: true,
+        shiftLineText: Number.isFinite(shiftDelta) ? formatShiftLabel(shiftDelta) : '',
+        shiftToneClass: shiftClass,
+        shiftYearLabel: (prevYearForFlip && year) ? `${prevYearForFlip}→${year}` : '',
+        showShiftLine: currentVizMode === 'shift' && Number.isFinite(shiftDelta) && !!prevYearForFlip
+      });
+      const copyText = `${districtLabel} ${districtNum} (Lines ${currentDistrictLinesYear})`;
       showHoverTooltip(
         e.point.x,
         e.point.y,
-        buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        buildTooltipShell('', inner, { pinned: pinnedShell, showClose: pinnedShell, copyText }),
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText }
       );
       wireTooltipButtons();
+      try { markOnboardingSeen(); } catch (_) {}
     }
 
     // Placeholder function for 2000 VTD layers (will be implemented when data is available)
@@ -16920,5 +16940,6 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 </body>
 </html>
+
 
 
