@@ -7199,6 +7199,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let smartInsightsLastOverlayKey = '';
     let smartInsightsActiveCountySet = null; // Set<string countyNorm>
     let smartInsightsReasonsByCounty = null; // Map<string countyNorm, string[]>
+    let turnoutBivariateEnabled = false;
+    let overlayOpacityPreset = 'focus'; // reveal | balanced | focus
+    let currentCountyTurnoutTotals = {};
+    let currentDistrictTurnoutTotals = {};
+    let currentPrecinctTurnoutTotals = new Map();
     let viewportPrecinctStatsRaf = null;
     let lastViewportPrecinctStatsText = '';
 
@@ -7443,6 +7448,148 @@ document.addEventListener('DOMContentLoaded', function() {
       if (!rest.length) return countyBase;
       const tail = rest.join(' - ').trim();
       return tail ? `${countyBase} - ${tail}` : countyBase;
+    }
+
+    function hasActiveContestSelection() {
+      const contestKey = (document.getElementById('contestSelect')?.value || '').toString().trim();
+      return !!contestKey;
+    }
+
+    function quantile(sortedValues, p) {
+      if (!sortedValues || !sortedValues.length) return 0;
+      const idx = Math.min(sortedValues.length - 1, Math.max(0, Math.floor((sortedValues.length - 1) * p)));
+      return Number(sortedValues[idx] || 0);
+    }
+
+    function buildTurnoutOpacityMeta(totals) {
+      const values = (totals || [])
+        .map(v => Number(v || 0))
+        .filter(v => Number.isFinite(v) && v > 0)
+        .sort((a, b) => a - b);
+      if (!values.length) return null;
+      return {
+        q20: quantile(values, 0.20),
+        q40: quantile(values, 0.40),
+        q60: quantile(values, 0.60),
+        q80: quantile(values, 0.80)
+      };
+    }
+
+    function opacityFromTurnout(totalVotes, meta, baseOpacity) {
+      const t = Number(totalVotes || 0);
+      if (!meta || !Number.isFinite(t) || t <= 0) return baseOpacity;
+      if (t >= meta.q80) return Math.min(0.98, baseOpacity + 0.08);
+      if (t >= meta.q60) return Math.min(0.94, baseOpacity + 0.02);
+      if (t >= meta.q40) return Math.max(0.35, baseOpacity - 0.06);
+      if (t >= meta.q20) return Math.max(0.30, baseOpacity - 0.12);
+      return Math.max(0.24, baseOpacity - 0.18);
+    }
+
+    function buildCountyTurnoutOpacityExpression(baseOpacity) {
+      const entries = Object.entries(currentCountyTurnoutTotals || {});
+      if (!turnoutBivariateEnabled || !entries.length) return baseOpacity;
+      const meta = buildTurnoutOpacityMeta(entries.map(([, total]) => total));
+      if (!meta) return baseOpacity;
+      const expr = ['case'];
+      entries.forEach(([countyNorm, totalVotes]) => {
+        expr.push([
+          '==',
+          ['upcase', ['coalesce', ['get', 'NAME20'], ['get', 'CountyName'], ['get', 'COUNTYNAME'], ['get', 'county_nam'], ['get', 'NAME']]],
+          countyNorm
+        ]);
+        expr.push(opacityFromTurnout(totalVotes, meta, baseOpacity));
+      });
+      expr.push(Math.max(0.16, baseOpacity - 0.20));
+      return expr;
+    }
+
+    function buildDistrictTurnoutOpacityExpression(baseOpacity) {
+      const entries = Object.entries(currentDistrictTurnoutTotals || {});
+      if (!turnoutBivariateEnabled || !entries.length) return baseOpacity;
+      const meta = buildTurnoutOpacityMeta(entries.map(([, total]) => total));
+      if (!meta) return baseOpacity;
+      const expr = ['case'];
+      entries.forEach(([districtId, totalVotes]) => {
+        const districtNum = Number(districtId);
+        if (!Number.isFinite(districtNum)) return;
+        expr.push(['==', ['to-number', ['coalesce', ['get', 'DISTRICT'], ['get', 'CD118FP'], ['get', 'CD119FP'], ['get', 'SLDLST'], ['get', 'SLDUST'], ['get', 'district_id'], ['get', 'district']]], districtNum]);
+        expr.push(opacityFromTurnout(totalVotes, meta, baseOpacity));
+      });
+      expr.push(Math.max(0.18, baseOpacity - 0.20));
+      return expr;
+    }
+
+    function buildPrecinctTurnoutOpacityExpression(baseOpacity) {
+      if (!turnoutBivariateEnabled || !currentPrecinctTurnoutTotals || !currentPrecinctTurnoutTotals.size) return baseOpacity;
+      const entries = Array.from(currentPrecinctTurnoutTotals.entries());
+      const meta = buildTurnoutOpacityMeta(entries.map(([, total]) => total));
+      if (!meta) return baseOpacity;
+      const expr = ['case'];
+      entries.forEach(([precinctNorm, totalVotes]) => {
+        expr.push(['==', ['get', 'precinct_norm'], precinctNorm]);
+        expr.push(opacityFromTurnout(totalVotes, meta, baseOpacity));
+      });
+      expr.push(Math.max(0.20, baseOpacity - 0.18));
+      return expr;
+    }
+
+    function getOverlayOpacityPresetConfig() {
+      const preset = String(overlayOpacityPreset || 'reveal').toLowerCase();
+      const presets = {
+        reveal: { countyActive: 0.65, countyWithPrecinct: 0.11, district: 0.59, house: 0.65, senate: 0.64, precinctFill: 0.62, precinctDot: 0.80 },
+        balanced: { countyActive: 0.71, countyWithPrecinct: 0.13, district: 0.72, house: 0.72, senate: 0.73, precinctFill: 0.68, precinctDot: 0.84 },
+        focus: { countyActive: 0.90, countyWithPrecinct: 0.18, district: 0.76, house: 0.77, senate: 0.77, precinctFill: 0.76, precinctDot: 0.88 }
+      };
+      return presets[preset] || presets.reveal;
+    }
+
+    function applyLayerOpacityTuning() {
+      if (!map) return;
+      const preset = getOverlayOpacityPresetConfig();
+      const contestIsActive = hasActiveContestSelection();
+      const useTurnoutOpacity = turnoutBivariateEnabled && currentVizMode !== 'demographics';
+      const precinctsActuallyVisible = precinctsEnabled && map.getZoom() >= (CONFIG.precincts?.minZoom || 8.5);
+
+      let countyBaseOpacity = precinctsActuallyVisible ? preset.countyWithPrecinct : preset.countyActive;
+      let districtBaseOpacity = preset.district;
+      let houseBaseOpacity = preset.house;
+      let senateBaseOpacity = preset.senate;
+      let precinctFillBaseOpacity = preset.precinctFill;
+      let precinctDotBaseOpacity = preset.precinctDot;
+
+      if (!contestIsActive) {
+        countyBaseOpacity = precinctsActuallyVisible ? 0.04 : 0.08;
+        districtBaseOpacity = 0.10;
+        houseBaseOpacity = 0.10;
+        senateBaseOpacity = 0.10;
+        precinctFillBaseOpacity = 0.22;
+        precinctDotBaseOpacity = 0.62;
+      }
+
+      if (map.getLayer('county-fill')) {
+        const countyOpacity = useTurnoutOpacity && !precinctsActuallyVisible
+          ? buildCountyTurnoutOpacityExpression(countyBaseOpacity)
+          : countyBaseOpacity;
+        try { map.setPaintProperty('county-fill', 'fill-opacity', countyOpacity); } catch (_) {}
+      }
+      if (map.getLayer('district-fill')) {
+        try { map.setPaintProperty('district-fill', 'fill-opacity', useTurnoutOpacity ? buildDistrictTurnoutOpacityExpression(districtBaseOpacity) : districtBaseOpacity); } catch (_) {}
+      }
+      if (map.getLayer('state-house-fill')) {
+        try { map.setPaintProperty('state-house-fill', 'fill-opacity', useTurnoutOpacity ? buildDistrictTurnoutOpacityExpression(houseBaseOpacity) : houseBaseOpacity); } catch (_) {}
+      }
+      if (map.getLayer('state-senate-fill')) {
+        try { map.setPaintProperty('state-senate-fill', 'fill-opacity', useTurnoutOpacity ? buildDistrictTurnoutOpacityExpression(senateBaseOpacity) : senateBaseOpacity); } catch (_) {}
+      }
+      if (map.getLayer('precinct-fill')) {
+        try { map.setPaintProperty('precinct-fill', 'fill-opacity', useTurnoutOpacity ? buildPrecinctTurnoutOpacityExpression(precinctFillBaseOpacity) : precinctFillBaseOpacity); } catch (_) {}
+      }
+      if (map.getLayer('precinct-dot')) {
+        try {
+          map.setPaintProperty('precinct-dot', 'circle-opacity', precinctDotBaseOpacity);
+          if (map.getLayer('precinct-dot-missing')) map.setPaintProperty('precinct-dot-missing', 'circle-opacity', Math.min(1, precinctDotBaseOpacity + 0.03));
+        } catch (_) {}
+      }
     }
 
     function normalizePrecinctToken(value) {
@@ -13581,7 +13728,7 @@ document.addEventListener('DOMContentLoaded', function() {
               8.4, 2.9
             ],
             'circle-color': '#94a3b8',
-            'circle-opacity': 0.85,
+            'circle-opacity': 0.82,
             'circle-stroke-color': 'rgba(15,23,42,0.35)',
             'circle-stroke-width': 0.5
           }
@@ -13605,7 +13752,7 @@ document.addEventListener('DOMContentLoaded', function() {
               12, 4.8
             ],
             'circle-color': '#94a3b8',
-            'circle-opacity': 0.9,
+            'circle-opacity': 0.85,
             'circle-stroke-color': 'rgba(15,23,42,0.45)',
             'circle-stroke-width': 0.75
           }
@@ -16487,6 +16634,17 @@ document.addEventListener('DOMContentLoaded', function() {
         countyAgg[countyNorm][`${contestType}_total`] += totalVotes;
       });
       currentElectionResults = countyAgg;
+      currentCountyTurnoutTotals = {};
+      Object.keys(countyAgg).forEach(countyNorm => {
+        currentCountyTurnoutTotals[countyNorm] = Number(countyAgg[countyNorm][`${contestType}_total`] || 0);
+      });
+      currentPrecinctTurnoutTotals = new Map();
+      if (currentPrecinctResults && typeof currentPrecinctResults.forEach === 'function') {
+        currentPrecinctResults.forEach((row, precinctNorm) => {
+          currentPrecinctTurnoutTotals.set(String(precinctNorm || ''), Number(row?.[`${contestType}_total`] || 0));
+        });
+      }
+      currentDistrictTurnoutTotals = {};
 
       // Calculate statewide totals
       let statewidedemVotes = 0;
@@ -16739,6 +16897,7 @@ document.addEventListener('DOMContentLoaded', function() {
           map.setPaintProperty('precinct-dot', 'circle-color', exprPrecinct);
         }
       }
+      try { applyLayerOpacityTuning(); } catch (_) {}
   setStatewideContestTitle(`${formatContestName(contestType, year)} (${year})`);
       const historicNote = getHistoricOfficeReformNote(contestType);
       setStatus(`Applied contest: ${formatContestName(contestType, year)} ${year}${historicNote ? ` - ${historicNote}` : ''}`);
