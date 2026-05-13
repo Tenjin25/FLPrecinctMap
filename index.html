@@ -11472,7 +11472,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.point.x,
         e.point.y,
         buildTooltipShell(hoverTitle, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
       );
       wireTooltipButtons();
     }
@@ -11681,7 +11681,7 @@ document.addEventListener('DOMContentLoaded', function() {
         point.x,
         point.y,
         buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
       );
       wireTooltipButtons();
       setVoteCounterHoverState(
@@ -11984,7 +11984,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.point.x,
         e.point.y,
         buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
       );
       wireTooltipButtons();
     }
@@ -13038,7 +13038,7 @@ document.addEventListener('DOMContentLoaded', function() {
           // Keep the county layer for interactions/search, but don't paint a fill.
           // This lets precinct/block/district coloring read cleanly while still
           // showing county outlines.
-          paint: { 'fill-color': '#e2e8f0', 'fill-opacity': 0.35 } 
+          paint: { 'fill-color': '#d9e3ef', 'fill-opacity': 0.0 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'county-stroke', 
@@ -13194,6 +13194,112 @@ document.addEventListener('DOMContentLoaded', function() {
       return true;
     }
 
+    function buildVotehubResultsTooltip({
+      title,
+      subtitle,
+      demName,
+      repName,
+      otherName,
+      demVotes,
+      repVotes,
+      otherVotes,
+      totalVotes,
+      winnerName,
+      winnerParty,
+      marginPct,
+      winnerLineText,
+      prevSignedMarginPct,
+      currentSignedMarginPct,
+      flipYearLabel,
+      districtType,
+      showWinnerLine,
+      shiftLineText,
+      shiftToneClass,
+      shiftYearLabel,
+      showShiftLine
+    } = {}) {
+      const dVotes = Number(demVotes || 0);
+      const rVotes = Number(repVotes || 0);
+      const oVotes = Number(otherVotes || 0);
+      const total = dVotes + rVotes + oVotes;
+      const safeTotal = total > 0 ? total : 0;
+      const demPct = safeTotal > 0 ? (dVotes / safeTotal) * 100 : 0;
+      const repPct = safeTotal > 0 ? (rVotes / safeTotal) * 100 : 0;
+      const otherPct = safeTotal > 0 ? (oVotes / safeTotal) * 100 : 0;
+      const marginAbs = Math.abs(Number(marginPct) || 0);
+      const pctFormatter = (v) => Number(v || 0).toFixed(2);
+      const marginFormatter = (v) => {
+        if (typeof formatMarginPctForDisplay === 'function') return formatMarginPctForDisplay(v);
+        return formatVotehubPct(v, 2);
+      };
+      const normalizeCandidateLabel = (value, fallback) => {
+        const raw = (value || '').toString().trim();
+        const cleaned = typeof stripRunningMateName === 'function'
+          ? stripRunningMateName(raw)
+          : raw;
+        return cleaned || fallback;
+      };
+      const rows = [];
+      const demLabel = normalizeCandidateLabel(demName, 'Democratic');
+      const repLabel = normalizeCandidateLabel(repName, 'Republican');
+      const otherLabel = normalizeCandidateLabel(otherName, 'Other');
+
+      const candidateRows = [
+        { partyClass: 'rep', label: repLabel, votes: rVotes, pct: repPct },
+        { partyClass: 'dem', label: demLabel, votes: dVotes, pct: demPct }
+      ];
+      if (oVotes > 0) candidateRows.push({ partyClass: 'other', label: otherLabel, votes: oVotes, pct: otherPct });
+      candidateRows.sort((a, b) => (Number(b.votes || 0) - Number(a.votes || 0)));
+      candidateRows.forEach(row => {
+        rows.push(`<div class="vhr-row ${row.partyClass}"><span class="vhr-dot"></span><span class="vhr-name">${escapeHtml(row.label)}</span><span class="vhr-votes">${escapeHtml(formatVotehubVotes(row.votes))}</span><span class="vhr-pct">${escapeHtml(pctFormatter(row.pct))}%</span></div>`);
+      });
+
+      const winnerPartyKey = String(winnerParty || '').toLowerCase();
+      const winnerShort = winnerPartyKey === 'rep' ? 'Trump' : (winnerPartyKey === 'dem' ? 'Harris' : 'Tie');
+      const winnerText = normalizeCandidateLabel(winnerName || winnerShort, winnerShort || 'Tie');
+      const winnerToneClass = winnerPartyKey === 'rep' ? 'rep' : (winnerPartyKey === 'dem' ? 'dem' : 'tie');
+      const winnerDisplayText = (winnerLineText || '').toString().trim() || `${winnerText} +${marginFormatter(marginAbs)}%`;
+      const voteLeadStyle = winnerToneClass === 'rep'
+        ? 'font-size:12px;font-weight:800;opacity:0.96;color:#fecaca;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;'
+        : (winnerToneClass === 'dem'
+          ? 'font-size:12px;font-weight:800;opacity:0.96;color:#bfdbfe;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;'
+          : 'font-size:12px;font-weight:800;opacity:0.92;color:#e2e8f0;font-family:"JetBrains Mono","Consolas","SFMono-Regular",monospace;');
+      const winnerLine = showWinnerLine
+        ? `<div class="vhr-winner ${winnerToneClass}" style="display:flex;align-items:baseline;justify-content:space-between;gap:10px;"><span>${escapeHtml(winnerDisplayText)}</span><span class="vhr-raw-lead ${winnerToneClass}" style="${voteLeadStyle}">${escapeHtml(`${formatVotehubVotes(Math.abs(rVotes - dVotes))} votes`)}</span></div>`
+        : '';
+      const prevSigned = Number(prevSignedMarginPct);
+      const curSigned = Number(currentSignedMarginPct);
+      const flipMeta = (Number.isFinite(prevSigned) && Number.isFinite(curSigned))
+        ? flipInfo(prevSigned, curSigned)
+        : null;
+      const flipToneClass = (flipMeta && flipMeta.flipped)
+        ? (flipMeta.to === 'R' ? 'rep' : (flipMeta.to === 'D' ? 'dem' : 'tie'))
+        : 'tie';
+      const flipLabel = (flipMeta && flipMeta.flipped)
+        ? `Flipped ${flipMeta.from === 'R' ? 'R→D' : 'D→R'}${flipYearLabel ? ` since ${String(flipYearLabel)}` : ''}`
+        : '';
+      const flipLine = flipLabel ? `<div class="vhr-flip ${flipToneClass}">${escapeHtml(flipLabel)}</div>` : '';
+      const shiftTone = String(shiftToneClass || '').toLowerCase();
+      const shiftToneSafe = shiftTone === 'rep' ? 'rep' : (shiftTone === 'dem' ? 'dem' : 'tie');
+      const shiftText = String(shiftLineText || '').trim();
+      const shiftYears = String(shiftYearLabel || '').trim();
+      const shiftLine = (showShiftLine && shiftText)
+        ? `<div class="vhr-shift"><span class="vhr-shift-label">Shift${shiftYears ? ` (${escapeHtml(shiftYears)})` : ''}</span><span class="vhr-shift-value ${shiftToneSafe}">${escapeHtml(shiftText)}</span></div>`
+        : '';
+
+      return `
+        <div class="votehub-results-card">
+          <div class="vhr-title">${escapeHtml((title || '').toString())}</div>
+          ${(subtitle || districtType) ? `<div class="vhr-subtitle">${escapeHtml(String(subtitle || districtType || ''))}</div>` : ''}
+          ${winnerLine}
+          ${flipLine}
+          ${shiftLine}
+          ${rows.join('')}
+          <div class="vhr-total">Total votes: ${escapeHtml(formatVotehubVotes(safeTotal))}</div>
+        </div>
+      `.trim();
+    }
+
     function addPrecinctLayers() {
       if (!map.getSource('precincts') || map.getLayer('precinct-fill')) return;
       map.addLayer({
@@ -13202,7 +13308,7 @@ document.addEventListener('DOMContentLoaded', function() {
         source: 'precincts',
         minzoom: CONFIG.precincts?.minZoom || 8.5,
         layout: { visibility: 'none' },
-        paint: { 'fill-color': '#d1d5db', 'fill-opacity': 0.72 }
+        paint: { 'fill-color': '#d1d5db', 'fill-opacity': 0.62 }
       });
       map.addLayer({
         id: 'precinct-stroke',
@@ -13561,7 +13667,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'district-fill', 
           type: 'fill', 
           source: 'districts', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.84 } 
+          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.58 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'district-stroke', 
@@ -13667,7 +13773,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-house-fill', 
           type: 'fill', 
           source: 'state-house', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.81 } 
+          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.54 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-house-stroke', 
@@ -13771,7 +13877,7 @@ document.addEventListener('DOMContentLoaded', function() {
           id: 'state-senate-fill', 
           type: 'fill', 
           source: 'state-senate', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.8 } 
+          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.56 } 
         });
         addLayerWithOptionalSourceLayer({ 
           id: 'state-senate-stroke', 
@@ -16467,7 +16573,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // so precinct fills/dots remain visually primary.
       if (map.getLayer('county-fill')) {
         map.setPaintProperty('county-fill', 'fill-color', expr);
-        map.setPaintProperty('county-fill', 'fill-opacity', precinctsEnabled ? 0.10 : 0.82);
+        map.setPaintProperty('county-fill', 'fill-opacity', precinctsEnabled ? 0.11 : 0.90);
       }
 
       // Flip mode: outline flipped counties in red/blue (to-winner), leave others subtle.
