@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
   <style>
   /* Mobile Styles - Enhanced for touch and small screens */
   @media (max-width: 768px) {
     /* Make minimize buttons touch-friendly */
+    #sidebar-minimize-btn,
     #main-controls .controls-header #controls-minimize-btn,
     #legend-minimize-btn {
       position: absolute !important;
@@ -138,7 +139,7 @@
       left: 8px !important;
       right: 8px !important;
       top: auto !important;
-        bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px + var(--vote-counter-h, 0px) + 8px) !important;
+      bottom: calc(var(--safe-bottom, 0px) + var(--mobile-dock-h, 62px) + 24px + var(--vote-counter-h, 0px) + 8px) !important;
       max-width: none !important;
       width: auto !important;
       max-height: min(54vh, calc(100vh - 16px - var(--safe-top, 0px) - var(--safe-bottom, 0px) - var(--mobile-dock-h, 62px) - var(--vote-counter-h, 0px)));
@@ -178,59 +179,13 @@
     .spinner svg circle {
       animation: spinner-rotate 0.8s linear infinite;
     }
-    .district-lines-loading-hint {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      margin-top: 6px;
-      font-size: 11px;
-      color: #6b7280;
-    }
-    .district-lines-loading-hint.is-visible {
-      display: flex;
-    }
-  /* Colorblind mode legend readability.
-     Use dashed separators with palette-matched yellow/blue tones (not black). */
-  body.colorblind-mode .legend-spectrum .legend-segment.legend-color {
-    box-sizing: border-box;
-    border: 1px dashed rgba(100, 116, 139, 0.45) !important;
-    box-shadow: none !important;
+  /* Colorblind mode legend overrides.
+     Legend colors are remapped by JS (updateLegendColors); CSS here only reinforces readability. */
+  body.colorblind-mode .legend-color {
+    border: 2px dashed #111 !important;
   }
-  body.colorblind-mode .legend-spectrum.margins .legend-segment.legend-color:nth-child(-n+7) {
-    border-color: rgba(217, 119, 6, 0.75) !important;
-  }
-  body.colorblind-mode .legend-spectrum.margins .legend-segment.legend-color:nth-child(8) {
-    border-color: rgba(100, 116, 139, 0.6) !important;
-  }
-  body.colorblind-mode .legend-spectrum.margins .legend-segment.legend-color:nth-child(n+9) {
-    border-color: rgba(37, 99, 235, 0.75) !important;
-  }
-  body.colorblind-mode .legend-spectrum.shift .legend-segment.legend-color:nth-child(-n+3) {
-    border-color: rgba(37, 99, 235, 0.75) !important;
-  }
-  body.colorblind-mode .legend-spectrum.shift .legend-segment.legend-color:nth-child(4) {
-    border-color: rgba(100, 116, 139, 0.6) !important;
-  }
-  body.colorblind-mode .legend-spectrum.shift .legend-segment.legend-color:nth-child(n+5) {
-    border-color: rgba(217, 119, 6, 0.75) !important;
-  }
-  body.colorblind-mode .legend-swatch-card .legend-color {
-    border: 1px solid rgba(15, 23, 42, 0.55) !important;
-  }
-  body.colorblind-mode .legend-axis .rep,
-  body.colorblind-mode .legend-scale-caption .rep {
-    color: #b45309 !important;
-  }
-  body.colorblind-mode .legend-axis .dem,
-  body.colorblind-mode .legend-scale-caption .dem {
-    color: #1d4ed8 !important;
-  }
-
-  @media (min-width: 769px) {
-    .main-controls {
-      overflow: visible !important; /* Allows dropdowns to pop out of the container */
-      max-height: none !important;  /* Prevents the container from clipping its children */
-    }
+  body.colorblind-mode .legend-item {
+    font-weight: 700;
   }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -5869,7 +5824,8 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     display: inline-flex;
     align-items: center;
     width: fit-content;
-    padding: 4px 10px;
+    min-height: 28px;
+    padding: 0 10px;
     border-radius: 999px;
     background: rgba(15, 23, 42, 0.06);
     color: #334155;
@@ -5889,9 +5845,9 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     margin: 0;
     padding: 0 14px;
     border-radius: 999px;
-    background: linear-gradient(135deg, rgba(185, 28, 28, 0.96) 0%, rgba(29, 78, 216, 0.92) 100%);
+    background: var(--state-accent-gradient);
     border: 1px solid rgba(148, 163, 184, 0.18);
-    box-shadow: 0 14px 30px rgba(37, 99, 235, 0.16), 0 8px 22px rgba(185, 28, 28, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+    box-shadow: 0 14px 30px rgba(0, 76, 128, 0.2), 0 8px 22px rgba(217, 88, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.16);
     color: #f8fafc !important;
     font-size: 14px;
     font-weight: 800;
@@ -9127,8 +9083,6 @@ document.addEventListener('DOMContentLoaded', function() {
       if (typeof setDistrictLinesMode === 'function') {
         setDistrictLinesMode(2024).catch(() => {});
       }
-    };
-  }
     };
   }
 
@@ -15151,6 +15105,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     async function loadJSON(path) {
+      if (!path || !String(path).trim()) throw new Error('JSON path not configured');
       const requestPath = withCacheBuster(path);
       if (jsonInflightByPath.has(requestPath)) return jsonInflightByPath.get(requestPath);
       const p = atlasPerf(`json:${requestPath}`, async () => {
@@ -15167,6 +15122,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 	    async function loadCSV(path) {
+	      if (!path || !String(path).trim()) throw new Error('CSV path not configured');
 	      const requestPath = withCacheBuster(path);
 	      if (csvInflightByPath.has(requestPath)) return csvInflightByPath.get(requestPath);
 	      const p = atlasPerf(`csv:${requestPath}`, async () => {
@@ -15182,12 +15138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      }
 	    }
 
-	    const PRESIDENT_OPEN_ELECTIONS_CSV = {
-	      2000: withBase('./data/2000/20001107__nc__general__precinct.csv'),
-	      2004: withBase('./data/2004/20041102__nc__general__precinct.csv'),
-	      2012: withBase('./data/2012/20121106__nc__general__precinct.csv'),
-	      2008: withBase('./data/2008/20081104__nc__general__precinct.csv')
-	    };
+	    const PRESIDENT_OPEN_ELECTIONS_CSV = {};
 
 	    async function loadPresidentSliceFromOpenElectionsCSV(year) {
 	      const y = Number(year);
@@ -31017,37 +30968,51 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // Optional county demographics (DP1-derived) for sidebar/tooltips.
-      try {
-        countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
-      } catch (err) {
+      if (CONFIG.paths?.county_demographics) {
+        try {
+          countyDemographics = await loadJSON(CONFIG.paths.county_demographics);
+        } catch (err) {
+          countyDemographics = null;
+          console.warn('County demographics not loaded:', err?.message || err);
+        }
+      } else {
         countyDemographics = null;
-        console.warn('County demographics not loaded:', err?.message || err);
       }
 
       // Optional county population estimates (Census Vintage 2025) for county insight + trajectory confirmation.
-      try {
-        const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
-        const rows = parseCSV(countyPopulationEstimatesCSV);
-        const idx = buildCountyPopulationEstimateIndex(rows);
-        countyPopulationEstimatesByNorm = idx.byNorm;
-        countyPopulationEstimateStatewide = idx.statewide;
-      } catch (err) {
+      if (CONFIG.paths?.county_population_estimates) {
+        try {
+          const countyPopulationEstimatesCSV = await loadCSV(CONFIG.paths.county_population_estimates);
+          const rows = parseCSV(countyPopulationEstimatesCSV);
+          const idx = buildCountyPopulationEstimateIndex(rows);
+          countyPopulationEstimatesByNorm = idx.byNorm;
+          countyPopulationEstimateStatewide = idx.statewide;
+        } catch (err) {
+          countyPopulationEstimatesByNorm = null;
+          countyPopulationEstimateStatewide = null;
+          console.warn('County population estimates not loaded:', err?.message || err);
+        }
+      } else {
         countyPopulationEstimatesByNorm = null;
         countyPopulationEstimateStatewide = null;
-        console.warn('County population estimates not loaded:', err?.message || err);
       }
 
       // Optional precinct demographics (VAP by race from block aggregation).
-      try {
-        const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
-        const rows = parseCSV(precinctDemographicsCSV);
-        const idx = buildPrecinctDemographicsIndexes(rows);
-        precinctDemographicsByNorm = idx.byNorm;
-        precinctDemographicsByCountyCode = idx.byCountyCode;
-      } catch (err) {
+      if (CONFIG.paths?.precinct_demographics) {
+        try {
+          const precinctDemographicsCSV = await loadCSV(CONFIG.paths.precinct_demographics);
+          const rows = parseCSV(precinctDemographicsCSV);
+          const idx = buildPrecinctDemographicsIndexes(rows);
+          precinctDemographicsByNorm = idx.byNorm;
+          precinctDemographicsByCountyCode = idx.byCountyCode;
+        } catch (err) {
+          precinctDemographicsByNorm = null;
+          precinctDemographicsByCountyCode = null;
+          console.warn('Precinct demographics not loaded:', err?.message || err);
+        }
+      } else {
         precinctDemographicsByNorm = null;
         precinctDemographicsByCountyCode = null;
-        console.warn('Precinct demographics not loaded:', err?.message || err);
       }
 
       // Optional: preload RDH CVAP aggregates used for hover totals (non-blocking).
@@ -33194,6 +33159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
