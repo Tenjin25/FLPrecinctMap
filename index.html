@@ -7195,6 +7195,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastContestSliceMeta = null; // { contestType, year:number, rows:Array } for sidebar helpers
     // Session persistence was removed to avoid surprises on shared/low-memory machines.
     let contestSearchQuery = '';
+    let smartInsightsEnabled = false;
+    let smartInsightsLastOverlayKey = '';
+    let smartInsightsActiveCountySet = null; // Set<string countyNorm>
+    let smartInsightsReasonsByCounty = null; // Map<string countyNorm, string[]>
     let viewportPrecinctStatsRaf = null;
     let lastViewportPrecinctStatsText = '';
 
