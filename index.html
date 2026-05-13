@@ -9619,6 +9619,15 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="control-group" style="margin-bottom:10px;">
                 <span class="section-kicker">Map Layer</span>
                 <div class="view-toggle-row" style="display:flex;gap:6px;flex-wrap:wrap;">
+                  <button id="counties-view" class="view-toggle-btn active" onclick="setMapView('counties')">Counties</button>
+                  <button id="districts-view" class="view-toggle-btn" onclick="setMapView('districts')">Congress</button>
+                  <button id="state-house-view" class="view-toggle-btn" onclick="setMapView('state_house')">State House</button>
+                  <button id="state-senate-view" class="view-toggle-btn" onclick="setMapView('state_senate')">State Senate</button>
+                </div>
+            </div>
+            <div class="control-group" style="margin-bottom:10px;">
+                <span class="section-kicker">District Lines</span>
+                <div class="view-toggle-row" style="display:flex;gap:6px;flex-wrap:wrap;">
                   <button id="district-lines-2022" class="view-toggle-btn active" type="button">Current</button>
                   <button id="district-lines-2024" class="view-toggle-btn" type="button">Proposed</button>
                 </div>
@@ -25136,7 +25145,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       const download = document.createElement('a');
       download.href = dataUrl;
-      download.download = `nc-election-atlas-story-${snapshotStoryVariant}-${Date.now()}.png`;
+      download.download = `fl-election-atlas-story-${snapshotStoryVariant}-${Date.now()}.png`;
       document.body.appendChild(download);
       download.click();
       download.remove();
