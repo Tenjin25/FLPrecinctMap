@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <style>
@@ -9531,53 +9531,24 @@ document.addEventListener('DOMContentLoaded', function() {
                   <button class="desktop-fly-chip" type="button" data-search-example="Wake 01-14">Wake 01-14</button>
                 </div>
             </div>
-            <div class="control-group control-group-contest control-group-primary">
+            <div class="control-group control-group-contest">
                 <span class="section-kicker">Contest</span>
-                <div class="contest-select-wrap contest-select-wrap-primary">
-                  <select id="contestSelect" data-testid="contest-select" aria-label="Select contest">
+                <div class="contest-toolbar" style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                  <label>Tools:</label>
+                  <button id="accessibility-toggle" title="Accessibility: Color Blind Mode" style="background:#1f2937;color:#fff;border-radius:50%;width:32px;height:32px;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;">&#9855;</button>
+                  <button id="label-toggle" title="Toggle County Labels" style="background:#1f2937;color:#fff;border-radius:50%;width:32px;height:32px;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:14px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:bold;">Aa</button>
+                  <button id="precinct-toggle" title="Enable Precinct Overlay (Zoom 8.5+)" style="background:#065f46;color:#fff;border-radius:8px;height:32px;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.10);font-size:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:bold;padding:0 10px;">Precincts Off</button>
+                </div>
+                <div class="contest-search-wrap">
+                  <input id="contestSearch" type="search" placeholder="Search contests (e.g., President, Senate, 2008)..." autocomplete="off" spellcheck="false" />
+                </div>
+                <div class="contest-select-wrap">
+                  <select id="contestSelect">
                       <option value="">Select a Contest...</option>
                   </select>
                 </div>
-                <div class="contest-onboard-hint" id="contest-onboard-hint" role="note" hidden>
-                  <span class="contest-onboard-kicker">Start here</span>
-                  <span class="contest-onboard-copy" id="contest-onboard-copy">Choose a contest, then hover or tap a county. Click/tap to pin details.</span>
-                </div>
-                <div class="contest-loading-indicator" id="contest-loading-indicator" aria-live="polite" aria-atomic="true" hidden>Loading…</div>
-                <div class="model-inputs-inline" id="model-inputs-inline" role="note" hidden></div>
-                <div class="contest-search-wrap contest-search-wrap-secondary">
-                  <input id="contestSearch" type="search" placeholder="Search contests (e.g., President, Senate, 2008)..." autocomplete="off" spellcheck="false" data-testid="contest-search" aria-label="Search contests" />
-                </div>
-                <div class="contest-toolbar">
-                  <label>Quick tools</label>
-                  <div class="contest-tools-row">
-                    <button id="accessibility-toggle" title="Accessibility: Color Blind Mode" data-testid="tool-colorblind" aria-label="Toggle color blind mode" aria-pressed="false">&#9855;</button>
-                    <button id="label-toggle" title="Toggle County Labels" data-testid="tool-labels" aria-label="Toggle county labels" aria-pressed="true">Aa</button>
-                    <button id="precinct-toggle" title="Enable Precinct Overlay (Zoom 8.5+)" data-testid="tool-precinct-overlay" aria-label="Toggle precinct overlay" aria-pressed="false">Precincts Off</button>
-                    <button id="split-ticket-toggle" title="Overlay Governor over President to highlight split-ticket patterns" class="tool-chip-btn" type="button" data-testid="tool-split-ticket" aria-label="Toggle split ticket comparison" aria-pressed="false">Pres-Gov</button>
-                    <button id="snapshot-share-btn" title="Download 9:16 social snapshot" class="tool-chip-btn" type="button" data-testid="tool-snapshot" aria-label="Download story snapshot">Story Snapshot</button>
-                    <select id="snapshot-variant" title="Story snapshot layout variant" class="tool-chip-select" data-testid="snapshot-variant" aria-label="Story snapshot layout variant">
-                      <option value="balanced">Balanced</option>
-                      <option value="instagram">Instagram</option>
-                      <option value="tiktok">TikTok</option>
-                    </select>
-                    <button id="copy-link-btn" title="Copy shareable link for current map state" class="tool-chip-btn tool-chip-btn-ghost" type="button" data-testid="tool-copy-link" aria-label="Copy shareable map link">Copy Link</button>
-                    <button id="smart-insights-toggle" title="Smart Insights (Story Mode): highlight key counties to explore" class="tool-chip-btn tool-chip-btn-muted" type="button" data-testid="tool-smart-insights" aria-label="Toggle Smart Insights" aria-pressed="false">Smart Insights</button>
-                  </div>
-                  <div class="smart-insights-inline" id="smart-insights-inline" role="note" hidden>
-                    <span class="smart-insights-inline-copy">Highlights counties with close margins, big shifts, or notable growth.</span>
-                    <button type="button" class="smart-insights-inline-close" id="smart-insights-inline-close" aria-label="Dismiss Smart Insights explanation">Got it</button>
-                  </div>
-                  <details class="contest-tools-more" aria-label="More tools">
-                    <summary class="tool-chip-btn tool-chip-btn-muted" role="button">More</summary>
-                    <div class="contest-tools-row contest-tools-row-more">
-                      <button id="follow-hover-toggle" title="Auto-update hover tooltip while panning (mobile)" class="tool-chip-btn tool-chip-btn-muted" type="button" data-testid="tool-follow-hover" aria-label="Toggle auto hover while panning" aria-pressed="false">Auto Hover Off</button>
-                      <button id="gps-locate-btn" title="Find my precinct by GPS" class="tool-chip-btn" type="button" data-testid="tool-gps" aria-label="Find my precinct by GPS">Find My Precinct</button>
-                      <button id="reset-view-btn" title="Reset map camera and clear pinned focus" class="tool-chip-btn tool-chip-btn-muted" type="button" data-testid="tool-reset-view" aria-label="Reset map view">Reset View</button>
-                    </div>
-                  </details>
-                </div>
                 <div class="controls-panel-note">
-                  Start here: pick a contest, then click a county or district for the full story. Shortcuts: `P` precincts, `L` labels, `C` copy link.
+                  Tips: click a county or district for trends. Shortcuts: `P` precincts, `L` labels.
                 </div>
             </div>
             <div class="control-summary" id="control-summary">
@@ -9645,83 +9616,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <button class="viz-mode-btn" data-mode="demographics" type="button"><span>Demographics</span></button>
               </div>
             </div>
-            <details class="control-group control-group-scenario controls-disclosure" id="scenario-disclosure">
-              <summary class="controls-disclosure-summary">
-                <span class="section-kicker">What-if, model, overlays</span>
-                <span class="controls-disclosure-hint">Simple swing, baseline modeling controls, and map overlays</span>
-              </summary>
-              <div class="scenario-row">
-                <label for="scenario-scope">Scope</label>
-                <select id="scenario-scope" data-testid="scenario-scope" aria-label="Scenario scope">
-                  <option value="statewide">Statewide</option>
-                  <option value="wake">Wake County only</option>
-                </select>
-              </div>
-              <div class="scenario-row">
-                <label for="scenario-swing">What-if swing</label>
-                <input id="scenario-swing" type="range" min="-15" max="15" step="0.5" value="0" data-testid="scenario-swing" aria-label="Democratic swing percentage" />
-                <span class="scenario-value" id="scenario-swing-value">0.0%</span>
-                <div class="scenario-help">Direct shift for quick what-if testing. Positive is more Democratic, negative is more Republican.</div>
-              </div>
-              <div class="scenario-row scenario-row-actions">
-                <span></span>
-                <button id="scenario-reset-btn" class="tool-chip-btn tool-chip-btn-muted" type="button" data-testid="scenario-reset" aria-label="Reset scenario swing">Reset Swing</button>
-                <span></span>
-              </div>
-              <div class="scenario-row" id="model-preset-row" style="display:none;">
-                <label for="model-preset">Model preset</label>
-                <select id="model-preset" data-testid="model-preset" aria-label="Model tuning preset"></select>
-                <span class="scenario-value" aria-hidden="true"></span>
-                <div class="scenario-help">Preset bundles for baseline assumptions and county behavior.</div>
-              </div>
-              <div class="scenario-row" id="model-blend-row" style="display:none;">
-                <label for="model-blend" id="model-blend-label">History vs fundamentals</label>
-                <input id="model-blend" type="range" min="0" max="1" step="0.05" value="0.5" data-testid="model-blend" aria-label="Model blend weight" />
-                <span class="scenario-value" id="model-blend-value">50%</span>
-                <div class="scenario-help">Higher values lean on county historical behavior; lower values lean on statewide environment anchoring.</div>
-              </div>
-              <div class="scenario-row" id="model-turnout-row" style="display:none;">
-                <label for="model-turnout">Expected turnout</label>
-                <input id="model-turnout" type="range" min="0.35" max="0.85" step="0.025" value="0.575" data-testid="model-turnout" aria-label="Model turnout factor" />
-                <span class="scenario-value" id="model-turnout-value">57.5%</span>
-                <div class="scenario-help">Scales the turnout baseline before county redistribution.</div>
-              </div>
-              <div class="scenario-row" id="model-bonus-row" style="display:none;">
-                <label for="model-bonus">Candidate overperformance</label>
-                <input id="model-bonus" type="range" min="0" max="1.5" step="0.1" value="1" data-testid="model-bonus" aria-label="Model candidate bonus scale" />
-                <span class="scenario-value" id="model-bonus-value">1.0x</span>
-                <div class="scenario-help">Scales county-level overperformance effects (for example, Cooper crossover strength) with guardrails.</div>
-              </div>
-              <div class="scenario-row scenario-row-actions" id="model-reset-row" style="display:none;">
-                <span></span>
-                <button id="model-reset-btn" class="tool-chip-btn tool-chip-btn-muted" type="button" data-testid="model-reset" aria-label="Reset model tuning">Reset Model</button>
-                <span></span>
-              </div>
-              <div class="model-tuning-note" id="model-tuning-note" style="display:none;">
-                Model tuning only affects the synthetic 2026 modeled contests.
-              </div>
-              <div class="model-summary-card" id="model-summary-card" style="display:none;" aria-live="polite"></div>
-              <div class="scenario-row">
-                <label for="overlay-opacity-preset">Overlay</label>
-                <select id="overlay-opacity-preset" data-testid="overlay-preset" aria-label="Overlay opacity preset">
-                  <option value="reveal">Map Reveal</option>
-                  <option value="balanced">Balanced</option>
-                  <option value="focus">Data Focus</option>
-                </select>
-              </div>
-              <label class="scenario-toggle">
-                <input id="bivariate-opacity-toggle" type="checkbox" data-testid="turnout-bivariate-toggle" aria-label="Enable turnout intensity opacity mode" />
-                Turnout intensity opacity (bivariate)
-              </label>
-              <label class="scenario-toggle">
-                <input id="demographics-contrast-toggle" type="checkbox" data-testid="demographics-contrast-toggle" aria-label="Enable high contrast demographics colors" />
-                High contrast demographics
-              </label>
-              <div class="controls-panel-note">
-                Positive swing shifts margins toward Democrats. Negative values shift toward Republicans. Modeled 2026 Senate and Court entries inherit this swing.
-                <span id="modeled-context-badge" class="modeled-context-badge" style="display:none;">Modeled Scenario</span>
-              </div>
-            </details>
             <details class="control-group control-group-analytics controls-disclosure" id="analytics-disclosure">
               <summary class="controls-disclosure-summary">
                 <span class="section-kicker">Advanced analytics</span>
@@ -11000,211 +10894,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const BELLWETHER_COUNTY_MAX_AVG_ERR_PCT = 9; // avg abs error vs statewide margin across cycles
     const BELLWETHER_PRECINCT_MAX_ERR_PCT = 18;
     const BELLWETHER_PRECINCT_MAX_AVG_ERR_PCT = 12;
-    const MODELED_CONTEST_DEFINITIONS = {
-      'us_senate_model_2026': {
-        contestType: 'us_senate_model',
-        year: 2026,
-        displayName: 'US Senate Model',
-        optionLabel: 'US Senate (2026) model',
-        groupLabel: 'US Senate',
-       baseContestType: 'us_senate',
-       baseYear: 2022,
-       // Secondary Senate anchor: presidential-year Senate is a better same-environment reference than a pure midterm-only anchor.
-       // The weights below are applied inside the Senate anchor, before the (separate) climate blend.
-       secondaryBaseContestType: 'us_senate',
-       secondaryBaseYear: 2020,
-       senateAnchorSecondWeight: 0.34, // 0..1 share for 2020 inside the Senate anchor (rest is 2022)
-       climateContestType: 'president',
-       climateYear: 2024,
-        // Calibration refinement (2026-04): keep a Senate-first baseline (2022 + 2020) with a lighter climate blend,
-        // and tighter caps on county-specific ticket-splitting and "trend nudge" noise.
-        blendWeight: 0.72, // 0 => pure climate (2024 Pres), 1 => pure Senate anchors (2022 + 2020)
-        presidentialBaselineWeight: 0.60,
-        senateBaselineWeight: 0.40,
-        baselineRecentWeight: 0.60,
-        baselineSecondWeight: 0.25,
-        baselineLongRunWeight: 0.15,
-        baselineReliabilityMinVotes: 15000,
-        baselineReliabilityMaxVotes: 110000,
-        baselineReliabilityFloor: 0.41,
-        statewideRecenterStrength: 0.96,
-        countyBehaviorMode: 'balanced', // balanced | suburban_rebound | rural_surge | incumbent_friendly | volatile
-        ruralGopOverperformanceWeight: 0.15,
-        urbanDemElasticityWeight: 0.27,
-        anomalySwingClampPts: 12,
-        anomalyClampCounties: ['ROBESON', 'BLADEN', 'SCOTLAND'],
-        trendCarryoverWeight: 0.32,
-        senateResidualElasticityEnabled: false,
-        incumbentParty: 'DEM',
-        incumbentBoostPts: 1.4,
-        trendNudgeMaxPts: 0.55,
-        stableCountyBrakeMin: 0.44,
-        safeCountyBrakeMargin: 16,
-        // Optional county-cluster calibration (subtle by default): keep similar county archetypes
-        // behaving more consistently without changing any user-facing controls.
-        countyClusterCalibrationEnabled: true,
-        countyClusterCalibrationStrength: 0.58, // 0..1 (higher = stronger cluster-based adjustments)
-        // Federalization brake: very deep-partisan counties are less likely to sustain large crossover patterns.
-        federalizationBrakeMargin: 20,
-        federalizationDeepMargin: 34,
-        federalizationFloor: 0.62,
-        // Senate-first blend brake: in counties with durable Senate-vs-Pres divergence, reduce the share
-        // coming from the presidential climate baseline (capped).
-        distinctSenateBehaviorPresWeightBrakeMax: 0.10,
-        // Realignment adjustment: subtle rightward nudge in counties with unusually strong federal movement
-        // across 2016/2020/2024 and Senate 2020->2022 (capped + reliability-scaled).
-        realignmentAdjustmentEnabled: true,
-        realignmentAdjustmentMinTrendPts: 1.25,
-        realignmentAdjustmentMaxTrendPts: 9.0,
-        realignmentAdjustmentSlope: 0.055, // pts of adjustment per 1 pt of rightward trend
-        realignmentAdjustmentMaxPts: 0.45,
-        // Turnout sensitivity: in edge-case realigning counties, coalition mix makes turnout matter more.
-        realignmentTurnoutEnabled: true,
-        realignmentTurnoutMinTrendPts: 1.0,
-        realignmentTurnoutMaxTrendPts: 9.0,
-        realignmentTurnoutSensitivityMaxMul: 0.16, // keep turnout as coalition sensitivity, not a second realignment engine
-        // Positive deviation brake: avoid modeling a generic R Senate candidate as outrunning the presidential
-        // baseline in counties that are still strongly realigning at the federal level.
-        positiveDeviationRealignmentBrakeEnabled: true,
-        positiveDeviationRealignmentFloor: 0.50, // strongest brake keeps ~50% of positive (R>Pres) deviation
-        positiveDeviationRealignmentMinTrendPts: 1.0,
-        positiveDeviationRealignmentMaxTrendPts: 9.0,
-        // Guardrail: in strongly realigning counties, a generic R Senate candidate usually shouldn't outrun
-        // the top-of-ticket presidential baseline (Trump) by much. Apply as an upper-bound (more R) cap.
-        senateMaxOverPresEnabled: true,
-        senateMaxOverPresCapPts: 0.60, // generic Senate-over-Pres ceiling
-        senateMaxOverPresMinRealignmentScore: 0.30,
-        senateMaxOverPresRobesonCapPts: 0.20,
-        senateMaxOverPresBladenCapPts: 0.30,
-        senateMaxOverPresScotlandCapPts: 0.35,
-        // Outlier-cycle brake: shrink unusual 2022 Senate behavior toward the blended climate baseline.
-        senateDeviationOutlierBrakeEnabled: true,
-        senateDeviationHistoryYears: [2016, 2020, 2022],
-        // Candidate effect: Cooper tends to run slightly stronger than a generic D (or 2022 Senate baseline)
-        // in some county types; apply as a small additional D swing on top of the blended baseline.
-        candidateBonusEnabled: true,
-        candidateBonusMode: 'historical', // historical | heuristic
-        candidateBonusContestType: 'governor', // for historical mode
-        candidateBonusBaselineContestType: 'president', // for historical mode
-        candidateBonusYears: [2016, 2020], // Cooper vs President same-year delta
-        candidateBonusWeight: 0.27,
-        candidateBonusMinTwoPartyVotes: 20000, // damp small counties
-        candidateBonusFallbackToHeuristic: true,
-        candidateBonusConsistencyBoost: 1.20,
-        candidateBonusConsistencyFloor: 0.60,
-        // Separate "durable crossover" vs "Cooper-personal" components so the bonus does not over-travel
-        // into highly federalized counties or one-cycle outliers.
-        candidateBonusDurableShare: 0.70,
-        candidateBonusPersonalShare: 0.30,
-        candidateBonusDurableRealignmentFloor: 0.68,
-        candidateBonusDurableAdjustmentFadeMax: 0.22,
-        candidateBonusDurableGeneralFloor: 0.28,
-        candidateBonusDurablePriorityFloor: 0.42,
-        candidateBonusPersonalFederalizationFloor: 0.24,
-        // Realignment-aware fade: treat more of the bonus as non-portable in counties that have continued
-        // moving right at the federal level (e.g., Robeson, Bladen).
-        candidateBonusPersonalRealignmentEnabled: true,
-        candidateBonusPersonalRealignmentFloor: 0.34, // strongest fade keeps more personal portability than prior over-fade
-        candidateBonusPersonalRealignmentMinTrendPts: 0.9,
-        candidateBonusPersonalRealignmentMaxTrendPts: 8.5,
-        // Distinct class: former-D federal counties that realigned hard in the Trump era.
-        // Keep crossover reduced but not eliminated; treat as durable+personal blend, not a hard anomaly override.
-        // Scotland replaces Hoke in this residual ancestral-D/federalized class.
-        candidateBonusRealignedFormerDemFederalCounties: ['ROBESON', 'BLADEN', 'SCOTLAND'],
-        candidateBonusRealignedFormerDemFederalDurableFloor: 0.44,
-        candidateBonusRealignedFormerDemFederalPersonalFloor: 0.18,
-        candidateBonusRealignedFormerDemFederalPersonalCapPts: 0.26,
-        candidateBonusRealignedFormerDemFederalResidualFloor: 0.30,
-        candidateBonusRepeatableCrossoverBoost: 1.10,
-        candidateBonusSuburbanDurableBoost: 1.08,
-        candidateBonusFederalizationBrakeMargin: 22,
-        candidateBonusFederalizationDeepRedMargin: 34,
-        candidateBonusFederalizationFloor: 0.15,
-        candidateBonusDeepRedCapPts: 0.32,
-        candidateBonusMaxPts: 0.78,
-        candidateBonusBasePts: 0.25,
-        candidateBonusUrbanPts: 0.15,
-        candidateBonusMetroPts: 0.30,
-        candidateBonusCoastalPts: 0.25,
-        candidateBonusTransitionPts: 0.32,
-        candidateBonusSlowPts: 0.30,
-        candidateBonusInstitutionalExtraPts: 0.15,
-        candidateBonusDistrictPts: 0.28,
-        // District-layer calibration: keep modeled district views aligned with county-mode tuning,
-        // but allow chamber-specific damping so legislative layers do not overreact.
-        districtBlendMulCongressional: 0.93,
-        districtBlendMulStateHouse: 0.91,
-        districtBlendMulStateSenate: 0.92,
-        districtDeviationBrakeCongressional: 0.90,
-        districtDeviationBrakeStateHouse: 0.88,
-        districtDeviationBrakeStateSenate: 0.89,
-        candidateBonusDistrictPtsCongressional: 0.26,
-        candidateBonusDistrictPtsStateHouse: 0.24,
-        candidateBonusDistrictPtsStateSenate: 0.25,
-        // Context-sensitive anchor rebalance (keeps 2022 primary, but trims its weight in unstable counties).
-        unstableCountyBlendShiftMax: 0.14,
-        unstableCountySecondAnchorBoost: 0.12,
-        // Dedicated blend for realigned former-D federal counties (RBS class).
-        realignedFormerDemFederalClimateWeight: 0.52,
-        realignedFormerDemFederalSenate2022Weight: 0.28,
-        realignedFormerDemFederalSenate2020Weight: 0.20,
-        realignedFormerDemFederalBlendWeight: 0.38,
-        // Turnout responsiveness by county class.
-        turnoutUrbanCoreMul: 1.09,
-        turnoutBlackBeltMul: 1.07,
-        turnoutSuburbanMul: 1.035,
-        turnoutGrowthExurbMul: 1.005,
-        turnoutRealigningRuralMul: 1.02,
-        turnoutRuralWhiteMul: 0.96,
-        turnoutContestType: 'president',
-        turnoutYear: 2024,
-        turnoutFactor: 0.575,
-        demCandidate: 'Roy Cooper',
-        repCandidate: 'Michael Whatley',
-        description: 'Blended 2022 + 2020 Senate anchors with a 2024 President climate and calibrated 55–60% turnout'
-      },
-      'nc_supreme_court_model_2026': {
-        contestType: 'nc_supreme_court_model',
-        year: 2026,
-        displayName: 'Florida Supreme Court Model',
-        optionLabel: 'Florida Supreme Court Associate Justice Seat 1 (2026) Model',
-        groupLabel: 'Florida Supreme Court',
-        // Judicial models are intentionally more cautious: more shrinkage, less trend chasing,
-        // and extra brakes for counties that behave noisily in downballot races.
-        judicialModel: true,
-        baseContestType: 'nc_supreme_court_associate_justice_seat_05',
-        baseYear: 2022,
-        // Optional base blend: Seat 03 + Seat 05, then blend with the 2024 cycle.
-        baseMixContestType: 'nc_supreme_court_associate_justice_seat_03',
-        baseMixYear: 2022,
-        baseMixWeight: 0.5, // 0 => pure baseMix (Seat 03), 1 => pure base (Seat 05)
-        climateContestType: 'nc_supreme_court_associate_justice_seat_06',
-        climateYear: 2024,
-        // Calibration refinement (2026-04): judicial baselines can be noisier; keep more shrinkage to climate,
-        // apply stronger statewide recentering, and cap trend nudges.
-        blendWeight: 0.60, // roughly 40% climate + 30% Seat05 + 30% Seat03 (after baseMix)
-        statewideRecenterStrength: 0.95,
-        trendNudgeMaxPts: 0.45,
-        baselineReliabilityMinVotes: 15000,
-        baselineReliabilityMaxVotes: 110000,
-        baselineReliabilityFloor: 0.42,
-        stableCountyBrakeMin: 0.46,
-        safeCountyBrakeMargin: 16,
-        judicialNoiseSeatSplitBrakeEnabled: true,
-        judicialNoiseShareBrakeEnabled: true,
-        // Partisan anchor floor (minority share): prevents one noisy judicial cycle from overdriving crossover behavior.
-        partisanAnchorEnabled: true,
-        partisanAnchorWeight: 0.20, // 0.15..0.25 recommended; judicial blend should still dominate
-        partisanAnchorContestType: 'president',
-        partisanAnchorYear: 2024,
-        partisanAnchorSecondContestType: 'us_senate',
-        partisanAnchorSecondYear: 2022,
-        partisanAnchorSecondWeight: 0.40, // 0..1 share for the second anchor inside the partisan floor
-        demCandidate: 'Anita Earls',
-        repCandidate: 'Sarah Stevens',
-        description: 'Blend of 2022 Seat 03 + Seat 05 with a 2024 climate adjustment'
-      }
-    };
+    const MODELED_CONTEST_DEFINITIONS = {};
     const MODELED_SENATE_UX_FEATURES = {
       historicalAnalogEnabled: true,
       baselineVsCandidateEnabled: true
@@ -11240,52 +10930,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let lastAriaAnnouncement = '';
     let lastAriaAnnouncedAt = 0;
     const MODELED_CONTEST_OVERRIDES_BY_TYPE = new Map(); // contestType -> { blendWeight?, turnoutFactor?, bonusScale? }
-    const MODELED_CONTEST_PRESETS_BY_TYPE = {
-      us_senate_model: [
-        { id: 'default', label: 'Default', kind: 'reset' },
-        {
-          id: 'neutral_baseline',
-          label: 'Neutral',
-          // Keep in sync with the calibrated default.
-          patch: { blendWeight: 0.72, turnoutFactor: 0.575, bonusScale: 1.0, countyBehaviorMode: 'balanced' }
-        },
-        {
-          id: 'dem_high_turnout',
-          label: 'High turnout D',
-          patch: { blendWeight: 0.70, turnoutFactor: 0.66, bonusScale: 1.15, countyBehaviorMode: 'suburban_rebound' }
-        },
-        {
-          id: 'rep_high_turnout',
-          label: 'High turnout R',
-          patch: { blendWeight: 0.82, turnoutFactor: 0.69, bonusScale: 0.82, countyBehaviorMode: 'rural_surge' }
-        },
-        {
-          id: 'suburban_rebound',
-          label: 'Suburban rebound',
-          patch: { blendWeight: 0.72, turnoutFactor: 0.60, bonusScale: 1.12, countyBehaviorMode: 'suburban_rebound' }
-        },
-        {
-          id: 'rural_surge',
-          label: 'Rural surge',
-          patch: { blendWeight: 0.86, turnoutFactor: 0.63, bonusScale: 0.88, countyBehaviorMode: 'rural_surge' }
-        },
-        {
-          id: 'incumbent_friendly',
-          label: 'Incumbent-friendly',
-          patch: { blendWeight: 0.78, turnoutFactor: 0.585, bonusScale: 1.22, countyBehaviorMode: 'incumbent_friendly' }
-        },
-        {
-          id: 'volatile_low_confidence',
-          label: 'Volatile / low-confidence',
-          patch: { blendWeight: 0.62, turnoutFactor: 0.57, bonusScale: 1.05, countyBehaviorMode: 'volatile', uncertaintyBoost: 1.2 }
-        }
-      ],
-      nc_supreme_court_model: [
-        { id: 'default', label: 'Default', kind: 'reset' },
-        { id: 'more_climate', label: 'More climate', patch: { blendWeight: 0.45 } },
-        { id: 'more_base', label: 'More base', patch: { blendWeight: 0.75 } }
-      ]
-    };
+    const MODELED_CONTEST_PRESETS_BY_TYPE = {};
 
     let urlStateRestoreInFlight = false;
     let saveUIStateTimer = null;
@@ -33168,6 +32813,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
 
 
 
