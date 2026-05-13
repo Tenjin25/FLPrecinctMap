@@ -11472,7 +11472,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.point.x,
         e.point.y,
         buildTooltipShell(hoverTitle, inner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
     }
@@ -11681,7 +11681,7 @@ document.addEventListener('DOMContentLoaded', function() {
         point.x,
         point.y,
         buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
       setVoteCounterHoverState(
@@ -11984,7 +11984,7 @@ document.addEventListener('DOMContentLoaded', function() {
         e.point.x,
         e.point.y,
         buildTooltipShell(hoverTitle, finalInner, { pinned: pinnedShell, showClose: pinnedShell, copyText: hoverKey }),
-        { force: !!forceTooltip, pinned: pinnedShell, context: 'votehub-results', copyText: hoverKey }
+        { force: !!forceTooltip, pinned: pinnedShell, context: pinnedShell ? '' : 'preview', copyText: hoverKey }
       );
       wireTooltipButtons();
     }
@@ -16799,4 +16799,5 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 </body>
 </html>
+
 
