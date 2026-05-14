@@ -8485,7 +8485,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
       return {
         cls: shift > 0 ? 'rep' : 'dem',
-        text: `Shift: ${shift > 0 ? 'R' : 'D'}+${Math.abs(shift).toFixed(2)} since ${prevYear}`
+        text: `Shift: ${shift > 0 ? 'R+' : 'D+'}${Math.abs(shift).toFixed(2)} since ${prevYear}`
       };
     }
 
@@ -10433,10 +10433,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatShiftLabel(delta) {
       const n = Number(delta || 0);
-      if (!Number.isFinite(n)) return '0.00%';
+      if (!Number.isFinite(n)) return 'R+0.00';
       const abs = Math.abs(n);
-      const sign = n > 0 ? '+' : (n < 0 ? '-' : '');
-      return `${sign}${toFixedForDisplay(abs, abs < 1 ? 2 : 1)}%`;
+      const party = n > 0 ? 'R' : (n < 0 ? 'D' : 'R');
+      return `${party}+${toFixedForDisplay(abs, 2)}`;
     }
 
     function marginPctValue(repVotes, demVotes, totalVotes) {
