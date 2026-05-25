@@ -89,3 +89,21 @@ Outputs include:
 - `data/derived/fl_precinct_results_<year>_long.csv`
 - `data/derived/fl_precinct_results_all_years_long.csv`
 - `data/derived/fl_precinct_legislative_all_years_long.csv`
+
+## DRA-Backed VTD2010 Crosswalk Pipeline
+
+Use `build_fl_vtd10_crosswalks_from_dra.py` to rebuild the Florida VTD2010 crosswalks with DRA's corrected Florida 2020 VTD GeoJSON from GitHub plus Census/TIGER geometry downloads.
+
+```powershell
+& .\.venv\Scripts\python.exe scripts/build_fl_vtd10_crosswalks_from_dra.py
+```
+
+This writes:
+- `data/crosswalks/vtd10_to_vtd20_weights.csv`
+- `data/crosswalks/vtd10_to_congressional_current_weights.csv`
+- `data/crosswalks/vtd10_to_congressional_proposed_weights.csv`
+- `data/crosswalks/vtd10_to_state_house_weights.csv`
+- `data/crosswalks/vtd10_to_state_senate_weights.csv`
+
+Cached source downloads are stored under:
+- `data/sources/dra_vtd_data/`

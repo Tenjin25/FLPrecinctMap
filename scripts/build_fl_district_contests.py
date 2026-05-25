@@ -150,6 +150,78 @@ class YearScopeWeights:
     year: int
     weights: pd.DataFrame  # columns: pct_key, district, weight
     source: str
+    key_format: str = "pct_std"
+
+
+VEST_COUNTY_ABBREV_TO_FIPS = {
+    "ALA": "001",
+    "BAK": "003",
+    "BAY": "005",
+    "BRA": "007",
+    "BRE": "009",
+    "BRO": "011",
+    "CAL": "013",
+    "CHA": "015",
+    "CIT": "017",
+    "CLA": "019",
+    "CLL": "021",
+    "CLM": "023",
+    "DAD": "025",
+    "DES": "027",
+    "DIX": "029",
+    "DUV": "031",
+    "ESC": "033",
+    "FLA": "035",
+    "FRA": "037",
+    "GAD": "039",
+    "GIL": "041",
+    "GLA": "043",
+    "GUL": "045",
+    "HAM": "047",
+    "HAR": "049",
+    "HEN": "051",
+    "HER": "053",
+    "HIG": "055",
+    "HIL": "057",
+    "HOL": "059",
+    "IND": "061",
+    "JAC": "063",
+    "JEF": "065",
+    "LAF": "067",
+    "LAK": "069",
+    "LEE": "071",
+    "LEO": "073",
+    "LEV": "075",
+    "LIB": "077",
+    "MAD": "079",
+    "MAN": "081",
+    "MON": "087",
+    "MRN": "083",
+    "MRT": "085",
+    "NAS": "089",
+    "OKA": "091",
+    "OKE": "093",
+    "ORA": "095",
+    "OSC": "097",
+    "PAL": "099",
+    "PAS": "101",
+    "PIN": "103",
+    "POL": "105",
+    "PUT": "107",
+    "SAN": "113",
+    "SAR": "115",
+    "SEM": "117",
+    "STJ": "109",
+    "STL": "111",
+    "SUM": "119",
+    "SUW": "121",
+    "TAY": "123",
+    "UNI": "125",
+    "VOL": "127",
+    "WAK": "129",
+    "WAL": "131",
+    "WAS": "133",
+}
 
 
 def normalize_text(value: object) -> str:
@@ -214,6 +286,34 @@ def build_pct_key(
     )
 
 
+def normalize_vest_precinct_to_vtd_suffix(value: object) -> str:
+    raw = "" if value is None else str(value).strip().upper()
+    if not raw:
+        return ""
+    if re.fullmatch(r"\d+\.0", raw):
+        raw = raw.split(".", 1)[0]
+    elif re.fullmatch(r"\d+\.\d+", raw):
+        left, right = raw.split(".", 1)
+        raw = f"{left}{right}"
+    raw = raw.replace(".", "")
+    if not re.fullmatch(r"\d+", raw):
+        return ""
+    return raw.zfill(4)
+
+
+def build_vtd10_geoid_key(df: pd.DataFrame) -> pd.Series:
+    county_col = detect_column(df, COUNTY_COL_ALIASES)
+    precinct_col = detect_column(df, PRECINCT_COL_ALIASES)
+    if not county_col or not precinct_col:
+        raise ValueError("Could not find COUNTY/PRECINCT columns needed to derive VTD10 GEOIDs.")
+    county_fips = df[county_col].map(lambda v: VEST_COUNTY_ABBREV_TO_FIPS.get(normalize_text(v), ""))
+    precinct_suffix = df[precinct_col].map(normalize_vest_precinct_to_vtd_suffix)
+    return ("12" + county_fips + precinct_suffix).where(
+        (county_fips != "") & (precinct_suffix != ""),
+        "",
+    )
+
+
 def parse_contest_columns(columns: Iterable[str]) -> Dict[str, Dict[str, List[str]]]:
     contest_cols: Dict[str, Dict[str, List[str]]] = {}
     for col in columns:
@@ -264,6 +364,7 @@ def infer_candidate_name(
 def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dict[str, object]]:
     gdf = gpd.read_file(shapefile_path, ignore_geometry=True)
     pct_key = build_pct_key(gdf)
+    vtd10_key = build_vtd10_geoid_key(gdf)
     contest_cols = parse_contest_columns(gdf.columns)
     out: Dict[str, Dict[str, object]] = {}
     for contest, colset in contest_cols.items():
@@ -278,6 +379,7 @@ def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dic
                 {
                     "year": year,
                     "pct_key": pct_key,
+                    "pct_key_vtd10": vtd10_key,
                     "contest_type": contest,
                     "dem_votes": dem,
                     "rep_votes": rep,
@@ -321,7 +423,13 @@ def load_precinct_weight_csv(
     weight_col = detect_column(df, WEIGHT_COL_ALIASES) or "weight"
     if weight_col not in df.columns:
         df[weight_col] = 1.0
-    pct_key = build_pct_key(df)
+    key_format = "pct_std"
+    from_vtd10_col = detect_column(df, ["from_vtd10", "FROM_VTD10", "vtd10", "VTD10", "GEOID10"])
+    if from_vtd10_col:
+        pct_key = df[from_vtd10_col].map(normalize_text)
+        key_format = "vtd10_geoid"
+    else:
+        pct_key = build_pct_key(df)
     w = pd.DataFrame(
         {
             "pct_key": pct_key,
@@ -329,7 +437,13 @@ def load_precinct_weight_csv(
             "weight": df[weight_col],
         }
     )
-    return YearScopeWeights(scope=scope, year=year, weights=normalize_weights(w), source=f"precinct_weights:{csv_path.name}")
+    return YearScopeWeights(
+        scope=scope,
+        year=year,
+        weights=normalize_weights(w),
+        source=f"precinct_weights:{csv_path.name}",
+        key_format=key_format,
+    )
 
 
 def read_nhgis_2010_to_2020_crosswalk(path: Path) -> pd.DataFrame:
@@ -744,7 +858,9 @@ def main() -> int:
                 continue
 
             for contest_type, contest_payload in sorted(precinct_contests.items()):
-                contest_rows = contest_payload["rows"]
+                contest_rows = contest_payload["rows"].copy()
+                if weights_obj.key_format == "vtd10_geoid" and "pct_key_vtd10" in contest_rows.columns:
+                    contest_rows["pct_key"] = contest_rows["pct_key_vtd10"]
                 dem_candidate = str(contest_payload.get("dem_candidate") or "Democrat")
                 rep_candidate = str(contest_payload.get("rep_candidate") or "Republican")
                 agg, coverage_pct = aggregate_contest_to_district(contest_rows, weights_obj.weights)
