@@ -9983,11 +9983,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="section-kicker">District Lines</span>
                 <div class="view-toggle-row" style="display:flex;gap:6px;flex-wrap:wrap;">
                   <button id="district-lines-2022" class="view-toggle-btn active" type="button" data-testid="lines-2022" aria-label="Use 2022 district lines" aria-pressed="true">2022 Lines</button>
-                  <button id="district-lines-2024" class="view-toggle-btn" type="button" data-testid="lines-2024" aria-label="Use 2024 district lines" aria-pressed="false">2024 Lines</button>
-                  
+                  <button id="district-lines-2024" class="view-toggle-btn" type="button" data-testid="lines-2024" aria-label="Use proposed congressional district lines" aria-pressed="false">Proposed</button>
+                  <button id="district-lines-2026" class="view-toggle-btn" type="button" data-testid="lines-2026" aria-label="Use 2026 congressional district lines" aria-pressed="false">2026 Lines</button>
                 </div>
                 <div style="margin-top:4px;font-size:11px;color:#6b7280;">
-                  Switch between Florida's current and proposed district boundaries.
+                  Congressional plans only: compare 2022, proposed, and 2026 boundaries.
                 </div>
                 <div id="district-lines-loading-hint" class="district-lines-loading-hint" aria-live="polite" aria-atomic="true"></div>
             </div>
@@ -10434,6 +10434,7 @@ document.addEventListener('DOMContentLoaded', function() {
         districts: withBase('./data/fl_congressional_districts.geojson'),
         districts_2022: withBase('./data/fl_congressional_districts.geojson'),
         districts_2024: withBase('./data/fl_proposed_congressional_districts.geojson'),
+        districts_2026: withBase('./data/fl_proposed_congressional_districts.geojson'),
         state_house: withBase('./data/fl_state_house_districts.geojson'),
         state_house_2022: withBase('./data/fl_state_house_districts.geojson'),
         state_house_2024: withBase('./data/fl_state_house_districts.geojson'),
@@ -10446,11 +10447,13 @@ document.addEventListener('DOMContentLoaded', function() {
         district_contests_dir: withBase('./data/district_contests'),
         district_contests_dirs: {
           '2022': withBase('./data/district_contests'),
-          '2024': withBase('./data/district_contests')
+          '2024': withBase('./data/district_contests_proposed_congressional'),
+          '2026': withBase('./data/district_contests_proposed_congressional')
         },
         district_contests_dirs_by_scope: {
           congressional: {
-            '2024': withBase('./data/district_contests_proposed_congressional')
+            '2024': withBase('./data/district_contests_proposed_congressional'),
+            '2026': withBase('./data/district_contests_proposed_congressional')
           }
         },
         districts_info: withBase('./data/fl_congressional_districts.csv'),
@@ -10462,6 +10465,7 @@ document.addEventListener('DOMContentLoaded', function() {
           congressional: withBase('./data/crosswalks/vtd10_to_congressional_current_weights.csv'),
           congressional_2022: withBase('./data/crosswalks/vtd10_to_congressional_current_weights.csv'),
           congressional_2024: withBase('./data/crosswalks/vtd10_to_congressional_proposed_weights.csv'),
+          congressional_2026: withBase('./data/crosswalks/vtd10_to_congressional_proposed_weights.csv'),
           state_house_2022: withBase('./data/crosswalks/vtd10_to_state_house_weights.csv'),
           state_house_2024: withBase('./data/crosswalks/vtd10_to_state_house_weights.csv'),
           state_senate_2022: withBase('./data/crosswalks/vtd10_to_state_senate_weights.csv'),
@@ -12342,12 +12346,12 @@ document.addEventListener('DOMContentLoaded', function() {
           try { updateFiltersActiveChip(); } catch (_) {}
         }
 
-        if (state.lines !== null && state.lines !== normalizeDistrictLinesYear(currentDistrictLinesYear)) {
-          await setDistrictLinesMode(state.lines);
-        }
-
         if (state.view && state.view !== currentView) {
           await setMapView(state.view);
+        }
+
+        if (state.lines !== null && state.lines !== normalizeDistrictLinesYear(currentDistrictLinesYear)) {
+          await setDistrictLinesMode(state.lines);
         }
 
         if (state.mode && state.mode !== currentVizMode) {
@@ -12423,15 +12427,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function getDistrictLinesLabel(linesYear = currentDistrictLinesYear) {
-      return `${normalizeDistrictLinesYear(linesYear)} lines`;
+      const year = normalizeDistrictLinesYear(linesYear);
+      return year === 2024 ? 'Proposed lines' : `${year} lines`;
     }
 
     function getActiveDistrictContestsDir(linesYear = currentDistrictLinesYear, scope = null) {
       const y = normalizeDistrictLinesYear(linesYear);
       const dirs = CONFIG.paths?.district_contests_dirs || {};
       const scopeKey = (scope || '').toString().trim();
+      const scopedDir = CONFIG.paths?.district_contests_dirs_by_scope?.[scopeKey]?.[String(y)];
+      if (scopedDir) return scopedDir;
       if (y === 2026 && scopeKey && scopeKey !== 'congressional') {
-        return dirs['2024'] || dirs[String(y)] || CONFIG.paths.district_contests_dir;
+        return dirs['2022'] || CONFIG.paths.district_contests_dir;
       }
       return dirs[String(y)] || CONFIG.paths.district_contests_dir;
     }
@@ -13097,7 +13104,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const btn2022 = document.getElementById('district-lines-2022');
       const btn2024 = document.getElementById('district-lines-2024');
       const btn2026 = document.getElementById('district-lines-2026');
-      const showLinesControls = currentView !== 'counties';
+      const showLinesControls = currentView === 'districts';
       if (group) group.style.display = showLinesControls ? '' : 'none';
       if (btn2022) {
         btn2022.classList.toggle('active', y === 2022);
@@ -13108,8 +13115,6 @@ document.addEventListener('DOMContentLoaded', function() {
         btn2024.setAttribute('aria-pressed', y === 2024 ? 'true' : 'false');
       }
       if (btn2026) {
-        const congressView = currentView === 'districts';
-        btn2026.style.display = congressView ? '' : 'none';
         btn2026.classList.toggle('active', y === 2026);
         btn2026.setAttribute('aria-pressed', y === 2026 ? 'true' : 'false');
       }
@@ -13190,7 +13195,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function shouldWarnDistrictLinesLoad(linesYear) {
       const y = normalizeDistrictLinesYear(linesYear);
       if (y !== 2024 && y !== 2026) return false;
-      const scopes = ['congressional', 'state_house', 'state_senate'];
+      const scopes = ['congressional'];
       return scopes.some(scope => {
         const path = getDistrictGeometryPath(scope, y);
         if (!path) return false;
@@ -13201,6 +13206,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function setDistrictLinesMode(linesYear) {
       const nextYear = normalizeDistrictLinesYear(linesYear);
+      if (currentView === 'state_house' || currentView === 'state_senate') {
+        currentDistrictLinesYear = 2022;
+        updateDistrictLinesToggleUI();
+        setStatus('Florida legislative views use one district plan.');
+        return;
+      }
       if (nextYear === 2026 && currentView !== 'districts') {
         setStatus('2026 lines are only available for congressional view.');
         updateDistrictLinesToggleUI();
@@ -21141,8 +21152,9 @@ document.addEventListener('DOMContentLoaded', function() {
         candidates: voteCounterPinned.candidates ? { ...voteCounterPinned.candidates } : null
       } : null;
       currentView = view;
-      if (currentView !== 'districts' && normalizeDistrictLinesYear(currentDistrictLinesYear) === 2026) {
-        currentDistrictLinesYear = 2024;
+      if (currentView === 'state_house' || currentView === 'state_senate') {
+        // Florida legislative maps use one canonical plan; line-year controls are congressional-only.
+        currentDistrictLinesYear = 2022;
       }
       updateDistrictLinesToggleUI();
       
