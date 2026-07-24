@@ -53,6 +53,10 @@ OFFICE_TO_CONTEST = {
 }
 
 CANDIDATE_CODE_TO_NAME = {
+    "G12PREDOBA": "Barack Obama",
+    "G12PRERROM": "Mitt Romney",
+    "G12USSDNEL": "Bill Nelson",
+    "G12USSRMAC": "Connie Mack",
     "G14AGRDHAM": "Thaddeus Hamilton",
     "G14AGRRPUT": "Adam Putnam",
     "G14ATGDSHE": "George Sheldon",
