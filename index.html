@@ -11274,6 +11274,24 @@ document.addEventListener('DOMContentLoaded', function() {
       return Array.from(years).filter(Number.isFinite).sort((a, b) => a - b);
     }
 
+    // US Senate: Florida (and other two-seat states) elect a seat every 2 years, but each
+    // individual seat repeats on a 6-year cadence. Flip/shift/delta comparisons must stay
+    // on the same seat (e.g. 2024↔2018), never the other seat (2024↔2022).
+    function isSameUsSenateSeatYear(yearA, yearB) {
+      const a = Number(yearA);
+      const b = Number(yearB);
+      if (!Number.isFinite(a) || !Number.isFinite(b)) return false;
+      return ((a - b) % 6) === 0;
+    }
+
+    function filterSameUsSenateSeatYears(seatYear, years) {
+      const y = Number(seatYear);
+      if (!Number.isFinite(y)) return [];
+      return (Array.isArray(years) ? years : [])
+        .map(Number)
+        .filter(v => Number.isFinite(v) && isSameUsSenateSeatYear(y, v));
+    }
+
     function getPriorContestYearsFromAvailableYears(contestType, year, availableYears) {
       const ct = String(contestType || '').trim();
       const y = Number(year);
@@ -11282,9 +11300,8 @@ document.addEventListener('DOMContentLoaded', function() {
         : [];
       if (!years.length) return [];
       if (ct === 'us_senate') {
-        const preferred = [y - 6, y - 12].filter(v => years.includes(v));
-        const rest = years.filter(v => !preferred.includes(v)).sort((a, b) => b - a);
-        return [...preferred, ...rest];
+        // Same seat only — never fall back to the other class's midterm/presidential race.
+        return filterSameUsSenateSeatYears(y, years).sort((a, b) => b - a);
       }
       // Judicial seat families (named + seat_NN): always prefer the most recent
       // earlier election for that seat. Preferring y-8/y-16 first caused counties
@@ -11305,15 +11322,13 @@ document.addEventListener('DOMContentLoaded', function() {
       if (Array.isArray(years) && years.length) {
         let prev = null;
         // Prefer "last time this contest was up" when a seat/class cadence exists.
-        // US Senate is a special case: same seat repeats every 6 years, but NC has two seats so
-        // the generic series contains elections every 2 years. For deltas, prefer same-class y-6
-        // when available, otherwise fall back to the most recent earlier year.
+        // US Senate: same seat repeats every 6 years; never compare across the other seat.
         // Judicial seat families use the most recent earlier family year (not a fixed y-8 gap).
         if (ct === 'us_senate') {
-          const preferred = y - 6;
-          if (years.includes(preferred)) prev = preferred;
+          const sameSeat = filterSameUsSenateSeatYears(y, years).filter(v => v < y).sort((a, b) => b - a);
+          if (sameSeat.length) prev = sameSeat[0];
         }
-        if (!Number.isFinite(prev)) {
+        if (!Number.isFinite(prev) && ct !== 'us_senate') {
           for (let i = years.length - 1; i >= 0; i -= 1) {
             const yr = Number(years[i]);
             if (!Number.isFinite(yr)) continue;
@@ -11326,10 +11341,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
           let prevPrev = null;
           if (ct === 'us_senate') {
-            const preferredPrev = prev - 6;
-            if (years.includes(preferredPrev)) prevPrev = preferredPrev;
+            const sameSeat = filterSameUsSenateSeatYears(y, years).filter(v => v < prev).sort((a, b) => b - a);
+            if (sameSeat.length) prevPrev = sameSeat[0];
           }
-          if (!Number.isFinite(prevPrev)) {
+          if (!Number.isFinite(prevPrev) && ct !== 'us_senate') {
             for (let i = years.length - 1; i >= 0; i -= 1) {
               const yr = Number(years[i]);
               if (!Number.isFinite(yr)) continue;
@@ -11342,6 +11357,8 @@ document.addEventListener('DOMContentLoaded', function() {
       }
 
       // Fallback: assume 4-year cycles (presidential / many statewide) and let strict loaders decide availability.
+      // US Senate must not use this — a 4-year gap is a different seat.
+      if (ct === 'us_senate') return [];
       const fy = y - 4;
       if (fy >= 2000) pairs.push({ from: fy, to: y });
       if (pairs.length < (Number(maxPairs) || 0) && fy - 4 >= 2000) pairs.push({ from: fy - 4, to: fy });
@@ -14942,7 +14959,18 @@ document.addEventListener('DOMContentLoaded', function() {
         return 0;
       };
       const annotated = sortedSeries.map((item, idx) => {
-        const prev = idx > 0 ? sortedSeries[idx - 1] : null;
+        // For US Senate, pair each point with the previous same-seat election only.
+        let prev = null;
+        if (contestTypeHint === 'us_senate') {
+          for (let i = idx - 1; i >= 0; i -= 1) {
+            if (isSameUsSenateSeatYear(item?.year, sortedSeries[i]?.year)) {
+              prev = sortedSeries[i];
+              break;
+            }
+          }
+        } else if (idx > 0) {
+          prev = sortedSeries[idx - 1];
+        }
         const totalVotes = Number(item.total_votes || 0);
         const demVotes = Number(item.dem_votes || 0);
         const repVotes = Number(item.rep_votes || 0);
@@ -15290,6 +15318,15 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         } else {
           series = await getStatewideTrendSeries(contestType);
+        }
+
+        // US Senate trends/flips must stay on the selected seat's 6-year series
+        // (e.g. 2024/2018/2012), not alternate with the other seat (2022/2016/...).
+        if (String(contestType || '').trim() === 'us_senate' && Number.isFinite(Number(year))) {
+          const seatYear = Number(year);
+          series = (Array.isArray(series) ? series : []).filter(item =>
+            isSameUsSenateSeatYear(seatYear, item?.year)
+          );
         }
 
         if ((meta.kind === 'county' || meta.kind === 'precinct') && meta.county) {
