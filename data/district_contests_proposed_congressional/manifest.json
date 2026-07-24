@@ -111,6 +111,18 @@
     {
       "scope": "congressional",
       "contest_type": "president",
+      "year": 2012,
+      "file": "congressional_president_2012.json",
+      "rows": 28,
+      "dem_total": 4237744,
+      "rep_total": 4163447,
+      "other_total": 90550,
+      "major_party_contested": true,
+      "match_coverage_pct": 100.0
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "president",
       "year": 2016,
       "file": "congressional_president_2016.json",
       "rows": 28,
@@ -177,6 +189,18 @@
       "dem_total": 3085697,
       "rep_total": 4528811,
       "other_total": 0,
+      "major_party_contested": true,
+      "match_coverage_pct": 100.0
+    },
+    {
+      "scope": "congressional",
+      "contest_type": "us_senate",
+      "year": 2012,
+      "file": "congressional_us_senate_2012.json",
+      "rows": 28,
+      "dem_total": 4523440,
+      "rep_total": 3458267,
+      "other_total": 216521,
       "major_party_contested": true,
       "match_coverage_pct": 100.0
     },

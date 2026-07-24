@@ -10389,8 +10389,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-24-contest-labels-cfo';
-    const APP_BUILD_ID = '2026-07-24-contest-labels-cfo';
+    const DATA_CACHE_BUSTER = '2026-07-24-cd2026-lines-2012';
+    const APP_BUILD_ID = '2026-07-24-cd2026-lines-2012';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10426,7 +10426,7 @@ document.addEventListener('DOMContentLoaded', function() {
         districts: withBase('./data/fl_congressional_districts.geojson'),
         districts_2022: withBase('./data/fl_congressional_districts.geojson'),
         districts_2024: withBase('./data/fl_proposed_congressional_districts.geojson'),
-        districts_2026: withBase('./data/fl_proposed_congressional_districts.geojson'),
+        districts_2026: withBase('./data/fl_congressional_districts_2026.geojson'),
         state_house: withBase('./data/fl_state_house_districts.geojson'),
         state_house_2022: withBase('./data/fl_state_house_districts.geojson'),
         state_house_2024: withBase('./data/fl_state_house_districts.geojson'),
@@ -10440,12 +10440,12 @@ document.addEventListener('DOMContentLoaded', function() {
         district_contests_dirs: {
           '2022': withBase('./data/district_contests'),
           '2024': withBase('./data/district_contests_proposed_congressional'),
-          '2026': withBase('./data/district_contests_proposed_congressional')
+          '2026': withBase('./data/district_contests_2026_congressional')
         },
         district_contests_dirs_by_scope: {
           congressional: {
             '2024': withBase('./data/district_contests_proposed_congressional'),
-            '2026': withBase('./data/district_contests_proposed_congressional')
+            '2026': withBase('./data/district_contests_2026_congressional')
           }
         },
         districts_info: withBase('./data/fl_congressional_districts.csv'),
@@ -10457,7 +10457,7 @@ document.addEventListener('DOMContentLoaded', function() {
           congressional: withBase('./data/crosswalks/vtd10_to_congressional_current_weights.csv'),
           congressional_2022: withBase('./data/crosswalks/vtd10_to_congressional_current_weights.csv'),
           congressional_2024: withBase('./data/crosswalks/vtd10_to_congressional_proposed_weights.csv'),
-          congressional_2026: withBase('./data/crosswalks/vtd10_to_congressional_proposed_weights.csv'),
+          congressional_2026: withBase('./data/crosswalks/vtd10_to_congressional_2026_weights.csv'),
           state_house_2022: withBase('./data/crosswalks/vtd10_to_state_house_weights.csv'),
           state_house_2024: withBase('./data/crosswalks/vtd10_to_state_house_weights.csv'),
           state_senate_2022: withBase('./data/crosswalks/vtd10_to_state_senate_weights.csv'),
