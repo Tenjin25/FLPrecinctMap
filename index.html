@@ -10389,8 +10389,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-24-senate-seat-gov2010';
-    const APP_BUILD_ID = '2026-07-24-senate-seat-gov2010';
+    const DATA_CACHE_BUSTER = '2026-07-24-contest-labels-cfo';
+    const APP_BUILD_ID = '2026-07-24-contest-labels-cfo';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -20063,7 +20063,11 @@ document.addEventListener('DOMContentLoaded', function() {
         'Attorney General': 'attorney_general',
         'Commissioner of Agriculture': 'agriculture_commissioner',
         'Secretary of State': 'secretary_of_state',
-        'Treasurer': 'treasurer'
+        'Chief Financial Officer': 'treasurer',
+        'Chief Financial Officer (CFO)': 'treasurer',
+        'Treasurer': 'treasurer',
+        'Comptroller': 'comptroller',
+        'Commissioner of Education': 'commissioner_of_education'
       };
       
       const officeType = officeMap[office] || office.toLowerCase().replace(/ /g, '_');
@@ -20137,6 +20141,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	      if (modeledDef?.displayName) {
 	        return modeledDef.displayName;
 	      }
+	      // Florida Cabinet reform (Revision 8, 1998): first CFO election was Nov 2002;
+	      // the office took effect Jan 7, 2003. Earlier races were still Treasurer.
+	      if (contestType === 'treasurer') {
+	        const y = Number(year);
+	        if (Number.isFinite(y) && y > 0 && y < 2002) return 'Treasurer';
+	        return 'Chief Financial Officer';
+	      }
 	      const nameMap = {
 	        'president': 'President of the United States',
 	        'governor': 'Governor',
@@ -20149,7 +20160,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'superintendent': 'Superintendent of Public Instruction',
 	        'agriculture_commissioner': 'Commissioner of Agriculture',
 	        'secretary_of_state': 'Secretary of State',
-	        'treasurer': 'Treasurer',
+	        'comptroller': 'Comptroller',
+	        'commissioner_of_education': 'Commissioner of Education',
 	        'us_house': 'US House',
 	        'state_senate': 'State Senate',
 	        'state_house': 'State House'
@@ -20228,6 +20240,34 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	      return nameMap[contestType] || contestType.toUpperCase();
 	    }
+
+    // Offices abolished as elected Cabinet posts by Revision 8 (effective Jan 7, 2003).
+    // Treasurer is year-aware (becomes CFO) and is not marked historic for modern races.
+    const HISTORIC_FL_OFFICE_REFORM_NOTE = 'Historic elected office. Florida Cabinet reform was approved on November 3, 1998 (Amendment 8 / Revision 8) and took effect on January 7, 2003.';
+    const HISTORIC_FL_OFFICE_TYPES = new Set([
+      'secretary_of_state',
+      'comptroller',
+      'commissioner_of_education'
+    ]);
+
+    function getHistoricOfficeReformNote(contestType) {
+      return HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim()) ? HISTORIC_FL_OFFICE_REFORM_NOTE : '';
+    }
+
+    function formatContestOptionLabel(contestType, year, groupLabel, isJudicial = false) {
+      const y = Number(year);
+      const base = isJudicial
+        ? formatContestName(contestType, year)
+        : (String(groupLabel || '').trim() || formatContestName(contestType, year));
+      // For Treasurer/CFO, prefer the year-aware office title over a shared group label.
+      const useYearAwareTitle = String(contestType || '').trim() === 'treasurer' || HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim());
+      const title = useYearAwareTitle ? formatContestName(contestType, year) : base;
+      const yearSuffix = Number.isFinite(y) && y > 0 ? ` (${y})` : '';
+      if (HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim())) {
+        return `${title}${yearSuffix} [Historic]`;
+      }
+      return `${title}${yearSuffix}`;
+    }
 
     function formatContestLabel(contestType, year) {
       const modeledDef = getModeledContestDefinition(contestType, year) || getModeledContestDefinitionByType(contestType);
@@ -20459,16 +20499,21 @@ document.addEventListener('DOMContentLoaded', function() {
 	        contestYearPairs[contestType].add(year);
 	      });
 
-	      function groupLabelForContestType(contestType) {
+	      function groupLabelForContestType(contestType, year = NaN) {
           const modeledDef = getModeledContestDefinitionByType(contestType);
           if (modeledDef?.groupLabel) return modeledDef.groupLabel;
 	        if (contestType === 'president') return 'US President';
 	        if (contestType === 'us_senate') return 'US Senate';
-	        if (contestType === 'governor') return 'Florida Governor';
-	        if (contestType === 'lieutenant_governor') return 'Florida Lieutenant Governor';
-	        if (contestType === 'attorney_general') return 'Florida Attorney General';
-	        if (contestType === 'secretary_of_state') return 'Florida Secretary of State';
-	        if (contestType === 'treasurer') return 'Florida Treasurer';
+	        if (contestType === 'governor') return 'Governor';
+	        if (contestType === 'lieutenant_governor') return 'Lieutenant Governor';
+	        if (contestType === 'attorney_general') return 'Attorney General';
+	        if (contestType === 'secretary_of_state') return 'Secretary of State';
+	        if (contestType === 'treasurer') {
+	          const y = Number(year);
+	          return (Number.isFinite(y) && y > 0 && y < 2002) ? 'Treasurer' : 'Chief Financial Officer';
+	        }
+	        if (contestType === 'comptroller') return 'Comptroller';
+	        if (contestType === 'commissioner_of_education') return 'Commissioner of Education';
 	        if (contestType === 'auditor') return 'Auditor';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
@@ -20476,7 +20521,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	        if (contestType === 'superintendent') return 'Superintendent of Public Instruction';
 	        if (contestType.startsWith('nc_supreme_court_')) return 'NC Supreme Court';
 	        if (contestType.startsWith('nc_court_of_appeals_')) return 'Court of Appeals';
-	        return formatContestName(contestType, '');
+	        return formatContestName(contestType, year);
 	      }
 
 	      function extractSeatNumFromType(contestType) {
@@ -20487,11 +20532,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	      const groupOrder = [
 	        'US President',
 	        'US Senate',
-	        'Florida Governor',
-	        'Florida Lieutenant Governor',
-	        'Florida Attorney General',
-	        'Florida Secretary of State',
-	        'Florida Treasurer',
+	        'Governor',
+	        'Lieutenant Governor',
+	        'Attorney General',
+	        'Chief Financial Officer',
+	        'Treasurer',
+	        'Secretary of State',
+	        'Comptroller',
+	        'Commissioner of Education',
 	        'Auditor',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
@@ -20503,9 +20551,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	      const grouped = new Map(); // label -> Array<{contestType, year}>
 	      Object.keys(contestYearPairs).forEach(contestType => {
-	        const label = groupLabelForContestType(contestType);
 	        const years = Array.from(contestYearPairs[contestType] || []).map(Number);
 	        years.forEach(year => {
+	          const label = groupLabelForContestType(contestType, year);
 	          if (!grouped.has(label)) grouped.set(label, []);
 	          grouped.get(label).push({ contestType, year });
 	        });
@@ -20542,14 +20590,15 @@ document.addEventListener('DOMContentLoaded', function() {
             const modeledSuffix = modeledDef && !modeledOptionLabel ? ' [Modeled]' : '';
             if (modeledOptionLabel) {
               opt.textContent = modeledOptionLabel;
-            } else
-	          if (isJudicial || modeledDef) {
+            } else if (isJudicial || modeledDef) {
               opt.textContent = `${formatContestName(item.contestType, item.year)} (${item.year})${modeledSuffix}`;
 	          } else {
-              opt.textContent = `${label} (${item.year})${modeledSuffix}`;
+              opt.textContent = `${formatContestOptionLabel(item.contestType, item.year, label, false)}${modeledSuffix}`;
 	          }
+            const historicNote = getHistoricOfficeReformNote(item.contestType);
+            if (historicNote) opt.title = historicNote;
 	          if (q) {
-	            const hay = `${label} ${item.year} ${item.contestType} ${formatContestName(item.contestType, item.year)}`.toUpperCase();
+	            const hay = `${label} ${item.year} ${item.contestType} ${formatContestName(item.contestType, item.year)} ${historicNote}`.toUpperCase();
 	            if (!hay.includes(q)) return;
 	          }
 	          og.appendChild(opt);
@@ -20627,8 +20676,10 @@ document.addEventListener('DOMContentLoaded', function() {
 	        'governor',
 	        'lieutenant_governor',
 	        'attorney_general',
-	        'secretary_of_state',
 	        'treasurer',
+	        'secretary_of_state',
+	        'comptroller',
+	        'commissioner_of_education',
 	        'auditor',
 	        'labor_commissioner',
 	        'insurance_commissioner',
@@ -20645,30 +20696,38 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         });
       });
-	      function groupLabelForContestType(contestType) {
+	      function groupLabelForContestType(contestType, year = NaN) {
 	        if (contestType === 'president') return 'US President';
 	        if (contestType === 'us_senate') return 'US Senate';
-	        if (contestType === 'governor') return 'Florida Governor';
-	        if (contestType === 'lieutenant_governor') return 'Florida Lieutenant Governor';
-	        if (contestType === 'attorney_general') return 'Florida Attorney General';
-	        if (contestType === 'secretary_of_state') return 'Florida Secretary of State';
-	        if (contestType === 'treasurer') return 'Florida Treasurer';
+	        if (contestType === 'governor') return 'Governor';
+	        if (contestType === 'lieutenant_governor') return 'Lieutenant Governor';
+	        if (contestType === 'attorney_general') return 'Attorney General';
+	        if (contestType === 'secretary_of_state') return 'Secretary of State';
+	        if (contestType === 'treasurer') {
+	          const y = Number(year);
+	          return (Number.isFinite(y) && y > 0 && y < 2002) ? 'Treasurer' : 'Chief Financial Officer';
+	        }
+	        if (contestType === 'comptroller') return 'Comptroller';
+	        if (contestType === 'commissioner_of_education') return 'Commissioner of Education';
 	        if (contestType === 'auditor') return 'Auditor';
 	        if (contestType === 'labor_commissioner') return 'Labor Commissioner';
 	        if (contestType === 'insurance_commissioner') return 'Insurance Commissioner';
 	        if (contestType === 'agriculture_commissioner') return 'Agriculture Commissioner';
 	        if (contestType === 'superintendent') return 'Superintendent of Public Instruction';
-	        return formatContestName(contestType, '');
+	        return formatContestName(contestType, year);
 	      }
 
 	      const groupOrder = [
 	        'US President',
 	        'US Senate',
-	        'Florida Governor',
-	        'Florida Lieutenant Governor',
-	        'Florida Attorney General',
-	        'Florida Secretary of State',
-	        'Florida Treasurer',
+	        'Governor',
+	        'Lieutenant Governor',
+	        'Attorney General',
+	        'Chief Financial Officer',
+	        'Treasurer',
+	        'Secretary of State',
+	        'Comptroller',
+	        'Commissioner of Education',
 	        'Auditor',
 	        'Labor Commissioner',
 	        'Insurance Commissioner',
@@ -20680,8 +20739,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	      contestTypes.forEach(contestType => {
 	        const years = contestYearPairs[contestType] ? Array.from(contestYearPairs[contestType]) : [];
 	        if (!years.length) return;
-	        const label = groupLabelForContestType(contestType);
 	        years.forEach(y => {
+	          const label = groupLabelForContestType(contestType, Number(y));
 	          if (!grouped.has(label)) grouped.set(label, []);
 	          grouped.get(label).push({ contestType, year: Number(y) });
 	        });
@@ -20700,7 +20759,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        items.forEach(item => {
 	          const opt = document.createElement('option');
 	          opt.value = `${item.contestType}_${item.year}`;
-	          opt.textContent = `${label} (${item.year})`;
+	          opt.textContent = formatContestOptionLabel(item.contestType, item.year, label, false);
+            const historicNote = getHistoricOfficeReformNote(item.contestType);
+            if (historicNote) opt.title = historicNote;
 	          og.appendChild(opt);
 	        });
 	        fragment.appendChild(og);
@@ -35547,7 +35608,7 @@ document.addEventListener('DOMContentLoaded', function() {
         setStatus(`Applied demographic mode for Congressional districts.`);
       } else {
         setStatewideContestTitle(`US House (${year})`);
-        setStatus(`Applied contest: Florida US House ${year}`);
+        setStatus(`Applied contest: US House ${year}`);
       }
     }
 
