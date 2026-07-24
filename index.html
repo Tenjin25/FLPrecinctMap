@@ -10389,8 +10389,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-23-winner-pill-size';
-    const APP_BUILD_ID = '2026-07-23-winner-pill-size';
+    const DATA_CACHE_BUSTER = '2026-07-24-senate-seat-gov2010';
+    const APP_BUILD_ID = '2026-07-24-senate-seat-gov2010';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10548,8 +10548,8 @@ document.addEventListener('DOMContentLoaded', function() {
       return totals;
     }
 
-    async function getRegionTrendSeries(contestType, regionKey) {
-      const entries = getTrendManifestEntriesForContestType(contestType);
+    async function getRegionTrendSeries(contestType, regionKey, yearHint = NaN) {
+      const entries = getTrendManifestEntriesForContestType(contestType, yearHint);
 
       const out = [];
       const loaded = await mapWithConcurrency(entries, 4, async (e) => {
@@ -11173,6 +11173,32 @@ document.addEventListener('DOMContentLoaded', function() {
       return ct;
     }
 
+    // US Senate: Florida (and other two-seat states) elect a seat every 2 years, but each
+    // individual seat repeats on a 6-year cadence. Flip/shift/timeline comparisons must stay
+    // on the same seat (e.g. 2024↔2018), never the other seat (2024↔2022).
+    function isSameUsSenateSeatYear(yearA, yearB) {
+      const a = Number(yearA);
+      const b = Number(yearB);
+      if (!Number.isFinite(a) || !Number.isFinite(b)) return false;
+      return ((a - b) % 6) === 0;
+    }
+
+    function filterSameUsSenateSeatYears(seatYear, years) {
+      const y = Number(seatYear);
+      if (!Number.isFinite(y)) return [];
+      return (Array.isArray(years) ? years : [])
+        .map(Number)
+        .filter(v => Number.isFinite(v) && isSameUsSenateSeatYear(y, v));
+    }
+
+    function filterTrendSeriesForContest(contestType, yearHint, series) {
+      const ct = String(contestType || '').trim();
+      const list = Array.isArray(series) ? series : [];
+      if (ct !== 'us_senate' || !Number.isFinite(Number(yearHint))) return list.slice();
+      const seatYear = Number(yearHint);
+      return list.filter(item => isSameUsSenateSeatYear(seatYear, item?.year));
+    }
+
     // Timeline / trend history: union named + numbered judicial seat years so
     // Seat 4 2022 includes Beasley 2014 / Seat 4 2006, etc.
     function getTrendManifestEntriesForContestType(contestType, yearHint = NaN, options = {}) {
@@ -11218,7 +11244,13 @@ document.addEventListener('DOMContentLoaded', function() {
           byYear.set(y, e);
         }
       });
-      return Array.from(byYear.values()).sort((a, b) => Number(a.year) - Number(b.year));
+      let out = Array.from(byYear.values()).sort((a, b) => Number(a.year) - Number(b.year));
+      // US Senate timelines must stay on the selected seat's 6-year class.
+      if (ct === 'us_senate' && Number.isFinite(Number(yearHint))) {
+        const seatYear = Number(yearHint);
+        out = out.filter(entry => isSameUsSenateSeatYear(seatYear, entry?.year));
+      }
+      return out;
     }
 
     function getAvailableContestYearsForType(contestType, year = NaN) {
@@ -11272,24 +11304,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       } catch (_) {}
       return Array.from(years).filter(Number.isFinite).sort((a, b) => a - b);
-    }
-
-    // US Senate: Florida (and other two-seat states) elect a seat every 2 years, but each
-    // individual seat repeats on a 6-year cadence. Flip/shift/delta comparisons must stay
-    // on the same seat (e.g. 2024↔2018), never the other seat (2024↔2022).
-    function isSameUsSenateSeatYear(yearA, yearB) {
-      const a = Number(yearA);
-      const b = Number(yearB);
-      if (!Number.isFinite(a) || !Number.isFinite(b)) return false;
-      return ((a - b) % 6) === 0;
-    }
-
-    function filterSameUsSenateSeatYears(seatYear, years) {
-      const y = Number(seatYear);
-      if (!Number.isFinite(y)) return [];
-      return (Array.isArray(years) ? years : [])
-        .map(Number)
-        .filter(v => Number.isFinite(v) && isSameUsSenateSeatYear(y, v));
     }
 
     function getPriorContestYearsFromAvailableYears(contestType, year, availableYears) {
@@ -14937,9 +14951,13 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
       }
 
-      const sortedSeries = series
+      const sortedSeries = filterTrendSeriesForContest(contestTypeHint, selectedYear, series)
         .slice()
         .sort((a, b) => a.year - b.year);
+      if (!sortedSeries.length) {
+        chartEl.innerHTML = `<div class="focus-trend-empty">No historical trend data available.</div>`;
+        return;
+      }
       const signedTrendDisplayMarginPct = (trendItem) => {
         const total = Number(trendItem?.total_votes || 0);
         const dem = Number(trendItem?.dem_votes || 0);
@@ -15198,8 +15216,8 @@ document.addEventListener('DOMContentLoaded', function() {
       try { updateMobileOverlayOffsets(); } catch (_) {}
     }
 
-    async function getStatewideTrendSeries(contestType) {
-      const entries = getTrendManifestEntriesForContestType(contestType);
+    async function getStatewideTrendSeries(contestType, yearHint = NaN) {
+      const entries = getTrendManifestEntriesForContestType(contestType, yearHint);
 
       const out = [];
       const loaded = await mapWithConcurrency(entries, 4, async (e) => {
@@ -15303,31 +15321,26 @@ document.addEventListener('DOMContentLoaded', function() {
         trendOptions.contestType = contestType;
         let censusContext = null;
         if (meta.kind === 'county' && meta.county) {
-          series = await getCountyTrendSeries(contestType, meta.county);
+          series = await getCountyTrendSeries(contestType, meta.county, year);
         } else if (meta.kind === 'region' && meta.regionKey) {
-          series = await getRegionTrendSeries(contestType, meta.regionKey);
+          series = await getRegionTrendSeries(contestType, meta.regionKey, year);
         } else if (meta.kind === 'district' && meta.scope && meta.districtNum !== undefined) {
-          series = await getDistrictTrendSeries(meta.scope, contestType, meta.districtNum);
+          series = await getDistrictTrendSeries(meta.scope, contestType, meta.districtNum, year);
         } else if (meta.kind === 'precinct' && meta.county) {
-          series = await getPrecinctTrendSeries(contestType, meta.precinctNorm || meta.precinct || '', meta.county || '');
+          series = await getPrecinctTrendSeries(contestType, meta.precinctNorm || meta.precinct || '', meta.county || '', year);
           if (!series || !series.length) {
-            series = await getCountyTrendSeries(contestType, meta.county);
+            series = await getCountyTrendSeries(contestType, meta.county, year);
             if (series && series.length) {
               trendOptions.fallbackBadge = 'Precinct history unavailable - showing county trend';
             }
           }
         } else {
-          series = await getStatewideTrendSeries(contestType);
+          series = await getStatewideTrendSeries(contestType, year);
         }
 
         // US Senate trends/flips must stay on the selected seat's 6-year series
         // (e.g. 2024/2018/2012), not alternate with the other seat (2022/2016/...).
-        if (String(contestType || '').trim() === 'us_senate' && Number.isFinite(Number(year))) {
-          const seatYear = Number(year);
-          series = (Array.isArray(series) ? series : []).filter(item =>
-            isSameUsSenateSeatYear(seatYear, item?.year)
-          );
-        }
+        series = filterTrendSeriesForContest(contestType, year, series);
 
         if ((meta.kind === 'county' || meta.kind === 'precinct') && meta.county) {
           try {
@@ -21437,13 +21450,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (isGovernor) {
           const map = {
-            2024: { dem: 'Josh Stein', rep: 'Mark Robinson' },
-            2020: { dem: 'Roy Cooper', rep: 'Dan Forest' },
-            2016: { dem: 'Roy Cooper', rep: 'Pat McCrory' },
-            2012: { dem: 'Walter Dalton', rep: 'Pat McCrory' },
-            2008: { dem: 'Bev Perdue', rep: 'Pat McCrory' },
-            2004: { dem: 'Mike Easley', rep: 'Patrick Ballantine' },
-            2000: { dem: 'Mike Easley', rep: 'Richard Vinson' }
+            2022: { dem: 'Charlie Crist', rep: 'Ron DeSantis' },
+            2018: { dem: 'Andrew Gillum', rep: 'Ron DeSantis' },
+            2014: { dem: 'Charlie Crist', rep: 'Rick Scott' },
+            2010: { dem: 'Alex Sink', rep: 'Rick Scott' },
+            2006: { dem: 'Jim Davis', rep: 'Charlie Crist' },
+            2002: { dem: 'Bill McBride', rep: 'Jeb Bush' },
+            1998: { dem: 'Buddy MacKay', rep: 'Jeb Bush' },
+            1994: { dem: 'Lawton Chiles', rep: 'Jeb Bush' },
+            1990: { dem: 'Lawton Chiles', rep: 'Bob Martinez' },
+            1986: { dem: 'Steve Pajcic', rep: 'Bob Martinez' },
+            1982: { dem: 'Bob Graham', rep: 'Skip Bafalis' },
+            1978: { dem: 'Bob Graham', rep: 'Jack Eckerd' }
           };
           const entry = map[year];
           return entry ? (partyNorm === 'dem' ? entry.dem : (partyNorm === 'rep' ? entry.rep : '')) : '';
@@ -21895,6 +21913,9 @@ document.addEventListener('DOMContentLoaded', function() {
       if (key === 'OBAMA' || key === 'B. OBAMA' || key === 'B OBAMA') return 'Barack Obama';
       if (key === 'ROMNEY' || key === 'M. ROMNEY' || key === 'M ROMNEY') return 'Mitt Romney';
       if (key === 'MCCAIN' || key === 'J. MCCAIN' || key === 'J MCCAIN') return 'John McCain';
+      // Florida 2010 governor tickets were stored as surname-only leads.
+      if (key === 'SINK') return 'Alex Sink';
+      if (key === 'SCOTT') return 'Rick Scott';
       return raw;
     }
 
@@ -23184,9 +23205,9 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
-    async function getDistrictTrendSeries(scope, contestType, districtNum) {
+    async function getDistrictTrendSeries(scope, contestType, districtNum, yearHint = NaN) {
       if (isLincolnCountyEquivalentHouseDistrict(scope, districtNum)) {
-        const countySeries = await getCountyTrendSeries(contestType, 'LINCOLN');
+        const countySeries = await getCountyTrendSeries(contestType, 'LINCOLN', yearHint);
         return (countySeries || []).map(item => {
           const demVotes = Number(item?.dem_votes || 0);
           const repVotes = Number(item?.rep_votes || 0);
@@ -23206,7 +23227,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
 
-      const entries = getTrendManifestEntriesForContestType(contestType, NaN, { scope });
+      const entries = getTrendManifestEntriesForContestType(contestType, yearHint, { scope });
 
       const out = [];
       for (const e of entries) {
@@ -23251,12 +23272,12 @@ document.addEventListener('DOMContentLoaded', function() {
       return out;
     }
 
-    async function getCountyTrendSeries(contestType, countyName) {
+    async function getCountyTrendSeries(contestType, countyName, yearHint = NaN) {
       const familyKey = getJudicialSeatFamilyKey(contestType);
       const cacheKey = `${familyKey || String(contestType || '').trim()}|${String(countyName || '').trim().toUpperCase()}`;
       try {
         const cached = countyTrendSeriesCache && countyTrendSeriesCache.get ? countyTrendSeriesCache.get(cacheKey) : null;
-        if (Array.isArray(cached)) return cached.slice();
+        if (Array.isArray(cached)) return filterTrendSeriesForContest(contestType, yearHint, cached);
       } catch (_) {}
 
       const entries = getTrendManifestEntriesForContestType(contestType);
@@ -23322,7 +23343,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
       }
       try { countyTrendSeriesCache.set(cacheKey, out.slice()); } catch (_) {}
-      return out;
+      return filterTrendSeriesForContest(contestType, yearHint, out);
     }
 
     function buildCountyPopulationEstimateIndex(rows) {
@@ -24713,8 +24734,8 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
     }
 
-    async function getPrecinctTrendSeries(contestType, precinctNormRaw, countyNameRaw = '') {
-      const entries = getTrendManifestEntriesForContestType(contestType);
+    async function getPrecinctTrendSeries(contestType, precinctNormRaw, countyNameRaw = '', yearHint = NaN) {
+      const entries = getTrendManifestEntriesForContestType(contestType, yearHint);
 
       const normalizedInput = normalizeCountyToken(precinctNormRaw);
       const countyNormHint = normalizeCountyToken(countyNameRaw);
@@ -29121,7 +29142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Populate trends asynchronously from manifest slices (does not block UI).
   (async () => {
     try {
-      const series = await getCountyTrendSeries(contestType, countyName);
+      const series = await getCountyTrendSeries(contestType, countyName, year);
       try {
         // Abort if the user has moved on to a different focus before the async load finishes.
         if ((contentEl?.dataset?.focusKey || '') !== focusKey) return;
@@ -29144,7 +29165,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const anchorIdx = sorted.indexOf(anchor);
         const base = sorted.find(s => Number(s?.year) === 2004) || sorted[0];
         const prev = anchorIdx > 0 ? sorted[anchorIdx - 1] : null;
-        const recentBase = (selectedYear >= 2020 ? (sorted.find(s => Number(s?.year) === 2020) || prev) : prev) || base;
+        // US Senate: compare to the previous same-seat race (already filtered above),
+        // not a fixed 2020 presidential-year anchor that belongs to the other class cadence.
+        const recentBase = (String(contestType || '').trim() === 'us_senate')
+          ? (prev || base)
+          : ((selectedYear >= 2020 ? (sorted.find(s => Number(s?.year) === 2020) || prev) : prev) || base);
 
         const longShift = Number(anchor?.margin_pct) - Number(base?.margin_pct);
         const recentShift = Number(anchor?.margin_pct) - Number(recentBase?.margin_pct);
@@ -33019,7 +33044,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-          const series = await getDistrictTrendSeries('congressional', contestType, districtNum);
+          const series = await getDistrictTrendSeries('congressional', contestType, districtNum, year);
           if (reqId !== districtSidebarRequestId) return;
           const el = document.getElementById('district-trends');
           if (el) el.innerHTML = renderDistrictTrendLinesHTML(series, { marginPrecision: 'default' });
@@ -33108,7 +33133,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         try {
-          const series = await getDistrictTrendSeries(scope, contestType, districtNum);
+          const series = await getDistrictTrendSeries(scope, contestType, districtNum, year);
           if (reqId !== districtSidebarRequestId) return;
           const el = document.getElementById('district-trends');
           if (el) el.innerHTML = renderDistrictTrendLinesHTML(series, { marginPrecision: isLincolnCountyEquivalentHouseDistrict(scope, districtNum) ? 'county' : 'default' });
