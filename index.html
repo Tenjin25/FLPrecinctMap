@@ -10125,7 +10125,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="legend-segment legend-color" style="background: #f4c9c5;"></span>
                 <span class="legend-segment legend-color" style="background: #f7f7f7; border-left: 1px solid rgba(15,23,42,0.12); border-right: 1px solid rgba(15,23,42,0.12);"></span>
                 <span class="legend-segment legend-color" style="background: #c7ddf0;"></span>
-                <span class="legend-segment legend-color" style="background: #8bbde0;"></span>
+                <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
                 <span class="legend-segment legend-color" style="background: #6baed6;"></span>
                 <span class="legend-segment legend-color" style="background: #4795d2;"></span>
                 <span class="legend-segment legend-color" style="background: #2876b5;"></span>
@@ -10389,7 +10389,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-07-24-cd2026-geojson-v2';
+    const DATA_CACHE_BUSTER = '2026-08-12-dem-lean-palette-v1';
     const APP_BUILD_ID = '2026-07-24-cd2026-geojson-v2';
 
     function withCacheBuster(path) {
@@ -33753,7 +33753,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (marginPct >= 5.5) {
         return winner === 'R' ? '#f7634b' : '#6baed6'; // Likely — near-original Atlas red, slightly tempered
       } else if (marginPct >= 1.0) {
-        return winner === 'R' ? '#fca793' : '#8bbde0'; // Lean — near-original Atlas red, slightly tempered
+        return winner === 'R' ? '#fca793' : '#9ecae1'; // Lean — near-original Atlas red, slightly tempered
       } else if (marginPct >= 0.5) {
         return winner === 'R' ? '#f4c9c5' : '#c7ddf0'; // Balanced Tilt shades, still clearly lighter than Lean
       } else {
