@@ -560,7 +560,7 @@
     <link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&family=IBM+Plex+Sans:wght@400;700&display=swap" rel="stylesheet">
     <style>
 html, body {
   height: 100vh;
@@ -569,6 +569,7 @@ html, body {
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
+  font-synthesis: none;
 }
 body {
   height: 100vh;
@@ -580,6 +581,13 @@ body {
   touch-action: pan-x pan-y;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+/* Keep native controls on the same atlas type system in every browser mode. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
 }
 #map {
   position: absolute;
@@ -1471,6 +1479,7 @@ body.focus-active #hover-tooltip[data-context="preview"] {
   background: rgba(255, 255, 255, 0.95);
   color: var(--ui-text);
   font-size: 14px;
+  font-weight: 700;
 }
 
 /* Legend */
@@ -2859,6 +2868,7 @@ body.focus-active #hover-tooltip[data-context="preview"] {
 
   body {
     font-family: 'Manrope', 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  font-weight: 400;
     background:
       radial-gradient(circle at 16% 12%, rgba(37, 99, 235, 0.18) 0%, rgba(219, 234, 254, 0.64) 28%, rgba(248, 250, 252, 0) 58%),
       radial-gradient(circle at 86% 8%, rgba(220, 38, 38, 0.12) 0%, rgba(254, 226, 226, 0.58) 24%, rgba(248, 250, 252, 0) 56%),
@@ -3750,6 +3760,7 @@ body.focus-active #hover-tooltip[data-context="preview"] {
     box-shadow: none;
     color: #0f172a;
     font-size: 14px;
+  font-weight: 700;
   }
 
   .map-topbar #county-search {
@@ -10119,15 +10130,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="legend-segment legend-color" style="background: #67000d;"></span>
                 <span class="legend-segment legend-color" style="background: #a50f15;"></span>
                 <span class="legend-segment legend-color" style="background: #cb181d;"></span>
-                <span class="legend-segment legend-color" style="background: #e93a2d;"></span>
-                <span class="legend-segment legend-color" style="background: #f7634b;"></span>
-                <span class="legend-segment legend-color" style="background: #fca793;"></span>
+                <span class="legend-segment legend-color" style="background: #ef3b2c;"></span>
+                <span class="legend-segment legend-color" style="background: #fb6a4a;"></span>
+                <span class="legend-segment legend-color" style="background: #fcae91;"></span>
                 <span class="legend-segment legend-color" style="background: #f4c9c5;"></span>
                 <span class="legend-segment legend-color" style="background: #f7f7f7; border-left: 1px solid rgba(15,23,42,0.12); border-right: 1px solid rgba(15,23,42,0.12);"></span>
                 <span class="legend-segment legend-color" style="background: #c7ddf0;"></span>
                 <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
-                <span class="legend-segment legend-color" style="background: #6baed6;"></span>
-                <span class="legend-segment legend-color" style="background: #4795d2;"></span>
+                <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
+                <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
                 <span class="legend-segment legend-color" style="background: #2876b5;"></span>
                 <span class="legend-segment legend-color" style="background: #08519c;"></span>
                 <span class="legend-segment legend-color" style="background: #08306b;"></span>
@@ -10389,8 +10400,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-12-dem-lean-palette-v1';
-    const APP_BUILD_ID = '2026-07-24-cd2026-geojson-v2';
+    const DATA_CACHE_BUSTER = '2026-08-14-dem-full-ramp-v2';
+    const APP_BUILD_ID = '2026-08-14-dem-full-ramp-v2';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -27354,7 +27365,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Avoid rebuilding the same tooltip repeatedly while the mouse moves within one precinct.
       // Also throttle rapid transitions between precincts to keep hover responsive.
       try {
-        const featKey = (feature?.id !== null && feature?.id !== undefined) ? `id:${feature.id}` : `norm:${precinctNorm}`;
+        const featKey = (feature?.id !== null && feature?.id !== undefined) ? `id:${feature.id}` : 
+orm:${precinctNorm}`;
         const hoverKey = `${featKey}|${contestValue}`;
         const tooltip = document.getElementById('hover-tooltip');
         const tooltipVisible = !!tooltip && tooltip.style.display !== 'none' && (tooltip.innerHTML || '').trim().length > 0;
@@ -33749,11 +33761,11 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (marginPct >= 20) {
         return winner === 'R' ? '#cb181d' : '#2876b5'; // Stronghold — midpoint blue, OG red
       } else if (marginPct >= 10) {
-        return winner === 'R' ? '#e93a2d' : '#4795d2'; // Safe — near-original Atlas red, slightly tempered
+        return winner === 'R' ? '#e93a2d' : '#3f8fc9'; // Safe — near-original Atlas red, slightly tempered
       } else if (marginPct >= 5.5) {
-        return winner === 'R' ? '#f7634b' : '#6baed6'; // Likely — near-original Atlas red, slightly tempered
+        return winner === 'R' ? '#f7634b' : '#5b9fd0'; // Likely — near-original Atlas red, slightly tempered
       } else if (marginPct >= 1.0) {
-        return winner === 'R' ? '#fca793' : '#9ecae1'; // Lean — near-original Atlas red, slightly tempered
+        return winner === 'R' ? '#fcae91' : '#9ecae1'; // Lean — near-original Atlas red, slightly tempered
       } else if (marginPct >= 0.5) {
         return winner === 'R' ? '#f4c9c5' : '#c7ddf0'; // Balanced Tilt shades, still clearly lighter than Lean
       } else {
