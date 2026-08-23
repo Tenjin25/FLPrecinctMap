@@ -548,12 +548,12 @@
   <script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
     <meta charset='utf-8'>
-    <title>Sunshine State Ballot Atlas (2014-2024)</title>
+    <title>Sunshine State Ballot Atlas (1980-2024)</title>
     <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover'>
     <meta name="author" content="Shamar Davis">
     <meta name="copyright" content="© 2026 Shamar Does Elections. All Rights Reserved.">
     <!-- Watermark: SDE Creator Attribution | Created by Shamar Davis | Copyright 2026 Shamar Does Elections -->
-    <meta property="og:title" content="Sunshine State Ballot Atlas (2014-2024)">
+    <meta property="og:title" content="Sunshine State Ballot Atlas (1980-2024)">
     <meta property="og:description" content="Interactive visualization of Florida election trends from 2014 to 2024, with county, precinct, and district views.">
     <meta property="og:image" content="preview.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -10130,8 +10130,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="legend-segment legend-color" style="background: #67000d;"></span>
                 <span class="legend-segment legend-color" style="background: #a50f15;"></span>
                 <span class="legend-segment legend-color" style="background: #cb181d;"></span>
-                <span class="legend-segment legend-color" style="background: #ef3b2c;"></span>
-                <span class="legend-segment legend-color" style="background: #fb6a4a;"></span>
+                <span class="legend-segment legend-color" style="background: #e93a2d;"></span>
+                <span class="legend-segment legend-color" style="background: #f7634b;"></span>
                 <span class="legend-segment legend-color" style="background: #fcae91;"></span>
                 <span class="legend-segment legend-color" style="background: #f4c9c5;"></span>
                 <span class="legend-segment legend-color" style="background: #f7f7f7; border-left: 1px solid rgba(15,23,42,0.12); border-right: 1px solid rgba(15,23,42,0.12);"></span>
@@ -10139,7 +10139,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <span class="legend-segment legend-color" style="background: #9ecae1;"></span>
                 <span class="legend-segment legend-color" style="background: #5b9fd0;"></span>
                 <span class="legend-segment legend-color" style="background: #3f8fc9;"></span>
-                <span class="legend-segment legend-color" style="background: #3388c5;"></span>
+                <span class="legend-segment legend-color" style="background: #2876b5;"></span>
                 <span class="legend-segment legend-color" style="background: #08519c;"></span>
                 <span class="legend-segment legend-color" style="background: #08306b;"></span>
               </div>
@@ -10400,8 +10400,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-08-14-dem-full-ramp-v2';
-    const APP_BUILD_ID = '2026-08-14-dem-full-ramp-v2';
+    const DATA_CACHE_BUSTER = '2026-08-23-fl-precincts-v3';
+    const APP_BUILD_ID = '2026-08-23-fl-precincts-v3';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10434,6 +10434,7 @@ document.addEventListener('DOMContentLoaded', function() {
         counties: withBase('./data/tl_2020_12_county20.geojson'),
         precincts: withBase('./data/fl_voting_precincts.geojson'),
         precinct_centroids: withBase('./data/fl_precinct_centroids.geojson'),
+        precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
         districts: withBase('./data/fl_congressional_districts.geojson'),
         districts_2022: withBase('./data/fl_congressional_districts.geojson'),
         districts_2024: withBase('./data/fl_proposed_congressional_districts.geojson'),
@@ -15860,12 +15861,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	      });
 	    }
 
-	    const PRESIDENT_OPEN_ELECTIONS_CSV = {
-	      2000: withBase('./data/2000/20001107__nc__general__precinct.csv'),
-	      2004: withBase('./data/2004/20041102__nc__general__precinct.csv'),
-	      2012: withBase('./data/2012/20121106__nc__general__precinct.csv'),
-	      2008: withBase('./data/2008/20081104__nc__general__precinct.csv')
-	    };
+	    // Florida precinct contest slices are generated from the local VEST archives.
+	    // Do not probe the NC OpenElections fallback paths inherited from NCPrecinctMap.
+	    const PRESIDENT_OPEN_ELECTIONS_CSV = {};
 
 	    async function loadPresidentSliceFromOpenElectionsCSV(year) {
 	      const y = Number(year);
@@ -21508,9 +21506,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (isPresident) {
           const map = {
-            2024: { dem: 'Kamala Harris', rep: 'Donald Trump' },
-            2020: { dem: 'Joe Biden', rep: 'Donald Trump' },
-            2016: { dem: 'Hillary Clinton', rep: 'Donald Trump' },
+            2024: { dem: 'Kamala D. Harris', rep: 'Donald J. Trump' },
+            2020: { dem: 'Joe Biden', rep: 'Donald J. Trump' },
+            2016: { dem: 'Hillary Clinton', rep: 'Donald J. Trump' },
             2012: { dem: 'Barack Obama', rep: 'Mitt Romney' },
             2008: { dem: 'Barack Obama', rep: 'John McCain' },
             2004: { dem: 'John Kerry', rep: 'George W. Bush' },
@@ -32045,11 +32043,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const sd = q.match(/^(SD|SENATE)\s*[-#:]?\s*(\d{1,3})$/i);
       if (sd) return { kind: 'sd', num: Number(sd[2]), raw };
 
-      // Precinct: "WAKE 01-14" or "WAKE - 01-14".
-      const p1 = q.match(/^([A-Z .'-]+)\s*-\s*([0-9A-Z .'-]+)$/);
-      if (p1) return { kind: 'precinct', county: p1[1].trim(), code: p1[2].trim(), raw };
-      const p2 = q.match(/^([A-Z .'-]+)\s+(\d{1,3}-\d{1,3}[A-Z]?)$/);
-      if (p2) return { kind: 'precinct', county: p2[1].trim(), code: p2[2].trim(), raw };
+      // Match known county names first so a county-internal hyphen (for example,
+      // "Miami-Dade 001") is not mistaken for the county/code separator.
       const knownCounties = getKnownCountyNamesForSearch();
       for (const countyName of knownCounties) {
         const countyUpper = countyName.toUpperCase();
@@ -32065,6 +32060,12 @@ document.addEventListener('DOMContentLoaded', function() {
           if (remainder) return { kind: 'precinct', county: countyUpper, code: remainder, raw };
         }
       }
+
+      // Generic precinct fallback: "WAKE 01-14" or "WAKE - 01-14".
+      const p1 = q.match(/^([A-Z .'-]+)\s*-\s*([0-9A-Z .'-]+)$/);
+      if (p1) return { kind: 'precinct', county: p1[1].trim(), code: p1[2].trim(), raw };
+      const p2 = q.match(/^([A-Z .'-]+)\s+(\d{1,3}-\d{1,3}[A-Z]?)$/);
+      if (p2) return { kind: 'precinct', county: p2[1].trim(), code: p2[2].trim(), raw };
 
       return { kind: 'county', raw };
     }
@@ -33758,7 +33759,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (marginPct >= 30) {
         return winner === 'R' ? '#a50f15' : '#08519c'; // OG Dominant
       } else if (marginPct >= 20) {
-        return winner === 'R' ? '#cb181d' : '#3388c5'; // Stronghold — midpoint blue, OG red
+        return winner === 'R' ? '#cb181d' : '#2876b5'; // Stronghold — midpoint blue, OG red
       } else if (marginPct >= 10) {
         return winner === 'R' ? '#e93a2d' : '#3f8fc9'; // Safe — near-original Atlas red, slightly tempered
       } else if (marginPct >= 5.5) {

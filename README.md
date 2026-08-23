@@ -20,7 +20,8 @@ No backend service is required for production deployment.
 - Statewide and county election views
 - Congressional, State House, and State Senate views
 - District line comparison (current vs proposed congressional lines)
-- Precinct-aware overlays and crosswalk-backed district allocation views
+- Functional precinct point and polygon overlays with VEST precinct-level results
+- Crosswalk-backed district allocation views
 - Trend and competitiveness summaries
 
 ## Repository Layout
@@ -50,6 +51,8 @@ Key files and folders:
 - `data/district_contests_proposed_congressional/*.json`
 - `data/crosswalks/*.csv`
 - `data/fl_precinct_centroids.geojson`
+- `data/fl_voting_precincts.geojson`
+- `data/precinct_friendly_names.json`
 - `data/fl_elections_aggregated.json`
 
 ## Updating Data (Optional)

@@ -11,6 +11,10 @@ Supplemental source:
 Outputs:
   data/contests/{contest_type}_{year}.json
   data/contests/manifest.json
+
+VEST-backed contest files keep precinct rows and include authoritative county
+totals.  That lets the browser use one payload for both the county map and the
+precinct overlay without changing statewide/county totals.
 """
 
 from __future__ import annotations
@@ -68,6 +72,10 @@ CORE_CONTEST_TYPES = {
 }
 
 CANDIDATE_CODE_TO_NAME = {
+    "G12PREDOBA": "Barack Obama",
+    "G12PRERROM": "Mitt Romney",
+    "G12USSDNEL": "Bill Nelson",
+    "G12USSRMAC": "Connie Mack IV",
     "G14AGRDHAM": "Thaddeus Hamilton",
     "G14AGRRPUT": "Adam Putnam",
     "G14ATGDSHE": "George Sheldon",
@@ -77,7 +85,7 @@ CANDIDATE_CODE_TO_NAME = {
     "G14GOVDCRI": "Charlie Crist",
     "G14GOVRSCO": "Rick Scott",
     "G16PREDCLI": "Hillary Clinton",
-    "G16PRERTRU": "Donald Trump",
+    "G16PRERTRU": "Donald J. Trump",
     "G16USSDMUR": "Patrick Murphy",
     "G16USSRRUB": "Marco Rubio",
     "G18AGRDFRI": "Nikki Fried",
@@ -91,7 +99,7 @@ CANDIDATE_CODE_TO_NAME = {
     "G18USSDNEL": "Bill Nelson",
     "G18USSRSCO": "Rick Scott",
     "G20PREDBID": "Joe Biden",
-    "G20PRERTRU": "Donald Trump",
+    "G20PRERTRU": "Donald J. Trump",
     "G22AGRDBLE": "Naomi Blemur",
     "G22AGRRSIM": "Wilton Simpson",
     "G22ATGDAYA": "Aramis Ayala",
@@ -102,10 +110,14 @@ CANDIDATE_CODE_TO_NAME = {
     "G22GOVRDES": "Ron DeSantis",
     "G22USSDDEM": "Val Demings",
     "G22USSRRUB": "Marco Rubio",
-    "G24PREDHAR": "Kamala Harris",
-    "G24PRERTRU": "Donald Trump",
+    "G24PREDHAR": "Kamala D. Harris",
+    "G24PRERTRU": "Donald J. Trump",
     "G24USSDMUC": "Debbie Mucarsel-Powell",
     "G24USSRSCO": "Rick Scott",
+}
+
+ALIGNED_CANDIDATE_OVERRIDES = {
+    ("governor", 2010): ("Alex Sink", "Rick Scott"),
 }
 
 
@@ -133,6 +145,12 @@ def margin_color(winner: str, margin_abs_pct: float) -> str:
 def clean_text(value: object) -> str:
     s = str(value or "").strip()
     return re.sub(r"\s+", " ", s)
+
+
+def normalize_precinct_code(value: object) -> str:
+    raw = clean_text(value)
+    integer_decimal = re.fullmatch(r"(\d+)\.0+", raw)
+    return integer_decimal.group(1) if integer_decimal else raw
 
 
 def parse_year_from_text(value: object) -> Optional[int]:
@@ -450,7 +468,7 @@ def build() -> None:
     contests_dir = data_dir / "contests"
     contests_dir.mkdir(parents=True, exist_ok=True)
 
-    years = [2014, 2016, 2018, 2020, 2022, 2024]
+    years = [2012, 2014, 2016, 2018, 2020, 2022, 2024]
     county_geojson = data_dir / "tl_2020_12_county20.geojson"
     county_map = build_county_code_map(
         data_dir / "fl_2024.zip",
@@ -468,10 +486,11 @@ def build() -> None:
         if not shp.exists():
             continue
         df = gpd.read_file(shp, ignore_geometry=True)
-        if "COUNTY" not in df.columns:
+        if "COUNTY" not in df.columns or "PRECINCT" not in df.columns:
             continue
         df["county_name"] = df["COUNTY"].astype(str).str.strip().str.upper().map(county_map)
-        df = df[df["county_name"].notna()]
+        df["precinct_code"] = df["PRECINCT"].map(normalize_precinct_code)
+        df = df[df["county_name"].notna() & (df["precinct_code"] != "")]
 
         contests = parse_contest_columns(df.columns)
         for contest_type, cols in sorted(contests.items()):
@@ -483,7 +502,19 @@ def build() -> None:
             other = sum_numeric(df, cols["other"])
             total = dem + rep + other
 
-            rows = pd.DataFrame(
+            precinct_rows = pd.DataFrame(
+                {
+                    "county": df["county_name"] + " - " + df["precinct_code"],
+                    "dem_votes": dem,
+                    "rep_votes": rep,
+                    "other_votes": other,
+                    "total_votes": total,
+                }
+            )
+            precinct_rows = precinct_rows.groupby("county", as_index=False)[["dem_votes", "rep_votes", "other_votes", "total_votes"]].sum()
+            precinct_rows = precinct_rows.sort_values("county")
+
+            county_rows = pd.DataFrame(
                 {
                     "county": df["county_name"],
                     "dem_votes": dem,
@@ -492,62 +523,65 @@ def build() -> None:
                     "total_votes": total,
                 }
             )
-            rows = rows.groupby("county", as_index=False)[["dem_votes", "rep_votes", "other_votes", "total_votes"]].sum()
-            rows = rows.sort_values("county")
-            if rows.empty:
+            county_rows = county_rows.groupby("county", as_index=False)[["dem_votes", "rep_votes", "other_votes", "total_votes"]].sum()
+            county_rows = county_rows.sort_values("county")
+            if precinct_rows.empty or county_rows.empty:
                 continue
 
             payload_rows = []
+            for _, r in precinct_rows.iterrows():
+                payload_rows.append(
+                    build_county_row_payload(
+                        county=str(r["county"]).strip().upper(),
+                        dem_votes=int(round(float(r["dem_votes"]))),
+                        rep_votes=int(round(float(r["rep_votes"]))),
+                        other_votes=int(round(float(r["other_votes"]))),
+                        dem_candidate=dem_candidate,
+                        rep_candidate=rep_candidate,
+                    )
+                )
+
             county_results = {}
-            for _, r in rows.iterrows():
-                dv = int(round(float(r["dem_votes"])))
-                rv = int(round(float(r["rep_votes"])))
-                ov = int(round(float(r["other_votes"])))
-                tv = dv + rv + ov
-                margin = rv - dv
-                margin_pct = (margin / tv * 100.0) if tv > 0 else 0.0
-                winner = "REP" if rv > dv else ("DEM" if dv > rv else "TIE")
-                row_payload = {
-                    "county": r["county"],
-                    "dem_votes": dv,
-                    "rep_votes": rv,
-                    "other_votes": ov,
-                    "total_votes": tv,
-                    "dem_candidate": dem_candidate,
-                    "rep_candidate": rep_candidate,
-                    "margin": margin,
-                    "margin_pct": round(margin_pct, 6),
-                    "winner": winner,
-                    "color": margin_color(winner, abs(margin_pct)),
-                }
-                payload_rows.append(row_payload)
-                county_results[r["county"]] = {
-                    "dem_votes": dv,
-                    "rep_votes": rv,
-                    "other_votes": ov,
-                    "total_votes": tv,
-                    "dem_candidate": dem_candidate,
-                    "rep_candidate": rep_candidate,
-                    "margin": margin,
-                    "margin_pct": round(margin_pct, 6),
-                    "winner": winner,
-                    "competitiveness": {"color": row_payload["color"]},
+            for _, r in county_rows.iterrows():
+                county_row = build_county_row_payload(
+                    county=str(r["county"]).strip().upper(),
+                    dem_votes=int(round(float(r["dem_votes"]))),
+                    rep_votes=int(round(float(r["rep_votes"]))),
+                    other_votes=int(round(float(r["other_votes"]))),
+                    dem_candidate=dem_candidate,
+                    rep_candidate=rep_candidate,
+                )
+                county_results[county_row["county"]] = {
+                    "dem_votes": county_row["dem_votes"],
+                    "rep_votes": county_row["rep_votes"],
+                    "other_votes": county_row["other_votes"],
+                    "total_votes": county_row["total_votes"],
+                    "dem_candidate": county_row["dem_candidate"],
+                    "rep_candidate": county_row["rep_candidate"],
+                    "margin": county_row["margin"],
+                    "margin_pct": county_row["margin_pct"],
+                    "winner": county_row["winner"],
+                    "competitiveness": {"color": county_row["color"]},
                 }
 
             filename = f"{contest_type}_{year}.json"
-            write_json(contests_dir / filename, {"rows": payload_rows})
+            write_json(
+                contests_dir / filename,
+                {"rows": payload_rows, "county_totals": county_results},
+            )
             built += 1
             built_keys.add((contest_type, int(year)))
 
-            dem_total = int(sum(r["dem_votes"] for r in payload_rows))
-            rep_total = int(sum(r["rep_votes"] for r in payload_rows))
-            other_total = int(sum(r["other_votes"] for r in payload_rows))
+            dem_total = int(sum(r["dem_votes"] for r in county_results.values()))
+            rep_total = int(sum(r["rep_votes"] for r in county_results.values()))
+            other_total = int(sum(r["other_votes"] for r in county_results.values()))
             manifest_entries.append(
                 {
                     "year": year,
                     "contest_type": contest_type,
                     "file": filename,
                     "rows": len(payload_rows),
+                    "granularity": "precinct",
                     "dem_total": dem_total,
                     "rep_total": rep_total,
                     "other_total": other_total,
@@ -575,6 +609,9 @@ def build() -> None:
             )
             dem_candidate = top_party_candidate(candidate_totals, "dem", "Democrat")
             rep_candidate = top_party_candidate(candidate_totals, "rep", "Republican")
+            candidate_override = ALIGNED_CANDIDATE_OVERRIDES.get((str(contest_type), int(year)))
+            if candidate_override:
+                dem_candidate, rep_candidate = candidate_override
 
             county_party = subset.groupby(["county", "party_bucket"], as_index=False)["votes"].sum()
             pivot = county_party.pivot(index="county", columns="party_bucket", values="votes").fillna(0)
@@ -648,12 +685,19 @@ def build() -> None:
 
     manifest_entries.sort(key=lambda e: (e["contest_type"], int(e["year"])))
     write_json(contests_dir / "manifest.json", {"files": manifest_entries})
+    ordered_results_by_year = {
+        year: {
+            contest_type: contest_nodes[contest_type]
+            for contest_type in sorted(contest_nodes)
+        }
+        for year, contest_nodes in sorted(results_by_year.items(), key=lambda item: int(item[0]))
+    }
     write_json(
         data_dir / "fl_elections_aggregated.json",
         {
             "state": "FL",
             "source": "VEST (University of Florida) + FL DOS aligned county files",
-            "results_by_year": results_by_year,
+            "results_by_year": ordered_results_by_year,
         },
     )
 
