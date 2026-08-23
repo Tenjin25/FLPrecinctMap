@@ -90,6 +90,21 @@ Outputs include:
 - `data/derived/fl_precinct_results_all_years_long.csv`
 - `data/derived/fl_precinct_legislative_all_years_long.csv`
 
+## Precinct Map + Friendly Names
+
+Build the county-scoped friendly-name index from Florida's official 2024
+precinct-results archive, then rebuild centroids and simplified polygons so the
+same names are embedded in the map features:
+
+```powershell
+py scripts/build_fl_precinct_friendly_names.py
+py scripts/build_fl_precinct_centroids.py
+```
+
+The friendly-name JSON intentionally matches NCPrecinctMap's
+`counties -> precinct_code -> display_name` schema. The official archive is
+available from the Florida Division of Elections precinct-level results page.
+
 ## DRA-Backed VTD2010 Crosswalk Pipeline
 
 Use `build_fl_vtd10_crosswalks_from_dra.py` to rebuild the Florida VTD2010 crosswalks with DRA's corrected Florida 2020 VTD GeoJSON from GitHub plus Census/TIGER geometry downloads.
