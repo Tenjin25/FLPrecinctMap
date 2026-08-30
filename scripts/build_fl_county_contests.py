@@ -84,7 +84,7 @@ CANDIDATE_CODE_TO_NAME = {
     "G14CFORATW": "Jeff Atwater",
     "G14GOVDCRI": "Charlie Crist",
     "G14GOVRSCO": "Rick Scott",
-    "G16PREDCLI": "Hillary Clinton",
+    "G16PREDCLI": "Hillary Rodham Clinton",
     "G16PRERTRU": "Donald J. Trump",
     "G16USSDMUR": "Patrick Murphy",
     "G16USSRRUB": "Marco Rubio",
@@ -489,6 +489,7 @@ def build() -> None:
     results_by_year: Dict[str, Dict[str, dict]] = {}
     built = 0
     built_keys: Set[Tuple[str, int]] = set()
+    built_candidates: Dict[Tuple[str, int], Tuple[str, str]] = {}
 
     for year in years:
         shp = data_dir / f"fl_{year}.zip"
@@ -580,6 +581,7 @@ def build() -> None:
             )
             built += 1
             built_keys.add((contest_type, int(year)))
+            built_candidates[(contest_type, int(year))] = (dem_candidate, rep_candidate)
 
             dem_total = int(sum(r["dem_votes"] for r in county_results.values()))
             rep_total = int(sum(r["rep_votes"] for r in county_results.values()))
@@ -670,6 +672,17 @@ def build() -> None:
                         f"FL DOS data covers {len(county_results)} of 67 counties."
                     )
                     continue
+
+                # The DOS aligned files sometimes use ticket labels or alternate
+                # name forms. Preserve the established VEST candidate labels and
+                # replace only the official county vote totals.
+                vest_dem_candidate, vest_rep_candidate = built_candidates.get(
+                    key,
+                    (dem_candidate, rep_candidate),
+                )
+                for totals in county_results.values():
+                    totals["dem_candidate"] = vest_dem_candidate
+                    totals["rep_candidate"] = vest_rep_candidate
 
                 filename = f"{contest_type}_{year}.json"
                 contest_path = contests_dir / filename
