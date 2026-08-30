@@ -120,6 +120,15 @@ ALIGNED_CANDIDATE_OVERRIDES = {
     ("governor", 2010): ("Alex Sink", "Rick Scott"),
 }
 
+# These VEST slices have an OWRI field that includes non-candidate ballot
+# accounting. Use the official DOS county rollups for county/statewide display.
+OFFICIAL_COUNTY_TOTAL_OVERRIDES = {
+    ("president", 2012),
+    ("president", 2016),
+    ("president", 2020),
+    ("president", 2024),
+}
+
 
 def margin_color(winner: str, margin_abs_pct: float) -> str:
     if winner == "TIE":
@@ -600,8 +609,6 @@ def build() -> None:
         grouped = aligned_records.groupby(["year", "contest_type"], as_index=False)
         for (year, contest_type), subset in grouped:
             key = (str(contest_type), int(year))
-            if key in built_keys:
-                continue
 
             candidate_totals = (
                 subset.groupby(["party_bucket", "candidate_name"], as_index=False)["votes"]
@@ -646,6 +653,52 @@ def build() -> None:
                     "winner": row_payload["winner"],
                     "competitiveness": {"color": row_payload["color"]},
                 }
+
+            # VEST supplies the precinct detail used by the overlay, but some of its
+            # catch-all write-in columns also contain non-candidate ballot accounting.
+            # Keep those precinct rows and replace the county/statewide rollups with
+            # the complete official FL DOS county results when both sources exist.
+            # Treating the VEST OWRI field as candidate votes depresses the R-D
+            # margin in each precinct-backed presidential cycle from 2012 onward.
+            if key in built_keys and key not in OFFICIAL_COUNTY_TOTAL_OVERRIDES:
+                continue
+
+            if key in built_keys:
+                if len(county_results) != 67:
+                    print(
+                        f"[WARN] Not overriding {contest_type} {year} VEST totals: "
+                        f"FL DOS data covers {len(county_results)} of 67 counties."
+                    )
+                    continue
+
+                filename = f"{contest_type}_{year}.json"
+                contest_path = contests_dir / filename
+                with contest_path.open("r", encoding="utf-8") as f:
+                    existing_payload = json.load(f)
+                existing_payload["county_totals"] = county_results
+                write_json(contest_path, existing_payload)
+
+                dem_total = int(sum(r["dem_votes"] for r in county_results.values()))
+                rep_total = int(sum(r["rep_votes"] for r in county_results.values()))
+                other_total = int(sum(r["other_votes"] for r in county_results.values()))
+                for entry in manifest_entries:
+                    if (
+                        entry.get("contest_type") == str(contest_type)
+                        and int(entry.get("year", 0)) == int(year)
+                    ):
+                        entry["dem_total"] = dem_total
+                        entry["rep_total"] = rep_total
+                        entry["other_total"] = other_total
+                        entry["major_party_contested"] = bool(dem_total > 0 and rep_total > 0)
+                        break
+
+                contest_key = f"{contest_type}_{year}"
+                results_by_year.setdefault(str(year), {}).setdefault(str(contest_type), {})[contest_key] = {
+                    "contest_type": str(contest_type),
+                    "year": int(year),
+                    "results": county_results,
+                }
+                continue
 
             filename = f"{contest_type}_{year}.json"
             write_json(contests_dir / filename, {"rows": payload_rows})
