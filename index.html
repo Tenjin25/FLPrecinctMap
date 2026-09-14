@@ -10479,8 +10479,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-09-02-fl-original-dropdown-v1';
-    const APP_BUILD_ID = '2026-09-02-fl-original-dropdown-v1';
+    const DATA_CACHE_BUSTER = '2026-09-14-fl-cvap-lines-v2';
+    const APP_BUILD_ID = '2026-09-14-fl-cvap-lines-v2';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -10528,7 +10528,8 @@ document.addEventListener('DOMContentLoaded', function() {
         cvap_aggregates: {
           county_2020: withBase('./data/cvap_aggregates/county_2020__cvap24.csv'),
           cd118_2022: withBase('./data/cvap_aggregates/cd118_2022_lines__cvap24.csv'),
-          cd119_2024: withBase('./data/cvap_aggregates/cd119_2024_lines__cvap24.csv'),
+          congressional_proposed: withBase('./data/cvap_aggregates/congressional_proposed_lines__cvap24.csv'),
+          congressional_2026: withBase('./data/cvap_aggregates/congressional_2026_lines__cvap24.csv'),
           state_house_2022: withBase('./data/cvap_aggregates/state_house_2022_lines__cvap24.csv'),
           state_house_2024: withBase('./data/cvap_aggregates/state_house_2024_lines__cvap24.csv'),
           state_senate_2022: withBase('./data/cvap_aggregates/state_senate_2022_lines__cvap24.csv'),
@@ -21883,7 +21884,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function cvapDistrictPathFor(scope, linesYear) {
       const y = normalizeDistrictLinesYear(linesYear);
       const paths = cvapAggPaths();
-      if (scope === 'congressional') return y === 2026 ? (paths.cd119_2024 || paths.cd118_2022) : (y === 2024 ? paths.cd119_2024 : paths.cd118_2022);
+      if (scope === 'congressional') return y === 2026 ? (paths.congressional_2026 || paths.congressional_proposed || paths.cd118_2022) : (y === 2024 ? (paths.congressional_proposed || paths.cd118_2022) : paths.cd118_2022);
       if (scope === 'state_house') return y === 2026 ? (paths.state_house_2024 || paths.state_house_2022) : (y === 2024 ? paths.state_house_2024 : paths.state_house_2022);
       if (scope === 'state_senate') return y === 2026 ? (paths.state_senate_2024 || paths.state_senate_2022) : (y === 2024 ? paths.state_senate_2024 : paths.state_senate_2022);
       return '';
