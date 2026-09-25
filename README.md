@@ -24,6 +24,10 @@ No backend service is required for production deployment.
 - Crosswalk-backed district allocation views
 - Trend and competitiveness summaries
 
+## Precinct display names
+
+The precinct overlay uses `data/precinct_friendly_names.json` for readable labels. A verified church affiliation in a friendly label (PCA, PCUSA, EPC, OPC, ECO, or Evangel Presbytery) takes precedence over an older venue name embedded in the map geometry. The app cache-busts this lookup; labels do not change precinct IDs, boundaries, or election-result joins.
+
 ## Repository Layout
 
 - `index.html`: Main application
