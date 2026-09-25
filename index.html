@@ -10581,7 +10581,7 @@ document.addEventListener('DOMContentLoaded', function() {
         counties: withBase('./data/tl_2020_12_county20.geojson'),
         precincts: withBase('./data/fl_voting_precincts.geojson'),
         precinct_centroids: withBase('./data/fl_precinct_centroids.geojson'),
-        precinct_friendly_names: withBase('./data/precinct_friendly_names.json'),
+        precinct_friendly_names: withCacheBuster(withBase('./data/precinct_friendly_names.json')),
         districts: withBase('./data/fl_congressional_districts.geojson'),
         districts_2022: withBase('./data/fl_congressional_districts.geojson'),
         districts_2024: withBase('./data/fl_proposed_congressional_districts.geojson'),
@@ -31086,6 +31086,8 @@ document.addEventListener('DOMContentLoaded', function() {
       const canonicalCode = rawCode ? resolvePrecinctCanonicalCode(countyName, rawCode) : '';
       const friendly = rawCode ? getPrecinctFriendlyName(countyName, rawCode) : '';
       const friendlyLabel = friendly || '';
+      // Preserve verified affiliations even when geometry has an older venue label.
+      if (friendlyLabel && /,\s*(?:PCA|PCUSA|EPC|OPC|ECO|Evangel Presbytery)\s*$/i.test(friendlyLabel)) return friendlyLabel;
 
       const full = String(fullName || '').replace(/\s+/g, ' ').trim();
       const fallbackFull = String(fallbackFullName || '').replace(/\s+/g, ' ').trim();
