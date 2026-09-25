@@ -138,6 +138,49 @@ def build_friendly_names(source_zip: Path, geometry_path: Path) -> Tuple[dict, d
         counties.setdefault(county_name, {})[precinct_code] = best_name
         matched_geometry_keys.add((county_code, precinct_code))
 
+    # Affiliation labels verified by the congregation or its denomination.
+    # These are county and code specific because church names recur across Florida.
+    denomination_overrides = {
+        "ALACHUA": {
+            "45": "Faith Presbyterian Church, PCA",
+            "50": "Westminster Presbyterian Church, PCUSA",
+            "51": "Faith Presbyterian Church, PCA",
+            "56": "Covenant Presbyterian Church, PCUSA",
+            "58": "Kanapaha Presbyterian Church, PCUSA",
+        },
+        "CLAY": {"606": "First Presbyterian Church, PCUSA"},
+        "HERNANDO": {
+            "250": "Grace Presbyterian Church, PCUSA",
+            "520": "Faith Church, PCA",
+        },
+        "LEE": {
+            "107": "Faith Presbyterian Church, PCUSA",
+            "502": "Buckingham Presbyterian Church, PCUSA",
+        },
+        "LEON": {
+            "3413": "Wildwood Presbyterian Church, PCA",
+            "3475": "Wildwood Presbyterian Church, PCA",
+            "3501": "Faith Presbyterian Church, PCUSA",
+            "4103": "Fellowship Presbyterian Church, PCUSA",
+            "4153": "Lafayette Presbyterian Church, PCUSA",
+            "4163": "Fellowship Presbyterian Church, PCUSA",
+            "4405": "Wildwood Presbyterian Church, PCA",
+            "4455": "Christ Presbyterian Church, PCUSA",
+            "5227": "Lafayette Presbyterian Church, PCUSA",
+        },
+        "MONROE": {"20": "Presbyterian Kirk of the Keys, ECO"},
+        "SEMINOLE": {
+            "30": "Markham Woods Presbyterian Church, PCUSA",
+            "35": "Wekiva Presbyterian Church, PCUSA",
+            "73": "Covenant Presbyterian Church, PCA",
+            "80": "Oviedo Presbyterian Church, PCUSA",
+        },
+    }
+    for county, labels in denomination_overrides.items():
+        for code, label in labels.items():
+            if code in counties.get(county, {}):
+                counties[county][code] = label
+
     geometry_keys = {
         (county_code, precinct_code)
         for county_code, codes in codes_by_county.items()
