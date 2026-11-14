@@ -151,8 +151,8 @@
       "file": "congressional_president_2024.json",
       "rows": 28,
       "dem_total": 4683038,
-      "rep_total": 6110126,
-      "other_total": 142302,
+      "rep_total": 6110125,
+      "other_total": 100589,
       "major_party_contested": true,
       "match_coverage_pct": 100.0
     },

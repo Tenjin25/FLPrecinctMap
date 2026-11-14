@@ -376,7 +376,13 @@ def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dic
         rep_candidate = infer_candidate_name(gdf, colset["rep"], "Republican")
         dem = sum_numeric(gdf, colset["dem"])
         rep = sum_numeric(gdf, colset["rep"])
-        other = sum_numeric(gdf, colset["other"])
+        # VEST's presidential OWRI column includes ballot accounting that is
+        # absent from the official candidate totals. Reconcile the small number
+        # of actual write-ins against the DOS county totals below.
+        other_cols = colset["other"]
+        if year == 2024 and contest == "president":
+            other_cols = [col for col in other_cols if not col.endswith("OWRI")]
+        other = sum_numeric(gdf, other_cols)
         total = dem + rep + other
         out[contest] = {
             "rows": pd.DataFrame(
@@ -384,6 +390,7 @@ def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dic
                     "year": year,
                     "pct_key": pct_key,
                     "pct_key_vtd10": vtd10_key,
+                    "county_code": gdf["COUNTY"].astype(str).str.strip().str.upper(),
                     "contest_type": contest,
                     "dem_votes": dem,
                     "rep_votes": rep,
@@ -394,6 +401,47 @@ def load_precinct_contest_rows(shapefile_path: Path, year: int) -> Dict[str, Dic
             "dem_candidate": dem_candidate,
             "rep_candidate": rep_candidate,
         }
+    return out
+
+
+def reconcile_2024_president_to_counties(rows: pd.DataFrame, data_dir: Path) -> pd.DataFrame:
+    """Preserve precinct geography while matching official DOS county votes."""
+    source_zip = data_dir / "2024GenOutputOfficial.zip"
+    county_path = data_dir / "contests" / "president_2024.json"
+    if not source_zip.exists() or not county_path.exists():
+        raise FileNotFoundError("2024 precinct archive and county contest totals are required")
+
+    with zipfile.ZipFile(source_zip) as archive:
+        code_to_name = {}
+        for name in archive.namelist():
+            if not name.lower().endswith(".txt") or "recount" in name.lower():
+                continue
+            first_row = archive.open(name).readline().decode("latin1").split("\t")
+            code_to_name[first_row[0].strip().upper()] = first_row[1].strip().upper()
+
+    def county_key(value: object) -> str:
+        return re.sub(r"[^A-Z0-9]", "", str(value).upper())
+
+    official_raw = json.loads(county_path.read_text(encoding="utf-8"))["county_totals"]
+    official = {county_key(name): totals for name, totals in official_raw.items()}
+    out = rows.copy()
+    county_codes = out["county_code"].unique().tolist()
+    if len(county_codes) != 67 or set(county_codes) != set(code_to_name):
+        raise ValueError("2024 VEST and official precinct county coverage differs")
+    for code in county_codes:
+        key = county_key(code_to_name[code])
+        if key not in official:
+            raise ValueError(f"Missing official 2024 county total for {code_to_name[code]}")
+        mask = out["county_code"] == code
+        target = official[key]
+        for column in ("dem_votes", "rep_votes", "other_votes"):
+            source_total = float(out.loc[mask, column].sum())
+            target_total = int(target[column])
+            if source_total <= 0 and target_total:
+                raise ValueError(f"Cannot allocate {column} for {code}")
+            if source_total > 0:
+                out.loc[mask, column] *= target_total / source_total
+    out["total_votes"] = out[["dem_votes", "rep_votes", "other_votes"]].sum(axis=1)
     return out
 
 
@@ -824,6 +872,10 @@ def main() -> int:
         if not precinct_contests:
             print(f"[WARN] No contest columns found in {shp_path.name}")
             continue
+        if year == 2024 and "president" in precinct_contests:
+            precinct_contests["president"]["rows"] = reconcile_2024_president_to_counties(
+                precinct_contests["president"]["rows"], data_dir
+            )
 
         for scope in scopes:
             try:
@@ -896,7 +948,11 @@ def main() -> int:
                         "scope": scope,
                         "contest_type": contest_type,
                         "year": year,
-                        "source": "VEST precinct shapefile allocation",
+                        "source": (
+                            "VEST precinct allocation reconciled to FL DOS county totals"
+                            if year == 2024 and contest_type == "president"
+                            else "VEST precinct shapefile allocation"
+                        ),
                         "allocation_method": args.allocation_method,
                         "allocation_source": weights_obj.source,
                         "match_coverage_pct": round(coverage_pct, 6),
