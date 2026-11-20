@@ -10547,8 +10547,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-11-20-official-county-results-v1';
-    const APP_BUILD_ID = '2026-11-20-official-county-results-v1';
+    const DATA_CACHE_BUSTER = '2026-11-20-senate-special-label-v2';
+    const APP_BUILD_ID = '2026-11-20-senate-special-label-v2';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -20415,6 +20415,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	      if (modeledDef?.displayName) {
 	        return modeledDef.displayName;
 	      }
+	      if (contestType === 'us_senate' && Number(year) === 2026) return 'US Senate Special';
 	      // Florida Cabinet reform (Revision 8, 1998): first CFO election was Nov 2002;
 	      // the office took effect Jan 7, 2003. Earlier races were still Treasurer.
 	      if (contestType === 'treasurer') {
@@ -20534,7 +20535,9 @@ document.addEventListener('DOMContentLoaded', function() {
         ? formatContestName(contestType, year)
         : (String(groupLabel || '').trim() || formatContestName(contestType, year));
       // For Treasurer/CFO, prefer the year-aware office title over a shared group label.
-      const useYearAwareTitle = String(contestType || '').trim() === 'treasurer' || HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim());
+      const useYearAwareTitle = String(contestType || '').trim() === 'treasurer'
+        || (String(contestType || '').trim() === 'us_senate' && y === 2026)
+        || HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim());
       const title = useYearAwareTitle ? formatContestName(contestType, year) : base;
       const yearSuffix = Number.isFinite(y) && y > 0 ? ` (${y})` : '';
       if (HISTORIC_FL_OFFICE_TYPES.has(String(contestType || '').trim())) {
