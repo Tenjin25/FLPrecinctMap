@@ -1,0 +1,242 @@
+{
+  "meta": {
+    "scope": "state_senate",
+    "contest_type": "state_senate",
+    "year": 2026,
+    "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+    "allocation_method": "official_county_district_sums",
+    "district_lines": "2022/2024 legislative"
+  },
+  "general": {
+    "results": {
+      "2": {
+        "dem_votes": 57258,
+        "rep_votes": 145400,
+        "other_votes": 0,
+        "total_votes": 202658,
+        "dem_candidate": "Lauren Donahoo",
+        "rep_candidate": "Jay Trumbull",
+        "margin": 88142,
+        "margin_pct": 43.492978,
+        "winner": "REP",
+        "color": "#67000d"
+      },
+      "6": {
+        "dem_votes": 85945,
+        "rep_votes": 122619,
+        "other_votes": 2044,
+        "total_votes": 210608,
+        "dem_candidate": "Jason Bellamy-Fults",
+        "rep_candidate": "Jennifer Bradley",
+        "margin": 36674,
+        "margin_pct": 17.413394,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      },
+      "8": {
+        "dem_votes": 96382,
+        "rep_votes": 125115,
+        "other_votes": 3941,
+        "total_votes": 225438,
+        "dem_candidate": "Judy M. Ngying",
+        "rep_candidate": "Jake Johansson",
+        "margin": 28733,
+        "margin_pct": 12.745411,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      },
+      "10": {
+        "dem_votes": 125136,
+        "rep_votes": 98506,
+        "other_votes": 0,
+        "total_votes": 223642,
+        "dem_candidate": "John Lowndes",
+        "rep_candidate": "Jason Brodeur",
+        "margin": -26630,
+        "margin_pct": -11.907423,
+        "winner": "DEM",
+        "color": "#6baed6"
+      },
+      "12": {
+        "dem_votes": 92769,
+        "rep_votes": 94012,
+        "other_votes": 0,
+        "total_votes": 186781,
+        "dem_candidate": "Alfred Reynolds",
+        "rep_candidate": "Colleen Burton",
+        "margin": 1243,
+        "margin_pct": 0.665485,
+        "winner": "REP",
+        "color": "#fee8c8"
+      },
+      "14": {
+        "dem_votes": 101282,
+        "rep_votes": 92548,
+        "other_votes": 0,
+        "total_votes": 193830,
+        "dem_candidate": "Brian Nathan",
+        "rep_candidate": "Josie Tomkow",
+        "margin": -8734,
+        "margin_pct": -4.50601,
+        "winner": "DEM",
+        "color": "#c6dbef"
+      },
+      "18": {
+        "dem_votes": 104672,
+        "rep_votes": 108405,
+        "other_votes": 0,
+        "total_votes": 213077,
+        "dem_candidate": "Karla Kemp",
+        "rep_candidate": "Nick DiCeglie",
+        "margin": 3733,
+        "margin_pct": 1.751949,
+        "winner": "REP",
+        "color": "#fcae91"
+      },
+      "20": {
+        "dem_votes": 106722,
+        "rep_votes": 134598,
+        "other_votes": 0,
+        "total_votes": 241320,
+        "dem_candidate": "Gerald Baldi",
+        "rep_candidate": "Jim Boyd",
+        "margin": 27876,
+        "margin_pct": 11.551467,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      },
+      "21": {
+        "dem_votes": 94666,
+        "rep_votes": 129082,
+        "other_votes": 0,
+        "total_votes": 223748,
+        "dem_candidate": "Jordan Hensley",
+        "rep_candidate": "Chris Nocco",
+        "margin": 34416,
+        "margin_pct": 15.38159,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      },
+      "22": {
+        "dem_votes": 109732,
+        "rep_votes": 147072,
+        "other_votes": 8759,
+        "total_votes": 265563,
+        "dem_candidate": "Lew Wasserman",
+        "rep_candidate": "James Buchanan",
+        "margin": 37340,
+        "margin_pct": 14.060694,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      },
+      "24": {
+        "dem_votes": 99896,
+        "rep_votes": 54707,
+        "other_votes": 0,
+        "total_votes": 154603,
+        "dem_candidate": "Mack Bernard",
+        "rep_candidate": "Jackie Green",
+        "margin": -45189,
+        "margin_pct": -29.229058,
+        "winner": "DEM",
+        "color": "#3182bd"
+      },
+      "26": {
+        "dem_votes": 135408,
+        "rep_votes": 97826,
+        "other_votes": 0,
+        "total_votes": 233234,
+        "dem_candidate": "David Silvers",
+        "rep_candidate": "Rick Roth",
+        "margin": -37582,
+        "margin_pct": -16.113431,
+        "winner": "DEM",
+        "color": "#6baed6"
+      },
+      "28": {
+        "dem_votes": 86513,
+        "rep_votes": 142427,
+        "other_votes": 0,
+        "total_votes": 228940,
+        "dem_candidate": "David Silverberg",
+        "rep_candidate": "Lauren Uhlich Melo",
+        "margin": 55914,
+        "margin_pct": 24.422993,
+        "winner": "REP",
+        "color": "#cb181d"
+      },
+      "30": {
+        "dem_votes": 115249,
+        "rep_votes": 68146,
+        "other_votes": 0,
+        "total_votes": 183395,
+        "dem_candidate": "Lauren Book",
+        "rep_candidate": "Hector Rivera",
+        "margin": -47103,
+        "margin_pct": -25.683906,
+        "winner": "DEM",
+        "color": "#3182bd"
+      },
+      "32": {
+        "dem_votes": 142988,
+        "rep_votes": 0,
+        "other_votes": 23029,
+        "total_votes": 166017,
+        "dem_candidate": "Rosalind Osgood",
+        "rep_candidate": "",
+        "margin": -142988,
+        "margin_pct": -86.128529,
+        "winner": "DEM",
+        "color": "#08306b"
+      },
+      "34": {
+        "dem_votes": 115457,
+        "rep_votes": 30997,
+        "other_votes": 0,
+        "total_votes": 146454,
+        "dem_candidate": "Ashley Viola Gantt",
+        "rep_candidate": "Elizabeth Jeanty",
+        "margin": -84460,
+        "margin_pct": -57.669985,
+        "winner": "DEM",
+        "color": "#08306b"
+      },
+      "36": {
+        "dem_votes": 69472,
+        "rep_votes": 71136,
+        "other_votes": 0,
+        "total_votes": 140608,
+        "dem_candidate": "George Lav\u00c3\u00adn",
+        "rep_candidate": "Ileana Garcia",
+        "margin": 1664,
+        "margin_pct": 1.183432,
+        "winner": "REP",
+        "color": "#fcae91"
+      },
+      "38": {
+        "dem_votes": 91425,
+        "rep_votes": 92972,
+        "other_votes": 3383,
+        "total_votes": 187780,
+        "dem_candidate": "Richard Lamondin",
+        "rep_candidate": "Alexis Maria Calatayud",
+        "margin": 1547,
+        "margin_pct": 0.823836,
+        "winner": "REP",
+        "color": "#fee8c8"
+      },
+      "40": {
+        "dem_votes": 75457,
+        "rep_votes": 95369,
+        "other_votes": 1866,
+        "total_votes": 172692,
+        "dem_candidate": "Jose Antonio Stoute",
+        "rep_candidate": "Ana Maria Rodriguez",
+        "margin": 19912,
+        "margin_pct": 11.530355,
+        "winner": "REP",
+        "color": "#ef3b2c"
+      }
+    }
+  }
+}

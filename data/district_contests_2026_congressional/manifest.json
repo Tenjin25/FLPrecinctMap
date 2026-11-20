@@ -194,6 +194,20 @@
     },
     {
       "scope": "congressional",
+      "contest_type": "us_house",
+      "year": 2026,
+      "file": "congressional_us_house_2026.json",
+      "rows": 27,
+      "dem_total": 3868278,
+      "rep_total": 4041906,
+      "other_total": 94871,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_district_sums",
+      "match_coverage_pct": 100.0
+    },
+    {
+      "scope": "congressional",
       "contest_type": "us_senate",
       "year": 2012,
       "file": "congressional_us_senate_2012.json",

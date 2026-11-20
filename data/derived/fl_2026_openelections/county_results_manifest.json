@@ -1,0 +1,13 @@
+{
+  "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+  "source_sha256": "6da5bdddd2f6dbd05e5f20b3a0f9e35dd64ef969401ed27ff3d4cc708035da90",
+  "source_file": "20261103_ElecResultsFL.txt",
+  "county_count": 67,
+  "candidate_rows": 1999,
+  "districts": {
+    "state_house": 91,
+    "state_senate": 19,
+    "congressional": 27
+  },
+  "note": "No precinct geometry or vote allocation used for these district race totals."
+}

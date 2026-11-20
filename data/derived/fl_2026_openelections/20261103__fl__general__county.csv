@@ -1,0 +1,2000 @@
+county,precinct,office,district,party,candidate,votes
+ALACHUA,,Attorney General,,DEM,Jose Javier Rodriguez,70043
+ALACHUA,,Attorney General,,REP,James Uthmeier,34697
+BAKER,,Attorney General,,DEM,Jose Javier Rodriguez,1565
+BAKER,,Attorney General,,REP,James Uthmeier,8172
+BAY,,Attorney General,,DEM,Jose Javier Rodriguez,20847
+BAY,,Attorney General,,REP,James Uthmeier,48826
+BRADFORD,,Attorney General,,DEM,Jose Javier Rodriguez,2387
+BRADFORD,,Attorney General,,REP,James Uthmeier,7227
+BREVARD,,Attorney General,,DEM,Jose Javier Rodriguez,116180
+BREVARD,,Attorney General,,REP,James Uthmeier,151788
+BROWARD,,Attorney General,,DEM,Jose Javier Rodriguez,441577
+BROWARD,,Attorney General,,REP,James Uthmeier,214486
+CALHOUN,,Attorney General,,DEM,Jose Javier Rodriguez,818
+CALHOUN,,Attorney General,,REP,James Uthmeier,3431
+CHARLOTTE,,Attorney General,,DEM,Jose Javier Rodriguez,32512
+CHARLOTTE,,Attorney General,,REP,James Uthmeier,66730
+CITRUS,,Attorney General,,DEM,Jose Javier Rodriguez,20932
+CITRUS,,Attorney General,,REP,James Uthmeier,52996
+CLAY,,Attorney General,,DEM,Jose Javier Rodriguez,31815
+CLAY,,Attorney General,,REP,James Uthmeier,60160
+COLLIER,,Attorney General,,DEM,Jose Javier Rodriguez,60586
+COLLIER,,Attorney General,,REP,James Uthmeier,110123
+COLUMBIA,,Attorney General,,DEM,Jose Javier Rodriguez,6529
+COLUMBIA,,Attorney General,,REP,James Uthmeier,16230
+DESOTO,,Attorney General,,DEM,Jose Javier Rodriguez,3200
+DESOTO,,Attorney General,,REP,James Uthmeier,5869
+DIXIE,,Attorney General,,DEM,Jose Javier Rodriguez,895
+DIXIE,,Attorney General,,REP,James Uthmeier,4573
+DUVAL,,Attorney General,,DEM,Jose Javier Rodriguez,195684
+DUVAL,,Attorney General,,REP,James Uthmeier,160261
+ESCAMBIA,,Attorney General,,DEM,Jose Javier Rodriguez,51874
+ESCAMBIA,,Attorney General,,REP,James Uthmeier,63774
+FLAGLER,,Attorney General,,DEM,Jose Javier Rodriguez,24034
+FLAGLER,,Attorney General,,REP,James Uthmeier,39377
+FRANKLIN,,Attorney General,,DEM,Jose Javier Rodriguez,1598
+FRANKLIN,,Attorney General,,REP,James Uthmeier,3428
+GADSDEN,,Attorney General,,DEM,Jose Javier Rodriguez,12098
+GADSDEN,,Attorney General,,REP,James Uthmeier,5607
+GILCHRIST,,Attorney General,,DEM,Jose Javier Rodriguez,1407
+GILCHRIST,,Attorney General,,REP,James Uthmeier,6338
+GLADES,,Attorney General,,DEM,Jose Javier Rodriguez,1069
+GLADES,,Attorney General,,REP,James Uthmeier,2663
+GULF,,Attorney General,,DEM,Jose Javier Rodriguez,1545
+GULF,,Attorney General,,REP,James Uthmeier,5128
+HAMILTON,,Attorney General,,DEM,Jose Javier Rodriguez,1418
+HAMILTON,,Attorney General,,REP,James Uthmeier,2691
+HARDEE,,Attorney General,,DEM,Jose Javier Rodriguez,1880
+HARDEE,,Attorney General,,REP,James Uthmeier,4045
+HENDRY,,Attorney General,,DEM,Jose Javier Rodriguez,4476
+HENDRY,,Attorney General,,REP,James Uthmeier,5562
+HERNANDO,,Attorney General,,DEM,Jose Javier Rodriguez,28490
+HERNANDO,,Attorney General,,REP,James Uthmeier,51230
+HIGHLANDS,,Attorney General,,DEM,Jose Javier Rodriguez,12818
+HIGHLANDS,,Attorney General,,REP,James Uthmeier,26697
+HILLSBOROUGH,,Attorney General,,DEM,Jose Javier Rodriguez,284120
+HILLSBOROUGH,,Attorney General,,REP,James Uthmeier,229440
+HOLMES,,Attorney General,,DEM,Jose Javier Rodriguez,750
+HOLMES,,Attorney General,,REP,James Uthmeier,5433
+INDIAN RIVER,,Attorney General,,DEM,Jose Javier Rodriguez,29518
+INDIAN RIVER,,Attorney General,,REP,James Uthmeier,47555
+JACKSON,,Attorney General,,DEM,Jose Javier Rodriguez,4766
+JACKSON,,Attorney General,,REP,James Uthmeier,10892
+JEFFERSON,,Attorney General,,DEM,Jose Javier Rodriguez,2885
+JEFFERSON,,Attorney General,,REP,James Uthmeier,3994
+LAFAYETTE,,Attorney General,,DEM,Jose Javier Rodriguez,354
+LAFAYETTE,,Attorney General,,REP,James Uthmeier,2230
+LAKE,,Attorney General,,DEM,Jose Javier Rodriguez,72775
+LAKE,,Attorney General,,REP,James Uthmeier,103739
+LEE,,Attorney General,,DEM,Jose Javier Rodriguez,117229
+LEE,,Attorney General,,REP,James Uthmeier,184672
+LEON,,Attorney General,,DEM,Jose Javier Rodriguez,82402
+LEON,,Attorney General,,REP,James Uthmeier,42043
+LEVY,,Attorney General,,DEM,Jose Javier Rodriguez,5019
+LEVY,,Attorney General,,REP,James Uthmeier,13033
+LIBERTY,,Attorney General,,DEM,Jose Javier Rodriguez,526
+LIBERTY,,Attorney General,,REP,James Uthmeier,2092
+MADISON,,Attorney General,,DEM,Jose Javier Rodriguez,2587
+MADISON,,Attorney General,,REP,James Uthmeier,4207
+MANATEE,,Attorney General,,DEM,Jose Javier Rodriguez,73407
+MANATEE,,Attorney General,,REP,James Uthmeier,107483
+MARION,,Attorney General,,DEM,Jose Javier Rodriguez,60616
+MARION,,Attorney General,,REP,James Uthmeier,102301
+MARTIN,,Attorney General,,DEM,Jose Javier Rodriguez,27648
+MARTIN,,Attorney General,,REP,James Uthmeier,48060
+MIAMI-DADE,,Attorney General,,DEM,Jose Javier Rodriguez,431755
+MIAMI-DADE,,Attorney General,,REP,James Uthmeier,345016
+MONROE,,Attorney General,,DEM,Jose Javier Rodriguez,14891
+MONROE,,Attorney General,,REP,James Uthmeier,17065
+NASSAU,,Attorney General,,DEM,Jose Javier Rodriguez,14505
+NASSAU,,Attorney General,,REP,James Uthmeier,35640
+OKALOOSA,,Attorney General,,DEM,Jose Javier Rodriguez,24646
+OKALOOSA,,Attorney General,,REP,James Uthmeier,51956
+OKEECHOBEE,,Attorney General,,DEM,Jose Javier Rodriguez,3317
+OKEECHOBEE,,Attorney General,,REP,James Uthmeier,7736
+ORANGE,,Attorney General,,DEM,Jose Javier Rodriguez,305224
+ORANGE,,Attorney General,,REP,James Uthmeier,163871
+OSCEOLA,,Attorney General,,DEM,Jose Javier Rodriguez,78658
+OSCEOLA,,Attorney General,,REP,James Uthmeier,51916
+PALM BEACH,,Attorney General,,DEM,Jose Javier Rodriguez,315826
+PALM BEACH,,Attorney General,,REP,James Uthmeier,250855
+PASCO,,Attorney General,,DEM,Jose Javier Rodriguez,102266
+PASCO,,Attorney General,,REP,James Uthmeier,135022
+PINELLAS,,Attorney General,,DEM,Jose Javier Rodriguez,202943
+PINELLAS,,Attorney General,,REP,James Uthmeier,196699
+POLK,,Attorney General,,DEM,Jose Javier Rodriguez,119713
+POLK,,Attorney General,,REP,James Uthmeier,135966
+PUTNAM,,Attorney General,,DEM,Jose Javier Rodriguez,7838
+PUTNAM,,Attorney General,,REP,James Uthmeier,18179
+SANTA ROSA,,Attorney General,,DEM,Jose Javier Rodriguez,20835
+SANTA ROSA,,Attorney General,,REP,James Uthmeier,53186
+SARASOTA,,Attorney General,,DEM,Jose Javier Rodriguez,93605
+SARASOTA,,Attorney General,,REP,James Uthmeier,127950
+SEMINOLE,,Attorney General,,DEM,Jose Javier Rodriguez,105562
+SEMINOLE,,Attorney General,,REP,James Uthmeier,88597
+ST. JOHNS,,Attorney General,,DEM,Jose Javier Rodriguez,56952
+ST. JOHNS,,Attorney General,,REP,James Uthmeier,97861
+ST. LUCIE,,Attorney General,,DEM,Jose Javier Rodriguez,70295
+ST. LUCIE,,Attorney General,,REP,James Uthmeier,67665
+SUMTER,,Attorney General,,DEM,Jose Javier Rodriguez,27229
+SUMTER,,Attorney General,,REP,James Uthmeier,67487
+SUWANNEE,,Attorney General,,DEM,Jose Javier Rodriguez,3578
+SUWANNEE,,Attorney General,,REP,James Uthmeier,12222
+TAYLOR,,Attorney General,,DEM,Jose Javier Rodriguez,1632
+TAYLOR,,Attorney General,,REP,James Uthmeier,5323
+UNION,,Attorney General,,DEM,Jose Javier Rodriguez,791
+UNION,,Attorney General,,REP,James Uthmeier,3483
+VOLUSIA,,Attorney General,,DEM,Jose Javier Rodriguez,100801
+VOLUSIA,,Attorney General,,REP,James Uthmeier,134391
+WAKULLA,,Attorney General,,DEM,Jose Javier Rodriguez,4866
+WAKULLA,,Attorney General,,REP,James Uthmeier,10172
+WALTON,,Attorney General,,DEM,Jose Javier Rodriguez,8141
+WALTON,,Attorney General,,REP,James Uthmeier,26828
+WASHINGTON,,Attorney General,,DEM,Jose Javier Rodriguez,1804
+WASHINGTON,,Attorney General,,REP,James Uthmeier,7198
+ALACHUA,,Chief Financial Officer,,DEM,Annette Taddeo,68802
+ALACHUA,,Chief Financial Officer,,REP,Blaise Ingoglia,35306
+BAKER,,Chief Financial Officer,,DEM,Annette Taddeo,1585
+BAKER,,Chief Financial Officer,,REP,Blaise Ingoglia,8115
+BAY,,Chief Financial Officer,,DEM,Annette Taddeo,20768
+BAY,,Chief Financial Officer,,REP,Blaise Ingoglia,48722
+BRADFORD,,Chief Financial Officer,,DEM,Annette Taddeo,2390
+BRADFORD,,Chief Financial Officer,,REP,Blaise Ingoglia,7144
+BREVARD,,Chief Financial Officer,,DEM,Annette Taddeo,115216
+BREVARD,,Chief Financial Officer,,REP,Blaise Ingoglia,151367
+BROWARD,,Chief Financial Officer,,DEM,Annette Taddeo,433836
+BROWARD,,Chief Financial Officer,,REP,Blaise Ingoglia,215705
+CALHOUN,,Chief Financial Officer,,DEM,Annette Taddeo,833
+CALHOUN,,Chief Financial Officer,,REP,Blaise Ingoglia,3398
+CHARLOTTE,,Chief Financial Officer,,DEM,Annette Taddeo,33841
+CHARLOTTE,,Chief Financial Officer,,REP,Blaise Ingoglia,65683
+CITRUS,,Chief Financial Officer,,DEM,Annette Taddeo,21489
+CITRUS,,Chief Financial Officer,,REP,Blaise Ingoglia,53036
+CLAY,,Chief Financial Officer,,DEM,Annette Taddeo,32135
+CLAY,,Chief Financial Officer,,REP,Blaise Ingoglia,60241
+COLLIER,,Chief Financial Officer,,DEM,Annette Taddeo,60738
+COLLIER,,Chief Financial Officer,,REP,Blaise Ingoglia,108536
+COLUMBIA,,Chief Financial Officer,,DEM,Annette Taddeo,6576
+COLUMBIA,,Chief Financial Officer,,REP,Blaise Ingoglia,16037
+DESOTO,,Chief Financial Officer,,DEM,Annette Taddeo,3278
+DESOTO,,Chief Financial Officer,,REP,Blaise Ingoglia,5563
+DIXIE,,Chief Financial Officer,,DEM,Annette Taddeo,946
+DIXIE,,Chief Financial Officer,,REP,Blaise Ingoglia,4602
+DUVAL,,Chief Financial Officer,,DEM,Annette Taddeo,195147
+DUVAL,,Chief Financial Officer,,REP,Blaise Ingoglia,158854
+ESCAMBIA,,Chief Financial Officer,,DEM,Annette Taddeo,51490
+ESCAMBIA,,Chief Financial Officer,,REP,Blaise Ingoglia,63431
+FLAGLER,,Chief Financial Officer,,DEM,Annette Taddeo,23719
+FLAGLER,,Chief Financial Officer,,REP,Blaise Ingoglia,38531
+FRANKLIN,,Chief Financial Officer,,DEM,Annette Taddeo,1613
+FRANKLIN,,Chief Financial Officer,,REP,Blaise Ingoglia,3387
+GADSDEN,,Chief Financial Officer,,DEM,Annette Taddeo,12318
+GADSDEN,,Chief Financial Officer,,REP,Blaise Ingoglia,5377
+GILCHRIST,,Chief Financial Officer,,DEM,Annette Taddeo,1382
+GILCHRIST,,Chief Financial Officer,,REP,Blaise Ingoglia,6318
+GLADES,,Chief Financial Officer,,DEM,Annette Taddeo,1139
+GLADES,,Chief Financial Officer,,REP,Blaise Ingoglia,2643
+GULF,,Chief Financial Officer,,DEM,Annette Taddeo,1542
+GULF,,Chief Financial Officer,,REP,Blaise Ingoglia,5070
+HAMILTON,,Chief Financial Officer,,DEM,Annette Taddeo,1421
+HAMILTON,,Chief Financial Officer,,REP,Blaise Ingoglia,2662
+HARDEE,,Chief Financial Officer,,DEM,Annette Taddeo,1910
+HARDEE,,Chief Financial Officer,,REP,Blaise Ingoglia,4047
+HENDRY,,Chief Financial Officer,,DEM,Annette Taddeo,4481
+HENDRY,,Chief Financial Officer,,REP,Blaise Ingoglia,5502
+HERNANDO,,Chief Financial Officer,,DEM,Annette Taddeo,28786
+HERNANDO,,Chief Financial Officer,,REP,Blaise Ingoglia,50683
+HIGHLANDS,,Chief Financial Officer,,DEM,Annette Taddeo,12945
+HIGHLANDS,,Chief Financial Officer,,REP,Blaise Ingoglia,26227
+HILLSBOROUGH,,Chief Financial Officer,,DEM,Annette Taddeo,280189
+HILLSBOROUGH,,Chief Financial Officer,,REP,Blaise Ingoglia,230068
+HOLMES,,Chief Financial Officer,,DEM,Annette Taddeo,791
+HOLMES,,Chief Financial Officer,,REP,Blaise Ingoglia,5357
+INDIAN RIVER,,Chief Financial Officer,,DEM,Annette Taddeo,30101
+INDIAN RIVER,,Chief Financial Officer,,REP,Blaise Ingoglia,46210
+JACKSON,,Chief Financial Officer,,DEM,Annette Taddeo,4774
+JACKSON,,Chief Financial Officer,,REP,Blaise Ingoglia,10785
+JEFFERSON,,Chief Financial Officer,,DEM,Annette Taddeo,2971
+JEFFERSON,,Chief Financial Officer,,REP,Blaise Ingoglia,3940
+LAFAYETTE,,Chief Financial Officer,,DEM,Annette Taddeo,390
+LAFAYETTE,,Chief Financial Officer,,REP,Blaise Ingoglia,2172
+LAKE,,Chief Financial Officer,,DEM,Annette Taddeo,72256
+LAKE,,Chief Financial Officer,,REP,Blaise Ingoglia,102676
+LEE,,Chief Financial Officer,,DEM,Annette Taddeo,119558
+LEE,,Chief Financial Officer,,REP,Blaise Ingoglia,179810
+LEON,,Chief Financial Officer,,DEM,Annette Taddeo,81723
+LEON,,Chief Financial Officer,,REP,Blaise Ingoglia,41729
+LEVY,,Chief Financial Officer,,DEM,Annette Taddeo,4903
+LEVY,,Chief Financial Officer,,REP,Blaise Ingoglia,12898
+LIBERTY,,Chief Financial Officer,,DEM,Annette Taddeo,540
+LIBERTY,,Chief Financial Officer,,REP,Blaise Ingoglia,2065
+MADISON,,Chief Financial Officer,,DEM,Annette Taddeo,2729
+MADISON,,Chief Financial Officer,,REP,Blaise Ingoglia,4212
+MANATEE,,Chief Financial Officer,,DEM,Annette Taddeo,73378
+MANATEE,,Chief Financial Officer,,REP,Blaise Ingoglia,106553
+MARION,,Chief Financial Officer,,DEM,Annette Taddeo,60387
+MARION,,Chief Financial Officer,,REP,Blaise Ingoglia,100654
+MARTIN,,Chief Financial Officer,,DEM,Annette Taddeo,28153
+MARTIN,,Chief Financial Officer,,REP,Blaise Ingoglia,46910
+MIAMI-DADE,,Chief Financial Officer,,DEM,Annette Taddeo,423070
+MIAMI-DADE,,Chief Financial Officer,,REP,Blaise Ingoglia,351206
+MONROE,,Chief Financial Officer,,DEM,Annette Taddeo,14657
+MONROE,,Chief Financial Officer,,REP,Blaise Ingoglia,17123
+NASSAU,,Chief Financial Officer,,DEM,Annette Taddeo,14497
+NASSAU,,Chief Financial Officer,,REP,Blaise Ingoglia,35366
+OKALOOSA,,Chief Financial Officer,,DEM,Annette Taddeo,24345
+OKALOOSA,,Chief Financial Officer,,REP,Blaise Ingoglia,51916
+OKEECHOBEE,,Chief Financial Officer,,DEM,Annette Taddeo,3406
+OKEECHOBEE,,Chief Financial Officer,,REP,Blaise Ingoglia,7544
+ORANGE,,Chief Financial Officer,,DEM,Annette Taddeo,300003
+ORANGE,,Chief Financial Officer,,REP,Blaise Ingoglia,165265
+OSCEOLA,,Chief Financial Officer,,DEM,Annette Taddeo,77381
+OSCEOLA,,Chief Financial Officer,,REP,Blaise Ingoglia,52552
+PALM BEACH,,Chief Financial Officer,,DEM,Annette Taddeo,317276
+PALM BEACH,,Chief Financial Officer,,REP,Blaise Ingoglia,245726
+PASCO,,Chief Financial Officer,,DEM,Annette Taddeo,102019
+PASCO,,Chief Financial Officer,,REP,Blaise Ingoglia,133864
+PINELLAS,,Chief Financial Officer,,DEM,Annette Taddeo,202207
+PINELLAS,,Chief Financial Officer,,REP,Blaise Ingoglia,194673
+POLK,,Chief Financial Officer,,DEM,Annette Taddeo,119835
+POLK,,Chief Financial Officer,,REP,Blaise Ingoglia,134400
+PUTNAM,,Chief Financial Officer,,DEM,Annette Taddeo,8033
+PUTNAM,,Chief Financial Officer,,REP,Blaise Ingoglia,18247
+SANTA ROSA,,Chief Financial Officer,,DEM,Annette Taddeo,20562
+SANTA ROSA,,Chief Financial Officer,,REP,Blaise Ingoglia,52909
+SARASOTA,,Chief Financial Officer,,DEM,Annette Taddeo,93288
+SARASOTA,,Chief Financial Officer,,REP,Blaise Ingoglia,126443
+SEMINOLE,,Chief Financial Officer,,DEM,Annette Taddeo,104134
+SEMINOLE,,Chief Financial Officer,,REP,Blaise Ingoglia,88832
+ST. JOHNS,,Chief Financial Officer,,DEM,Annette Taddeo,56581
+ST. JOHNS,,Chief Financial Officer,,REP,Blaise Ingoglia,97090
+ST. LUCIE,,Chief Financial Officer,,DEM,Annette Taddeo,71015
+ST. LUCIE,,Chief Financial Officer,,REP,Blaise Ingoglia,65446
+SUMTER,,Chief Financial Officer,,DEM,Annette Taddeo,27245
+SUMTER,,Chief Financial Officer,,REP,Blaise Ingoglia,66613
+SUWANNEE,,Chief Financial Officer,,DEM,Annette Taddeo,3650
+SUWANNEE,,Chief Financial Officer,,REP,Blaise Ingoglia,12080
+TAYLOR,,Chief Financial Officer,,DEM,Annette Taddeo,1703
+TAYLOR,,Chief Financial Officer,,REP,Blaise Ingoglia,5203
+UNION,,Chief Financial Officer,,DEM,Annette Taddeo,811
+UNION,,Chief Financial Officer,,REP,Blaise Ingoglia,3451
+VOLUSIA,,Chief Financial Officer,,DEM,Annette Taddeo,100093
+VOLUSIA,,Chief Financial Officer,,REP,Blaise Ingoglia,133220
+WAKULLA,,Chief Financial Officer,,DEM,Annette Taddeo,4977
+WAKULLA,,Chief Financial Officer,,REP,Blaise Ingoglia,10005
+WALTON,,Chief Financial Officer,,DEM,Annette Taddeo,8091
+WALTON,,Chief Financial Officer,,REP,Blaise Ingoglia,26688
+WASHINGTON,,Chief Financial Officer,,DEM,Annette Taddeo,1826
+WASHINGTON,,Chief Financial Officer,,REP,Blaise Ingoglia,7132
+ALACHUA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,68462
+ALACHUA,,Commissioner of Agriculture,,REP,Wilton Simpson,35515
+ALACHUA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,5
+BAKER,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1597
+BAKER,,Commissioner of Agriculture,,REP,Wilton Simpson,8116
+BAKER,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+BAY,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,20884
+BAY,,Commissioner of Agriculture,,REP,Wilton Simpson,48662
+BAY,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,5
+BRADFORD,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,2355
+BRADFORD,,Commissioner of Agriculture,,REP,Wilton Simpson,7186
+BRADFORD,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+BREVARD,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,116035
+BREVARD,,Commissioner of Agriculture,,REP,Wilton Simpson,150263
+BREVARD,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,33
+BROWARD,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,432003
+BROWARD,,Commissioner of Agriculture,,REP,Wilton Simpson,217561
+BROWARD,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,47
+CALHOUN,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,824
+CALHOUN,,Commissioner of Agriculture,,REP,Wilton Simpson,3439
+CALHOUN,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+CHARLOTTE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,33329
+CHARLOTTE,,Commissioner of Agriculture,,REP,Wilton Simpson,65853
+CHARLOTTE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,5
+CITRUS,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,20740
+CITRUS,,Commissioner of Agriculture,,REP,Wilton Simpson,53216
+CITRUS,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,4
+CLAY,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,32117
+CLAY,,Commissioner of Agriculture,,REP,Wilton Simpson,59924
+CLAY,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,10
+COLLIER,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,60111
+COLLIER,,Commissioner of Agriculture,,REP,Wilton Simpson,108728
+COLLIER,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,4
+COLUMBIA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,6550
+COLUMBIA,,Commissioner of Agriculture,,REP,Wilton Simpson,16157
+COLUMBIA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,3
+DESOTO,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,3235
+DESOTO,,Commissioner of Agriculture,,REP,Wilton Simpson,5697
+DESOTO,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,9
+DIXIE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,925
+DIXIE,,Commissioner of Agriculture,,REP,Wilton Simpson,4608
+DIXIE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+DUVAL,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,195724
+DUVAL,,Commissioner of Agriculture,,REP,Wilton Simpson,157315
+DUVAL,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,48
+ESCAMBIA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,51434
+ESCAMBIA,,Commissioner of Agriculture,,REP,Wilton Simpson,63456
+ESCAMBIA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,10
+FLAGLER,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,24067
+FLAGLER,,Commissioner of Agriculture,,REP,Wilton Simpson,38603
+FLAGLER,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+FRANKLIN,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1589
+FRANKLIN,,Commissioner of Agriculture,,REP,Wilton Simpson,3401
+FRANKLIN,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+GADSDEN,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,12131
+GADSDEN,,Commissioner of Agriculture,,REP,Wilton Simpson,5570
+GADSDEN,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,7
+GILCHRIST,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1368
+GILCHRIST,,Commissioner of Agriculture,,REP,Wilton Simpson,6322
+GILCHRIST,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+GLADES,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1080
+GLADES,,Commissioner of Agriculture,,REP,Wilton Simpson,2698
+GLADES,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,2
+GULF,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1538
+GULF,,Commissioner of Agriculture,,REP,Wilton Simpson,5070
+GULF,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+HAMILTON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1438
+HAMILTON,,Commissioner of Agriculture,,REP,Wilton Simpson,2646
+HAMILTON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,2
+HARDEE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1843
+HARDEE,,Commissioner of Agriculture,,REP,Wilton Simpson,4068
+HARDEE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+HENDRY,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,4364
+HENDRY,,Commissioner of Agriculture,,REP,Wilton Simpson,5652
+HENDRY,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,8
+HERNANDO,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,28265
+HERNANDO,,Commissioner of Agriculture,,REP,Wilton Simpson,50658
+HERNANDO,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,14
+HIGHLANDS,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,12790
+HIGHLANDS,,Commissioner of Agriculture,,REP,Wilton Simpson,26437
+HIGHLANDS,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+HILLSBOROUGH,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,280298
+HILLSBOROUGH,,Commissioner of Agriculture,,REP,Wilton Simpson,228796
+HILLSBOROUGH,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,56
+HOLMES,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,756
+HOLMES,,Commissioner of Agriculture,,REP,Wilton Simpson,5411
+HOLMES,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+INDIAN RIVER,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,29403
+INDIAN RIVER,,Commissioner of Agriculture,,REP,Wilton Simpson,46896
+INDIAN RIVER,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+JACKSON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,4727
+JACKSON,,Commissioner of Agriculture,,REP,Wilton Simpson,10869
+JACKSON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+JEFFERSON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,2841
+JEFFERSON,,Commissioner of Agriculture,,REP,Wilton Simpson,4017
+JEFFERSON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+LAFAYETTE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,341
+LAFAYETTE,,Commissioner of Agriculture,,REP,Wilton Simpson,2267
+LAFAYETTE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+LAKE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,73218
+LAKE,,Commissioner of Agriculture,,REP,Wilton Simpson,102198
+LAKE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,29
+LEE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,118559
+LEE,,Commissioner of Agriculture,,REP,Wilton Simpson,180521
+LEE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,18
+LEON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,80183
+LEON,,Commissioner of Agriculture,,REP,Wilton Simpson,43323
+LEON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,19
+LEVY,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,4913
+LEVY,,Commissioner of Agriculture,,REP,Wilton Simpson,13031
+LEVY,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,4
+LIBERTY,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,508
+LIBERTY,,Commissioner of Agriculture,,REP,Wilton Simpson,2102
+LIBERTY,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+MADISON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,2658
+MADISON,,Commissioner of Agriculture,,REP,Wilton Simpson,4268
+MADISON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+MANATEE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,73105
+MANATEE,,Commissioner of Agriculture,,REP,Wilton Simpson,106797
+MANATEE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,29
+MARION,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,60553
+MARION,,Commissioner of Agriculture,,REP,Wilton Simpson,100296
+MARION,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,12
+MARTIN,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,27760
+MARTIN,,Commissioner of Agriculture,,REP,Wilton Simpson,47312
+MARTIN,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,7
+MIAMI-DADE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,416957
+MIAMI-DADE,,Commissioner of Agriculture,,REP,Wilton Simpson,358400
+MIAMI-DADE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,56
+MONROE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,14508
+MONROE,,Commissioner of Agriculture,,REP,Wilton Simpson,17223
+MONROE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+NASSAU,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,14539
+NASSAU,,Commissioner of Agriculture,,REP,Wilton Simpson,35205
+NASSAU,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,2
+OKALOOSA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,24437
+OKALOOSA,,Commissioner of Agriculture,,REP,Wilton Simpson,52038
+OKALOOSA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,10
+OKEECHOBEE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,3233
+OKEECHOBEE,,Commissioner of Agriculture,,REP,Wilton Simpson,7769
+OKEECHOBEE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,5
+ORANGE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,300275
+ORANGE,,Commissioner of Agriculture,,REP,Wilton Simpson,164139
+ORANGE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,66
+OSCEOLA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,78282
+OSCEOLA,,Commissioner of Agriculture,,REP,Wilton Simpson,52191
+OSCEOLA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,5
+PALM BEACH,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,314641
+PALM BEACH,,Commissioner of Agriculture,,REP,Wilton Simpson,247924
+PALM BEACH,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,31
+PASCO,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,102731
+PASCO,,Commissioner of Agriculture,,REP,Wilton Simpson,133308
+PASCO,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,31
+PINELLAS,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,202041
+PINELLAS,,Commissioner of Agriculture,,REP,Wilton Simpson,195672
+PINELLAS,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,39
+POLK,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,119670
+POLK,,Commissioner of Agriculture,,REP,Wilton Simpson,134611
+POLK,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,80
+PUTNAM,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,8010
+PUTNAM,,Commissioner of Agriculture,,REP,Wilton Simpson,18091
+PUTNAM,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,1
+SANTA ROSA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,20528
+SANTA ROSA,,Commissioner of Agriculture,,REP,Wilton Simpson,53084
+SANTA ROSA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,2
+SARASOTA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,92939
+SARASOTA,,Commissioner of Agriculture,,REP,Wilton Simpson,125815
+SARASOTA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,17
+SEMINOLE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,104156
+SEMINOLE,,Commissioner of Agriculture,,REP,Wilton Simpson,88416
+SEMINOLE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,28
+ST. JOHNS,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,56947
+ST. JOHNS,,Commissioner of Agriculture,,REP,Wilton Simpson,96207
+ST. JOHNS,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,9
+ST. LUCIE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,70641
+ST. LUCIE,,Commissioner of Agriculture,,REP,Wilton Simpson,66109
+ST. LUCIE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,12
+SUMTER,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,27611
+SUMTER,,Commissioner of Agriculture,,REP,Wilton Simpson,66069
+SUMTER,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,24
+SUWANNEE,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,3575
+SUWANNEE,,Commissioner of Agriculture,,REP,Wilton Simpson,12097
+SUWANNEE,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+TAYLOR,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1648
+TAYLOR,,Commissioner of Agriculture,,REP,Wilton Simpson,5275
+TAYLOR,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+UNION,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,780
+UNION,,Commissioner of Agriculture,,REP,Wilton Simpson,3480
+UNION,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+VOLUSIA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,100999
+VOLUSIA,,Commissioner of Agriculture,,REP,Wilton Simpson,132194
+VOLUSIA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,16
+WAKULLA,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,4845
+WAKULLA,,Commissioner of Agriculture,,REP,Wilton Simpson,10113
+WAKULLA,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+WALTON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,8113
+WALTON,,Commissioner of Agriculture,,REP,Wilton Simpson,26732
+WALTON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+WASHINGTON,,Commissioner of Agriculture,,DEM,Joey Mendoza Atkins,1824
+WASHINGTON,,Commissioner of Agriculture,,REP,Wilton Simpson,7146
+WASHINGTON,,Commissioner of Agriculture,,WRI,Kyle KC Gibson,0
+ALACHUA,,Governor and Lieutenant Governor,,DEM,David Jolly,69596
+ALACHUA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,505
+ALACHUA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,221
+ALACHUA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,179
+ALACHUA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,76
+ALACHUA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,113
+ALACHUA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,185
+ALACHUA,,Governor and Lieutenant Governor,,REP,Byron Donalds,34536
+ALACHUA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+ALACHUA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+BAKER,,Governor and Lieutenant Governor,,DEM,David Jolly,1637
+BAKER,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,50
+BAKER,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,14
+BAKER,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,25
+BAKER,,Governor and Lieutenant Governor,,NPA,Datto / Santana,11
+BAKER,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,3
+BAKER,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,22
+BAKER,,Governor and Lieutenant Governor,,REP,Byron Donalds,7977
+BAKER,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+BAKER,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+BAY,,Governor and Lieutenant Governor,,DEM,David Jolly,20712
+BAY,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,413
+BAY,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,108
+BAY,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,152
+BAY,,Governor and Lieutenant Governor,,NPA,Datto / Santana,61
+BAY,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,65
+BAY,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,163
+BAY,,Governor and Lieutenant Governor,,REP,Byron Donalds,48434
+BAY,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+BAY,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+BRADFORD,,Governor and Lieutenant Governor,,DEM,David Jolly,2422
+BRADFORD,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,48
+BRADFORD,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,22
+BRADFORD,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,20
+BRADFORD,,Governor and Lieutenant Governor,,NPA,Datto / Santana,10
+BRADFORD,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,3
+BRADFORD,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,25
+BRADFORD,,Governor and Lieutenant Governor,,REP,Byron Donalds,7090
+BRADFORD,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+BRADFORD,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+BREVARD,,Governor and Lieutenant Governor,,DEM,David Jolly,117755
+BREVARD,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1651
+BREVARD,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,526
+BREVARD,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,522
+BREVARD,,Governor and Lieutenant Governor,,NPA,Datto / Santana,242
+BREVARD,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,210
+BREVARD,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,777
+BREVARD,,Governor and Lieutenant Governor,,REP,Byron Donalds,147722
+BREVARD,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+BREVARD,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,5
+BROWARD,,Governor and Lieutenant Governor,,DEM,David Jolly,433259
+BROWARD,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,2240
+BROWARD,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,883
+BROWARD,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,992
+BROWARD,,Governor and Lieutenant Governor,,NPA,Datto / Santana,704
+BROWARD,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,708
+BROWARD,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,1801
+BROWARD,,Governor and Lieutenant Governor,,REP,Byron Donalds,220869
+BROWARD,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+BROWARD,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,7
+CALHOUN,,Governor and Lieutenant Governor,,DEM,David Jolly,835
+CALHOUN,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,25
+CALHOUN,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,4
+CALHOUN,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,15
+CALHOUN,,Governor and Lieutenant Governor,,NPA,Datto / Santana,10
+CALHOUN,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,1
+CALHOUN,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,9
+CALHOUN,,Governor and Lieutenant Governor,,REP,Byron Donalds,3374
+CALHOUN,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+CALHOUN,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+CHARLOTTE,,Governor and Lieutenant Governor,,DEM,David Jolly,32759
+CHARLOTTE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,493
+CHARLOTTE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,179
+CHARLOTTE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,256
+CHARLOTTE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,88
+CHARLOTTE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,69
+CHARLOTTE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,294
+CHARLOTTE,,Governor and Lieutenant Governor,,REP,Byron Donalds,66243
+CHARLOTTE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+CHARLOTTE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,3
+CITRUS,,Governor and Lieutenant Governor,,DEM,David Jolly,21789
+CITRUS,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,440
+CITRUS,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,150
+CITRUS,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,174
+CITRUS,,Governor and Lieutenant Governor,,NPA,Datto / Santana,87
+CITRUS,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,68
+CITRUS,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,208
+CITRUS,,Governor and Lieutenant Governor,,REP,Byron Donalds,51994
+CITRUS,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+CITRUS,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+CLAY,,Governor and Lieutenant Governor,,DEM,David Jolly,32263
+CLAY,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,541
+CLAY,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,199
+CLAY,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,233
+CLAY,,Governor and Lieutenant Governor,,NPA,Datto / Santana,73
+CLAY,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,87
+CLAY,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,223
+CLAY,,Governor and Lieutenant Governor,,REP,Byron Donalds,59246
+CLAY,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+CLAY,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,4
+COLLIER,,Governor and Lieutenant Governor,,DEM,David Jolly,61734
+COLLIER,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,531
+COLLIER,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,165
+COLLIER,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,266
+COLLIER,,Governor and Lieutenant Governor,,NPA,Datto / Santana,103
+COLLIER,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,86
+COLLIER,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,309
+COLLIER,,Governor and Lieutenant Governor,,REP,Byron Donalds,108580
+COLLIER,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+COLLIER,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+COLUMBIA,,Governor and Lieutenant Governor,,DEM,David Jolly,6642
+COLUMBIA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,117
+COLUMBIA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,50
+COLUMBIA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,68
+COLUMBIA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,18
+COLUMBIA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,12
+COLUMBIA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,90
+COLUMBIA,,Governor and Lieutenant Governor,,REP,Byron Donalds,15889
+COLUMBIA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+COLUMBIA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+DESOTO,,Governor and Lieutenant Governor,,DEM,David Jolly,3210
+DESOTO,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,43
+DESOTO,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,20
+DESOTO,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,29
+DESOTO,,Governor and Lieutenant Governor,,NPA,Datto / Santana,10
+DESOTO,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,12
+DESOTO,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,40
+DESOTO,,Governor and Lieutenant Governor,,REP,Byron Donalds,5701
+DESOTO,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+DESOTO,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+DIXIE,,Governor and Lieutenant Governor,,DEM,David Jolly,928
+DIXIE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,44
+DIXIE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,16
+DIXIE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,22
+DIXIE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,9
+DIXIE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,5
+DIXIE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,15
+DIXIE,,Governor and Lieutenant Governor,,REP,Byron Donalds,4521
+DIXIE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+DIXIE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+DUVAL,,Governor and Lieutenant Governor,,DEM,David Jolly,196311
+DUVAL,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1830
+DUVAL,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,600
+DUVAL,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,580
+DUVAL,,Governor and Lieutenant Governor,,NPA,Datto / Santana,329
+DUVAL,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,469
+DUVAL,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,937
+DUVAL,,Governor and Lieutenant Governor,,REP,Byron Donalds,157126
+DUVAL,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,1
+DUVAL,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,11
+ESCAMBIA,,Governor and Lieutenant Governor,,DEM,David Jolly,51667
+ESCAMBIA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,679
+ESCAMBIA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,219
+ESCAMBIA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,238
+ESCAMBIA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,105
+ESCAMBIA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,151
+ESCAMBIA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,350
+ESCAMBIA,,Governor and Lieutenant Governor,,REP,Byron Donalds,62779
+ESCAMBIA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,1
+ESCAMBIA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+FLAGLER,,Governor and Lieutenant Governor,,DEM,David Jolly,24288
+FLAGLER,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,287
+FLAGLER,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,67
+FLAGLER,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,108
+FLAGLER,,Governor and Lieutenant Governor,,NPA,Datto / Santana,65
+FLAGLER,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,37
+FLAGLER,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,165
+FLAGLER,,Governor and Lieutenant Governor,,REP,Byron Donalds,38820
+FLAGLER,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+FLAGLER,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,3
+FRANKLIN,,Governor and Lieutenant Governor,,DEM,David Jolly,1603
+FRANKLIN,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,20
+FRANKLIN,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,12
+FRANKLIN,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,5
+FRANKLIN,,Governor and Lieutenant Governor,,NPA,Datto / Santana,3
+FRANKLIN,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,0
+FRANKLIN,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,10
+FRANKLIN,,Governor and Lieutenant Governor,,REP,Byron Donalds,3377
+FRANKLIN,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+FRANKLIN,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+GADSDEN,,Governor and Lieutenant Governor,,DEM,David Jolly,12265
+GADSDEN,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,59
+GADSDEN,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,21
+GADSDEN,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,25
+GADSDEN,,Governor and Lieutenant Governor,,NPA,Datto / Santana,18
+GADSDEN,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,18
+GADSDEN,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,33
+GADSDEN,,Governor and Lieutenant Governor,,REP,Byron Donalds,5370
+GADSDEN,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+GADSDEN,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+GILCHRIST,,Governor and Lieutenant Governor,,DEM,David Jolly,1414
+GILCHRIST,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,44
+GILCHRIST,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,21
+GILCHRIST,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,32
+GILCHRIST,,Governor and Lieutenant Governor,,NPA,Datto / Santana,11
+GILCHRIST,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,7
+GILCHRIST,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,23
+GILCHRIST,,Governor and Lieutenant Governor,,REP,Byron Donalds,6195
+GILCHRIST,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+GILCHRIST,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+GLADES,,Governor and Lieutenant Governor,,DEM,David Jolly,1095
+GLADES,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,16
+GLADES,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,8
+GLADES,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,17
+GLADES,,Governor and Lieutenant Governor,,NPA,Datto / Santana,1
+GLADES,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,2
+GLADES,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,16
+GLADES,,Governor and Lieutenant Governor,,REP,Byron Donalds,2630
+GLADES,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+GLADES,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+GULF,,Governor and Lieutenant Governor,,DEM,David Jolly,1505
+GULF,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,31
+GULF,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,11
+GULF,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,26
+GULF,,Governor and Lieutenant Governor,,NPA,Datto / Santana,11
+GULF,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,2
+GULF,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,11
+GULF,,Governor and Lieutenant Governor,,REP,Byron Donalds,5103
+GULF,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+GULF,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+HAMILTON,,Governor and Lieutenant Governor,,DEM,David Jolly,1402
+HAMILTON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,19
+HAMILTON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,5
+HAMILTON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,11
+HAMILTON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,4
+HAMILTON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,3
+HAMILTON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,21
+HAMILTON,,Governor and Lieutenant Governor,,REP,Byron Donalds,2653
+HAMILTON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HAMILTON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+HARDEE,,Governor and Lieutenant Governor,,DEM,David Jolly,1934
+HARDEE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,28
+HARDEE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,11
+HARDEE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,24
+HARDEE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,11
+HARDEE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,8
+HARDEE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,26
+HARDEE,,Governor and Lieutenant Governor,,REP,Byron Donalds,3962
+HARDEE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HARDEE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+HENDRY,,Governor and Lieutenant Governor,,DEM,David Jolly,4335
+HENDRY,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,49
+HENDRY,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,17
+HENDRY,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,21
+HENDRY,,Governor and Lieutenant Governor,,NPA,Datto / Santana,19
+HENDRY,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,18
+HENDRY,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,51
+HENDRY,,Governor and Lieutenant Governor,,REP,Byron Donalds,5534
+HENDRY,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HENDRY,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+HERNANDO,,Governor and Lieutenant Governor,,DEM,David Jolly,28632
+HERNANDO,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,468
+HERNANDO,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,127
+HERNANDO,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,151
+HERNANDO,,Governor and Lieutenant Governor,,NPA,Datto / Santana,82
+HERNANDO,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,59
+HERNANDO,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,269
+HERNANDO,,Governor and Lieutenant Governor,,REP,Byron Donalds,50113
+HERNANDO,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HERNANDO,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,1
+HIGHLANDS,,Governor and Lieutenant Governor,,DEM,David Jolly,13097
+HIGHLANDS,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,147
+HIGHLANDS,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,66
+HIGHLANDS,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,95
+HIGHLANDS,,Governor and Lieutenant Governor,,NPA,Datto / Santana,57
+HIGHLANDS,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,23
+HIGHLANDS,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,92
+HIGHLANDS,,Governor and Lieutenant Governor,,REP,Byron Donalds,26072
+HIGHLANDS,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HIGHLANDS,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+HILLSBOROUGH,,Governor and Lieutenant Governor,,DEM,David Jolly,284513
+HILLSBOROUGH,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,2963
+HILLSBOROUGH,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,817
+HILLSBOROUGH,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,813
+HILLSBOROUGH,,Governor and Lieutenant Governor,,NPA,Datto / Santana,642
+HILLSBOROUGH,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,578
+HILLSBOROUGH,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,1588
+HILLSBOROUGH,,Governor and Lieutenant Governor,,REP,Byron Donalds,224477
+HILLSBOROUGH,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,3
+HILLSBOROUGH,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,15
+HOLMES,,Governor and Lieutenant Governor,,DEM,David Jolly,773
+HOLMES,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,33
+HOLMES,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,11
+HOLMES,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,21
+HOLMES,,Governor and Lieutenant Governor,,NPA,Datto / Santana,11
+HOLMES,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,5
+HOLMES,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,19
+HOLMES,,Governor and Lieutenant Governor,,REP,Byron Donalds,5285
+HOLMES,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+HOLMES,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+INDIAN RIVER,,Governor and Lieutenant Governor,,DEM,David Jolly,30346
+INDIAN RIVER,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,286
+INDIAN RIVER,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,98
+INDIAN RIVER,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,131
+INDIAN RIVER,,Governor and Lieutenant Governor,,NPA,Datto / Santana,60
+INDIAN RIVER,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,46
+INDIAN RIVER,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,163
+INDIAN RIVER,,Governor and Lieutenant Governor,,REP,Byron Donalds,46275
+INDIAN RIVER,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,1
+INDIAN RIVER,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+JACKSON,,Governor and Lieutenant Governor,,DEM,David Jolly,4763
+JACKSON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,72
+JACKSON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,35
+JACKSON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,42
+JACKSON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,21
+JACKSON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,10
+JACKSON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,38
+JACKSON,,Governor and Lieutenant Governor,,REP,Byron Donalds,10601
+JACKSON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+JACKSON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+JEFFERSON,,Governor and Lieutenant Governor,,DEM,David Jolly,3005
+JEFFERSON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,43
+JEFFERSON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,8
+JEFFERSON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,8
+JEFFERSON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,6
+JEFFERSON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,0
+JEFFERSON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,18
+JEFFERSON,,Governor and Lieutenant Governor,,REP,Byron Donalds,3864
+JEFFERSON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+JEFFERSON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+LAFAYETTE,,Governor and Lieutenant Governor,,DEM,David Jolly,413
+LAFAYETTE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,24
+LAFAYETTE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,6
+LAFAYETTE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,6
+LAFAYETTE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,3
+LAFAYETTE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,1
+LAFAYETTE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,4
+LAFAYETTE,,Governor and Lieutenant Governor,,REP,Byron Donalds,2142
+LAFAYETTE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+LAFAYETTE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+LAKE,,Governor and Lieutenant Governor,,DEM,David Jolly,73755
+LAKE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,943
+LAKE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,274
+LAKE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,292
+LAKE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,129
+LAKE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,147
+LAKE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,399
+LAKE,,Governor and Lieutenant Governor,,REP,Byron Donalds,101708
+LAKE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,1
+LAKE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,2
+LEE,,Governor and Lieutenant Governor,,DEM,David Jolly,117626
+LEE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1193
+LEE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,370
+LEE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,545
+LEE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,257
+LEE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,174
+LEE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,821
+LEE,,Governor and Lieutenant Governor,,REP,Byron Donalds,182819
+LEE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,3
+LEE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,2
+LEON,,Governor and Lieutenant Governor,,DEM,David Jolly,84204
+LEON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,473
+LEON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,167
+LEON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,150
+LEON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,87
+LEON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,138
+LEON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,272
+LEON,,Governor and Lieutenant Governor,,REP,Byron Donalds,40077
+LEON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+LEON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,2
+LEVY,,Governor and Lieutenant Governor,,DEM,David Jolly,4933
+LEVY,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,132
+LEVY,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,39
+LEVY,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,69
+LEVY,,Governor and Lieutenant Governor,,NPA,Datto / Santana,18
+LEVY,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,12
+LEVY,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,59
+LEVY,,Governor and Lieutenant Governor,,REP,Byron Donalds,12796
+LEVY,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+LEVY,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+LIBERTY,,Governor and Lieutenant Governor,,DEM,David Jolly,511
+LIBERTY,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,14
+LIBERTY,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,5
+LIBERTY,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,14
+LIBERTY,,Governor and Lieutenant Governor,,NPA,Datto / Santana,7
+LIBERTY,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,2
+LIBERTY,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,11
+LIBERTY,,Governor and Lieutenant Governor,,REP,Byron Donalds,2062
+LIBERTY,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+LIBERTY,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+MADISON,,Governor and Lieutenant Governor,,DEM,David Jolly,2679
+MADISON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,30
+MADISON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,15
+MADISON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,12
+MADISON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,7
+MADISON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,4
+MADISON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,16
+MADISON,,Governor and Lieutenant Governor,,REP,Byron Donalds,4211
+MADISON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MADISON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+MANATEE,,Governor and Lieutenant Governor,,DEM,David Jolly,74983
+MANATEE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,741
+MANATEE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,319
+MANATEE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,326
+MANATEE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,159
+MANATEE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,121
+MANATEE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,439
+MANATEE,,Governor and Lieutenant Governor,,REP,Byron Donalds,104926
+MANATEE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MANATEE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+MARION,,Governor and Lieutenant Governor,,DEM,David Jolly,60989
+MARION,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,777
+MARION,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,216
+MARION,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,350
+MARION,,Governor and Lieutenant Governor,,NPA,Datto / Santana,124
+MARION,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,133
+MARION,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,427
+MARION,,Governor and Lieutenant Governor,,REP,Byron Donalds,100503
+MARION,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MARION,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,2
+MARTIN,,Governor and Lieutenant Governor,,DEM,David Jolly,28835
+MARTIN,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,349
+MARTIN,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,81
+MARTIN,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,130
+MARTIN,,Governor and Lieutenant Governor,,NPA,Datto / Santana,47
+MARTIN,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,41
+MARTIN,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,144
+MARTIN,,Governor and Lieutenant Governor,,REP,Byron Donalds,46526
+MARTIN,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MARTIN,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+MIAMI-DADE,,Governor and Lieutenant Governor,,DEM,David Jolly,415328
+MIAMI-DADE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,2604
+MIAMI-DADE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,868
+MIAMI-DADE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,1704
+MIAMI-DADE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,1062
+MIAMI-DADE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,783
+MIAMI-DADE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,2668
+MIAMI-DADE,,Governor and Lieutenant Governor,,REP,Byron Donalds,360100
+MIAMI-DADE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MIAMI-DADE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,5
+MONROE,,Governor and Lieutenant Governor,,DEM,David Jolly,14810
+MONROE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,132
+MONROE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,35
+MONROE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,37
+MONROE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,17
+MONROE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,19
+MONROE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,64
+MONROE,,Governor and Lieutenant Governor,,REP,Byron Donalds,17219
+MONROE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+MONROE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+NASSAU,,Governor and Lieutenant Governor,,DEM,David Jolly,14967
+NASSAU,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,296
+NASSAU,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,91
+NASSAU,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,117
+NASSAU,,Governor and Lieutenant Governor,,NPA,Datto / Santana,46
+NASSAU,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,34
+NASSAU,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,123
+NASSAU,,Governor and Lieutenant Governor,,REP,Byron Donalds,34708
+NASSAU,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+NASSAU,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+OKALOOSA,,Governor and Lieutenant Governor,,DEM,David Jolly,24551
+OKALOOSA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,621
+OKALOOSA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,175
+OKALOOSA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,182
+OKALOOSA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,97
+OKALOOSA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,97
+OKALOOSA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,236
+OKALOOSA,,Governor and Lieutenant Governor,,REP,Byron Donalds,51407
+OKALOOSA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+OKALOOSA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,1
+OKEECHOBEE,,Governor and Lieutenant Governor,,DEM,David Jolly,3354
+OKEECHOBEE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,37
+OKEECHOBEE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,16
+OKEECHOBEE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,32
+OKEECHOBEE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,15
+OKEECHOBEE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,7
+OKEECHOBEE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,42
+OKEECHOBEE,,Governor and Lieutenant Governor,,REP,Byron Donalds,7592
+OKEECHOBEE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+OKEECHOBEE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+ORANGE,,Governor and Lieutenant Governor,,DEM,David Jolly,302303
+ORANGE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,2223
+ORANGE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,768
+ORANGE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,698
+ORANGE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,451
+ORANGE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,572
+ORANGE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,1190
+ORANGE,,Governor and Lieutenant Governor,,REP,Byron Donalds,163110
+ORANGE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+ORANGE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,13
+OSCEOLA,,Governor and Lieutenant Governor,,DEM,David Jolly,76418
+OSCEOLA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,601
+OSCEOLA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,241
+OSCEOLA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,314
+OSCEOLA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,237
+OSCEOLA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,189
+OSCEOLA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,565
+OSCEOLA,,Governor and Lieutenant Governor,,REP,Byron Donalds,52999
+OSCEOLA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+OSCEOLA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+PALM BEACH,,Governor and Lieutenant Governor,,DEM,David Jolly,318232
+PALM BEACH,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1765
+PALM BEACH,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,770
+PALM BEACH,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,834
+PALM BEACH,,Governor and Lieutenant Governor,,NPA,Datto / Santana,618
+PALM BEACH,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,558
+PALM BEACH,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,1810
+PALM BEACH,,Governor and Lieutenant Governor,,REP,Byron Donalds,247713
+PALM BEACH,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+PALM BEACH,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,9
+PASCO,,Governor and Lieutenant Governor,,DEM,David Jolly,103404
+PASCO,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1218
+PASCO,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,438
+PASCO,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,562
+PASCO,,Governor and Lieutenant Governor,,NPA,Datto / Santana,279
+PASCO,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,232
+PASCO,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,803
+PASCO,,Governor and Lieutenant Governor,,REP,Byron Donalds,132572
+PASCO,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+PASCO,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,7
+PINELLAS,,Governor and Lieutenant Governor,,DEM,David Jolly,208295
+PINELLAS,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1987
+PINELLAS,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,642
+PINELLAS,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,929
+PINELLAS,,Governor and Lieutenant Governor,,NPA,Datto / Santana,385
+PINELLAS,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,376
+PINELLAS,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,1241
+PINELLAS,,Governor and Lieutenant Governor,,REP,Byron Donalds,189636
+PINELLAS,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+PINELLAS,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,4
+POLK,,Governor and Lieutenant Governor,,DEM,David Jolly,120458
+POLK,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1236
+POLK,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,437
+POLK,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,578
+POLK,,Governor and Lieutenant Governor,,NPA,Datto / Santana,289
+POLK,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,274
+POLK,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,872
+POLK,,Governor and Lieutenant Governor,,REP,Byron Donalds,133140
+POLK,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+POLK,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+PUTNAM,,Governor and Lieutenant Governor,,DEM,David Jolly,8018
+PUTNAM,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,159
+PUTNAM,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,46
+PUTNAM,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,79
+PUTNAM,,Governor and Lieutenant Governor,,NPA,Datto / Santana,39
+PUTNAM,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,20
+PUTNAM,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,66
+PUTNAM,,Governor and Lieutenant Governor,,REP,Byron Donalds,17977
+PUTNAM,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+PUTNAM,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+SANTA ROSA,,Governor and Lieutenant Governor,,DEM,David Jolly,20805
+SANTA ROSA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,481
+SANTA ROSA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,116
+SANTA ROSA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,184
+SANTA ROSA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,72
+SANTA ROSA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,46
+SANTA ROSA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,180
+SANTA ROSA,,Governor and Lieutenant Governor,,REP,Byron Donalds,52428
+SANTA ROSA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+SANTA ROSA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,3
+SARASOTA,,Governor and Lieutenant Governor,,DEM,David Jolly,95922
+SARASOTA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,942
+SARASOTA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,334
+SARASOTA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,380
+SARASOTA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,197
+SARASOTA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,123
+SARASOTA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,531
+SARASOTA,,Governor and Lieutenant Governor,,REP,Byron Donalds,124859
+SARASOTA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+SARASOTA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+SEMINOLE,,Governor and Lieutenant Governor,,DEM,David Jolly,105719
+SEMINOLE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1211
+SEMINOLE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,354
+SEMINOLE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,245
+SEMINOLE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,153
+SEMINOLE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,159
+SEMINOLE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,496
+SEMINOLE,,Governor and Lieutenant Governor,,REP,Byron Donalds,86961
+SEMINOLE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+SEMINOLE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,5
+ST. JOHNS,,Governor and Lieutenant Governor,,DEM,David Jolly,58703
+ST. JOHNS,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,828
+ST. JOHNS,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,202
+ST. JOHNS,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,233
+ST. JOHNS,,Governor and Lieutenant Governor,,NPA,Datto / Santana,99
+ST. JOHNS,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,83
+ST. JOHNS,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,327
+ST. JOHNS,,Governor and Lieutenant Governor,,REP,Byron Donalds,95397
+ST. JOHNS,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+ST. JOHNS,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+ST. LUCIE,,Governor and Lieutenant Governor,,DEM,David Jolly,70709
+ST. LUCIE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,569
+ST. LUCIE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,223
+ST. LUCIE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,236
+ST. LUCIE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,130
+ST. LUCIE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,137
+ST. LUCIE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,457
+ST. LUCIE,,Governor and Lieutenant Governor,,REP,Byron Donalds,66559
+ST. LUCIE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+ST. LUCIE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+SUMTER,,Governor and Lieutenant Governor,,DEM,David Jolly,28211
+SUMTER,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,320
+SUMTER,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,72
+SUMTER,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,102
+SUMTER,,Governor and Lieutenant Governor,,NPA,Datto / Santana,45
+SUMTER,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,39
+SUMTER,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,157
+SUMTER,,Governor and Lieutenant Governor,,REP,Byron Donalds,66109
+SUMTER,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+SUMTER,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+SUWANNEE,,Governor and Lieutenant Governor,,DEM,David Jolly,3606
+SUWANNEE,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,88
+SUWANNEE,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,38
+SUWANNEE,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,49
+SUWANNEE,,Governor and Lieutenant Governor,,NPA,Datto / Santana,14
+SUWANNEE,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,15
+SUWANNEE,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,47
+SUWANNEE,,Governor and Lieutenant Governor,,REP,Byron Donalds,11911
+SUWANNEE,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+SUWANNEE,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+TAYLOR,,Governor and Lieutenant Governor,,DEM,David Jolly,1672
+TAYLOR,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,34
+TAYLOR,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,10
+TAYLOR,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,14
+TAYLOR,,Governor and Lieutenant Governor,,NPA,Datto / Santana,12
+TAYLOR,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,3
+TAYLOR,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,18
+TAYLOR,,Governor and Lieutenant Governor,,REP,Byron Donalds,5177
+TAYLOR,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+TAYLOR,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+UNION,,Governor and Lieutenant Governor,,DEM,David Jolly,812
+UNION,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,23
+UNION,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,14
+UNION,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,8
+UNION,,Governor and Lieutenant Governor,,NPA,Datto / Santana,1
+UNION,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,2
+UNION,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,7
+UNION,,Governor and Lieutenant Governor,,REP,Byron Donalds,3393
+UNION,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+UNION,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+VOLUSIA,,Governor and Lieutenant Governor,,DEM,David Jolly,101857
+VOLUSIA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,1366
+VOLUSIA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,386
+VOLUSIA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,465
+VOLUSIA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,231
+VOLUSIA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,155
+VOLUSIA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,642
+VOLUSIA,,Governor and Lieutenant Governor,,REP,Byron Donalds,131312
+VOLUSIA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,2
+VOLUSIA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,2
+WAKULLA,,Governor and Lieutenant Governor,,DEM,David Jolly,5089
+WAKULLA,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,81
+WAKULLA,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,23
+WAKULLA,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,26
+WAKULLA,,Governor and Lieutenant Governor,,NPA,Datto / Santana,6
+WAKULLA,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,6
+WAKULLA,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,37
+WAKULLA,,Governor and Lieutenant Governor,,REP,Byron Donalds,9803
+WAKULLA,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+WAKULLA,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,1
+WALTON,,Governor and Lieutenant Governor,,DEM,David Jolly,8131
+WALTON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,176
+WALTON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,42
+WALTON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,30
+WALTON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,30
+WALTON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,14
+WALTON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,63
+WALTON,,Governor and Lieutenant Governor,,REP,Byron Donalds,26630
+WALTON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+WALTON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+WASHINGTON,,Governor and Lieutenant Governor,,DEM,David Jolly,1788
+WASHINGTON,,Governor and Lieutenant Governor,,LPF,Jewett / Skelly,62
+WASHINGTON,,Governor and Lieutenant Governor,,NPA,Abrams / Van Vactor,24
+WASHINGTON,,Governor and Lieutenant Governor,,NPA,Burkett / Coto,28
+WASHINGTON,,Governor and Lieutenant Governor,,NPA,Datto / Santana,10
+WASHINGTON,,Governor and Lieutenant Governor,,NPA,Dimanche / Rojas,15
+WASHINGTON,,Governor and Lieutenant Governor,,NPA,Russo / Rodriguez,19
+WASHINGTON,,Governor and Lieutenant Governor,,REP,Byron Donalds,7061
+WASHINGTON,,Governor and Lieutenant Governor,,WRI,Anderson / Nokovich,0
+WASHINGTON,,Governor and Lieutenant Governor,,WRI,Morris / Alaways,0
+ESCAMBIA,,"Representative in Congress, District 1",1,DEM,Gay Valimont,52493
+ESCAMBIA,,"Representative in Congress, District 1",1,NPA,Tyler L. Davis,2046
+ESCAMBIA,,"Representative in Congress, District 1",1,REP,Jimmy Patronis,61735
+OKALOOSA,,"Representative in Congress, District 1",1,DEM,Gay Valimont,24947
+OKALOOSA,,"Representative in Congress, District 1",1,NPA,Tyler L. Davis,1532
+OKALOOSA,,"Representative in Congress, District 1",1,REP,Jimmy Patronis,50917
+SANTA ROSA,,"Representative in Congress, District 1",1,DEM,Gay Valimont,21288
+SANTA ROSA,,"Representative in Congress, District 1",1,NPA,Tyler L. Davis,1382
+SANTA ROSA,,"Representative in Congress, District 1",1,REP,Jimmy Patronis,51663
+WALTON,,"Representative in Congress, District 1",1,DEM,Gay Valimont,5084
+WALTON,,"Representative in Congress, District 1",1,NPA,Tyler L. Davis,379
+WALTON,,"Representative in Congress, District 1",1,REP,Jimmy Patronis,17657
+LAKE,,"Representative in Congress, District 11",11,DEM,James Pericola,55600
+LAKE,,"Representative in Congress, District 11",11,LPF,Ralph Groves,1548
+LAKE,,"Representative in Congress, District 11",11,REP,Joe Strada,69512
+ORANGE,,"Representative in Congress, District 11",11,DEM,James Pericola,84119
+ORANGE,,"Representative in Congress, District 11",11,LPF,Ralph Groves,1643
+ORANGE,,"Representative in Congress, District 11",11,REP,Joe Strada,58889
+SUMTER,,"Representative in Congress, District 11",11,DEM,James Pericola,28527
+SUMTER,,"Representative in Congress, District 11",11,LPF,Ralph Groves,770
+SUMTER,,"Representative in Congress, District 11",11,REP,Joe Strada,65194
+HILLSBOROUGH,,"Representative in Congress, District 12",12,DEM,Kimberly Overman,74128
+HILLSBOROUGH,,"Representative in Congress, District 12",12,NPA,Branden Scrivener,1744
+HILLSBOROUGH,,"Representative in Congress, District 12",12,REP,Gus Michael Bilirakis,62223
+PASCO,,"Representative in Congress, District 12",12,DEM,Kimberly Overman,57340
+PASCO,,"Representative in Congress, District 12",12,NPA,Branden Scrivener,2046
+PASCO,,"Representative in Congress, District 12",12,REP,Gus Michael Bilirakis,88656
+PASCO,,"Representative in Congress, District 13",13,DEM,Leela Gray,9104
+PASCO,,"Representative in Congress, District 13",13,NPA,Tony D'Arrigo,510
+PASCO,,"Representative in Congress, District 13",13,REP,Anna Paulina Luna,11197
+PINELLAS,,"Representative in Congress, District 13",13,DEM,Leela Gray,143627
+PINELLAS,,"Representative in Congress, District 13",13,NPA,Tony D'Arrigo,5273
+PINELLAS,,"Representative in Congress, District 13",13,REP,Anna Paulina Luna,143996
+HILLSBOROUGH,,"Representative in Congress, District 14",14,DEM,Kathy Castor,153841
+HILLSBOROUGH,,"Representative in Congress, District 14",14,LPF,Brian Lambert,8748
+HILLSBOROUGH,,"Representative in Congress, District 14",14,REP,Mike Beltran,137716
+HILLSBOROUGH,,"Representative in Congress, District 14",14,WRI,Keith Varian,16
+HILLSBOROUGH,,"Representative in Congress, District 14",14,WRI,Salomon Hernandez,3
+CITRUS,,"Representative in Congress, District 15",15,DEM,Robert People,21505
+CITRUS,,"Representative in Congress, District 15",15,REP,Laurel Lee,53094
+CITRUS,,"Representative in Congress, District 15",15,WRI,Angie Boone,8
+HERNANDO,,"Representative in Congress, District 15",15,DEM,Robert People,28746
+HERNANDO,,"Representative in Congress, District 15",15,REP,Laurel Lee,50794
+HERNANDO,,"Representative in Congress, District 15",15,WRI,Angie Boone,10
+HILLSBOROUGH,,"Representative in Congress, District 15",15,DEM,Robert People,53472
+HILLSBOROUGH,,"Representative in Congress, District 15",15,REP,Laurel Lee,22752
+HILLSBOROUGH,,"Representative in Congress, District 15",15,WRI,Angie Boone,4
+PASCO,,"Representative in Congress, District 15",15,DEM,Robert People,33841
+PASCO,,"Representative in Congress, District 15",15,REP,Laurel Lee,36737
+PASCO,,"Representative in Congress, District 15",15,WRI,Angie Boone,4
+DESOTO,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,3279
+DESOTO,,"Representative in Congress, District 16",16,NPA,Mark Davis,208
+DESOTO,,"Representative in Congress, District 16",16,REP,Sydney Gruters,5560
+HARDEE,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,1900
+HARDEE,,"Representative in Congress, District 16",16,NPA,Mark Davis,132
+HARDEE,,"Representative in Congress, District 16",16,REP,Sydney Gruters,3956
+MANATEE,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,75834
+MANATEE,,"Representative in Congress, District 16",16,NPA,Mark Davis,3273
+MANATEE,,"Representative in Congress, District 16",16,REP,Sydney Gruters,102490
+PINELLAS,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,67004
+PINELLAS,,"Representative in Congress, District 16",16,NPA,Mark Davis,2109
+PINELLAS,,"Representative in Congress, District 16",16,REP,Sydney Gruters,40883
+POLK,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,1267
+POLK,,"Representative in Congress, District 16",16,NPA,Mark Davis,84
+POLK,,"Representative in Congress, District 16",16,REP,Sydney Gruters,2153
+SARASOTA,,"Representative in Congress, District 16",16,DEM,Kelly Kirschner,11875
+SARASOTA,,"Representative in Congress, District 16",16,NPA,Mark Davis,477
+SARASOTA,,"Representative in Congress, District 16",16,REP,Sydney Gruters,20614
+CHARLOTTE,,"Representative in Congress, District 17",17,DEM,Matthew Montavon,32726
+CHARLOTTE,,"Representative in Congress, District 17",17,NPA,Michael J. Quirk,1600
+CHARLOTTE,,"Representative in Congress, District 17",17,REP,Greg Steube,65990
+LEE,,"Representative in Congress, District 17",17,DEM,Matthew Montavon,29004
+LEE,,"Representative in Congress, District 17",17,NPA,Michael J. Quirk,940
+LEE,,"Representative in Congress, District 17",17,REP,Greg Steube,37786
+SARASOTA,,"Representative in Congress, District 17",17,DEM,Matthew Montavon,81994
+SARASOTA,,"Representative in Congress, District 17",17,NPA,Michael J. Quirk,2474
+SARASOTA,,"Representative in Congress, District 17",17,REP,Greg Steube,105417
+OSCEOLA,,"Representative in Congress, District 18",18,DEM,Curtis Gibson,15739
+OSCEOLA,,"Representative in Congress, District 18",18,NPA,Deva Simmons,408
+OSCEOLA,,"Representative in Congress, District 18",18,REP,Scott Franklin,8350
+POLK,,"Representative in Congress, District 18",18,DEM,Curtis Gibson,112037
+POLK,,"Representative in Congress, District 18",18,NPA,Deva Simmons,7724
+POLK,,"Representative in Congress, District 18",18,REP,Scott Franklin,129365
+COLLIER,,"Representative in Congress, District 19",19,DEM,Victor Arias,32659
+COLLIER,,"Representative in Congress, District 19",19,NPA,Seth Haskin,893
+COLLIER,,"Representative in Congress, District 19",19,REP,Jim Schwartzel,57098
+COLLIER,,"Representative in Congress, District 19",19,WRI,Alexandra Zakhvatayev,2
+LEE,,"Representative in Congress, District 19",19,DEM,Victor Arias,89809
+LEE,,"Representative in Congress, District 19",19,NPA,Seth Haskin,3105
+LEE,,"Representative in Congress, District 19",19,REP,Jim Schwartzel,141670
+LEE,,"Representative in Congress, District 19",19,WRI,Alexandra Zakhvatayev,10
+BAY,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,22194
+BAY,,"Representative in Congress, District 2",2,REP,Austin Rogers,47767
+CALHOUN,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,920
+CALHOUN,,"Representative in Congress, District 2",2,REP,Austin Rogers,3344
+FRANKLIN,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,1709
+FRANKLIN,,"Representative in Congress, District 2",2,REP,Austin Rogers,3321
+GADSDEN,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,12440
+GADSDEN,,"Representative in Congress, District 2",2,REP,Austin Rogers,5177
+GULF,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,1700
+GULF,,"Representative in Congress, District 2",2,REP,Austin Rogers,4988
+HOLMES,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,814
+HOLMES,,"Representative in Congress, District 2",2,REP,Austin Rogers,5360
+JACKSON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,5022
+JACKSON,,"Representative in Congress, District 2",2,REP,Austin Rogers,10633
+JEFFERSON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,3129
+JEFFERSON,,"Representative in Congress, District 2",2,REP,Austin Rogers,3799
+LAFAYETTE,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,17
+LAFAYETTE,,"Representative in Congress, District 2",2,REP,Austin Rogers,100
+LEON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,84713
+LEON,,"Representative in Congress, District 2",2,REP,Austin Rogers,39771
+LIBERTY,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,610
+LIBERTY,,"Representative in Congress, District 2",2,REP,Austin Rogers,2033
+MADISON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,2834
+MADISON,,"Representative in Congress, District 2",2,REP,Austin Rogers,4131
+TAYLOR,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,1772
+TAYLOR,,"Representative in Congress, District 2",2,REP,Austin Rogers,5168
+WAKULLA,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,5302
+WAKULLA,,"Representative in Congress, District 2",2,REP,Austin Rogers,9748
+WALTON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,3179
+WALTON,,"Representative in Congress, District 2",2,REP,Austin Rogers,8803
+WASHINGTON,,"Representative in Congress, District 2",2,DEM,Amanda Marie Green,1967
+WASHINGTON,,"Representative in Congress, District 2",2,REP,Austin Rogers,7048
+BROWARD,,"Representative in Congress, District 20",20,DEM,Debbie Wasserman Schultz,182752
+BROWARD,,"Representative in Congress, District 20",20,IND,Kedner Maxime,9599
+BROWARD,,"Representative in Congress, District 20",20,REP,Brent Andersen,53403
+MARTIN,,"Representative in Congress, District 21",21,DEM,James T. Martin,27415
+MARTIN,,"Representative in Congress, District 21",21,NPA,Alexander Cooke,899
+MARTIN,,"Representative in Congress, District 21",21,REP,Brian Mast,47992
+MARTIN,,"Representative in Congress, District 21",21,WRI,David Fabrikant,4
+PALM BEACH,,"Representative in Congress, District 21",21,DEM,James T. Martin,56457
+PALM BEACH,,"Representative in Congress, District 21",21,NPA,Alexander Cooke,1659
+PALM BEACH,,"Representative in Congress, District 21",21,REP,Brian Mast,68757
+PALM BEACH,,"Representative in Congress, District 21",21,WRI,David Fabrikant,5
+ST. LUCIE,,"Representative in Congress, District 21",21,DEM,James T. Martin,69438
+ST. LUCIE,,"Representative in Congress, District 21",21,NPA,Alexander Cooke,1918
+ST. LUCIE,,"Representative in Congress, District 21",21,REP,Brian Mast,67590
+ST. LUCIE,,"Representative in Congress, District 21",21,WRI,David Fabrikant,2
+BROWARD,,"Representative in Congress, District 22",22,DEM,Pia Dandiya,73009
+BROWARD,,"Representative in Congress, District 22",22,REP,Casey Askar,49581
+COLLIER,,"Representative in Congress, District 22",22,DEM,Pia Dandiya,29165
+COLLIER,,"Representative in Congress, District 22",22,REP,Casey Askar,50695
+HENDRY,,"Representative in Congress, District 22",22,DEM,Pia Dandiya,4512
+HENDRY,,"Representative in Congress, District 22",22,REP,Casey Askar,5467
+PALM BEACH,,"Representative in Congress, District 22",22,DEM,Pia Dandiya,46537
+PALM BEACH,,"Representative in Congress, District 22",22,REP,Casey Askar,36205
+PALM BEACH,,"Representative in Congress, District 23",23,DEM,Lois Frankel,170113
+PALM BEACH,,"Representative in Congress, District 23",23,REP,Deborah Adeimy,88965
+BROWARD,,"Representative in Congress, District 24",24,DEM,Oliver G. Gilbert,50438
+BROWARD,,"Representative in Congress, District 24",24,REP,Te Mayonna Brown,14856
+BROWARD,,"Representative in Congress, District 24",24,WRI,Patricia Gonzalez,8
+MIAMI-DADE,,"Representative in Congress, District 24",24,DEM,Oliver G. Gilbert,114461
+MIAMI-DADE,,"Representative in Congress, District 24",24,REP,Te Mayonna Brown,24692
+MIAMI-DADE,,"Representative in Congress, District 24",24,WRI,Patricia Gonzalez,13
+BROWARD,,"Representative in Congress, District 25",25,DEM,Jared Moskowitz,54988
+BROWARD,,"Representative in Congress, District 25",25,LPF,Peter Jassenoff,2538
+BROWARD,,"Representative in Congress, District 25",25,REP,Scott Singer,52008
+BROWARD,,"Representative in Congress, District 25",25,WRI,Michaelangelo Hamilton,14
+MIAMI-DADE,,"Representative in Congress, District 25",25,DEM,Jared Moskowitz,38157
+MIAMI-DADE,,"Representative in Congress, District 25",25,LPF,Peter Jassenoff,1376
+MIAMI-DADE,,"Representative in Congress, District 25",25,REP,Scott Singer,32464
+MIAMI-DADE,,"Representative in Congress, District 25",25,WRI,Michaelangelo Hamilton,12
+PALM BEACH,,"Representative in Congress, District 25",25,DEM,Jared Moskowitz,50840
+PALM BEACH,,"Representative in Congress, District 25",25,LPF,Peter Jassenoff,1970
+PALM BEACH,,"Representative in Congress, District 25",25,REP,Scott Singer,46427
+PALM BEACH,,"Representative in Congress, District 25",25,WRI,Michaelangelo Hamilton,11
+BROWARD,,"Representative in Congress, District 26",26,DEM,Nicole Locklin,66580
+BROWARD,,"Representative in Congress, District 26",26,NPA,Deborah Ann Meidinger Hosey,1161
+BROWARD,,"Representative in Congress, District 26",26,REP,Mario Diaz-Balart,42451
+MIAMI-DADE,,"Representative in Congress, District 26",26,DEM,Nicole Locklin,46331
+MIAMI-DADE,,"Representative in Congress, District 26",26,NPA,Deborah Ann Meidinger Hosey,1191
+MIAMI-DADE,,"Representative in Congress, District 26",26,REP,Mario Diaz-Balart,72130
+MIAMI-DADE,,"Representative in Congress, District 27",27,DEM,Eliott Rodriguez,123433
+MIAMI-DADE,,"Representative in Congress, District 27",27,REP,Maria Elvira Salazar,124519
+MIAMI-DADE,,"Representative in Congress, District 28",28,DEM,Phil Felipe Ehr,93544
+MIAMI-DADE,,"Representative in Congress, District 28",28,NPA,Eddy Rojas,3076
+MIAMI-DADE,,"Representative in Congress, District 28",28,REP,Carlos A. Gimenez,107573
+MONROE,,"Representative in Congress, District 28",28,DEM,Phil Felipe Ehr,14373
+MONROE,,"Representative in Congress, District 28",28,NPA,Eddy Rojas,369
+MONROE,,"Representative in Congress, District 28",28,REP,Carlos A. Gimenez,17464
+ALACHUA,,"Representative in Congress, District 3",3,DEM,Seth Harp,68465
+ALACHUA,,"Representative in Congress, District 3",3,NPA,Mike Klein,2212
+ALACHUA,,"Representative in Congress, District 3",3,REP,Kat Cammack,34558
+BAKER,,"Representative in Congress, District 3",3,DEM,Seth Harp,1520
+BAKER,,"Representative in Congress, District 3",3,NPA,Mike Klein,113
+BAKER,,"Representative in Congress, District 3",3,REP,Kat Cammack,8147
+BRADFORD,,"Representative in Congress, District 3",3,DEM,Seth Harp,2308
+BRADFORD,,"Representative in Congress, District 3",3,NPA,Mike Klein,152
+BRADFORD,,"Representative in Congress, District 3",3,REP,Kat Cammack,7195
+COLUMBIA,,"Representative in Congress, District 3",3,DEM,Seth Harp,6355
+COLUMBIA,,"Representative in Congress, District 3",3,NPA,Mike Klein,376
+COLUMBIA,,"Representative in Congress, District 3",3,REP,Kat Cammack,16215
+DIXIE,,"Representative in Congress, District 3",3,DEM,Seth Harp,856
+DIXIE,,"Representative in Congress, District 3",3,NPA,Mike Klein,100
+DIXIE,,"Representative in Congress, District 3",3,REP,Kat Cammack,4651
+GILCHRIST,,"Representative in Congress, District 3",3,DEM,Seth Harp,1311
+GILCHRIST,,"Representative in Congress, District 3",3,NPA,Mike Klein,151
+GILCHRIST,,"Representative in Congress, District 3",3,REP,Kat Cammack,6341
+HAMILTON,,"Representative in Congress, District 3",3,DEM,Seth Harp,1383
+HAMILTON,,"Representative in Congress, District 3",3,NPA,Mike Klein,78
+HAMILTON,,"Representative in Congress, District 3",3,REP,Kat Cammack,2666
+LAFAYETTE,,"Representative in Congress, District 3",3,DEM,Seth Harp,336
+LAFAYETTE,,"Representative in Congress, District 3",3,NPA,Mike Klein,42
+LAFAYETTE,,"Representative in Congress, District 3",3,REP,Kat Cammack,2115
+LEVY,,"Representative in Congress, District 3",3,DEM,Seth Harp,4716
+LEVY,,"Representative in Congress, District 3",3,NPA,Mike Klein,400
+LEVY,,"Representative in Congress, District 3",3,REP,Kat Cammack,13029
+MARION,,"Representative in Congress, District 3",3,DEM,Seth Harp,37698
+MARION,,"Representative in Congress, District 3",3,NPA,Mike Klein,1658
+MARION,,"Representative in Congress, District 3",3,REP,Kat Cammack,55193
+SUWANNEE,,"Representative in Congress, District 3",3,DEM,Seth Harp,3470
+SUWANNEE,,"Representative in Congress, District 3",3,NPA,Mike Klein,278
+SUWANNEE,,"Representative in Congress, District 3",3,REP,Kat Cammack,12086
+UNION,,"Representative in Congress, District 3",3,DEM,Seth Harp,758
+UNION,,"Representative in Congress, District 3",3,NPA,Mike Klein,61
+UNION,,"Representative in Congress, District 3",3,REP,Kat Cammack,3470
+CLAY,,"Representative in Congress, District 4",4,DEM,LaShonda L.J. Holloway,30671
+CLAY,,"Representative in Congress, District 4",4,FFP,Mike Sell,610
+CLAY,,"Representative in Congress, District 4",4,NPA,Todd Schaefer,1007
+CLAY,,"Representative in Congress, District 4",4,REP,Aaron Bean,60854
+DUVAL,,"Representative in Congress, District 4",4,DEM,LaShonda L.J. Holloway,100920
+DUVAL,,"Representative in Congress, District 4",4,FFP,Mike Sell,827
+DUVAL,,"Representative in Congress, District 4",4,NPA,Todd Schaefer,1343
+DUVAL,,"Representative in Congress, District 4",4,REP,Aaron Bean,54490
+NASSAU,,"Representative in Congress, District 4",4,DEM,LaShonda L.J. Holloway,13335
+NASSAU,,"Representative in Congress, District 4",4,FFP,Mike Sell,398
+NASSAU,,"Representative in Congress, District 4",4,NPA,Todd Schaefer,845
+NASSAU,,"Representative in Congress, District 4",4,REP,Aaron Bean,35873
+DUVAL,,"Representative in Congress, District 5",5,DEM,Rachel Grage,95046
+DUVAL,,"Representative in Congress, District 5",5,REP,John H. Rutherford,104569
+DUVAL,,"Representative in Congress, District 5",5,WRI,William Lintag Upham,20
+ST. JOHNS,,"Representative in Congress, District 5",5,DEM,Rachel Grage,50299
+ST. JOHNS,,"Representative in Congress, District 5",5,REP,John H. Rutherford,83507
+ST. JOHNS,,"Representative in Congress, District 5",5,WRI,William Lintag Upham,6
+FLAGLER,,"Representative in Congress, District 6",6,DEM,Eric Yonce,24901
+FLAGLER,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,574
+FLAGLER,,"Representative in Congress, District 6",6,REP,Randy Fine,37123
+FLAGLER,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,10
+LAKE,,"Representative in Congress, District 6",6,DEM,Eric Yonce,18914
+LAKE,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,748
+LAKE,,"Representative in Congress, District 6",6,REP,Randy Fine,30321
+LAKE,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,12
+MARION,,"Representative in Congress, District 6",6,DEM,Eric Yonce,23472
+MARION,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,673
+MARION,,"Representative in Congress, District 6",6,REP,Randy Fine,43496
+MARION,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,3
+PUTNAM,,"Representative in Congress, District 6",6,DEM,Eric Yonce,8209
+PUTNAM,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,299
+PUTNAM,,"Representative in Congress, District 6",6,REP,Randy Fine,17463
+PUTNAM,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,13
+ST. JOHNS,,"Representative in Congress, District 6",6,DEM,Eric Yonce,8031
+ST. JOHNS,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,237
+ST. JOHNS,,"Representative in Congress, District 6",6,REP,Randy Fine,12695
+ST. JOHNS,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,4
+VOLUSIA,,"Representative in Congress, District 6",6,DEM,Eric Yonce,48866
+VOLUSIA,,"Representative in Congress, District 6",6,LPF,Andrew Parrott,1198
+VOLUSIA,,"Representative in Congress, District 6",6,REP,Randy Fine,54293
+VOLUSIA,,"Representative in Congress, District 6",6,WRI,Alec Pavlik,7
+SEMINOLE,,"Representative in Congress, District 7",7,DEM,Bale Dalton,105823
+SEMINOLE,,"Representative in Congress, District 7",7,LPF,Christopher Dennison,1954
+SEMINOLE,,"Representative in Congress, District 7",7,REP,Ryan Elijah,87091
+VOLUSIA,,"Representative in Congress, District 7",7,DEM,Bale Dalton,53866
+VOLUSIA,,"Representative in Congress, District 7",7,LPF,Christopher Dennison,1532
+VOLUSIA,,"Representative in Congress, District 7",7,REP,Ryan Elijah,74212
+BREVARD,,"Representative in Congress, District 8",8,DEM,Jennifer Jenkins,117270
+BREVARD,,"Representative in Congress, District 8",8,REP,Mike Haridopolos,151131
+ORANGE,,"Representative in Congress, District 8",8,DEM,Jennifer Jenkins,32471
+ORANGE,,"Representative in Congress, District 8",8,REP,Mike Haridopolos,18814
+GLADES,,"Representative in Congress, District 9",9,DEM,Darren Soto,1154
+GLADES,,"Representative in Congress, District 9",9,REP,Dan Green,2645
+HIGHLANDS,,"Representative in Congress, District 9",9,DEM,Darren Soto,13509
+HIGHLANDS,,"Representative in Congress, District 9",9,REP,Dan Green,25907
+INDIAN RIVER,,"Representative in Congress, District 9",9,DEM,Darren Soto,30825
+INDIAN RIVER,,"Representative in Congress, District 9",9,REP,Dan Green,46294
+OKEECHOBEE,,"Representative in Congress, District 9",9,DEM,Darren Soto,3492
+OKEECHOBEE,,"Representative in Congress, District 9",9,REP,Dan Green,7582
+ORANGE,,"Representative in Congress, District 9",9,DEM,Darren Soto,27717
+ORANGE,,"Representative in Congress, District 9",9,REP,Dan Green,15250
+OSCEOLA,,"Representative in Congress, District 9",9,DEM,Darren Soto,65419
+OSCEOLA,,"Representative in Congress, District 9",9,REP,Dan Green,41452
+POLK,,"Representative in Congress, District 9",9,DEM,Darren Soto,1238
+POLK,,"Representative in Congress, District 9",9,REP,Dan Green,2684
+ESCAMBIA,,"State Representative, District 1",1,DEM,Francesca Yabraian,25831
+ESCAMBIA,,"State Representative, District 1",1,REP,Michelle Salzman,38034
+ALACHUA,,"State Representative, District 10",10,DEM,Merrillee Malwitz Jipson,9048
+ALACHUA,,"State Representative, District 10",10,REP,Marshall Rawson,9408
+ALACHUA,,"State Representative, District 10",10,WRI,James Hunter Batley,1
+BAKER,,"State Representative, District 10",10,DEM,Merrillee Malwitz Jipson,1586
+BAKER,,"State Representative, District 10",10,REP,Marshall Rawson,8047
+BAKER,,"State Representative, District 10",10,WRI,James Hunter Batley,0
+BRADFORD,,"State Representative, District 10",10,DEM,Merrillee Malwitz Jipson,2398
+BRADFORD,,"State Representative, District 10",10,REP,Marshall Rawson,7070
+BRADFORD,,"State Representative, District 10",10,WRI,James Hunter Batley,0
+COLUMBIA,,"State Representative, District 10",10,DEM,Merrillee Malwitz Jipson,6689
+COLUMBIA,,"State Representative, District 10",10,REP,Marshall Rawson,15905
+COLUMBIA,,"State Representative, District 10",10,WRI,James Hunter Batley,0
+UNION,,"State Representative, District 10",10,DEM,Merrillee Malwitz Jipson,805
+UNION,,"State Representative, District 10",10,REP,Marshall Rawson,3437
+UNION,,"State Representative, District 10",10,WRI,James Hunter Batley,0
+BROWARD,,"State Representative, District 100",100,DEM,Michael Terence Ferguson,37761
+BROWARD,,"State Representative, District 100",100,REP,Yoni Anijar,34825
+BROWARD,,"State Representative, District 101",101,DEM,Todd Delmay,28362
+BROWARD,,"State Representative, District 101",101,REP,Hillary Cassel,22287
+BROWARD,,"State Representative, District 102",102,DEM,Michael Mike Friend,42937
+BROWARD,,"State Representative, District 102",102,REP,Mery Lopez-Palma,28770
+BROWARD,,"State Representative, District 103",103,DEM,Robin Bartleman,47351
+BROWARD,,"State Representative, District 103",103,REP,Imtiaz Mohammad,20932
+MIAMI-DADE,,"State Representative, District 106",106,DEM,Lucia Baez-Geller,30932
+MIAMI-DADE,,"State Representative, District 106",106,REP,FabiÃ¡n Basabe,26381
+MIAMI-DADE,,"State Representative, District 108",108,DEM,Daphne Campbell,39278
+MIAMI-DADE,,"State Representative, District 108",108,REP,Wancito Francius,9287
+MIAMI-DADE,,"State Representative, District 113",113,DEM,Gloria Romero Roses,24778
+MIAMI-DADE,,"State Representative, District 113",113,REP,Bruno A. Barreiro,20556
+MIAMI-DADE,,"State Representative, District 113",113,WRI,Paola VÃ¡zquez del Mercado,4
+MIAMI-DADE,,"State Representative, District 115",115,DEM,Marcos Reyes,33397
+MIAMI-DADE,,"State Representative, District 115",115,REP,Omar Blanco,37724
+MIAMI-DADE,,"State Representative, District 116",116,DEM,Nicolas Ramos,23111
+MIAMI-DADE,,"State Representative, District 116",116,REP,Ashley Perez-Biliskov,33536
+MIAMI-DADE,,"State Representative, District 117",117,DEM,Kevin Chambliss,29319
+MIAMI-DADE,,"State Representative, District 117",117,REP,Miguel Granda,16316
+MIAMI-DADE,,"State Representative, District 118",118,DEM,Armando A.C. Castillo,25851
+MIAMI-DADE,,"State Representative, District 118",118,REP,Mike Redondo,36165
+MIAMI-DADE,,"State Representative, District 119",119,DEM,Rey Lazaro Sordo,27077
+MIAMI-DADE,,"State Representative, District 119",119,REP,Juan Carlos Porras,34206
+DUVAL,,"State Representative, District 12",12,DEM,Benjamin Sandlin,30697
+DUVAL,,"State Representative, District 12",12,REP,Terrance Freeman,32870
+DUVAL,,"State Representative, District 15",15,NPA,Chadd Charland,19868
+DUVAL,,"State Representative, District 15",15,REP,Dean Black,19709
+DUVAL,,"State Representative, District 15",15,WRI,Lloyd Caulker,72
+NASSAU,,"State Representative, District 15",15,NPA,Chadd Charland,14096
+NASSAU,,"State Representative, District 15",15,REP,Dean Black,34975
+NASSAU,,"State Representative, District 15",15,WRI,Lloyd Caulker,7
+DUVAL,,"State Representative, District 17",17,DEM,Jacob Guerrero,34000
+DUVAL,,"State Representative, District 17",17,REP,Jessica Baker,34947
+ST. JOHNS,,"State Representative, District 18",18,DEM,Art Stresing,37070
+ST. JOHNS,,"State Representative, District 18",18,REP,Kim Kendall,69240
+FLAGLER,,"State Representative, District 19",19,DEM,Suzanna Pavelle,24450
+FLAGLER,,"State Representative, District 19",19,REP,Sam Greco,38205
+ST. JOHNS,,"State Representative, District 19",19,DEM,Suzanna Pavelle,13985
+ST. JOHNS,,"State Representative, District 19",19,REP,Sam Greco,16086
+ESCAMBIA,,"State Representative, District 2",2,DEM,Johnny Austin Thompson,24535
+ESCAMBIA,,"State Representative, District 2",2,REP,Jon Fay,27079
+SANTA ROSA,,"State Representative, District 2",2,DEM,Johnny Austin Thompson,5166
+SANTA ROSA,,"State Representative, District 2",2,REP,Jon Fay,11698
+CLAY,,"State Representative, District 20",20,DEM,Lee Butler,4562
+CLAY,,"State Representative, District 20",20,REP,Judson Sapp,13957
+MARION,,"State Representative, District 20",20,DEM,Lee Butler,3057
+MARION,,"State Representative, District 20",20,REP,Judson Sapp,7904
+PUTNAM,,"State Representative, District 20",20,DEM,Lee Butler,7985
+PUTNAM,,"State Representative, District 20",20,REP,Judson Sapp,18228
+ST. JOHNS,,"State Representative, District 20",20,DEM,Lee Butler,5903
+ST. JOHNS,,"State Representative, District 20",20,REP,Judson Sapp,11596
+ALACHUA,,"State Representative, District 22",22,DEM,Amy Trask,34241
+ALACHUA,,"State Representative, District 22",22,REP,Chad Johnson,18768
+GILCHRIST,,"State Representative, District 22",22,DEM,Amy Trask,1357
+GILCHRIST,,"State Representative, District 22",22,REP,Chad Johnson,6388
+LEVY,,"State Representative, District 22",22,DEM,Amy Trask,4877
+LEVY,,"State Representative, District 22",22,REP,Chad Johnson,13188
+CITRUS,,"State Representative, District 23",23,DEM,Mark Leland Baker,21069
+CITRUS,,"State Representative, District 23",23,REP,J.J. Grow,53075
+MARION,,"State Representative, District 23",23,DEM,Mark Leland Baker,3540
+MARION,,"State Representative, District 23",23,REP,J.J. Grow,8229
+LAKE,,"State Representative, District 25",25,DEM,Farmer Banks Helfrich,41719
+LAKE,,"State Representative, District 25",25,REP,Taylor Yarkosky,44443
+LAKE,,"State Representative, District 26",26,DEM,Robyn Elaine Lawrence,29697
+LAKE,,"State Representative, District 26",26,REP,Nan Cobb,47251
+LAKE,,"State Representative, District 27",27,DEM,Andy Ferrari,3393
+LAKE,,"State Representative, District 27",27,REP,Richard Gentry,8808
+MARION,,"State Representative, District 27",27,DEM,Andy Ferrari,13473
+MARION,,"State Representative, District 27",27,REP,Richard Gentry,25401
+VOLUSIA,,"State Representative, District 27",27,DEM,Andy Ferrari,10633
+VOLUSIA,,"State Representative, District 27",27,REP,Richard Gentry,16697
+VOLUSIA,,"State Representative, District 28",28,DEM,Sammy Jackson,31366
+VOLUSIA,,"State Representative, District 28",28,LPF,Joseph Joe Hannoush,1370
+VOLUSIA,,"State Representative, District 28",28,REP,Bill Partington,41127
+VOLUSIA,,"State Representative, District 29",29,DEM,Don Kanfer,33099
+VOLUSIA,,"State Representative, District 29",29,REP,Webster Barnaby,35105
+OKALOOSA,,"State Representative, District 3",3,DEM,Ingrid D. Wadsworth,2837
+OKALOOSA,,"State Representative, District 3",3,REP,Nathan Boyles,8796
+SANTA ROSA,,"State Representative, District 3",3,DEM,Ingrid D. Wadsworth,15670
+SANTA ROSA,,"State Representative, District 3",3,REP,Nathan Boyles,40907
+BREVARD,,"State Representative, District 30",30,DEM,Edwin Munoz,7171
+BREVARD,,"State Representative, District 30",30,REP,Chase Tramont,11548
+VOLUSIA,,"State Representative, District 30",30,DEM,Edwin Munoz,23892
+VOLUSIA,,"State Representative, District 30",30,REP,Chase Tramont,39837
+BREVARD,,"State Representative, District 31",31,DEM,Daniel Lewis Cicirelli,31552
+BREVARD,,"State Representative, District 31",31,REP,Matt Woodside,46804
+BREVARD,,"State Representative, District 32",32,DEM,Juan J. Hinojosa,36632
+BREVARD,,"State Representative, District 32",32,REP,Brian Hodgers,49868
+BREVARD,,"State Representative, District 33",33,DEM,Daniel R. McDow,36443
+BREVARD,,"State Representative, District 33",33,REP,Monique Miller,36146
+BREVARD,,"State Representative, District 34",34,DEM,Jordyn Guadalupe Balderas,3800
+BREVARD,,"State Representative, District 34",34,REP,Robert Brackett,7020
+INDIAN RIVER,,"State Representative, District 34",34,DEM,Jordyn Guadalupe Balderas,28517
+INDIAN RIVER,,"State Representative, District 34",34,REP,Robert Brackett,48005
+ORANGE,,"State Representative, District 35",35,DEM,Eric Gray,32277
+ORANGE,,"State Representative, District 35",35,REP,Erika Booth,21610
+OSCEOLA,,"State Representative, District 35",35,DEM,Eric Gray,8775
+OSCEOLA,,"State Representative, District 35",35,REP,Erika Booth,10507
+SEMINOLE,,"State Representative, District 36",36,DEM,Darryl Block,38071
+SEMINOLE,,"State Representative, District 36",36,REP,Rachel Plakon,31481
+ORANGE,,"State Representative, District 37",37,DEM,Jane Aman,18108
+ORANGE,,"State Representative, District 37",37,REP,Robert Prater,8737
+SEMINOLE,,"State Representative, District 37",37,DEM,Jane Aman,16227
+SEMINOLE,,"State Representative, District 37",37,REP,Robert Prater,15374
+SEMINOLE,,"State Representative, District 38",38,DEM,Nik Dean,39077
+SEMINOLE,,"State Representative, District 38",38,REP,Emily Duda Buckley,30406
+ORANGE,,"State Representative, District 39",39,DEM,Jarod Fox,29919
+ORANGE,,"State Representative, District 39",39,REP,Doug Bankson,20808
+SEMINOLE,,"State Representative, District 39",39,DEM,Jarod Fox,10605
+SEMINOLE,,"State Representative, District 39",39,REP,Doug Bankson,11731
+OKALOOSA,,"State Representative, District 4",4,DEM,John Peter Emerling,20638
+OKALOOSA,,"State Representative, District 4",4,REP,Patt Maney,43569
+ORANGE,,"State Representative, District 40",40,DEM,Ra'Shon Young,39347
+ORANGE,,"State Representative, District 40",40,REP,Tuan Le,13006
+ORANGE,,"State Representative, District 42",42,DEM,Felipe Sousa Lazaballet,49778
+ORANGE,,"State Representative, District 42",42,REP,Bonnie Jackson,29980
+ORANGE,,"State Representative, District 43",43,DEM,Samuel Vilchez Santiago,31533
+ORANGE,,"State Representative, District 43",43,REP,Jorge Malavet,16118
+ORANGE,,"State Representative, District 45",45,DEM,Leonard Spencer,34188
+ORANGE,,"State Representative, District 45",45,REP,Erin Huntley,28665
+OSCEOLA,,"State Representative, District 45",45,DEM,Leonard Spencer,8673
+OSCEOLA,,"State Representative, District 45",45,REP,Erin Huntley,6155
+OSCEOLA,,"State Representative, District 46",46,DEM,Jose Alvarez,30422
+OSCEOLA,,"State Representative, District 46",46,NPA,Ivan A. Rivera,859
+OSCEOLA,,"State Representative, District 46",46,REP,Michael Cruz,13629
+POLK,,"State Representative, District 48",48,DEM,Alethea Pugh,32260
+POLK,,"State Representative, District 48",48,REP,Jonathan Albert,34516
+POLK,,"State Representative, District 49",49,DEM,Robert Anzalone,23943
+POLK,,"State Representative, District 49",49,REP,Jennifer Kincart Jonsson,35212
+CALHOUN,,"State Representative, District 5",5,DEM,Alex Finney,785
+CALHOUN,,"State Representative, District 5",5,REP,Shane Abbott,3453
+HOLMES,,"State Representative, District 5",5,DEM,Alex Finney,691
+HOLMES,,"State Representative, District 5",5,REP,Shane Abbott,5469
+JACKSON,,"State Representative, District 5",5,DEM,Alex Finney,4625
+JACKSON,,"State Representative, District 5",5,REP,Shane Abbott,10945
+WALTON,,"State Representative, District 5",5,DEM,Alex Finney,7800
+WALTON,,"State Representative, District 5",5,REP,Shane Abbott,26873
+WASHINGTON,,"State Representative, District 5",5,DEM,Alex Finney,1748
+WASHINGTON,,"State Representative, District 5",5,REP,Shane Abbott,7250
+POLK,,"State Representative, District 50",50,DEM,Ricky Santiago,25842
+POLK,,"State Representative, District 50",50,NPA,Jarvis Washington,1181
+POLK,,"State Representative, District 50",50,REP,Jennifer Canady,32126
+POLK,,"State Representative, District 51",51,DEM,Octavio E. Hernandez,36316
+POLK,,"State Representative, District 51",51,REP,Hilary Holley,33289
+HERNANDO,,"State Representative, District 52",52,DEM,Pamala Kaye Bivins,6779
+HERNANDO,,"State Representative, District 52",52,REP,Samantha Scott,14246
+SUMTER,,"State Representative, District 52",52,DEM,Pamala Kaye Bivins,27896
+SUMTER,,"State Representative, District 52",52,REP,Samantha Scott,66164
+HERNANDO,,"State Representative, District 53",53,CPF,Christopher Anger,1015
+HERNANDO,,"State Representative, District 53",53,DEM,Tony Claude,21767
+HERNANDO,,"State Representative, District 53",53,REP,Brian Hawkins,35390
+PASCO,,"State Representative, District 53",53,CPF,Christopher Anger,170
+PASCO,,"State Representative, District 53",53,DEM,Tony Claude,3853
+PASCO,,"State Representative, District 53",53,REP,Brian Hawkins,9006
+PASCO,,"State Representative, District 55",55,DEM,Zach Funkhouser,35350
+PASCO,,"State Representative, District 55",55,REP,Walter Price,50971
+PASCO,,"State Representative, District 56",56,DEM,Jose Freites,22746
+PASCO,,"State Representative, District 56",56,REP,Brad Yeager,32324
+PINELLAS,,"State Representative, District 57",57,DEM,Wendy Hoy,37921
+PINELLAS,,"State Representative, District 57",57,REP,Adam C. Anderson,46979
+PINELLAS,,"State Representative, District 58",58,DEM,Bryan Beckman,34254
+PINELLAS,,"State Representative, District 58",58,REP,Kimberly Kim Berfield,39005
+PINELLAS,,"State Representative, District 59",59,DEM,Susan Rochelle Leff,31377
+PINELLAS,,"State Representative, District 59",59,REP,Berny Jacques,36085
+BAY,,"State Representative, District 6",6,DEM,Stephanie Lyn Leonard,21063
+BAY,,"State Representative, District 6",6,REP,Tricia Berry,48372
+PINELLAS,,"State Representative, District 60",60,DEM,Lindsay Polega-Quigley,40168
+PINELLAS,,"State Representative, District 60",60,REP,Melissa Rutland,28591
+PINELLAS,,"State Representative, District 61",61,DEM,May Thach,36549
+PINELLAS,,"State Representative, District 61",61,REP,Linda Chaney,39078
+HILLSBOROUGH,,"State Representative, District 64",64,DEM,Luis Salazar,26159
+HILLSBOROUGH,,"State Representative, District 64",64,REP,Dan Weldon,18212
+HILLSBOROUGH,,"State Representative, District 65",65,DEM,Ben Braver,35558
+HILLSBOROUGH,,"State Representative, District 65",65,REP,Karen Gonzalez Pittman,36937
+HILLSBOROUGH,,"State Representative, District 66",66,DEM,"Jose A. ""Dante"" Sanchez Sanchez",35995
+HILLSBOROUGH,,"State Representative, District 66",66,REP,Traci Koster,39835
+HILLSBOROUGH,,"State Representative, District 67",67,DEM,Luis Viera,34511
+HILLSBOROUGH,,"State Representative, District 67",67,REP,Lisette Bonano,17479
+HILLSBOROUGH,,"State Representative, District 68",68,DEM,Tony Smith,27586
+HILLSBOROUGH,,"State Representative, District 68",68,REP,Ryan Gill,35943
+HILLSBOROUGH,,"State Representative, District 69",69,DEM,Ashley Elizabeth Herrmann,35455
+HILLSBOROUGH,,"State Representative, District 69",69,REP,Daniel Danny Alvarez,33167
+HILLSBOROUGH,,"State Representative, District 70",70,DEM,Luther Keith Wilkins,32891
+HILLSBOROUGH,,"State Representative, District 70",70,REP,Michael Owen,30596
+MANATEE,,"State Representative, District 70",70,DEM,Luther Keith Wilkins,11912
+MANATEE,,"State Representative, District 70",70,REP,Michael Owen,18798
+MANATEE,,"State Representative, District 71",71,DEM,Ocean Fitts,25332
+MANATEE,,"State Representative, District 71",71,NPA,Joseph Hoolihan,1323
+MANATEE,,"State Representative, District 71",71,REP,Jordan Varnadore,31183
+MANATEE,,"State Representative, District 72",72,DEM,Harvey Shifrin,35151
+MANATEE,,"State Representative, District 72",72,REP,William Bill Conerly,56214
+SARASOTA,,"State Representative, District 73",73,DEM,Lisa Klein,41580
+SARASOTA,,"State Representative, District 73",73,REP,Fiona McFarland,47869
+SARASOTA,,"State Representative, District 74",74,DEM,Ryan Neill,37280
+SARASOTA,,"State Representative, District 74",74,REP,Nick Pachota,54575
+CHARLOTTE,,"State Representative, District 75",75,DEM,Cynthia L. Butler,20140
+CHARLOTTE,,"State Representative, District 75",75,REP,Danny Nix,38059
+SARASOTA,,"State Representative, District 75",75,DEM,Cynthia L. Butler,15037
+SARASOTA,,"State Representative, District 75",75,REP,Danny Nix,24815
+CHARLOTTE,,"State Representative, District 76",76,DEM,Phillip Ray Carter,13647
+CHARLOTTE,,"State Representative, District 76",76,REP,Vanessa Oliver,27488
+DESOTO,,"State Representative, District 76",76,DEM,Phillip Ray Carter,3208
+DESOTO,,"State Representative, District 76",76,REP,Vanessa Oliver,5784
+LEE,,"State Representative, District 76",76,DEM,Phillip Ray Carter,10921
+LEE,,"State Representative, District 76",76,REP,Vanessa Oliver,20977
+LEE,,"State Representative, District 77",77,DEM,Cornelius Fowler,27477
+LEE,,"State Representative, District 77",77,REP,Tiffany Esposito,34242
+LEE,,"State Representative, District 78",78,DEM,Cindy Banyai,30126
+LEE,,"State Representative, District 78",78,REP,Susan Frantz,35571
+COLLIER,,"State Representative, District 80",80,DEM,William Moskal,8741
+COLLIER,,"State Representative, District 80",80,REP,Adam Botana,17567
+LEE,,"State Representative, District 80",80,DEM,William Moskal,23045
+LEE,,"State Representative, District 80",80,REP,Adam Botana,42234
+COLLIER,,"State Representative, District 81",81,DEM,Kim Finer,31264
+COLLIER,,"State Representative, District 81",81,REP,Yvette Benarroch,56996
+COLLIER,,"State Representative, District 82",82,DEM,Arthur Boyer,21039
+COLLIER,,"State Representative, District 82",82,REP,Liesa Priddy,33518
+HENDRY,,"State Representative, District 82",82,DEM,Arthur Boyer,4382
+HENDRY,,"State Representative, District 82",82,REP,Liesa Priddy,5629
+GLADES,,"State Representative, District 83",83,DEM,Leigh Estes,1070
+GLADES,,"State Representative, District 83",83,REP,Kaylee Tuck,2709
+HARDEE,,"State Representative, District 83",83,DEM,Leigh Estes,1819
+HARDEE,,"State Representative, District 83",83,REP,Kaylee Tuck,4121
+HIGHLANDS,,"State Representative, District 83",83,DEM,Leigh Estes,12708
+HIGHLANDS,,"State Representative, District 83",83,REP,Kaylee Tuck,26673
+OKEECHOBEE,,"State Representative, District 83",83,DEM,Leigh Estes,3240
+OKEECHOBEE,,"State Representative, District 83",83,REP,Kaylee Tuck,7807
+ST. LUCIE,,"State Representative, District 84",84,DEM,Jennifer Massey,34825
+ST. LUCIE,,"State Representative, District 84",84,REP,Dana Trabulsy,35844
+MARTIN,,"State Representative, District 85",85,DEM,Wayne Richter,6834
+MARTIN,,"State Representative, District 85",85,MGT,Amr Metwally,60
+MARTIN,,"State Representative, District 85",85,REP,Anthony Bonna,12239
+MARTIN,,"State Representative, District 85",85,WRI,Hunter Stone,0
+ST. LUCIE,,"State Representative, District 85",85,DEM,Wayne Richter,35638
+ST. LUCIE,,"State Representative, District 85",85,MGT,Amr Metwally,295
+ST. LUCIE,,"State Representative, District 85",85,REP,Anthony Bonna,30885
+ST. LUCIE,,"State Representative, District 85",85,WRI,Hunter Stone,14
+MARTIN,,"State Representative, District 86",86,DEM,Elizabeth Brendel Pandich,20492
+MARTIN,,"State Representative, District 86",86,REP,John Snyder,35681
+PALM BEACH,,"State Representative, District 86",86,DEM,Elizabeth Brendel Pandich,10562
+PALM BEACH,,"State Representative, District 86",86,REP,John Snyder,15301
+PALM BEACH,,"State Representative, District 87",87,DEM,Emily Gregory,37688
+PALM BEACH,,"State Representative, District 87",87,REP,Jon Maples,38714
+PALM BEACH,,"State Representative, District 88",88,DEM,Jervonte Tae Edmonds,34680
+PALM BEACH,,"State Representative, District 88",88,REP,William Joseph,8745
+PALM BEACH,,"State Representative, District 89",89,DEM,Debra Tendrich,25710
+PALM BEACH,,"State Representative, District 89",89,REP,Cathy Higgins,13864
+JEFFERSON,,"State Representative, District 9",9,DEM,Allison Tant,3529
+JEFFERSON,,"State Representative, District 9",9,REP,Tracy Robinson,2470
+LEON,,"State Representative, District 9",9,DEM,Allison Tant,50041
+LEON,,"State Representative, District 9",9,REP,Tracy Robinson,27041
+MADISON,,"State Representative, District 9",9,DEM,Allison Tant,3557
+MADISON,,"State Representative, District 9",9,REP,Tracy Robinson,3346
+PALM BEACH,,"State Representative, District 90",90,DEM,Rob Long,42177
+PALM BEACH,,"State Representative, District 90",90,REP,Ionel Roiban,24823
+PALM BEACH,,"State Representative, District 91",91,DEM,Luis Garcia,35541
+PALM BEACH,,"State Representative, District 91",91,REP,Peggy Gossett-Seidman,39917
+PALM BEACH,,"State Representative, District 92",92,DEM,Kelly Skidmore,51848
+PALM BEACH,,"State Representative, District 92",92,REP,Steve Byers,37629
+PALM BEACH,,"State Representative, District 93",93,DEM,August Mangeney,40695
+PALM BEACH,,"State Representative, District 93",93,REP,Anne Gerwig,31699
+PALM BEACH,,"State Representative, District 94",94,DEM,Elizabeth Holmes,38414
+PALM BEACH,,"State Representative, District 94",94,NPA,Doug Barrow,1282
+PALM BEACH,,"State Representative, District 94",94,REP,Megan Weinberger,36582
+ORANGE,,"State Senator, District 10",10,DEM,John Lowndes,18526
+ORANGE,,"State Senator, District 10",10,REP,Jason Brodeur,11388
+SEMINOLE,,"State Senator, District 10",10,DEM,John Lowndes,106610
+SEMINOLE,,"State Senator, District 10",10,REP,Jason Brodeur,87118
+POLK,,"State Senator, District 12",12,DEM,Alfred Reynolds,92769
+POLK,,"State Senator, District 12",12,REP,Colleen Burton,94012
+HILLSBOROUGH,,"State Senator, District 14",14,DEM,Brian Nathan,101282
+HILLSBOROUGH,,"State Senator, District 14",14,REP,Josie Tomkow,92548
+PINELLAS,,"State Senator, District 18",18,DEM,Karla Kemp,104672
+PINELLAS,,"State Senator, District 18",18,REP,Nick DiCeglie,108405
+BAY,,"State Senator, District 2",2,DEM,Lauren Donahoo,20570
+BAY,,"State Senator, District 2",2,REP,Jay Trumbull,49307
+CALHOUN,,"State Senator, District 2",2,DEM,Lauren Donahoo,800
+CALHOUN,,"State Senator, District 2",2,REP,Jay Trumbull,3473
+HOLMES,,"State Senator, District 2",2,DEM,Lauren Donahoo,741
+HOLMES,,"State Senator, District 2",2,REP,Jay Trumbull,5443
+JACKSON,,"State Senator, District 2",2,DEM,Lauren Donahoo,4701
+JACKSON,,"State Senator, District 2",2,REP,Jay Trumbull,10937
+OKALOOSA,,"State Senator, District 2",2,DEM,Lauren Donahoo,20579
+OKALOOSA,,"State Senator, District 2",2,REP,Jay Trumbull,42254
+WALTON,,"State Senator, District 2",2,DEM,Lauren Donahoo,8073
+WALTON,,"State Senator, District 2",2,REP,Jay Trumbull,26769
+WASHINGTON,,"State Senator, District 2",2,DEM,Lauren Donahoo,1794
+WASHINGTON,,"State Senator, District 2",2,REP,Jay Trumbull,7217
+HILLSBOROUGH,,"State Senator, District 20",20,DEM,Gerald Baldi,52439
+HILLSBOROUGH,,"State Senator, District 20",20,REP,Jim Boyd,51825
+MANATEE,,"State Senator, District 20",20,DEM,Gerald Baldi,54283
+MANATEE,,"State Senator, District 20",20,REP,Jim Boyd,82773
+PASCO,,"State Senator, District 21",21,DEM,Jordan Hensley,32883
+PASCO,,"State Senator, District 21",21,REP,Chris Nocco,50643
+PINELLAS,,"State Senator, District 21",21,DEM,Jordan Hensley,61783
+PINELLAS,,"State Senator, District 21",21,REP,Chris Nocco,78439
+MANATEE,,"State Senator, District 22",22,DEM,Lew Wasserman,18485
+MANATEE,,"State Senator, District 22",22,NPA,Martin Hyde,1012
+MANATEE,,"State Senator, District 22",22,REP,James Buchanan,24372
+SARASOTA,,"State Senator, District 22",22,DEM,Lew Wasserman,91247
+SARASOTA,,"State Senator, District 22",22,NPA,Martin Hyde,7747
+SARASOTA,,"State Senator, District 22",22,REP,James Buchanan,122700
+PALM BEACH,,"State Senator, District 24",24,DEM,Mack Bernard,99896
+PALM BEACH,,"State Senator, District 24",24,REP,Jackie Green,54707
+PALM BEACH,,"State Senator, District 26",26,DEM,David Silvers,135408
+PALM BEACH,,"State Senator, District 26",26,REP,Rick Roth,97826
+COLLIER,,"State Senator, District 28",28,DEM,David Silverberg,61253
+COLLIER,,"State Senator, District 28",28,REP,Lauren Uhlich Melo,108421
+HENDRY,,"State Senator, District 28",28,DEM,David Silverberg,4424
+HENDRY,,"State Senator, District 28",28,REP,Lauren Uhlich Melo,5579
+LEE,,"State Senator, District 28",28,DEM,David Silverberg,20836
+LEE,,"State Senator, District 28",28,REP,Lauren Uhlich Melo,28427
+BROWARD,,"State Senator, District 30",30,DEM,Lauren Book,88606
+BROWARD,,"State Senator, District 30",30,REP,Hector Rivera,43743
+PALM BEACH,,"State Senator, District 30",30,DEM,Lauren Book,26643
+PALM BEACH,,"State Senator, District 30",30,REP,Hector Rivera,24403
+BROWARD,,"State Senator, District 32",32,DEM,Rosalind Osgood,142988
+BROWARD,,"State Senator, District 32",32,NPA,Crescente Furnaguera,23029
+MIAMI-DADE,,"State Senator, District 34",34,DEM,Ashley Viola Gantt,115457
+MIAMI-DADE,,"State Senator, District 34",34,REP,Elizabeth Jeanty,30997
+MIAMI-DADE,,"State Senator, District 36",36,DEM,George LavÃ­n,69472
+MIAMI-DADE,,"State Senator, District 36",36,REP,Ileana Garcia,71136
+MIAMI-DADE,,"State Senator, District 38",38,DEM,Richard Lamondin,91425
+MIAMI-DADE,,"State Senator, District 38",38,NPA,Jeffrey Doc Solomon,3383
+MIAMI-DADE,,"State Senator, District 38",38,REP,Alexis Maria Calatayud,92972
+MIAMI-DADE,,"State Senator, District 40",40,DEM,Jose Antonio Stoute,61388
+MIAMI-DADE,,"State Senator, District 40",40,NPA,Ramiro Orta,1610
+MIAMI-DADE,,"State Senator, District 40",40,REP,Ana Maria Rodriguez,77685
+MONROE,,"State Senator, District 40",40,DEM,Jose Antonio Stoute,14069
+MONROE,,"State Senator, District 40",40,NPA,Ramiro Orta,256
+MONROE,,"State Senator, District 40",40,REP,Ana Maria Rodriguez,17684
+ALACHUA,,"State Senator, District 6",6,ASP,Joseph Thornton,622
+ALACHUA,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,42016
+ALACHUA,,"State Senator, District 6",6,REP,Jennifer Bradley,21512
+BAKER,,"State Senator, District 6",6,ASP,Joseph Thornton,75
+BAKER,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,1518
+BAKER,,"State Senator, District 6",6,REP,Jennifer Bradley,8132
+BRADFORD,,"State Senator, District 6",6,ASP,Joseph Thornton,87
+BRADFORD,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,2320
+BRADFORD,,"State Senator, District 6",6,REP,Jennifer Bradley,7139
+CLAY,,"State Senator, District 6",6,ASP,Joseph Thornton,962
+CLAY,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,31578
+CLAY,,"State Senator, District 6",6,REP,Jennifer Bradley,59924
+COLUMBIA,,"State Senator, District 6",6,ASP,Joseph Thornton,198
+COLUMBIA,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,6384
+COLUMBIA,,"State Senator, District 6",6,REP,Jennifer Bradley,16145
+GILCHRIST,,"State Senator, District 6",6,ASP,Joseph Thornton,75
+GILCHRIST,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,1347
+GILCHRIST,,"State Senator, District 6",6,REP,Jennifer Bradley,6310
+UNION,,"State Senator, District 6",6,ASP,Joseph Thornton,25
+UNION,,"State Senator, District 6",6,DEM,Jason Bellamy-Fults,782
+UNION,,"State Senator, District 6",6,REP,Jennifer Bradley,3457
+BREVARD,,"State Senator, District 8",8,DEM,Judy M. Ngying,11273
+BREVARD,,"State Senator, District 8",8,LPF,Gabriel Jude Wozniak,519
+BREVARD,,"State Senator, District 8",8,REP,Jake Johansson,17403
+VOLUSIA,,"State Senator, District 8",8,DEM,Judy M. Ngying,85109
+VOLUSIA,,"State Senator, District 8",8,LPF,Gabriel Jude Wozniak,3422
+VOLUSIA,,"State Senator, District 8",8,REP,Jake Johansson,107712
+ALACHUA,,United States Senator,,DEM,Angie Nixon,69813
+ALACHUA,,United States Senator,,NPA,Neil J. Gillespie,983
+ALACHUA,,United States Senator,,REP,Ashley Moody,34835
+BAKER,,United States Senator,,DEM,Angie Nixon,1571
+BAKER,,United States Senator,,NPA,Neil J. Gillespie,84
+BAKER,,United States Senator,,REP,Ashley Moody,8171
+BAY,,United States Senator,,DEM,Angie Nixon,20773
+BAY,,United States Senator,,NPA,Neil J. Gillespie,805
+BAY,,United States Senator,,REP,Ashley Moody,48770
+BRADFORD,,United States Senator,,DEM,Angie Nixon,2386
+BRADFORD,,United States Senator,,NPA,Neil J. Gillespie,97
+BRADFORD,,United States Senator,,REP,Ashley Moody,7234
+BREVARD,,United States Senator,,DEM,Angie Nixon,113992
+BREVARD,,United States Senator,,NPA,Neil J. Gillespie,3678
+BREVARD,,United States Senator,,REP,Ashley Moody,152489
+BROWARD,,United States Senator,,DEM,Angie Nixon,433491
+BROWARD,,United States Senator,,NPA,Neil J. Gillespie,6661
+BROWARD,,United States Senator,,REP,Ashley Moody,220265
+CALHOUN,,United States Senator,,DEM,Angie Nixon,811
+CALHOUN,,United States Senator,,NPA,Neil J. Gillespie,48
+CALHOUN,,United States Senator,,REP,Ashley Moody,3441
+CHARLOTTE,,United States Senator,,DEM,Angie Nixon,32847
+CHARLOTTE,,United States Senator,,NPA,Neil J. Gillespie,1294
+CHARLOTTE,,United States Senator,,REP,Ashley Moody,66414
+CITRUS,,United States Senator,,DEM,Angie Nixon,20672
+CITRUS,,United States Senator,,NPA,Neil J. Gillespie,1113
+CITRUS,,United States Senator,,REP,Ashley Moody,53341
+CLAY,,United States Senator,,DEM,Angie Nixon,32038
+CLAY,,United States Senator,,NPA,Neil J. Gillespie,1119
+CLAY,,United States Senator,,REP,Ashley Moody,60169
+COLLIER,,United States Senator,,DEM,Angie Nixon,60440
+COLLIER,,United States Senator,,NPA,Neil J. Gillespie,1521
+COLLIER,,United States Senator,,REP,Ashley Moody,109795
+COLUMBIA,,United States Senator,,DEM,Angie Nixon,6510
+COLUMBIA,,United States Senator,,NPA,Neil J. Gillespie,282
+COLUMBIA,,United States Senator,,REP,Ashley Moody,16231
+DESOTO,,United States Senator,,DEM,Angie Nixon,3160
+DESOTO,,United States Senator,,NPA,Neil J. Gillespie,98
+DESOTO,,United States Senator,,REP,Ashley Moody,5865
+DIXIE,,United States Senator,,DEM,Angie Nixon,912
+DIXIE,,United States Senator,,NPA,Neil J. Gillespie,84
+DIXIE,,United States Senator,,REP,Ashley Moody,4624
+DUVAL,,United States Senator,,DEM,Angie Nixon,197618
+DUVAL,,United States Senator,,NPA,Neil J. Gillespie,3419
+DUVAL,,United States Senator,,REP,Ashley Moody,158152
+ESCAMBIA,,United States Senator,,DEM,Angie Nixon,51944
+ESCAMBIA,,United States Senator,,NPA,Neil J. Gillespie,1384
+ESCAMBIA,,United States Senator,,REP,Ashley Moody,63160
+FLAGLER,,United States Senator,,DEM,Angie Nixon,23614
+FLAGLER,,United States Senator,,NPA,Neil J. Gillespie,754
+FLAGLER,,United States Senator,,REP,Ashley Moody,39539
+FRANKLIN,,United States Senator,,DEM,Angie Nixon,1591
+FRANKLIN,,United States Senator,,NPA,Neil J. Gillespie,50
+FRANKLIN,,United States Senator,,REP,Ashley Moody,3410
+GADSDEN,,United States Senator,,DEM,Angie Nixon,12225
+GADSDEN,,United States Senator,,NPA,Neil J. Gillespie,122
+GADSDEN,,United States Senator,,REP,Ashley Moody,5509
+GILCHRIST,,United States Senator,,DEM,Angie Nixon,1363
+GILCHRIST,,United States Senator,,NPA,Neil J. Gillespie,86
+GILCHRIST,,United States Senator,,REP,Ashley Moody,6356
+GLADES,,United States Senator,,DEM,Angie Nixon,1082
+GLADES,,United States Senator,,NPA,Neil J. Gillespie,43
+GLADES,,United States Senator,,REP,Ashley Moody,2688
+GULF,,United States Senator,,DEM,Angie Nixon,1509
+GULF,,United States Senator,,NPA,Neil J. Gillespie,101
+GULF,,United States Senator,,REP,Ashley Moody,5108
+HAMILTON,,United States Senator,,DEM,Angie Nixon,1426
+HAMILTON,,United States Senator,,NPA,Neil J. Gillespie,24
+HAMILTON,,United States Senator,,REP,Ashley Moody,2704
+HARDEE,,United States Senator,,DEM,Angie Nixon,1857
+HARDEE,,United States Senator,,NPA,Neil J. Gillespie,73
+HARDEE,,United States Senator,,REP,Ashley Moody,4104
+HENDRY,,United States Senator,,DEM,Angie Nixon,4402
+HENDRY,,United States Senator,,NPA,Neil J. Gillespie,113
+HENDRY,,United States Senator,,REP,Ashley Moody,5573
+HERNANDO,,United States Senator,,DEM,Angie Nixon,27804
+HERNANDO,,United States Senator,,NPA,Neil J. Gillespie,1133
+HERNANDO,,United States Senator,,REP,Ashley Moody,51298
+HIGHLANDS,,United States Senator,,DEM,Angie Nixon,12602
+HIGHLANDS,,United States Senator,,NPA,Neil J. Gillespie,426
+HIGHLANDS,,United States Senator,,REP,Ashley Moody,26721
+HILLSBOROUGH,,United States Senator,,DEM,Angie Nixon,278799
+HILLSBOROUGH,,United States Senator,,NPA,Neil J. Gillespie,6202
+HILLSBOROUGH,,United States Senator,,REP,Ashley Moody,232131
+HOLMES,,United States Senator,,DEM,Angie Nixon,730
+HOLMES,,United States Senator,,NPA,Neil J. Gillespie,64
+HOLMES,,United States Senator,,REP,Ashley Moody,5414
+INDIAN RIVER,,United States Senator,,DEM,Angie Nixon,29503
+INDIAN RIVER,,United States Senator,,NPA,Neil J. Gillespie,767
+INDIAN RIVER,,United States Senator,,REP,Ashley Moody,47248
+JACKSON,,United States Senator,,DEM,Angie Nixon,4673
+JACKSON,,United States Senator,,NPA,Neil J. Gillespie,187
+JACKSON,,United States Senator,,REP,Ashley Moody,10851
+JEFFERSON,,United States Senator,,DEM,Angie Nixon,2914
+JEFFERSON,,United States Senator,,NPA,Neil J. Gillespie,67
+JEFFERSON,,United States Senator,,REP,Ashley Moody,4018
+LAFAYETTE,,United States Senator,,DEM,Angie Nixon,349
+LAFAYETTE,,United States Senator,,NPA,Neil J. Gillespie,23
+LAFAYETTE,,United States Senator,,REP,Ashley Moody,2249
+LAKE,,United States Senator,,DEM,Angie Nixon,71592
+LAKE,,United States Senator,,NPA,Neil J. Gillespie,2135
+LAKE,,United States Senator,,REP,Ashley Moody,104364
+LEE,,United States Senator,,DEM,Angie Nixon,117958
+LEE,,United States Senator,,NPA,Neil J. Gillespie,3198
+LEE,,United States Senator,,REP,Ashley Moody,182900
+LEON,,United States Senator,,DEM,Angie Nixon,81947
+LEON,,United States Senator,,NPA,Neil J. Gillespie,1289
+LEON,,United States Senator,,REP,Ashley Moody,42467
+LEVY,,United States Senator,,DEM,Angie Nixon,4967
+LEVY,,United States Senator,,NPA,Neil J. Gillespie,241
+LEVY,,United States Senator,,REP,Ashley Moody,12947
+LIBERTY,,United States Senator,,DEM,Angie Nixon,504
+LIBERTY,,United States Senator,,NPA,Neil J. Gillespie,41
+LIBERTY,,United States Senator,,REP,Ashley Moody,2113
+MADISON,,United States Senator,,DEM,Angie Nixon,2689
+MADISON,,United States Senator,,NPA,Neil J. Gillespie,53
+MADISON,,United States Senator,,REP,Ashley Moody,4266
+MANATEE,,United States Senator,,DEM,Angie Nixon,72437
+MANATEE,,United States Senator,,NPA,Neil J. Gillespie,2182
+MANATEE,,United States Senator,,REP,Ashley Moody,107667
+MARION,,United States Senator,,DEM,Angie Nixon,59853
+MARION,,United States Senator,,NPA,Neil J. Gillespie,1910
+MARION,,United States Senator,,REP,Ashley Moody,102186
+MARTIN,,United States Senator,,DEM,Angie Nixon,27611
+MARTIN,,United States Senator,,NPA,Neil J. Gillespie,810
+MARTIN,,United States Senator,,REP,Ashley Moody,47879
+MIAMI-DADE,,United States Senator,,DEM,Angie Nixon,416036
+MIAMI-DADE,,United States Senator,,NPA,Neil J. Gillespie,8806
+MIAMI-DADE,,United States Senator,,REP,Ashley Moody,359992
+MONROE,,United States Senator,,DEM,Angie Nixon,14593
+MONROE,,United States Senator,,NPA,Neil J. Gillespie,314
+MONROE,,United States Senator,,REP,Ashley Moody,17450
+NASSAU,,United States Senator,,DEM,Angie Nixon,14289
+NASSAU,,United States Senator,,NPA,Neil J. Gillespie,731
+NASSAU,,United States Senator,,REP,Ashley Moody,35539
+OKALOOSA,,United States Senator,,DEM,Angie Nixon,24704
+OKALOOSA,,United States Senator,,NPA,Neil J. Gillespie,1043
+OKALOOSA,,United States Senator,,REP,Ashley Moody,51861
+OKEECHOBEE,,United States Senator,,DEM,Angie Nixon,3258
+OKEECHOBEE,,United States Senator,,NPA,Neil J. Gillespie,118
+OKEECHOBEE,,United States Senator,,REP,Ashley Moody,7758
+ORANGE,,United States Senator,,DEM,Angie Nixon,301007
+ORANGE,,United States Senator,,NPA,Neil J. Gillespie,4551
+ORANGE,,United States Senator,,REP,Ashley Moody,166347
+OSCEOLA,,United States Senator,,DEM,Angie Nixon,77327
+OSCEOLA,,United States Senator,,NPA,Neil J. Gillespie,1532
+OSCEOLA,,United States Senator,,REP,Ashley Moody,53002
+PALM BEACH,,United States Senator,,DEM,Angie Nixon,311716
+PALM BEACH,,United States Senator,,NPA,Neil J. Gillespie,6129
+PALM BEACH,,United States Senator,,REP,Ashley Moody,253054
+PASCO,,United States Senator,,DEM,Angie Nixon,101323
+PASCO,,United States Senator,,NPA,Neil J. Gillespie,3497
+PASCO,,United States Senator,,REP,Ashley Moody,135523
+PINELLAS,,United States Senator,,DEM,Angie Nixon,200207
+PINELLAS,,United States Senator,,NPA,Neil J. Gillespie,5943
+PINELLAS,,United States Senator,,REP,Ashley Moody,197538
+POLK,,United States Senator,,DEM,Angie Nixon,119100
+POLK,,United States Senator,,NPA,Neil J. Gillespie,2973
+POLK,,United States Senator,,REP,Ashley Moody,136183
+PUTNAM,,United States Senator,,DEM,Angie Nixon,7924
+PUTNAM,,United States Senator,,NPA,Neil J. Gillespie,325
+PUTNAM,,United States Senator,,REP,Ashley Moody,18272
+SANTA ROSA,,United States Senator,,DEM,Angie Nixon,20810
+SANTA ROSA,,United States Senator,,NPA,Neil J. Gillespie,899
+SANTA ROSA,,United States Senator,,REP,Ashley Moody,52879
+SARASOTA,,United States Senator,,DEM,Angie Nixon,92030
+SARASOTA,,United States Senator,,NPA,Neil J. Gillespie,2733
+SARASOTA,,United States Senator,,REP,Ashley Moody,128788
+SEMINOLE,,United States Senator,,DEM,Angie Nixon,103330
+SEMINOLE,,United States Senator,,NPA,Neil J. Gillespie,2140
+SEMINOLE,,United States Senator,,REP,Ashley Moody,90133
+ST. JOHNS,,United States Senator,,DEM,Angie Nixon,56750
+ST. JOHNS,,United States Senator,,NPA,Neil J. Gillespie,1692
+ST. JOHNS,,United States Senator,,REP,Ashley Moody,97696
+ST. LUCIE,,United States Senator,,DEM,Angie Nixon,70412
+ST. LUCIE,,United States Senator,,NPA,Neil J. Gillespie,1580
+ST. LUCIE,,United States Senator,,REP,Ashley Moody,67122
+SUMTER,,United States Senator,,DEM,Angie Nixon,26576
+SUMTER,,United States Senator,,NPA,Neil J. Gillespie,870
+SUMTER,,United States Senator,,REP,Ashley Moody,67650
+SUWANNEE,,United States Senator,,DEM,Angie Nixon,3550
+SUWANNEE,,United States Senator,,NPA,Neil J. Gillespie,157
+SUWANNEE,,United States Senator,,REP,Ashley Moody,12163
+TAYLOR,,United States Senator,,DEM,Angie Nixon,1631
+TAYLOR,,United States Senator,,NPA,Neil J. Gillespie,52
+TAYLOR,,United States Senator,,REP,Ashley Moody,5311
+UNION,,United States Senator,,DEM,Angie Nixon,787
+UNION,,United States Senator,,NPA,Neil J. Gillespie,38
+UNION,,United States Senator,,REP,Ashley Moody,3461
+VOLUSIA,,United States Senator,,DEM,Angie Nixon,98331
+VOLUSIA,,United States Senator,,NPA,Neil J. Gillespie,3153
+VOLUSIA,,United States Senator,,REP,Ashley Moody,135244
+WAKULLA,,United States Senator,,DEM,Angie Nixon,4878
+WAKULLA,,United States Senator,,NPA,Neil J. Gillespie,177
+WAKULLA,,United States Senator,,REP,Ashley Moody,10083
+WALTON,,United States Senator,,DEM,Angie Nixon,8056
+WALTON,,United States Senator,,NPA,Neil J. Gillespie,371
+WALTON,,United States Senator,,REP,Ashley Moody,26839
+WASHINGTON,,United States Senator,,DEM,Angie Nixon,1771
+WASHINGTON,,United States Senator,,NPA,Neil J. Gillespie,93
+WASHINGTON,,United States Senator,,REP,Ashley Moody,7179

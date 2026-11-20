@@ -122,3 +122,25 @@ This writes:
 
 Cached source downloads are stored under:
 - `data/sources/dra_vtd_data/`
+
+## 2026 General Election County and District Results
+
+
+Download the Florida Election Watch [2026 county results text file](https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt)
+to `data/20261103_ElecResultsFL.txt`, then run:
+
+```powershell
+py scripts/build_fl_2026_official_county_results.py
+```
+
+This adds all 67 county totals for U.S. Senate and statewide executive offices
+to the live county map. It also adds the 2026 U.S. House results to the 2026
+congressional lines and the State House and State Senate results to their district
+views. The source already reports each of those races by county **and district**,
+so district totals are exact sums of reported county rows; they do not use the
+incomplete precinct imports or spatial allocation. Only districts with a race
+in the source file are shown. The candidate-level county export is
+`data/derived/fl_2026_openelections/20261103__fl__general__county.csv`.
+`county_results_manifest.json` records the source URL and file hash. The source
+is an Election Watch election-night results file; refresh it and rerun the script
+when updated results are posted.

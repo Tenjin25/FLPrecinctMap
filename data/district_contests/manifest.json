@@ -494,6 +494,20 @@
     },
     {
       "scope": "state_house",
+      "contest_type": "state_house",
+      "year": 2026,
+      "file": "state_house_state_house_2026.json",
+      "rows": 91,
+      "dem_total": 2983775,
+      "rep_total": 3483689,
+      "other_total": 41617,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_district_sums",
+      "match_coverage_pct": 100.0
+    },
+    {
+      "scope": "state_house",
       "contest_type": "treasurer",
       "year": 2014,
       "file": "state_house_treasurer_2014.json",
@@ -826,6 +840,20 @@
       "rep_total": 2466335,
       "other_total": 15076,
       "major_party_contested": true,
+      "match_coverage_pct": 100.0
+    },
+    {
+      "scope": "state_senate",
+      "contest_type": "state_senate",
+      "year": 2026,
+      "file": "state_senate_state_senate_2026.json",
+      "rows": 19,
+      "dem_total": 1906429,
+      "rep_total": 1850937,
+      "other_total": 43022,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_district_sums",
       "match_coverage_pct": 100.0
     },
     {

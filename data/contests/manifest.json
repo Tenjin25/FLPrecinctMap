@@ -114,6 +114,19 @@
       "major_party_contested": true
     },
     {
+      "contest_type": "agriculture_commissioner",
+      "year": 2026,
+      "file": "agriculture_commissioner_2026.json",
+      "rows": 67,
+      "dem_total": 3990551,
+      "rep_total": 4164233,
+      "other_total": 830,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_totals",
+      "granularity": "county"
+    },
+    {
       "year": 1986,
       "contest_type": "attorney_general",
       "file": "attorney_general_1986.json",
@@ -205,6 +218,19 @@
       "rep_total": 4651279,
       "other_total": 0,
       "major_party_contested": true
+    },
+    {
+      "contest_type": "attorney_general",
+      "year": 2026,
+      "file": "attorney_general_2026.json",
+      "rows": 67,
+      "dem_total": 4030552,
+      "rep_total": 4181567,
+      "other_total": 0,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_totals",
+      "granularity": "county"
     },
     {
       "year": 1978,
@@ -428,6 +454,19 @@
       "rep_total": 4614210,
       "other_total": 50876,
       "major_party_contested": true
+    },
+    {
+      "contest_type": "governor",
+      "year": 2026,
+      "file": "governor_2026.json",
+      "rows": 67,
+      "dem_total": 4030579,
+      "rep_total": 4135955,
+      "other_total": 105093,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_totals",
+      "granularity": "county"
     },
     {
       "year": 1980,
@@ -747,6 +786,19 @@
       "major_party_contested": true
     },
     {
+      "contest_type": "treasurer",
+      "year": 2026,
+      "file": "treasurer_2026.json",
+      "rows": 67,
+      "dem_total": 4003874,
+      "rep_total": 4155220,
+      "other_total": 0,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_totals",
+      "granularity": "county"
+    },
+    {
       "year": 1980,
       "contest_type": "us_senate",
       "file": "us_senate_1980.json",
@@ -910,6 +962,19 @@
       "rep_total": 5977707,
       "other_total": 186528,
       "major_party_contested": true
+    },
+    {
+      "contest_type": "us_senate",
+      "year": 2026,
+      "file": "us_senate_2026.json",
+      "rows": 67,
+      "dem_total": 3975375,
+      "rep_total": 4211733,
+      "other_total": 94681,
+      "major_party_contested": true,
+      "source": "https://flelectionfiles.floridados.gov/enightfilespublic/20261103_ElecResultsFL.txt",
+      "allocation_method": "official_county_totals",
+      "granularity": "county"
     }
   ]
 }
