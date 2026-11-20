@@ -10547,8 +10547,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Cache destroyer token for static data requests.
     // Bump this value when you want browsers/CDNs to fetch fresh files immediately.
-    const DATA_CACHE_BUSTER = '2026-11-20-senate-special-label-v2';
-    const APP_BUILD_ID = '2026-11-20-senate-special-label-v2';
+    const DATA_CACHE_BUSTER = '2026-11-20-senate-special-comparison-v3';
+    const APP_BUILD_ID = '2026-11-20-senate-special-comparison-v3';
 
     function withCacheBuster(path) {
       return window.AtlasData.withCacheBuster(path, DATA_CACHE_BUSTER);
@@ -11413,14 +11413,15 @@ document.addEventListener('DOMContentLoaded', function() {
       return ct;
     }
 
-    // US Senate: Florida (and other two-seat states) elect a seat every 2 years, but each
-    // individual seat repeats on a 6-year cadence. Flip/shift/timeline comparisons must stay
-    // on the same seat (e.g. 2024↔2018), never the other seat (2024↔2022).
+    // The 2026 special election fills the seat last elected in 2022.
+    // Map it to that seat's regular cycle for flip, shift, and timeline comparisons.
     function isSameUsSenateSeatYear(yearA, yearB) {
       const a = Number(yearA);
       const b = Number(yearB);
       if (!Number.isFinite(a) || !Number.isFinite(b)) return false;
-      return ((a - b) % 6) === 0;
+      const cycleA = a === 2026 ? 2022 : a;
+      const cycleB = b === 2026 ? 2022 : b;
+      return ((cycleA - cycleB) % 6) === 0;
     }
 
     function filterSameUsSenateSeatYears(seatYear, years) {
